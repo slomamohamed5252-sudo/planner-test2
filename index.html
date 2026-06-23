@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RKSVLEWP88"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-RKSVLEWP88');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Planner Pro Max</title>
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0/default.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0/index.min.js"></script>
+    
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-size: 1.5rem; font-weight: bold;">
+                <img src="logo.png" alt="Eslam Logo" class="custom-logo" onerror="this.style.display='none'">
+                <span>Planner</span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; font-style: italic;">
+                Created by ESLAM MOHAMED<br>
+                <a href="https://linktr.ee/Eslam.mo" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-top: 5px; display: inline-block;">
+                    <i class="fa-solid fa-link"></i> linktr.ee/Eslam.mo
+                </a>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button id="langToggleBtn" class="btn btn-secondary no-print"><i class="fa-solid fa-language"></i> <span id="langLabel">EN</span></button>
+            <button id="installAppBtn" class="btn btn-primary" style="display: none;"><i class="fa-solid fa-download"></i> <span data-i18n="btn_install">تثبيت التطبيق</span></button>
+            <button id="shareEmptyBtn" class="btn btn-secondary"><i class="fa-brands fa-whatsapp"></i> <span data-i18n="btn_invite">دعوة</span></button>
+            <button id="themeToggle" class="icon-btn"><i class="fa-solid fa-moon"></i></button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <nav id="mainNav">
+                <a href="#" class="nav-item active" data-target="dashboardView"><i class="fa-solid fa-chart-pie"></i> <span data-i18n="nav_dash">لوحة التحكم</span></a>
+                <a href="#" class="nav-item" data-target="monthlyView"><i class="fa-solid fa-calendar-days"></i> <span data-i18n="nav_month">خطة الشهر</span></a>
+                <a href="#" class="nav-item" data-target="dailyView"><i class="fa-solid fa-list-check"></i> <span data-i18n="nav_today">اليوم</span></a>
+                <a href="#" class="nav-item" data-target="pomodoroView"><i class="fa-solid fa-stopwatch"></i> <span data-i18n="nav_pomodoro">مؤقت التركيز</span></a>
+                <a href="#" class="nav-item" data-target="kanbanView"><i class="fa-solid fa-kanban"></i> <span data-i18n="nav_kanban">المشاريع</span></a>
+                <a href="#" class="nav-item" data-target="habitsView"><i class="fa-solid fa-check-double"></i> <span data-i18n="nav_habits">متتبع العادات</span></a>
+                <a href="#" class="nav-item" data-target="financeView"><i class="fa-solid fa-wallet"></i> <span data-i18n="nav_finance">المتتبع المالي</span></a>
+                <a href="#" class="nav-item" data-target="libraryView"><i class="fa-solid fa-bookmark"></i> <span data-i18n="nav_lib">مكتبة المراجع</span></a>
+                <a href="#" class="nav-item" data-target="notesView"><i class="fa-solid fa-book"></i> <span data-i18n="nav_notes">الملاحظات</span></a>
+                <a href="#" class="nav-item" data-target="profileView"><i class="fa-solid fa-gear"></i> <span data-i18n="nav_settings">الإعدادات والمزامنة</span></a>
+            </nav>
+        </aside>
+
+        <main class="content" id="printArea">
+            <div id="dashboardView" class="view-section active">
+                <div class="content-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <h2 data-i18n="title_dash">لوحة التحكم والإحصائيات</h2>
+                    <div class="no-print" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" onclick="clearDailyTasks('completed')" style="font-size: 0.8rem; color: var(--success);"><i class="fa-solid fa-check-double"></i> <span data-i18n="btn_clear_comp">مسح المكتملة</span></button>
+                        <button class="btn btn-secondary" onclick="archiveDashboardToday()" style="font-size: 0.8rem; color: var(--danger);"><i class="fa-solid fa-eye-slash"></i> <span data-i18n="btn_hide_dash">إخفاء مهام اليوم</span></button>
+                        <button class="btn btn-secondary" onclick="resetStats()" style="font-size: 0.8rem; color: var(--warning);"><i class="fa-solid fa-broom"></i> <span data-i18n="btn_reset_stats">تصفير الإحصائيات</span></button>
+                    </div>
+                </div>
+                <div class="dash-grid">
+                    <div class="dash-card" style="text-align: center;">
+                        <h3 data-i18n="card_tasks" style="margin-bottom: 5px;">المهام اليوم</h3>
+                        <div class="circ-progress">
+                            <svg viewBox="0 0 36 36" class="circ-svg">
+                                <path class="circ-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circ-fill" id="fillTasks" stroke="var(--primary)" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <div class="circ-text" id="dashTasks">0/0</div>
+                        </div>
+                    </div>
+                    <div class="dash-card" style="text-align: center;">
+                        <h3 data-i18n="card_bal" style="margin-bottom: 5px;">الرصيد المتاح</h3>
+                        <div class="circ-progress">
+                            <svg viewBox="0 0 36 36" class="circ-svg">
+                                <path class="circ-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circ-fill" id="fillFinance" stroke="var(--success)" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <div class="circ-text" id="dashBalance" style="color: var(--success);">0</div>
+                        </div>
+                    </div>
+                    <div class="dash-card" style="text-align: center;">
+                        <h3 data-i18n="card_habits" style="margin-bottom: 5px;">إنجاز العادات</h3>
+                        <div class="circ-progress">
+                            <svg viewBox="0 0 36 36" class="circ-svg">
+                                <path class="circ-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circ-fill" id="fillHabits" stroke="#8b5cf6" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <div class="circ-text" id="dashHabits" style="color: #8b5cf6;">0%</div>
+                        </div>
+                    </div>
+                    <div class="dash-card" style="text-align: center;">
+                        <h3 data-i18n="card_pomodoro_blocks" style="margin-bottom: 5px;">جلسات التركيز</h3>
+                        <div class="circ-progress">
+                            <svg viewBox="0 0 36 36" class="circ-svg">
+                                <path class="circ-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circ-fill" id="fillPomodoro" stroke="#ef4444" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <div class="circ-text" id="dashPomodoro" style="color: #ef4444;">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container" style="background: var(--card-bg); padding: 20px; border-radius: 12px; margin-top: 20px; border: 1px solid var(--border-color);">
+                    <canvas id="tasksChart" height="100"></canvas>
+                </div>
+            </div>
+
+           <div id="financeView" class="view-section">
+                <div class="content-header" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                    <h2 data-i18n="title_finance">المتتبع المالي</h2>
+                    <div style="display: flex; gap: 10px;" class="no-print">
+                        <button class="btn btn-secondary" onclick="exportFinanceExcel()" title="تصدير Excel"><i class="fa-solid fa-file-excel" style="color: #10b981; font-size: 1.2rem;"></i></button>
+                        <button class="btn btn-secondary" onclick="exportFinancePDF()" title="تصدير PDF"><i class="fa-solid fa-file-pdf" style="color: #ef4444; font-size: 1.2rem;"></i></button>
+                        <button class="btn btn-primary" onclick="openFinModal()"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add_trans">معاملة</span></button>
+                    </div>
+                </div>
+                <div class="finance-summary"><div class="fin-box fin-income"><span data-i18n="fin_inc">الدخل</span><h3 id="totalIncome">0</h3></div><div class="fin-box fin-expense"><span data-i18n="fin_exp">المصروفات</span><h3 id="totalExpense">0</h3></div><div class="fin-box fin-balance"><span data-i18n="fin_bal">الرصيد</span><h3 id="netBalance">0</h3></div></div>
+                <div class="finance-list" id="financeContainer"></div>
+            </div>
+
+            <div id="libraryView" class="view-section">
+                <div class="content-header" style="display: flex; justify-content: space-between;"><h2 data-i18n="title_lib">المراجع والأصول</h2><button class="btn btn-primary no-print" onclick="openLibModal()"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add_ref">إضافة مرجع</span></button></div>
+                <div class="library-grid" id="libraryContainer"></div>
+            </div>
+
+            <div id="monthlyView" class="view-section">
+                <div class="content-header" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <button id="prevMonthBtn" class="btn btn-secondary no-print"><i class="fa-solid fa-chevron-right"></i> <span data-i18n="btn_prev">السابق</span></button>
+                    <h2 id="monthlyTitle" style="color: var(--primary); margin: 0;"></h2>
+                    <button id="nextMonthBtn" class="btn btn-secondary no-print"><span data-i18n="btn_next">التالي</span> <i class="fa-solid fa-chevron-left"></i></button>
+                </div>
+                <div id="monthlyContainer" class="monthly-list"></div>
+            </div>
+
+            <div id="dailyView" class="view-section">
+                <div class="content-header" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <h2 data-i18n="title_today">جدول اليوم</h2>
+                        <input type="date" id="viewDailyDate" class="btn btn-secondary no-print" style="padding:5px 10px; font-family: inherit;">
+                    </div>
+                    <button class="btn btn-primary no-print" onclick="openTaskModal()"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add">إضافة</span></button>
+                </div>
+                <div id="plannerContainer" class="planner-container"></div>
+            </div>
+
+            <div id="pomodoroView" class="view-section">
+                <div class="content-header"><h2 data-i18n="title_pom">مؤقت التركيز (Pomodoro)</h2></div>
+                <div class="pomodoro-container">
+                <div id="tomatoIcon" class="tomato-logo no-print">🍅</div>
+                    <div class="pomodoro-tabs"><button id="pomWork" class="active" data-i18n="btn_work">عمل</button><button id="pomBreak" data-i18n="btn_break">استراحة</button></div>
+                    <div class="pomodoro-settings no-print" style="margin-bottom:15px; display:flex; justify-content:center; align-items:center; gap:15px;">
+                        <button id="pomMinus" class="icon-btn" style="background:var(--bg-color); border-radius:50%; width:35px; height:35px;">-</button>
+                        <span id="pomWorkDuration" style="font-weight:bold; font-size:1.1rem; color:var(--primary);">25</span>
+                        <button id="pomPlus" class="icon-btn" style="background:var(--bg-color); border-radius:50%; width:35px; height:35px;">+</button>
+                    </div>
+                    <div class="pomodoro-timer" id="timerDisplay">25:00</div>
+                    <div class="pomodoro-controls">
+                        <button id="pomStart" class="btn btn-primary"><i class="fa-solid fa-play"></i> <span data-i18n="btn_start">ابدأ</span></button>
+                        <button id="pomPause" class="btn btn-secondary"><i class="fa-solid fa-pause"></i> <span data-i18n="btn_pause">إيقاف مؤقت</span></button>
+                        <button id="pomReset" class="btn btn-secondary"><i class="fa-solid fa-rotate-right"></i></button>
+                        <button id="stopAlarmBtn" class="btn" style="background: var(--danger); color: white; display: none; animation: shake 0.5s infinite;"><i class="fa-solid fa-bell-slash"></i> <span data-i18n="btn_stop_alarm">إيقاف الرنين</span></button>
+                    </div>
+                </div>
+                
+                <div style="max-width: 500px; margin: 25px auto 0 auto; background: var(--card-bg); padding: 20px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                        <h3 data-i18n="pom_log_title" style="font-size: 1.1rem; color: var(--text-main); font-weight: 600;"><i class="fa-solid fa-clock-rotate-left"></i> سجل جلسات التركيز</h3>
+                        <div style="display: flex; gap: 8px;" class="no-print">
+                            <button class="btn btn-secondary" onclick="exportPomodoroExcel()" title="Excel" style="padding: 6px 10px;"><i class="fa-solid fa-file-excel" style="color: #10b981;"></i></button>
+                            <button class="btn btn-secondary" onclick="exportPomodoroPDF()" title="PDF" style="padding: 6px 10px;"><i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i></button>
+                            <button class="btn btn-secondary" onclick="clearPomodoroLog()" title="Clear" style="padding: 6px 10px; color: var(--danger);"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                    <div id="pomodoroLogContainer" style="max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 2px;"></div>
+                </div>
+
+                <audio id="pomAlarmSound" loop preload="auto"><source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg"></audio>
+            </div>
+            <div id="kanbanView" class="view-section">
+                <div class="content-header" style="display: flex; flex-direction: column; gap: 15px; align-items: flex-start;">
+                    <h2 data-i18n="title_kanban">لوحة المشاريع</h2>
+                    <div style="display: flex; gap: 10px; width: 100%; max-width: 600px;" class="no-print">
+                        <textarea id="newKbItem" placeholder="اكتب اسم المشروع / المهمة هنا... (اضغط Enter لسطر جديد)" rows="2" style="flex: 1; border: 2px solid #3b82f6; padding: 10px; border-radius: 8px; color: #1d4ed8; font-weight: 600; caret-color: #1d4ed8; font-size: 1rem; background: #eff6ff; resize: vertical;" autofocus></textarea>
+                        <button class="btn btn-primary" onclick="addKanbanItem()" style="height: auto;"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add">إضافة</span></button>
+                    </div>
+                </div>
+                <div class="kanban-board">
+                    <div class="kanban-col" id="kb-todo"><h3 style="border-bottom: 3px solid var(--danger);"><span data-i18n="kb_todo">💡 أفكار/مهام</span></h3><div class="kanban-items" data-status="todo" ondragover="allowDrop(event)" ondrop="drop(event)"></div></div>
+                    <div class="kanban-col" id="kb-inprogress"><h3 style="border-bottom: 3px solid var(--warning);"><span data-i18n="kb_inprog">⏳ التنفيذ</span></h3><div class="kanban-items" data-status="inprogress" ondragover="allowDrop(event)" ondrop="drop(event)"></div></div>
+                    <div class="kanban-col" id="kb-done"><h3 style="border-bottom: 3px solid var(--success);"><span data-i18n="kb_done">✅ مكتملة</span></h3><div class="kanban-items" data-status="done" ondragover="allowDrop(event)" ondrop="drop(event)"></div></div>
+                </div>
+            </div>
+
+            <div id="habitsView" class="view-section">
+                <div class="content-header" style="display: flex; justify-content: space-between;"><h2 data-i18n="title_habits">متتبع العادات</h2><div style="display:flex; gap:10px;"><input type="text" id="newHabitInput" placeholder="عادة جديدة..."><button class="btn btn-primary no-print" onclick="addNewHabit()"><i class="fa-solid fa-plus"></i></button></div></div>
+                <div id="habitsContainer" class="habits-grid-container"></div>
+            </div>
+
+            <div id="notesView" class="view-section">
+                <div class="content-header" style="display: flex; justify-content: space-between;"><h2 data-i18n="title_notes">الملاحظات</h2><button class="btn btn-primary no-print" onclick="openNoteModal()"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add_note">ملاحظة</span></button></div>
+                <div id="notesContainer" class="notes-grid"></div>
+            </div>
+
+            <div id="profileView" class="view-section">
+                <div class="content-header"><h2 data-i18n="title_settings">الإعدادات والمزامنة</h2></div>
+                <div class="profile-card">
+                    <div class="form-group"><label data-i18n="label_name">الاسم</label><input type="text" id="profileName"></div>
+                    <button id="saveProfileBtn" class="btn btn-primary" style="width: 100%;"><span data-i18n="btn_save_local">حفظ البيانات محلياً</span></button>
+                    
+                    <hr style="margin: 20px 0;">
+                    <h3 data-i18n="title_appearance">المظهر والألوان 🎨</h3>
+                    <div class="theme-options" style="display: flex; gap: 10px; margin-top: 10px; margin-bottom: 20px;">
+                        <button class="color-btn" data-theme="theme-green" style="background: #25D366;" title="Green"></button>
+                        <button class="color-btn" data-theme="theme-blue" style="background: #3b82f6;" title="Blue"></button>
+                        <button class="color-btn" data-theme="theme-purple" style="background: #8b5cf6;" title="Purple"></button>
+                        <button class="color-btn" data-theme="theme-orange" style="background: #f97316;" title="Orange"></button>
+                        <button class="color-btn" data-theme="theme-rose" style="background: #f43f5e;" title="Rose"></button>
+                    </div>
+
+<div style="margin-top: 15px;">
+            <label style="display:block; margin-bottom:5px; font-weight:bold; color: var(--text-main);">حجم الخط داخل التطبيق:</label>
+            <select id="fontSizeSelect" onchange="changeFontSize(this.value)" style="width: 100%; padding: 8px; border-radius: 5px; background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border-color); font-family: inherit; outline: none;">
+                <option value="14px">صغير</option>
+                <option value="16px" selected>متوسط (الافتراضي)</option>
+                <option value="18px">كبير</option>
+                <option value="20px">كبير جداً</option>
+            </select>
+        </div>
+
+                    <hr style="margin: 20px 0;">
+                    <h3 data-i18n="title_sync">المزامنة السحابية الحية ☁️</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px;" data-i18n="sync_desc">عند تسجيل الخروج سيتم مسح بياناتك من هذا الجهاز لضمان السرية، وستبقى آمنة في حسابك.</p>
+                    <div id="cloudStatus" style="background:var(--bg-color); padding:15px; border-radius:8px; border:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;"></div>
+
+                    <hr style="margin: 20px 0;">
+                    <h3 data-i18n="title_backup">النسخ الاحتياطي اليدوي</h3>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <button id="backupBtn" class="btn btn-secondary" style="flex:1;"><span data-i18n="btn_download">تنزيل البيانات</span></button>
+                        <label for="restoreFile" class="btn btn-secondary" style="flex:1; cursor:pointer; text-align:center;"><span data-i18n="btn_restore">استرجاع ملف</span></label>
+                        <input type="file" id="restoreFile" style="display:none;">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="taskModal" class="modal"><div class="modal-content"><h3 data-i18n="btn_add">إضافة مهمة</h3><input type="text" id="taskTitle" placeholder="العنوان..." required><div class="input-group"><input type="date" id="taskDate"><select id="taskHour"></select></div><div class="modal-actions"><button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button><button id="saveTaskBtn" class="btn btn-primary" data-i18n="btn_save">حفظ</button></div></div></div>
+    <div id="editTaskModal" class="modal"><div class="modal-content"><h3 data-i18n="btn_edit_task">تعديل المهمة</h3><input type="hidden" id="editTaskId"><input type="text" id="editTaskTitle" required><div class="input-group"><input type="date" id="editTaskDate"><select id="editTaskHour"></select></div><div class="modal-actions"><button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button><button id="updateTaskBtn" class="btn btn-primary" data-i18n="btn_update">تحديث</button></div></div></div>
+
+    <div id="noteModal" class="modal">
+        <div class="modal-content">
+            <h3 data-i18n="btn_add_note">إضافة ملاحظة</h3>
+            <input type="text" id="noteTitle" placeholder="العنوان..." required>
+            <input type="date" id="noteDate" required>
+	    <input type="tel" id="notePhone" placeholder="رقم الهاتف (اختياري)..." style="margin-top: 10px; width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); box-sizing: border-box;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; margin-bottom: 5px; background: rgba(37, 211, 102, 0.1); padding: 8px; border-radius: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size:0.85rem; color:var(--text-main); font-weight:600;" id="dictateStatusNote" data-i18n="lib_dictate_hint">المحتوى</span>
+                    <select id="dictateLangNote" class="no-print" style="padding: 2px 5px; font-size: 0.8rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main);"><option value="ar-EG">عربي</option><option value="en-US">English</option></select>
+                </div>
+                <div style="display: flex; gap:5px;">
+                    <button type="button" onclick="startContinuousDictation('noteContent', 'dictateLangNote', 'dictateStatusNote', 'startDicNote', 'stopDicNote')" id="startDicNote" class="icon-btn" style="color:var(--primary); font-size: 1.2rem;" title="بدء التسجيل"><i class="fa-solid fa-microphone"></i></button>
+                    <button type="button" onclick="stopContinuousDictation()" id="stopDicNote" class="icon-btn" style="color:var(--danger); font-size: 1.2rem; display:none;" title="إيقاف التسجيل"><i class="fa-solid fa-square"></i></button>
+                </div>
+            </div>
+            <textarea id="noteContent" rows="5" placeholder="..." style="margin-top:0;"></textarea>
+            <div class="modal-actions"><button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button><button id="saveNoteBtn" class="btn btn-primary" data-i18n="btn_save">حفظ</button></div>
+        </div>
+    </div>
+    
+    <div id="editNoteModal" class="modal">
+        <div class="modal-content">
+            <h3 data-i18n="btn_edit_note">تعديل الملاحظة</h3>
+            <input type="hidden" id="editNoteId">
+            <input type="text" id="editNoteTitle" required>
+            <input type="date" id="editNoteDate" required>
+            <input type="tel" id="editNotePhone" placeholder="رقم الهاتف (اختياري)..." style="margin-top: 10px; width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); box-sizing: border-box;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; margin-bottom: 5px; background: rgba(37, 211, 102, 0.1); padding: 8px; border-radius: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size:0.85rem; color:var(--text-main); font-weight:600;" id="dictateStatusEditNote" data-i18n="lib_dictate_hint">المحتوى</span>
+                    <select id="dictateLangEditNote" class="no-print" style="padding: 2px 5px; font-size: 0.8rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main);"><option value="ar-EG">عربي</option><option value="en-US">English</option></select>
+                </div>
+                <div style="display: flex; gap:5px;">
+                    <button type="button" onclick="startContinuousDictation('editNoteContent', 'dictateLangEditNote', 'dictateStatusEditNote', 'startDicEditNote', 'stopDicEditNote')" id="startDicEditNote" class="icon-btn" style="color:var(--primary); font-size: 1.2rem;" title="بدء التسجيل"><i class="fa-solid fa-microphone"></i></button>
+                    <button type="button" onclick="stopContinuousDictation()" id="stopDicEditNote" class="icon-btn" style="color:var(--danger); font-size: 1.2rem; display:none;" title="إيقاف التسجيل"><i class="fa-solid fa-square"></i></button>
+                </div>
+            </div>
+            <textarea id="editNoteContent" rows="5" style="margin-top:0;"></textarea>
+            <div class="modal-actions"><button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button><button id="updateNoteBtn" class="btn btn-primary" data-i18n="btn_update">تحديث</button></div>
+        </div>
+    </div>
+
+    <div id="financeModal" class="modal"><div class="modal-content"><h3 data-i18n="btn_add_trans">إضافة معاملة</h3><input type="text" id="finDesc" placeholder="الوصف" required><div class="input-group"><input type="number" id="finAmount" placeholder="المبلغ" required style="transition:0.3s;"><select id="finType" onchange="updateFinColor('finType', 'finAmount')" style="transition:0.3s; font-weight:bold;"><option value="income" style="color:green;">إيراد (+)</option><option value="expense" style="color:red;">مصروف (-)</option></select></div><input type="date" id="finDate" style="margin-top:10px;"><div class="modal-actions"><button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button><button id="saveFinBtn" class="btn btn-primary" data-i18n="btn_save">حفظ</button></div></div></div>
+    <div id="editFinModal" class="modal"><div class="modal-content"><h3 data-i18n="btn_edit_trans">تعديل المعاملة</h3><input type="hidden" id="editFinId"><input type="text" id="editFinDesc" required><div class="input-group"><input type="number" id="editFinAmount" required style="transition:0.3s;"><select id="editFinType" onchange="updateFinColor('editFinType', 'editFinAmount')" style="transition:0.3s; font-weight:bold;"><option value="income" style="color:green;">إيراد (+)</option><option value="expense" style="color:red;">مصروف (-)</option></select></div><input type="date" id="editFinDate" style="margin-top:10px;"><div class="modal-actions"><button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button><button id="updateFinBtn" class="btn btn-primary" data-i18n="btn_update">تحديث</button></div></div></div>
+
+    <div id="libraryModal" class="modal">
+        <div class="modal-content">
+            <h3 data-i18n="btn_add_ref">إضافة مرجع</h3>
+            <input type="text" id="libTitle" placeholder="العنوان" required>
+            <input type="text" id="libCategory" placeholder="التصنيف" required style="margin-top:10px;">
+            <input type="tel" id="libPhone" placeholder="رقم الهاتف (اختياري)..." style="margin-top: 10px; width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); box-sizing: border-box;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; margin-bottom: 5px; background: rgba(37, 211, 102, 0.1); padding: 8px; border-radius: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size:0.85rem; color:var(--text-main); font-weight:600;" id="dictateStatusLib" data-i18n="lib_dictate_hint">المحتوى</span>
+                    <select id="dictateLangLib" class="no-print" style="padding: 2px 5px; font-size: 0.8rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main);"><option value="ar-EG">عربي</option><option value="en-US">English</option></select>
+                </div>
+                <div style="display: flex; gap:5px;">
+                    <button type="button" onclick="startContinuousDictation('libContent', 'dictateLangLib', 'dictateStatusLib', 'startDicLib', 'stopDicLib')" id="startDicLib" class="icon-btn" style="color:var(--primary); font-size: 1.2rem;" title="بدء التسجيل"><i class="fa-solid fa-microphone"></i></button>
+                    <button type="button" onclick="stopContinuousDictation()" id="stopDicLib" class="icon-btn" style="color:var(--danger); font-size: 1.2rem; display:none;" title="إيقاف التسجيل"><i class="fa-solid fa-square"></i></button>
+                </div>
+            </div>
+            <textarea id="libContent" rows="5" placeholder="..." style="margin-top:0;"></textarea>
+            <div class="modal-actions"><button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button><button id="saveLibBtn" class="btn btn-primary" data-i18n="btn_save">حفظ</button></div>
+        </div>
+    </div>
+    
+    <div id="editLibModal" class="modal">
+        <div class="modal-content">
+            <h3 data-i18n="btn_edit_ref">تعديل المرجع</h3>
+            <input type="hidden" id="editLibId">
+            <input type="text" id="editLibTitle" required>
+            <input type="text" id="editLibCategory" required style="margin-top:10px;">
+            <input type="tel" id="editLibPhone" placeholder="رقم الهاتف (اختياري)..." style="margin-top: 10px; width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); box-sizing: border-box;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; margin-bottom: 5px; background: rgba(37, 211, 102, 0.1); padding: 8px; border-radius: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size:0.85rem; color:var(--text-main); font-weight:600;" id="dictateStatusEditLib" data-i18n="lib_dictate_hint">المحتوى</span>
+                    <select id="dictateLangEditLib" class="no-print" style="padding: 2px 5px; font-size: 0.8rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main);"><option value="ar-EG">عربي</option><option value="en-US">English</option></select>
+                </div>
+                <div style="display: flex; gap:5px;">
+                    <button type="button" onclick="startContinuousDictation('editLibContent', 'dictateLangEditLib', 'dictateStatusEditLib', 'startDicEditLib', 'stopDicEditLib')" id="startDicEditLib" class="icon-btn" style="color:var(--primary); font-size: 1.2rem;" title="بدء التسجيل"><i class="fa-solid fa-microphone"></i></button>
+                    <button type="button" onclick="stopContinuousDictation()" id="stopDicEditLib" class="icon-btn" style="color:var(--danger); font-size: 1.2rem; display:none;" title="إيقاف التسجيل"><i class="fa-solid fa-square"></i></button>
+                </div>
+            </div>
+            <textarea id="editLibContent" rows="5" style="margin-top:0;"></textarea>
+            <div class="modal-actions"><button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button><button id="updateLibBtn" class="btn btn-primary" data-i18n="btn_update">تحديث</button></div>
+        </div>
+    </div>
+    
+    <div id="editKbModal" class="modal">
+        <div class="modal-content">
+            <h3 data-i18n="btn_edit_kb">تعديل المشروع / المهمة</h3>
+            <input type="hidden" id="editKbId">
+            <input type="hidden" id="editKbCol">
+            <textarea id="editKbText" rows="4" style="resize:vertical;"></textarea>
+            <div class="modal-actions">
+                <button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button>
+                <button id="updateKbBtn" class="btn btn-primary" data-i18n="btn_update">تحديث</button>
+            </div>
+        </div>
+    </div>
+
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+        <h3 data-i18n="title_login">تسجيل الدخول للمزامنة</h3>
+        <input type="email" id="authEmail" placeholder="البريد الإلكتروني" required>
+        
+        <div style="position: relative; margin-top: 10px;">
+            <input type="password" id="authPassword" placeholder="كلمة المرور (6 حروف على الأقل)" required style="margin-top: 0; width: 100%; padding-left: 40px; box-sizing: border-box;">
+            <button type="button" id="togglePasswordBtn" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; padding: 0; outline: none; z-index: 10;">
+                <i class="fa-solid fa-eye" id="togglePasswordIcon"></i>
+            </button>
+        </div>
+        <div style="text-align: right; margin-top: 8px;"><a href="#" onclick="resetPassword()" style="font-size: 0.85rem; color: var(--primary); text-decoration: none; font-weight: bold;">هل نسيت كلمة المرور؟</a></div>
+        <p id="authError" style="color:var(--danger); font-size:0.85rem; margin-top:5px;"></p>
+        <div class="modal-actions" style="margin-top:15px;">
+            <button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button>
+            <button class="btn btn-primary" onclick="handleAuth('login')">دخول</button>
+            <button class="btn btn-secondary" onclick="handleAuth('signup')">حساب جديد</button>
+        </div>
+    </div>
+</div>
+
+<div id="updateToast" class="update-toast" style="display: none; padding: 15px; border-radius: 10px; background: var(--bg-card); border: 1px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 9999;">
+        <div>
+            <strong data-i18n="update_title" style="color: var(--primary); display:block; margin-bottom:5px; font-size: 1.1rem;">تحديث جديد متاح! ✨</strong>
+            <span style="font-size:0.9rem; color: var(--text-main); display:block; margin-bottom: 10px; line-height: 1.5;">
+                <strong>الجديد في هذا الإصدار:</strong><br>
+                - إضافة ميزة التحكم في حجم الخط.<br>
+                - تحسين سرعة التطبيق وإصلاح الأخطاء.
+            </span>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button id="reloadAppBtn" class="btn btn-primary" style="flex:1;">تحديث الآن</button>
+            <button class="btn btn-secondary" onclick="document.getElementById('updateToast').style.display='none';" style="flex:1;">ليس الآن</button>
+        </div>
+    </div>
+
+<div id="changelogModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-gift"></i> <span data-i18n="title_update_log">الجديد في هذا الإصدار ✨</span></h3>
+            <div id="changelogContent" style="line-height: 1.8; color: var(--text-main); font-size: 0.95rem; margin-bottom: 20px;"></div>
+            <div class="modal-actions">
+                <button class="btn btn-primary close-modal" style="width: 100%;" onclick="closeChangelog()">رائع، شكراً!</button>
+            </div>
+        </div>
+    </div>
+
+<div id="shareModal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <h3 data-i18n="btn_invite" style="margin-bottom: 5px;">دعوة</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;" data-i18n="share_desc">شارك التطبيق مع أصدقائك لزيادة إنتاجيتهم!</p>
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;">
+                <a id="shareWa" href="#" target="_blank" class="icon-btn" style="color: #25D366; font-size: 2.5rem;"><i class="fa-brands fa-whatsapp"></i></a>
+                <a id="shareFb" href="#" target="_blank" class="icon-btn" style="color: #1877F2; font-size: 2.5rem;"><i class="fa-brands fa-facebook"></i></a>
+                <a id="shareX" href="#" target="_blank" class="icon-btn" style="color: var(--text-main); font-size: 2.5rem;"><i class="fa-brands fa-x-twitter"></i></a>
+                <a id="shareTg" href="#" target="_blank" class="icon-btn" style="color: #0088cc; font-size: 2.5rem;"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="shareLinkInput" value="https://eslam-planner.github.io/" readonly style="flex: 1; margin-top: 0; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); text-align: left; direction: ltr;">
+                <button id="copyLinkBtn" class="btn btn-primary" title="نسخ الرابط"><i class="fa-solid fa-copy"></i></button>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary close-modal" data-i18n="btn_cancel" style="width: 100%;">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+<div id="quickDumpModal" class="modal">
+        <div class="modal-content">
+            <h3 data-i18n="title_quick_dump" style="color: #f59e0b; margin-bottom: 15px;"><i class="fa-solid fa-bolt"></i> تفريغ الدماغ السريع</h3>
+            <input type="text" id="qdTitle" placeholder="عنوان الفكرة (اختياري)..." style="font-weight: bold; font-size: 1.1rem; border-color: #f59e0b;">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; margin-bottom: 5px; background: rgba(37, 211, 102, 0.1); padding: 8px; border-radius: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size:0.85rem; color:var(--text-main); font-weight:600;" id="dictateStatusQD" data-i18n="lib_dictate_hint">المحتوى</span>
+                    <select id="dictateLangQD" class="no-print" style="padding: 2px 5px; font-size: 0.8rem; border-radius: 4px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main);">
+                        <option value="ar-EG">عربي</option>
+                        <option value="en-US">English</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap:5px;">
+                    <button type="button" onclick="startContinuousDictation('qdContent', 'dictateLangQD', 'dictateStatusQD', 'startDicQD', 'stopDicQD')" id="startDicQD" class="icon-btn" style="color:var(--primary); font-size: 1.2rem;" title="بدء التسجيل"><i class="fa-solid fa-microphone"></i></button>
+                    <button type="button" onclick="stopContinuousDictation()" id="stopDicQD" class="icon-btn" style="color:var(--danger); font-size: 1.2rem; display:none;" title="إيقاف التسجيل"><i class="fa-solid fa-square"></i></button>
+                </div>
+            </div>
+            <textarea id="qdContent" rows="4" placeholder="..." style="margin-top:0; border-color: #f59e0b;"></textarea>
+            
+            <div class="modal-actions" style="justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                <button class="btn btn-secondary close-modal" data-i18n="btn_cancel" style="flex-grow: 1;">إلغاء</button>
+                <div style="display: flex; gap: 10px; flex-grow: 2;">
+                    <button id="saveQdToKanban" class="btn btn-primary" style="flex: 1; background: var(--warning); border-color: var(--warning);" data-i18n="btn_qd_kanban"><i class="fa-solid fa-kanban"></i> كمشروع</button>
+                    <button id="saveQdToNotes" class="btn btn-primary" style="flex: 1; background: var(--primary); border-color: var(--primary);" data-i18n="btn_qd_note"><i class="fa-solid fa-book"></i> كملاحظة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="fabQuickDump" class="fab-btn no-print" title="تفريغ الدماغ ⚡" onclick="openQuickDump()">
+        <i class="fa-solid fa-bolt"></i>
+    </button>
+
+<script src="script.js"></script>
+</body>
+</html>

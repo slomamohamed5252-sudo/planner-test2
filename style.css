@@ -1,0 +1,354 @@
+:root { --bg-color: #f4f6f8; --card-bg: #ffffff; --text-main: #1f2937; --text-muted: #6b7280; --border-color: #e5e7eb; --primary: #25D366; --danger: #ef4444; --warning: #f59e0b; --success: #10b981; }
+body.dark-mode { --bg-color: #111827; --card-bg: #1f2937; --text-main: #f9fafb; --text-muted: #9ca3af; --border-color: #374151; }
+html.theme-blue { --primary: #3b82f6; } html.theme-purple { --primary: #8b5cf6; } html.theme-orange { --primary: #f97316; } html.theme-rose { --primary: #f43f5e; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-main); transition: 0.3s; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: var(--card-bg); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; }
+.logo-container { display: flex; flex-direction: column; } .custom-logo { height: 35px; width: auto; border-radius: 6px; object-fit: cover; }
+.header-actions { display: flex; gap: 1rem; align-items: center; }
+.main-container { display: flex; max-width: 1300px; margin: 0 auto; min-height: calc(100vh - 80px); }
+.sidebar { width: 250px; padding: 1.5rem; border-left: 1px solid var(--border-color); background: var(--card-bg);}
+.nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; color: var(--text-muted); text-decoration: none; border-radius: 8px; margin-bottom: 0.3rem; transition: 0.2s; font-weight: 500; font-size: 0.95rem;}
+.nav-item:hover { background-color: rgba(100, 100, 100, 0.05); }
+.nav-item.active { background-color: rgba(100, 100, 100, 0.1); color: var(--primary); border-right: 3px solid var(--primary); }
+.content { flex: 1; padding: 2rem; overflow-y: auto; width: 100%; }
+.view-section { display: none; } .view-section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.btn { padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; font-weight: 500; transition: 0.2s;}
+.btn-primary { background-color: var(--primary); color: white; } .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-secondary { background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-main); }
+.btn-secondary:hover { background-color: var(--border-color); }
+.icon-btn { background: none; border: none; font-size: 1.2rem; color: var(--text-muted); cursor: pointer; transition: 0.2s; }
+.icon-btn:hover { color: var(--primary); transform: scale(1.1); }
+.color-btn { width: 35px; height: 35px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.color-btn.active { border-color: var(--text-main); transform: scale(1.1); box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--text-main); }
+.dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+.dash-card { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center;}
+.dash-card h3 { font-size: 1rem; color: var(--text-muted); margin-bottom: 10px; } .dash-num { font-size: 2rem; font-weight: 700; color: var(--text-main); }
+.finance-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.fin-box { padding: 1rem; border-radius: 12px; color: white; text-align: center; } .fin-income { background: var(--success); } .fin-expense { background: var(--danger); } .fin-balance { background: var(--primary); }
+.fin-item { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 1rem; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 10px; transition: 0.2s; cursor: pointer;}
+.fin-item:hover { border-color: var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.fin-amt { font-weight: bold; font-size: 1.1rem; } .fin-amt.inc { color: var(--success); } .fin-amt.exp { color: var(--danger); }
+.library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.lib-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; position: relative; border-right: 5px solid var(--warning); cursor: pointer; transition: 0.2s;}
+.lib-card:hover { border-color: var(--warning); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.lib-cat { font-size: 0.8rem; background: var(--bg-color); padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; color: var(--text-muted);}
+.month-day-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-right: 5px solid var(--primary); }
+.month-day-header { font-weight: bold; margin-bottom: 10px; color: var(--primary); }
+textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); margin-top: 5px;}
+.render-area { min-height: 50px; padding: 10px; background: var(--bg-color); border-radius: 8px; border: 1px dashed var(--border-color); margin-top: 10px; white-space: pre-wrap; word-break: break-word;}
+.render-area a { color: var(--primary); text-decoration: underline; font-weight: bold; }
+.planner-container { display: flex; flex-direction: column; gap: 0.5rem; }
+.daily-task-item { cursor: pointer; transition: 0.2s; } .daily-task-item:hover { border-color: var(--primary) !important; transform: translateX(-3px); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.pomodoro-container { text-align: center; background: var(--card-bg); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-color); max-width: 500px; margin: 0 auto;}
+.pomodoro-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+.pomodoro-tabs button { background: none; border: none; font-size: 1.1rem; color: var(--text-muted); cursor: pointer; padding-bottom: 5px; } .pomodoro-tabs button.active { color: var(--primary); border-bottom: 3px solid var(--primary); font-weight: bold; }
+.pomodoro-timer { font-size: 6rem; font-weight: 700; color: var(--text-main); margin-bottom: 1rem; font-variant-numeric: tabular-nums; }
+.kanban-board { display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 1rem; }
+.kanban-col { flex: 1; min-width: 280px; background: var(--bg-color); border-radius: 12px; padding: 1rem; border: 1px solid var(--border-color); }
+.kb-card { background: var(--card-bg); border: 1px solid var(--primary); border-radius: 8px; padding: 1rem; margin-bottom: 10px; cursor: pointer; position: relative; touch-action: none; border-right: 4px solid var(--primary); transition:0.2s;}
+.kb-card:hover { transform: translateY(-2px); box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
+.kb-card-text { font-weight: 600; white-space: pre-wrap; word-break: break-word; }
+.kb-card-actions { display: flex; justify-content: space-between; margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 5px; }
+.kb-move-btn { background: none; border: none; color: var(--primary); cursor: pointer; padding: 5px; }
+.habits-grid-container { overflow-x: auto; background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); }
+.habit-table { width: 100%; border-collapse: collapse; min-width: 800px; } .habit-table th, .habit-table td { border: 1px solid var(--border-color); padding: 8px; text-align: center; }
+.habit-check { width: 25px; height: 25px; border-radius: 4px; border: 1px solid var(--border-color); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; background: var(--bg-color); color: transparent; transition: 0.2s;} .habit-check.done { background: var(--primary); color: white; border-color: var(--primary); }
+.notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.note-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; position: relative; border-right: 5px solid var(--primary); cursor: pointer; transition:0.2s;}
+.note-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.delete-note { position: absolute; top: 1rem; left: 1rem; color: var(--danger); cursor: pointer; background: none; border: none; font-size: 1.1rem; z-index: 10; }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000; backdrop-filter: blur(3px); } .modal.show { display: flex; }
+.modal-content { background: var(--card-bg); padding: 2rem; border-radius: 12px; width: 400px; max-width: 90%; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto;}
+.input-group { display: flex; gap: 1rem; margin-top: 1rem; } .modal-content input, .modal-content select, .modal-content textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); margin-top: 0.5rem; box-sizing: border-box;}
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 1.5rem; }
+.update-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--card-bg); border: 2px solid var(--primary); padding: 15px 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 15px; z-index: 9999; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0; } .update-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.recording-active { animation: pulse 1.5s infinite; background-color: #fee2e2 !important; color: #dc2626 !important; border-color: #dc2626 !important; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+@keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px) rotate(-5deg); } 50% { transform: translateX(5px) rotate(5deg); } 75% { transform: translateX(-5px) rotate(-5deg); } 100% { transform: translateX(0); } }
+@media screen and (max-width: 900px) { 
+    .main-container { flex-direction: column !important; width: 100%; } 
+    
+    /* 1. جعل شريط القوائم عائماً وملتصقاً بالأعلى في الموبايل */
+    .sidebar { 
+        width: 100% !important; 
+        border-left: none !important; 
+        border-bottom: 1px solid var(--border-color); 
+        padding: 10px !important; 
+        position: sticky !important; 
+        top: 0 !important; 
+        z-index: 1000 !important; 
+        background: var(--card-bg); /* ضروري لكي لا يكون شفافاً عند النزول */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* إضافة ظل خفيف لشكل أنيق */
+    } 
+    
+    #mainNav { display: flex; flex-direction: row; overflow-x: auto; gap: 10px; scrollbar-width: none; } 
+    #mainNav::-webkit-scrollbar { display: none; } 
+    .nav-item { flex: 0 0 auto; white-space: nowrap; margin-bottom: 0; padding: 0.5rem 1rem;} 
+    
+    /* 2. إلغاء تثبيت الهيدر العلوي في الموبايل فقط لكي لا يتداخل مع القوائم */
+    .header { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 10px; 
+        padding: 1rem; 
+        position: relative !important; 
+        z-index: 1; 
+    } 
+    
+    .header-actions { flex-wrap: wrap; justify-content: center; width: 100%; } 
+    .content { padding: 1rem; width: 100%; } 
+    .pomodoro-timer { font-size: 4.5rem; } 
+}
+@media print { .no-print, .sidebar, .header-actions { display: none !important; } .content { padding: 0; } .header { position: static; border-bottom: 2px solid black;} textarea { display: none; } .render-area { border: none; padding: 0; } body { background-color: white; color: black; } .view-section { display: block !important; page-break-after: always; } }
+
+/* =========================================
+   UI/UX Animations & Pomodoro Tomato
+========================================= */
+/* 1. دخول سلس للصفحات */
+.view-section { display: none; opacity: 0; }
+.view-section.active { display: block; animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. تأثيرات النوافذ المنبثقة (Modals) */
+.modal { transition: opacity 0.3s ease; }
+.modal-content { transform: scale(0.9) translateY(-20px); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.modal.show .modal-content { transform: scale(1) translateY(0); }
+
+/* 3. تأثيرات تفاعلية ثلاثية الأبعاد للكروت والأزرار */
+.dash-card, .kb-card, .note-card, .lib-card, .month-day-card, .fin-item, .daily-task-item { transition: all 0.3s ease; }
+.dash-card:hover, .kb-card:hover, .note-card:hover, .lib-card:hover, .month-day-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    border-color: var(--primary);
+}
+.btn { transition: all 0.2s ease; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.btn:active { transform: translateY(0); }
+
+/* 4. تصميم وأنيميشن لوجو الطماطم (Pomodoro) */
+.tomato-logo {
+    font-size: 5rem; display: inline-block; margin-bottom: 15px;
+    animation: breathe 4s ease-in-out infinite;
+    filter: drop-shadow(0 10px 15px rgba(239, 68, 68, 0.3)); transition: all 0.3s ease;
+}
+.tomato-logo.running { animation: heartbeat 1.2s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.05) translateY(-5px); } }
+@keyframes heartbeat { 0% { transform: scale(1); } 15% { transform: scale(1.15); } 30% { transform: scale(1); } 45% { transform: scale(1.15); } 100% { transform: scale(1); } }
+
+/* =========================================
+   UI/UX Animations & Professional Polish
+========================================= */
+
+/* دخول سلس ونعومة في التنقل بين الصفحات */
+.view-section { display: none; opacity: 0; }
+.view-section.active { display: block; animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* تأثيرات النوافذ المنبثقة (Modals) */
+.modal { transition: opacity 0.3s ease; backdrop-filter: blur(4px); }
+.modal-content { transform: scale(0.9) translateY(-20px); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.modal.show .modal-content { transform: scale(1) translateY(0); }
+
+/* تأثيرات تفاعلية ثلاثية الأبعاد للكروت والأزرار */
+.dash-card, .kb-card, .note-card, .lib-card, .month-day-card, .fin-item, .daily-task-item {
+    transition: all 0.3s ease;
+}
+.dash-card:hover, .kb-card:hover, .note-card:hover, .lib-card:hover, .month-day-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    border-color: var(--primary);
+}
+
+.btn { transition: all 0.2s ease; position: relative; overflow: hidden; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.btn:active { transform: translateY(0); }
+
+/* أنيميشن القائمة الجانبية */
+.nav-item { transition: all 0.3s ease; }
+.nav-item:hover { transform: translateX(-5px); }
+html[dir="ltr"] .nav-item:hover { transform: translateX(5px); }
+
+/* تأثير تحميل ناعم للإحصائيات */
+.dash-num { animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   ADVANCED UI/UX LUXURY ANIMATIONS (REACT-FLUID FEEL) - COMPATIBLE WITH ALL DEVICES
+   ========================================================================== */
+
+/* 1. انتقالات الصفحات فائقة النعومة مع تأثير هيدروليكي هادئ */
+.view-section { 
+    display: none; 
+    opacity: 0; 
+    will-change: transform, opacity;
+}
+.view-section.active { 
+    display: block; 
+    animation: fluidPageTransition 0.55s cubic-bezier(0.25, 1, 0.5, 1) forwards; 
+}
+
+@keyframes fluidPageTransition {
+    from { 
+        opacity: 0; 
+        transform: translateY(24px) scale(0.99); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+/* 2. تأثيرات النوافذ المنبثقة السينمائية المعتمدة على منحنى الينابيع الهيدروليكية */
+.modal { 
+    transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* حرج لدعم متصفح سفاري وآيفون */
+}
+.modal-content { 
+    transform: scale(0.92) translateY(-15px); 
+    transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); /* تأثير الارتداد الزنبركي الأنيق */
+}
+.modal.show .modal-content { 
+    transform: scale(1) translateY(0); 
+}
+
+/* 3. تأثيرات حركية تفاعلية ثلاثية الأبعاد خفيفة للكروت عند تمرير الماوس أو اللمس */
+.dash-card, .kb-card, .note-card, .lib-card, .month-day-card, .fin-item, .daily-task-item {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.3s ease;
+    touch-action: manipulation; /* تسريع استجابة اللمس في الـ iPad والموبايل */
+}
+.dash-card:hover, .kb-card:hover, .note-card:hover, .lib-card:hover, .month-day-card:hover, .fin-item:hover {
+    transform: translateY(-5px) scale(1.015);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.02);
+    border-color: var(--primary);
+}
+
+/* 4. تأثير النبض البصري المتجاوب للأزرار عند النقر */
+.btn { 
+    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1); 
+    position: relative;
+}
+.btn:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08); 
+    filter: brightness(1.05);
+}
+.btn:active { 
+    transform: translateY(1px); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+}
+
+/* 5. حركة انزلاقية جانبية ذكية لعناصر القائمة الجانبية للتنقل */
+.nav-item { 
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); 
+}
+.nav-item:hover { 
+    transform: translateX(-6px); 
+    background-color: rgba(100, 100, 100, 0.04);
+}
+html[dir="ltr"] .nav-item:hover { 
+    transform: translateX(6px); 
+}
+
+/* 6. تأثير تشطيب المهام الأنيق (Striking Dynamic) عند الضغط على Checkbox */
+.daily-task-item.completed {
+    animation: taskSuccessPulse 0.4s ease-in-out;
+}
+@keyframes taskSuccessPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.98); background-color: rgba(16, 185, 129, 0.03); }
+    100% { transform: scale(1); }
+}
+
+/* ==========================================================================
+   Floating Action Button (FAB) - Quick Brain Dump
+   ========================================================================== */
+.fab-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px; /* Fixed uniformly on the right side for easy thumb access */
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--warning), #f97316); /* Orange/Yellow energetic gradient */
+    color: white;
+    font-size: 1.8rem;
+    border: none;
+    box-shadow: 0 6px 15px rgba(245, 158, 11, 0.4);
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    touch-action: manipulation;
+}
+
+.fab-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
+}
+
+.fab-btn:active {
+    transform: scale(0.95);
+}
+
+@media screen and (max-width: 900px) {
+    .fab-btn {
+        bottom: 25px;
+        right: 25px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+    }
+}
+
+/* ==========================================================================
+   Circular Progress Rings (Dashboard UX)
+   ========================================================================== */
+.circ-progress {
+    position: relative;
+    width: 75px;
+    height: 75px;
+    margin: 15px auto 5px;
+}
+.circ-svg {
+    transform: rotate(-90deg) scaleY(-1); /* يعكس الدائرة لتبدأ من الأعلى باتجاه عقارب الساعة */
+    width: 100%;
+    height: 100%;
+}
+.circ-bg {
+    fill: none;
+    stroke: var(--border-color);
+    stroke-width: 3.5;
+}
+.circ-fill {
+    fill: none;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    transition: stroke-dasharray 1.5s cubic-bezier(0.22, 1, 0.36, 1); /* نعومة فائقة في التعبئة */
+}
+.circ-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+    white-space: nowrap;
+}
