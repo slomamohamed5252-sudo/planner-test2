@@ -916,22 +916,6 @@ function renderDashboard() {
     let fillB = document.getElementById('fillFinance');
     if(fillB) fillB.setAttribute('stroke-dasharray', `${bPercent}, 100`);
 
-    // --- بداية كود المرحلة الثانية (حالة الفراغ الذكية) ---
-    let hasActivity = (activeTasks.length > 0 || habitPercentValue > 0 || todayWorkBlocks > 0 || typeof finances !== 'undefined' && finances.length > 0);
-    let emptyState = document.getElementById('emptyStatsState');
-    let chartsGrid = document.getElementById('chartsGrid');
-    
-    if(emptyState && chartsGrid) {
-        if(hasActivity) {
-            emptyState.style.display = 'none';
-            chartsGrid.style.display = 'block';
-        } else {
-            emptyState.style.display = 'block';
-            chartsGrid.style.display = 'none';
-        }
-    }
-    // --- نهاية كود المرحلة الثانية ---
-
     let resetDate = localStorage.getItem('fp_stats_reset') || "2000-01-01";
     const canvasEl = document.getElementById('tasksChart'); 
     if(!canvasEl) return; 
