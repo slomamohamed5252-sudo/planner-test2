@@ -1,21 +1,15 @@
 // 1. سجل التحديثات (اكتب تحديثاتك هنا في كل إصدار جديد)
 const latestReleaseNotes = {
     ar: [
-        "إضافة زر 'تفريغ الدماغ ⚡' العائم لتسجيل الأفكار السريعة.",
-        "دعم الإملاء الصوتي باللغتين داخل صندوق الأفكار السريعة.",
-        "فرز الأفكار كـ 'مشروع' أو 'ملاحظة' بضغطة زر واحدة.",
-        "إصلاحات عامة وتحسين ضبط الوقت (AM/PM) في التقارير."
+        "تحسين سرعة استجابة التطبيق بشكل عام."
     ],
     en: [
-        "Added 'Quick Brain Dump ⚡' floating button for instant ideas.",
-        "Dual-language voice dictation in the quick modal.",
-        "Sort ideas as 'Project' or 'Note' with a single click.",
-        "General fixes and AM/PM time formatting improvements."
+        "Improved overall app responsiveness."
     ]
 };
 
 // كود إظهار صندوق التحديثات التلقائي
-const APP_VERSION = 'v16'; // يجب تغييره هنا مع كل تحديث رئيسي مستقبلاً
+const APP_VERSION = 'v17'; // يجب تغييره هنا مع كل تحديث رئيسي مستقبلاً
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
