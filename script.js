@@ -9,7 +9,7 @@ const latestReleaseNotes = {
 };
 
 // كود إظهار صندوق التحديثات التلقائي
-const APP_VERSION = 'v17'; // يجب تغييره هنا مع كل تحديث رئيسي مستقبلاً
+const APP_VERSION = 'v19'; // يجب تغييره هنا مع كل تحديث رئيسي مستقبلاً
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
@@ -944,13 +944,14 @@ function renderFinance() {
         
         let icon = f.type === 'income' ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'; 
         let bgStyle = f.type === 'income' ? 'border: 1px solid var(--success); background-color: rgba(16, 185, 129, 0.05);' : 'border: 1px solid var(--danger); background-color: rgba(239, 68, 68, 0.05);'; 
-        // زر التصنيف (Category Badge) الأنيق
-        let catBadge = f.category ? `<span style="background:var(--bg-color); padding:3px 8px; border-radius:6px; font-size:0.75rem; margin-right:8px; border:1px solid var(--border-color);">${f.category}</span>` : '';
+        
+        // زر التصنيف الأنيق
+        let catBadge = f.category && f.category !== 'أخرى' ? `<span style="background:var(--bg-color); padding:3px 8px; border-radius:6px; font-size:0.75rem; margin-right:8px; border:1px solid var(--border-color);">${f.category}</span>` : '';
         
         return `<div class="fin-item" style="cursor:pointer; transition: all 0.3s ease; ${bgStyle}" onclick="editFin(${f.id})">
             <div>
                 <small>${f.date}</small><br>
-                <b>${f.desc}</b> ${catBadge}
+                <b style="color: var(--text-main);">${f.desc}</b> ${catBadge}
             </div>
             <div style="display:flex; align-items:center; gap:15px;">
                 <span class="fin-amt ${f.type === 'income' ? 'inc' : 'exp'}">${icon} ${f.amount}</span>
