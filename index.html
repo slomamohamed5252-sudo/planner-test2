@@ -135,7 +135,14 @@
                     </div>
                 </div>
                 <div class="finance-summary"><div class="fin-box fin-income"><span data-i18n="fin_inc">الدخل</span><h3 id="totalIncome">0</h3></div><div class="fin-box fin-expense"><span data-i18n="fin_exp">المصروفات</span><h3 id="totalExpense">0</h3></div><div class="fin-box fin-balance"><span data-i18n="fin_bal">الرصيد</span><h3 id="netBalance">0</h3></div></div>
-                <div class="finance-list" id="financeContainer"></div>
+                <div style="background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin: 20px 0; text-align: center;">
+                    <h4 style="margin-bottom: 10px; color: var(--text-main); font-size: 1rem; font-weight: 600;" data-i18n="budget_index">مؤشر الميزانية 📊</h4>
+                    <div style="position: relative; width: 100%; max-width: 300px; height: 160px; margin: auto;">
+                        <canvas id="financeChart"></canvas>
+                    </div>
+                </div>
+
+                <div id="financeContainer" class="fin-list"></div>
             </div>
 
             <div id="libraryView" class="view-section">
@@ -309,25 +316,16 @@
             <div class="modal-actions"><button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button><button id="updateNoteBtn" class="btn btn-primary" data-i18n="btn_update">تحديث</button></div>
         </div>
     </div>
-
-    <div id="financeModal" class="modal">
+<div id="financeModal" class="modal">
         <div class="modal-content">
             <h3 data-i18n="btn_add_trans">إضافة معاملة</h3>
             <input type="text" id="finDesc" placeholder="الوصف" required>
-            <select id="finCategory" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); margin-top: 10px;">
-                <option value="أخرى">أخرى</option>
-                <option value="🍔 طعام">🍔 طعام</option>
-                <option value="🚕 مواصلات">🚕 مواصلات</option>
-                <option value="🛒 تسوق">🛒 تسوق</option>
-                <option value="💡 فواتير">💡 فواتير</option>
-                <option value="💻 عمل">💻 عمل</option>
-                <option value="🎉 ترفيه">🎉 ترفيه</option>
-            </select>
+            <select id="finCategory" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); margin-top: 10px;"></select>
             <div class="input-group">
                 <input type="number" id="finAmount" placeholder="المبلغ" required style="transition:0.3s;">
                 <select id="finType" onchange="updateFinColor('finType', 'finAmount')" style="transition:0.3s; font-weight:bold;">
-                    <option value="income" style="color:green;">إيراد (+)</option>
-                    <option value="expense" style="color:red;">مصروف (-)</option>
+                    <option value="income" style="color:green;" data-i18n="opt_inc">إيراد (+)</option>
+                    <option value="expense" style="color:red;" data-i18n="opt_exp">مصروف (-)</option>
                 </select>
             </div>
             <input type="date" id="finDate" style="margin-top:10px;">
@@ -343,20 +341,12 @@
             <h3 data-i18n="btn_edit_trans">تعديل المعاملة</h3>
             <input type="hidden" id="editFinId">
             <input type="text" id="editFinDesc" required>
-            <select id="editFinCategory" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); margin-top: 10px;">
-                <option value="أخرى">أخرى</option>
-                <option value="🍔 طعام">🍔 طعام</option>
-                <option value="🚕 مواصلات">🚕 مواصلات</option>
-                <option value="🛒 تسوق">🛒 تسوق</option>
-                <option value="💡 فواتير">💡 فواتير</option>
-                <option value="💻 عمل">💻 عمل</option>
-                <option value="🎉 ترفيه">🎉 ترفيه</option>
-            </select>
+            <select id="editFinCategory" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-color); color: var(--text-main); margin-top: 10px;"></select>
             <div class="input-group">
                 <input type="number" id="editFinAmount" required style="transition:0.3s;">
                 <select id="editFinType" onchange="updateFinColor('editFinType', 'editFinAmount')" style="transition:0.3s; font-weight:bold;">
-                    <option value="income" style="color:green;">إيراد (+)</option>
-                    <option value="expense" style="color:red;">مصروف (-)</option>
+                    <option value="income" style="color:green;" data-i18n="opt_inc">إيراد (+)</option>
+                    <option value="expense" style="color:red;" data-i18n="opt_exp">مصروف (-)</option>
                 </select>
             </div>
             <input type="date" id="editFinDate" style="margin-top:10px;">
