@@ -934,12 +934,99 @@ function renderDashboard() {
         options: { responsive: true, scales: { y: { beginAtZero: true, ticks: {stepSize: 1} } } } 
     });
 }
-function renderFinance() { const container = document.getElementById('financeContainer'); let inc = 0, exp = 0; let html = finances.sort((a,b) => new Date(b.date) - new Date(a.date)).map(f => { if(f.type === 'income') inc += Number(f.amount); else exp += Number(f.amount); let icon = f.type === 'income' ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'; let bgStyle = f.type === 'income' ? 'border: 1px solid var(--success); background-color: rgba(16, 185, 129, 0.05);' : 'border: 1px solid var(--danger); background-color: rgba(239, 68, 68, 0.05);'; return `<div class="fin-item" style="cursor:pointer; transition: all 0.3s ease; ${bgStyle}" onclick="editFin(${f.id})"><div><small>${f.date}</small><br><b>${f.desc}</b></div><div style="display:flex; align-items:center; gap:15px;"><span class="fin-amt ${f.type === 'income' ? 'inc' : 'exp'}">${icon} ${f.amount}</span><button class="icon-btn no-print" onclick="event.stopPropagation(); delFin(${f.id})"><i class="fa-solid fa-trash"></i></button></div></div>`; }).join(''); document.getElementById('totalIncome').innerText = inc; document.getElementById('totalExpense').innerText = exp; document.getElementById('netBalance').innerText = inc - exp; container.innerHTML = html || `<p style="text-align:center; color:var(--text-muted);">${currentLang==='ar'?'لا توجد معاملات.':'No transactions yet.'}</p>`; }
-document.getElementById('saveFinBtn').onclick = () => { let desc = document.getElementById('finDesc').value; let amt = document.getElementById('finAmount').value; if(!desc || !amt) return; finances.push({ id: Date.now(), desc: desc, amount: amt, type: document.getElementById('finType').value, date: document.getElementById('finDate').value }); saveAll(); document.getElementById('financeModal').classList.remove('show'); renderFinance(); renderDashboard(); };
-window.editFin = (id) => { let f = finances.find(x => x.id === id); if(!f) return; document.getElementById('editFinId').value = f.id;
-document.getElementById('editFinDesc').value = f.desc; document.getElementById('editFinAmount').value = f.amount; document.getElementById('editFinType').value = f.type; document.getElementById('editFinDate').value = f.date; document.getElementById('editFinModal').classList.add('show'); setTimeout(() => { if(window.updateFinColor) updateFinColor('editFinType', 'editFinAmount'); }, 50); };
-document.getElementById('updateFinBtn').onclick = () => { let id = parseInt(document.getElementById('editFinId').value); let desc = document.getElementById('editFinDesc').value; let amt = document.getElementById('editFinAmount').value; if(!desc || !amt) return; let f = finances.find(x => x.id === id); if(f) { f.desc = desc; f.amount = amt; f.type = document.getElementById('editFinType').value; f.date = document.getElementById('editFinDate').value; saveAll(); renderFinance(); renderDashboard(); document.getElementById('editFinModal').classList.remove('show'); } };
-window.delFin = id => { finances = finances.filter(f => f.id !== id); saveAll(); renderFinance(); renderDashboard(); }
+function renderFinance() { 
+    const container = document.getElementById('financeContainer'); 
+    let inc = 0, exp = 0;
+    
+    let html = finances.sort((a,b) => new Date(b.date) - new Date(a.date)).map(f => { 
+        if(f.type === 'income') inc += Number(f.amount); 
+        else exp += Number(f.amount); 
+        
+        let icon = f.type === 'income' ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'; 
+        let bgStyle = f.type === 'income' ? 'border: 1px solid var(--success); background-color: rgba(16, 185, 129, 0.05);' : 'border: 1px solid var(--danger); background-color: rgba(239, 68, 68, 0.05);'; 
+        // زر التصنيف (Category Badge) الأنيق
+        let catBadge = f.category ? `<span style="background:var(--bg-color); padding:3px 8px; border-radius:6px; font-size:0.75rem; margin-right:8px; border:1px solid var(--border-color);">${f.category}</span>` : '';
+        
+        return `<div class="fin-item" style="cursor:pointer; transition: all 0.3s ease; ${bgStyle}" onclick="editFin(${f.id})">
+            <div>
+                <small>${f.date}</small><br>
+                <b>${f.desc}</b> ${catBadge}
+            </div>
+            <div style="display:flex; align-items:center; gap:15px;">
+                <span class="fin-amt ${f.type === 'income' ? 'inc' : 'exp'}">${icon} ${f.amount}</span>
+                <button class="icon-btn no-print" onclick="event.stopPropagation(); delFin(${f.id})"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>`; 
+    }).join('');
+    
+    document.getElementById('totalIncome').innerText = inc; 
+    document.getElementById('totalExpense').innerText = exp; 
+    document.getElementById('netBalance').innerText = inc - exp; 
+    container.innerHTML = html || `<p style="text-align:center; color:var(--text-muted);">${currentLang==='ar'?'لا توجد معاملات.':'No transactions yet.'}</p>`; 
+}
+
+document.getElementById('saveFinBtn').onclick = () => { 
+    let desc = document.getElementById('finDesc').value; 
+    let amt = document.getElementById('finAmount').value;
+    let catEl = document.getElementById('finCategory');
+    let cat = catEl ? catEl.value : 'أخرى';
+
+    if(!desc || !amt) return; 
+    finances.push({ 
+        id: Date.now(), 
+        desc: desc, 
+        amount: amt, 
+        type: document.getElementById('finType').value, 
+        category: cat,
+        date: document.getElementById('finDate').value 
+    }); 
+    saveAll(); 
+    document.getElementById('financeModal').classList.remove('show'); 
+    renderFinance(); 
+    renderDashboard();
+};
+
+window.editFin = (id) => { 
+    let f = finances.find(x => x.id === id); 
+    if(!f) return; 
+    document.getElementById('editFinId').value = f.id;
+    document.getElementById('editFinDesc').value = f.desc; 
+    document.getElementById('editFinAmount').value = f.amount; 
+    document.getElementById('editFinType').value = f.type; 
+    let catEl = document.getElementById('editFinCategory');
+    if(catEl) catEl.value = f.category || 'أخرى';
+    document.getElementById('editFinDate').value = f.date; 
+    document.getElementById('editFinModal').classList.add('show');
+    setTimeout(() => { if(window.updateFinColor) updateFinColor('editFinType', 'editFinAmount'); }, 50); 
+};
+
+document.getElementById('updateFinBtn').onclick = () => { 
+    let id = parseInt(document.getElementById('editFinId').value);
+    let desc = document.getElementById('editFinDesc').value; 
+    let amt = document.getElementById('editFinAmount').value; 
+    if(!desc || !amt) return; 
+    
+    let f = finances.find(x => x.id === id);
+    if(f) { 
+        f.desc = desc; 
+        f.amount = amt; 
+        f.type = document.getElementById('editFinType').value; 
+        let catEl = document.getElementById('editFinCategory');
+        if(catEl) f.category = catEl.value;
+        f.date = document.getElementById('editFinDate').value; 
+        saveAll(); 
+        renderFinance(); 
+        renderDashboard(); 
+        document.getElementById('editFinModal').classList.remove('show'); 
+    } 
+};
+
+window.delFin = id => { 
+    finances = finances.filter(f => f.id !== id); 
+    saveAll(); 
+    renderFinance(); 
+    renderDashboard();
+};
 function renderHabits() { let dim = new Date(currentYearView, currentMonthView + 1, 0).getDate(); let habitText = currentLang === 'ar' ? 'العادة' : 'Habit'; let html = `<table class="habit-table"><thead><tr><th>${habitText}</th>`; for(let i=1; i<=dim; i++) html += `<th>${i}</th>`; html += `</tr></thead><tbody>`; habits.forEach(h => { html += `<tr><td class="habit-name"><button class="icon-btn no-print" style="color:red;" onclick="delHabit(${h.id})">x</button> ${h.name}</td>`; for(let i=1; i<=dim; i++) { let k = `${currentYearView}-${currentMonthView}-${i}`; html += `<td><div class="habit-check ${h.days[k]?'done':''}" onclick="toggleHabit(${h.id}, '${k}')">✓</div></td>`; } html += `</tr>`; }); document.getElementById('habitsContainer').innerHTML = html + `</tbody></table>`; }
 window.addNewHabit = () => { const inp = document.getElementById('newHabitInput'); if(inp.value.trim()){ habits.push({id:Date.now(), name:inp.value, days:{}}); saveAll(); inp.value=''; renderHabits(); renderDashboard(); } }
 window.toggleHabit = (id, k) => { let h = habits.find(x=>x.id===id); h.days[k] = !h.days[k]; saveAll(); renderHabits(); renderDashboard(); }
