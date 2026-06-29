@@ -958,6 +958,14 @@ function renderFinance() {
     const container = document.getElementById('financeContainer'); 
     let inc = 0, exp = 0;
     
+    // 1. ترجمة نصوص الميزانية مباشرة
+    const budgetTitle = document.getElementById('budgetTitleText');
+    const btnSetBudget = document.getElementById('btnSetBudget');
+    if(budgetTitle && btnSetBudget) {
+        budgetTitle.innerText = currentLang === 'ar' ? 'الميزانية الشهرية' : 'Monthly Budget';
+        btnSetBudget.innerText = currentLang === 'ar' ? 'تحديد الميزانية' : 'Set Budget';
+    }
+
     let html = finances.sort((a,b) => new Date(b.date) - new Date(a.date)).map(f => { 
         if(f.type === 'income') inc += Number(f.amount); 
         else exp += Number(f.amount); 
@@ -993,6 +1001,7 @@ function renderFinance() {
     document.getElementById('netBalance').innerText = inc - exp; 
     if(container) container.innerHTML = html || `<p style="text-align:center; color:var(--text-muted);">${currentLang==='ar'?'لا توجد معاملات.':'No transactions yet.'}</p>`; 
 
+    // 2. تحديث الرسم البياني (عداد السرعة)
     const ctx = document.getElementById('financeChart');
     if(ctx && window.Chart) {
         if(finChartInstance) finChartInstance.destroy();
@@ -1006,17 +1015,67 @@ function renderFinance() {
 
         finChartInstance = new Chart(ctx, {
             type: 'doughnut',
-            data: {
-                labels: labelsArr,
-                datasets: [{ data: dataArr, backgroundColor: bgColors, borderWidth: 0, hoverOffset: 6 }]
-            },
-            options: {
-                responsive: true, maintainAspectRatio: false, circumference: 180, rotation: -90, cutout: '75%',
-                plugins: { legend: { position: 'bottom', labels: { color: '#6b7280', font: {family: 'Inter'} } } }
-            }
+            data: { labels: labelsArr, datasets: [{ data: dataArr, backgroundColor: bgColors, borderWidth: 0, hoverOffset: 6 }] },
+            options: { responsive: true, maintainAspectRatio: false, circumference: 180, rotation: -90, cutout: '75%', plugins: { legend: { position: 'bottom', labels: { color: '#6b7280', font: {family: 'Inter'} } } } }
         });
     }
+
+    // 3. برمجة الميزانية الذكية (Smart Budget)
+    let budgetLimit = parseFloat(localStorage.getItem('fp_monthly_budget')) || 0;
+    let budgetBar = document.getElementById('budgetProgressBar');
+    let budgetSpentText = document.getElementById('budgetSpentText');
+    let budgetLimitText = document.getElementById('budgetLimitText');
+    let budgetAlert = document.getElementById('budgetAlertText');
+
+    if(budgetBar && budgetSpentText && budgetLimitText) {
+        budgetLimitText.innerText = budgetLimit > 0 ? (currentLang === 'ar' ? `الميزانية: ${budgetLimit}` : `Budget: ${budgetLimit}`) : (currentLang === 'ar' ? 'لم يتم التحديد' : 'Not set');
+        budgetSpentText.innerText = currentLang === 'ar' ? `تم صرف: ${exp}` : `Spent: ${exp}`;
+
+        if(budgetLimit > 0) {
+            let percent = (exp / budgetLimit) * 100;
+            if(percent > 100) percent = 100;
+            budgetBar.style.width = percent + '%';
+            
+            // تغيير الألوان حسب الخطر
+            if(percent < 75) {
+                budgetBar.style.backgroundColor = 'var(--success)'; // أخضر آمن
+                if(budgetAlert) budgetAlert.style.display = 'none';
+            } else if(percent < 90) {
+                budgetBar.style.backgroundColor = 'var(--warning)'; // برتقالي تحذير
+                if(budgetAlert) {
+                    budgetAlert.style.display = 'block';
+                    budgetAlert.style.color = 'var(--warning)';
+                    budgetAlert.innerText = currentLang === 'ar' ? '⚠️ انتبه: اقتربت من تخطي الميزانية!' : '⚠️ Alert: Nearing budget limit!';
+                }
+            } else {
+                budgetBar.style.backgroundColor = 'var(--danger)'; // أحمر خطر
+                if(budgetAlert) {
+                    budgetAlert.style.display = 'block';
+                    budgetAlert.style.color = 'var(--danger)';
+                    budgetAlert.innerText = currentLang === 'ar' ? '🚨 تحذير: لقد تخطيت الميزانية الآمنة!' : '🚨 Warning: Budget limit exceeded!';
+                }
+            }
+        } else {
+            budgetBar.style.width = '0%';
+            if(budgetAlert) budgetAlert.style.display = 'none';
+        }
+    }
 }
+
+// دالة تحديد الميزانية
+window.setMonthlyBudget = () => {
+    let currentBudget = localStorage.getItem('fp_monthly_budget') || '';
+    let msg = currentLang === 'ar' ? 'أدخل الحد الأقصى للمصروفات هذا الشهر (مثلاً: 5000):' : 'Enter your maximum monthly budget limit:';
+    let val = prompt(msg, currentBudget);
+    if(val !== null && val.trim() !== '' && !isNaN(val)) {
+        localStorage.setItem('fp_monthly_budget', val);
+        renderFinance();
+    } else if (val !== null && val.trim() === '') {
+        // إذا مسح الرقم يتم إلغاء الميزانية
+        localStorage.removeItem('fp_monthly_budget');
+        renderFinance();
+    }
+};
 
 document.getElementById('saveFinBtn').onclick = () => { 
     let desc = document.getElementById('finDesc').value; 
