@@ -1109,26 +1109,17 @@ window.setMonthlyBudget = () => {
 
 document.getElementById('saveFinBtn').onclick = () => { 
     let desc = document.getElementById('finDesc').value; 
-    let amtRaw = document.getElementById('finAmount').value || "0";
-    
-    // الفلتر الذكي: يزيل أي نصوص ويحول الأرقام العربية إلى إنجليزية لضمان استقرار العمليات الحسابية
-    let amt = parseFloat(amtRaw.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, ''));
-    
+    let amt = document.getElementById('finAmount').value;
     let catEl = document.getElementById('finCategory');
     let cat = catEl ? catEl.value : 'other';
 
-    // التحقق من صحة المبلغ بعد الفلترة
-    if(!desc || isNaN(amt) || amt <= 0) {
-        alert(currentLang === 'ar' ? 'يرجى إدخال وصف ومبلغ صحيح بالأرقام.' : 'Please enter a valid description and amount.');
-        return; 
-    }
-    
+    if(!desc || !amt) return; 
     finances.push({ 
         id: Date.now(), desc: desc, amount: amt, type: document.getElementById('finType').value, category: cat, date: document.getElementById('finDate').value 
     }); 
     saveAll(); 
     document.getElementById('financeModal').classList.remove('show'); 
-    stopContinuousDictation(); 
+    stopContinuousDictation(); // إيقاف المايكرفون فوراً بعد الحفظ
     renderFinance(); 
     renderDashboard();
 };
@@ -1148,15 +1139,8 @@ window.editFin = (id) => {
 document.getElementById('updateFinBtn').onclick = () => { 
     let id = parseInt(document.getElementById('editFinId').value);
     let desc = document.getElementById('editFinDesc').value; 
-    let amtRaw = document.getElementById('editFinAmount').value || "0";
-    
-    // الفلتر الذكي عند التحديث أيضاً
-    let amt = parseFloat(amtRaw.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, ''));
-    
-    if(!desc || isNaN(amt) || amt <= 0) {
-        alert(currentLang === 'ar' ? 'يرجى إدخال وصف ومبلغ صحيح بالأرقام.' : 'Please enter a valid description and amount.');
-        return; 
-    }
+    let amt = document.getElementById('editFinAmount').value; 
+    if(!desc || !amt) return; 
     
     let f = finances.find(x => x.id === id);
     if(f) { 
@@ -1168,7 +1152,7 @@ document.getElementById('updateFinBtn').onclick = () => {
         renderFinance(); 
         renderDashboard(); 
         document.getElementById('editFinModal').classList.remove('show'); 
-        stopContinuousDictation(); 
+        stopContinuousDictation(); // إيقاف المايكرفون فوراً بعد التحديث
     } 
 };
 
