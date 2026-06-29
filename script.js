@@ -1117,7 +1117,11 @@ document.getElementById('saveFinBtn').onclick = () => {
     finances.push({ 
         id: Date.now(), desc: desc, amount: amt, type: document.getElementById('finType').value, category: cat, date: document.getElementById('finDate').value 
     }); 
-    saveAll(); document.getElementById('financeModal').classList.remove('show'); renderFinance(); renderDashboard();
+    saveAll(); 
+    document.getElementById('financeModal').classList.remove('show'); 
+    stopContinuousDictation(); // إيقاف المايكرفون فوراً بعد الحفظ
+    renderFinance(); 
+    renderDashboard();
 };
 
 window.editFin = (id) => { 
@@ -1144,11 +1148,20 @@ document.getElementById('updateFinBtn').onclick = () => {
         let catEl = document.getElementById('editFinCategory');
         if(catEl) f.category = catEl.value;
         f.date = document.getElementById('editFinDate').value; 
-        saveAll(); renderFinance(); renderDashboard(); document.getElementById('editFinModal').classList.remove('show'); 
+        saveAll(); 
+        renderFinance(); 
+        renderDashboard(); 
+        document.getElementById('editFinModal').classList.remove('show'); 
+        stopContinuousDictation(); // إيقاف المايكرفون فوراً بعد التحديث
     } 
 };
 
-window.delFin = id => { finances = finances.filter(f => f.id !== id); saveAll(); renderFinance(); renderDashboard(); };
+window.delFin = id => { 
+    finances = finances.filter(f => f.id !== id); 
+    saveAll(); 
+    renderFinance(); 
+    renderDashboard(); 
+};
 function renderHabits() { let dim = new Date(currentYearView, currentMonthView + 1, 0).getDate(); let habitText = currentLang === 'ar' ? 'العادة' : 'Habit'; let html = `<table class="habit-table"><thead><tr><th>${habitText}</th>`; for(let i=1; i<=dim; i++) html += `<th>${i}</th>`; html += `</tr></thead><tbody>`; habits.forEach(h => { html += `<tr><td class="habit-name"><button class="icon-btn no-print" style="color:red;" onclick="delHabit(${h.id})">x</button> ${h.name}</td>`; for(let i=1; i<=dim; i++) { let k = `${currentYearView}-${currentMonthView}-${i}`; html += `<td><div class="habit-check ${h.days[k]?'done':''}" onclick="toggleHabit(${h.id}, '${k}')">✓</div></td>`; } html += `</tr>`; }); document.getElementById('habitsContainer').innerHTML = html + `</tbody></table>`; }
 window.addNewHabit = () => { const inp = document.getElementById('newHabitInput'); if(inp.value.trim()){ habits.push({id:Date.now(), name:inp.value, days:{}}); saveAll(); inp.value=''; renderHabits(); renderDashboard(); } }
 window.toggleHabit = (id, k) => { let h = habits.find(x=>x.id===id); h.days[k] = !h.days[k]; saveAll(); renderHabits(); renderDashboard(); }
