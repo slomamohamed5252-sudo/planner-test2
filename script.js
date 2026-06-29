@@ -958,15 +958,47 @@ function renderFinance() {
     const container = document.getElementById('financeContainer'); 
     let inc = 0, exp = 0;
     
-    // 1. ترجمة نصوص الميزانية مباشرة
+    // 1. ترجمة نصوص الميزانية وأدوات الفلترة
     const budgetTitle = document.getElementById('budgetTitleText');
     const btnSetBudget = document.getElementById('btnSetBudget');
+    const searchInput = document.getElementById('financeSearchInput');
+    const monthFilter = document.getElementById('financeMonthFilter');
+
     if(budgetTitle && btnSetBudget) {
         budgetTitle.innerText = currentLang === 'ar' ? 'الميزانية الشهرية' : 'Monthly Budget';
         btnSetBudget.innerText = currentLang === 'ar' ? 'تحديد الميزانية' : 'Set Budget';
     }
+    if(searchInput && monthFilter) {
+        searchInput.placeholder = currentLang === 'ar' ? 'بحث عن معاملة...' : 'Search transactions...';
+        monthFilter.options[0].text = currentLang === 'ar' ? 'كل الأشهر' : 'All Months';
+        monthFilter.options[1].text = currentLang === 'ar' ? 'هذا الشهر' : 'This Month';
+        monthFilter.options[2].text = currentLang === 'ar' ? 'الشهر الماضي' : 'Last Month';
+    }
 
-    let html = finances.sort((a,b) => new Date(b.date) - new Date(a.date)).map(f => { 
+    // 2. محرك الفلترة والبحث
+    let searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
+    let filterValue = monthFilter ? monthFilter.value : 'all';
+    
+    let currentDate = new Date();
+    let currentMonthStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+    
+    let lastMonthDate = new Date();
+    lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+    let lastMonthStr = `${lastMonthDate.getFullYear()}-${String(lastMonthDate.getMonth() + 1).padStart(2, '0')}`;
+
+    let filteredFinances = finances.filter(f => {
+        let matchesSearch = f.desc.toLowerCase().includes(searchQuery) || (f.category && f.category.toLowerCase().includes(searchQuery));
+        let matchesMonth = true;
+        if(filterValue === 'current') {
+            matchesMonth = f.date.startsWith(currentMonthStr);
+        } else if(filterValue === 'last') {
+            matchesMonth = f.date.startsWith(lastMonthStr);
+        }
+        return matchesSearch && matchesMonth;
+    });
+
+    // رسم المعاملات بعد الفلترة
+    let html = filteredFinances.sort((a,b) => new Date(b.date) - new Date(a.date)).map(f => { 
         if(f.type === 'income') inc += Number(f.amount); 
         else exp += Number(f.amount); 
         
@@ -999,9 +1031,9 @@ function renderFinance() {
     document.getElementById('totalIncome').innerText = inc; 
     document.getElementById('totalExpense').innerText = exp; 
     document.getElementById('netBalance').innerText = inc - exp; 
-    if(container) container.innerHTML = html || `<p style="text-align:center; color:var(--text-muted);">${currentLang==='ar'?'لا توجد معاملات.':'No transactions yet.'}</p>`; 
+    if(container) container.innerHTML = html || `<p style="text-align:center; color:var(--text-muted);">${currentLang==='ar'?'لا توجد معاملات مطابقة.':'No transactions found.'}</p>`; 
 
-    // 2. تحديث الرسم البياني (عداد السرعة)
+    // 3. تحديث الرسم البياني (عداد السرعة بناءً على الفلترة)
     const ctx = document.getElementById('financeChart');
     if(ctx && window.Chart) {
         if(finChartInstance) finChartInstance.destroy();
@@ -1020,7 +1052,7 @@ function renderFinance() {
         });
     }
 
-    // 3. برمجة الميزانية الذكية (Smart Budget)
+    // 4. برمجة الميزانية الذكية بناءً على المصروفات المعروضة (المفلترة)
     let budgetLimit = parseFloat(localStorage.getItem('fp_monthly_budget')) || 0;
     let budgetBar = document.getElementById('budgetProgressBar');
     let budgetSpentText = document.getElementById('budgetSpentText');
@@ -1036,19 +1068,18 @@ function renderFinance() {
             if(percent > 100) percent = 100;
             budgetBar.style.width = percent + '%';
             
-            // تغيير الألوان حسب الخطر
             if(percent < 75) {
-                budgetBar.style.backgroundColor = 'var(--success)'; // أخضر آمن
+                budgetBar.style.backgroundColor = 'var(--success)';
                 if(budgetAlert) budgetAlert.style.display = 'none';
             } else if(percent < 90) {
-                budgetBar.style.backgroundColor = 'var(--warning)'; // برتقالي تحذير
+                budgetBar.style.backgroundColor = 'var(--warning)';
                 if(budgetAlert) {
                     budgetAlert.style.display = 'block';
                     budgetAlert.style.color = 'var(--warning)';
                     budgetAlert.innerText = currentLang === 'ar' ? '⚠️ انتبه: اقتربت من تخطي الميزانية!' : '⚠️ Alert: Nearing budget limit!';
                 }
             } else {
-                budgetBar.style.backgroundColor = 'var(--danger)'; // أحمر خطر
+                budgetBar.style.backgroundColor = 'var(--danger)';
                 if(budgetAlert) {
                     budgetAlert.style.display = 'block';
                     budgetAlert.style.color = 'var(--danger)';
@@ -1071,7 +1102,6 @@ window.setMonthlyBudget = () => {
         localStorage.setItem('fp_monthly_budget', val);
         renderFinance();
     } else if (val !== null && val.trim() === '') {
-        // إذا مسح الرقم يتم إلغاء الميزانية
         localStorage.removeItem('fp_monthly_budget');
         renderFinance();
     }

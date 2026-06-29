@@ -157,6 +157,16 @@
                     <p id="budgetAlertText" style="display: none; color: var(--danger); font-size: 0.85rem; font-weight: bold; text-align: center; margin-top: 10px; animation: taskSuccessPulse 0.5s ease-in-out;">⚠️ اقتربت من تخطي الميزانية!</p>
                 </div>
 
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input type="text" id="financeSearchInput" placeholder="بحث عن معاملة..." style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main);" onkeyup="renderFinance()">
+                    
+                    <select id="financeMonthFilter" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); font-weight: bold;" onchange="renderFinance()">
+                        <option value="all">كل الأشهر</option>
+                        <option value="current">هذا الشهر</option>
+                        <option value="last">الشهر الماضي</option>
+                    </select>
+                </div>
+
                 <div id="financeContainer" class="fin-list"></div>
             </div>
 
