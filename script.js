@@ -15,7 +15,7 @@ const latestReleaseNotes = {
 };
 
 // كود إظهار صندوق التحديثات التلقائي
-const APP_VERSION = 'v25'; // تم التحديث للإصدار 25
+const APP_VERSION = 'v25';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
@@ -100,87 +100,6 @@ if (firebaseConfig.apiKey && firebaseConfig.apiKey.length > 10) {
 // الترجمة واللغات (تعمل بشكل مثالي ولا تمس بياناتك)
 // ----------------------------------------
 const i18n = {
-    ar: {
-        nav_dash: "لوحة التحكم", nav_month: "خطة الشهر", nav_today: "اليوم", nav_pomodoro: "مؤقت التركيز", nav_kanban: "المشاريع", nav_habits: "متتبع العادات", nav_finance: "المتتبع المالي", nav_lib: "مكتبة المراجع", nav_notes: "الملاحظات", nav_settings: "الإعدادات والمزامنة",
-        btn_invite: "دعوة", btn_install: "تثبيت التطبيق",
-        title_dash: "لوحة التحكم والإحصائيات", btn_clear_comp: "مسح المكتملة", btn_clear_today: "مسح مهام اليوم", btn_hide_dash: "إخفاء مهام اليوم", btn_reset_stats: "تصفير الإحصائيات",
-        card_tasks: "المهام اليوم", card_bal: "الرصيد المتاح", card_habits: "إنجاز العادات",
-        title_finance: "المتتبع المالي", btn_add_trans: "معاملة", fin_inc: "الدخل", fin_exp: "المصروفات", fin_bal: "الرصيد", btn_edit_trans: "تعديل المعاملة",
-        title_lib: "المراجع والأصول", btn_add_ref: "إضافة مرجع", btn_edit_ref: "تعديل المرجع", lib_dictate_hint: "المحتوى",
-        btn_prev: "السابق", btn_next: "التالي",
-        title_today: "جدول اليوم", btn_add: "إضافة", btn_edit_task: "تعديل المهمة", btn_update: "تحديث",
-        title_pom: "مؤقت التركيز (Pomodoro)", btn_work: "عمل", btn_break: "استراحة", btn_start: "ابدأ", btn_pause: "إيقاف مؤقت", btn_reset: "إعادة", btn_stop_alarm: "إيقاف الرنين",
-        title_kanban: "لوحة المشاريع", kb_todo: "💡 أفكار/مهام", kb_inprog: "⏳ التنفيذ", kb_done: "✅ مكتملة", btn_edit_kb: "تعديل المشروع",
-        title_habits: "متتبع العادات", 
-        title_notes: "الملاحظات", btn_add_note: "إضافة ملاحظة", btn_edit_note: "تعديل الملاحظة",
-        title_settings: "الإعدادات والمزامنة", label_name: "الاسم", btn_save_local: "حفظ البيانات محلياً",
-        title_appearance: "المظهر والألوان 🎨",
-        title_sync: "المزامنة السحابية الحية ☁️", sync_desc: "عند تسجيل الخروج سيتم مسح بياناتك من هذا الجهاز لضمان السرية، وستبقى آمنة في حسابك.",
-        title_backup: "النسخ الاحتياطي اليدوي", btn_download: "تنزيل البيانات", btn_restore: "استرجاع ملف",
-        chart_done: "مكتملة", chart_pend: "غير مكتملة", btn_cancel: "إلغاء", btn_save: "حفظ", title_login: "تسجيل الدخول للمزامنة",
-        title_update_log: "سجل التحديثات 🔄",
-        btn_check_update: "البحث عن تحديث / تنشيط التطبيق",
-        card_pomodoro_blocks: "جلسات التركيز اليوم",
-        pom_log_title: "سجل جلسات التركيز ⏱️",
-        pom_work_log: "جلسة تركيز عمل",
-        pom_break_log: "جلسة استراحة ونقاهة",
-        pom_no_log: "لم يتم تسجيل أي جلسات تركيز بعد.",
-        title_quick_dump: "تفريغ الدماغ السريع ⚡", btn_qd_kanban: "كمشروع", btn_qd_note: "كملاحظة",
-        empty_state_title: "لوحتك بيضاء بانتظار إنجازاتك! ✨", empty_state_desc: "الرسم البياني نائم الآن.. ابدأ بإنجاز أول مهمة لتشغيله.",
-        doughnut_title: "مؤشر النشاط الشامل 📊",
-        budget_index: "مؤشر الميزانية 📊", opt_inc: "إيراد (+)", opt_exp: "مصروف (-)",
-        cat_other: "أخرى", cat_food: "🍔 طعام", cat_trans: "🚕 مواصلات", cat_shop: "🛒 تسوق", cat_bills: "💡 فواتير", cat_work: "💻 عمل", cat_fun: "🎉 ترفيه"
-    },
-    en: {
-        nav_dash: "Dashboard", nav_month: "Monthly Plan", nav_today: "Today", nav_pomodoro: "Focus Timer", nav_kanban: "Projects", nav_habits: "Habit Tracker", nav_finance: "Finance", nav_lib: "Library", nav_notes: "Notes", nav_settings: "Settings & Sync",
-        btn_invite: "Invite", btn_install: "Install App",
-        title_dash: "Dashboard & Stats", btn_clear_comp: "Clear Completed", btn_clear_today: "Clear Today", btn_hide_dash: "Hide from Dash", btn_reset_stats: "Reset Stats",
-        card_tasks: "Today's Tasks", card_bal: "Available Balance", card_habits: "Habits Rate",
-        title_finance: "Finance Tracker", btn_add_trans: "Transaction", fin_inc: "Income", fin_exp: "Expense", fin_bal: "Balance", btn_edit_trans: "Edit Transaction",
-        title_lib: "Library & Assets", btn_add_ref: "Add Reference", btn_edit_ref: "Edit Reference", lib_dictate_hint: "Content",
-        btn_prev: "Previous", btn_next: "Next",
-        title_today: "Today's Schedule", btn_add: "Add Task", btn_edit_task: "Edit Task", btn_update: "Update",
-        title_pom: "Focus Timer (Pomodoro)", btn_work: "Work", btn_break: "Break", btn_start: "Start", btn_pause: "Pause", btn_reset: "Reset", btn_stop_alarm: "Stop Alarm",
-        title_kanban: "Projects Board", kb_todo: "💡 Ideas / To-Do", kb_inprog: "⏳ In Progress", kb_done: "✅ Done", btn_edit_kb: "Edit Project",
-        title_habits: "Habit Tracker", 
-        title_notes: "Notes", btn_add_note: "Add Note", btn_edit_note: "Edit Note",
-        title_settings: "Settings & Sync", label_name: "Name", btn_save_local: "Save Locally",
-        title_appearance: "Appearance & Colors 🎨",
-        title_sync: "Live Cloud Sync ☁️", sync_desc: "Logging out will securely wipe data from this device. It remains safe in your cloud account.",
-        title_backup: "Manual Backup", btn_download: "Download Data", btn_restore: "Restore File",
-        chart_done: "Completed", chart_pend: "Pending", btn_cancel: "Cancel", btn_save: "Save", title_login: "Login to Sync",
-        title_update_log: "Update Log 🔄",
-        btn_check_update: "Check for Updates / Refresh App",
-        card_pomodoro_blocks: "Focus Sessions Today",
-        pom_log_title: "Focus Session Log ⏱️",
-        pom_work_log: "Focus Work Session",
-        pom_break_log: "Rest & Break Session",
-        pom_no_log: "No focus sessions logged yet.",
-        title_quick_dump: "Quick Brain Dump ⚡", btn_qd_kanban: "As Project", btn_qd_note: "As Note",
-        empty_state_title: "Your canvas is blank! ✨", empty_state_desc: "Charts are sleeping.. Complete a task to wake them up.",
-        doughnut_title: "Overall Activity Index 📊",
-        budget_index: "Budget Index 📊", opt_inc: "Income (+)", opt_exp: "Expense (-)",
-        cat_other: "Other", cat_food: "🍔 Food", cat_trans: "🚕 Transport", cat_shop: "🛒 Shopping", cat_bills: "💡 Bills", cat_work: "💻 Work", cat_fun: "🎉 Entertainment"
-    }
-};
-
-let currentLang = localStorage.getItem('fp_lang') || 'ar';
-function setLanguage(lang) {
-    currentLang = lang; localStorage.setItem('fp_lang', lang);
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; document.documentElement.lang = lang;
-    document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if(i18n[lang][key]) el.innerHTML = i18n[lang][key]; });
-    const toggleBtn = document.getElementById('langLabel'); if(toggleBtn) toggleBtn.innerHTML = lang === 'ar' ? 'EN' : 'AR';
-    const kbInp = document.getElementById('newKbItem'); if(kbInp) kbInp.placeholder = lang === 'ar' ? 'اكتب اسم المشروع / المهمة هنا... (اضغط Enter لسطر جديد)' : 'Type project name... (Press Enter for new line)';
-    const hbInp = document.getElementById('newHabitInput'); if(hbInp) hbInp.placeholder = lang === 'ar' ? 'عادة جديدة...' : 'New habit...';
-    
-    // حقن التصنيفات المترجمة بذكاء حسب اللغة الحالية
-    const categoriesList = [
-        {val: 'other', label: i18n[lang].cat_other}, {val: 'food', label: i18n[lang].cat_food},
-        {val: 'transport', label: i18n[lang].cat_trans}, {val: 'shopping', label: i18n[lang].cat_shop},
-        {val: 'bills', label: i18n[lang].cat_bills}, {val: 'work', label: i18n[lang].cat_work}, {val: 'fun', label: i18n[lang].cat_fun}
-    ];
-    let catHtml = categoriesList.map(c => `<option value="${c.val}">${c.label}</option>`).join('');
-    const i18n = {
     ar: {
         nav_dash: "لوحة التحكم", nav_month: "خطة الشهر", nav_today: "اليوم", nav_pomodoro: "مؤقت التركيز", nav_kanban: "المشاريع", nav_habits: "متتبع العادات", nav_finance: "المتتبع المالي", nav_lib: "مكتبة المراجع", nav_notes: "الملاحظات", nav_settings: "الإعدادات والمزامنة",
         btn_invite: "دعوة", btn_install: "تثبيت التطبيق",
@@ -1661,7 +1580,7 @@ document.getElementById('saveQdToNotes').onclick = () => {
     saveAll();
     renderNotes();
     
-    document.getElementById('quickDumpModal').classList.remove('show');
+   document.getElementById('quickDumpModal').classList.remove('show');
     stopContinuousDictation();
     // توجيه المستخدم لصفحة الملاحظات ليرى فكرته
     document.querySelector('.nav-item[data-target="notesView"]').click();
