@@ -134,7 +134,17 @@
                         <button class="btn btn-primary" onclick="openFinModal()"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add_trans">معاملة</span></button>
                     </div>
                 </div>
-                <div class="finance-summary"><div class="fin-box fin-income"><span data-i18n="fin_inc">الدخل</span><h3 id="totalIncome">0</h3></div><div class="fin-box fin-expense"><span data-i18n="fin_exp">المصروفات</span><h3 id="totalExpense">0</h3></div><div class="fin-box fin-balance"><span data-i18n="fin_bal">الرصيد</span><h3 id="netBalance">0</h3></div></div>
+                <!-- ملخص المحفظة المستقلة وصافي الثروة -->
+                <div class="finance-summary">
+                    <div class="fin-box fin-income"><span data-i18n="fin_inc">الدخل</span><h3 id="totalIncome">0</h3></div>
+                    <div class="fin-box fin-expense"><span data-i18n="fin_exp">المصروفات</span><h3 id="totalExpense">0</h3></div>
+                    <div class="fin-box" style="background: #3b82f6;"><span data-i18n="fin_savings">المدخرات 🔒</span><h3 id="totalSavings">0</h3></div>
+                    <div class="fin-box fin-balance"><span data-i18n="fin_bal_avail">المتاح للصرف</span><h3 id="netBalance">0</h3></div>
+                </div>
+                <div style="text-align: center; margin-bottom: 15px; background: var(--card-bg); padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);">
+                    <span style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="fin_net_worth">صافي الثروة (إجمالي الأصول):</span>
+                    <strong id="netWorth" style="font-size: 1.2rem; color: var(--text-main); margin-right: 5px;">0</strong>
+                </div>
                 <div style="background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin: 20px 0; text-align: center;">
                     <h4 style="margin-bottom: 10px; color: var(--text-main); font-size: 1rem; font-weight: 600;" data-i18n="budget_index">مؤشر الميزانية 📊</h4>
                     <div style="position: relative; width: 100%; max-width: 300px; height: 160px; margin: auto;">
@@ -368,7 +378,9 @@
                 <select id="finType" onchange="updateFinColor('finType', 'finAmount')" style="transition:0.3s; font-weight:bold;">
                     <option value="income" style="color:green;" data-i18n="opt_inc">إيراد (+)</option>
                     <option value="expense" style="color:red;" data-i18n="opt_exp">مصروف (-)</option>
-                </select>
+                    <option value="save" style="color:#3b82f6;" data-i18n="opt_save">إيداع/ادخار (🔒)</option>
+                    <option value="withdraw" style="color:#f59e0b;" data-i18n="opt_withdraw">تسييل/سحب (🔓)</option>
+                </select>>
             </div>
             <input type="date" id="finDate" style="margin-top:10px;">
             <div class="modal-actions">
@@ -405,6 +417,8 @@
                 <select id="editFinType" onchange="updateFinColor('editFinType', 'editFinAmount')" style="transition:0.3s; font-weight:bold;">
                     <option value="income" style="color:green;" data-i18n="opt_inc">إيراد (+)</option>
                     <option value="expense" style="color:red;" data-i18n="opt_exp">مصروف (-)</option>
+                    <option value="save" style="color:#3b82f6;" data-i18n="opt_save">إيداع/ادخار (🔒)</option>
+                    <option value="withdraw" style="color:#f59e0b;" data-i18n="opt_withdraw">تسييل/سحب (🔓)</option>
                 </select>
             </div>
             <input type="date" id="editFinDate" style="margin-top:10px;">

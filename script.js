@@ -1,15 +1,21 @@
 // 1. سجل التحديثات (اكتب تحديثاتك هنا في كل إصدار جديد)
 const latestReleaseNotes = {
     ar: [
-        "تحسين سرعة استجابة التطبيق بشكل عام."
+        "🏦 محفظة المدخرات والاستثمار: افصل أموال الإنفاق عن مدخراتك الذكية.",
+        "📈 صافي الثروة: راقب إجمالي أصولك ورصيدك المتاح للصرف بدقة.",
+        "🔄 تصنيفات استثمارية: تصنيفات جديدة (ذهب، أسهم، ودائع) تظهر تلقائياً عند اختيار إيداع أو سحب.",
+        "📊 رسم بياني ثلاثي الأبعاد: يوضح المصروفات (أحمر)، المدخرات (أزرق)، والمتاح (أخضر)."
     ],
     en: [
-        "Improved overall app responsiveness."
+        "🏦 Savings & Investment Wallet: Separate your spending money from your smart savings.",
+        "📈 Net Worth: Track your total assets and available spending balance accurately.",
+        "🔄 Investment Categories: New categories (Gold, Stocks, Deposits) for saving/withdrawing.",
+        "📊 3D Doughnut Chart: Visualizes Expenses (Red), Savings (Blue), and Available (Green)."
     ]
 };
 
 // كود إظهار صندوق التحديثات التلقائي
-const APP_VERSION = 'v19'; // يجب تغييره هنا مع كل تحديث رئيسي مستقبلاً
+const APP_VERSION = 'v25'; // تم التحديث للإصدار 25
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
@@ -174,8 +180,105 @@ function setLanguage(lang) {
         {val: 'bills', label: i18n[lang].cat_bills}, {val: 'work', label: i18n[lang].cat_work}, {val: 'fun', label: i18n[lang].cat_fun}
     ];
     let catHtml = categoriesList.map(c => `<option value="${c.val}">${c.label}</option>`).join('');
-    let finCat = document.getElementById('finCategory'); let editFinCat = document.getElementById('editFinCategory');
-    if(finCat) finCat.innerHTML = catHtml; if(editFinCat) editFinCat.innerHTML = catHtml;
+    const i18n = {
+    ar: {
+        nav_dash: "لوحة التحكم", nav_month: "خطة الشهر", nav_today: "اليوم", nav_pomodoro: "مؤقت التركيز", nav_kanban: "المشاريع", nav_habits: "متتبع العادات", nav_finance: "المتتبع المالي", nav_lib: "مكتبة المراجع", nav_notes: "الملاحظات", nav_settings: "الإعدادات والمزامنة",
+        btn_invite: "دعوة", btn_install: "تثبيت التطبيق",
+        title_dash: "لوحة التحكم والإحصائيات", btn_clear_comp: "مسح المكتملة", btn_clear_today: "مسح مهام اليوم", btn_hide_dash: "إخفاء مهام اليوم", btn_reset_stats: "تصفير الإحصائيات",
+        card_tasks: "المهام اليوم", card_bal: "الرصيد المتاح", card_habits: "إنجاز العادات",
+        title_finance: "المتتبع المالي", btn_add_trans: "معاملة", fin_inc: "الدخل", fin_exp: "المصروفات", fin_bal: "الرصيد", btn_edit_trans: "تعديل المعاملة",
+        title_lib: "المراجع والأصول", btn_add_ref: "إضافة مرجع", btn_edit_ref: "تعديل المرجع", lib_dictate_hint: "المحتوى",
+        btn_prev: "السابق", btn_next: "التالي",
+        title_today: "جدول اليوم", btn_add: "إضافة", btn_edit_task: "تعديل المهمة", btn_update: "تحديث",
+        title_pom: "مؤقت التركيز (Pomodoro)", btn_work: "عمل", btn_break: "استراحة", btn_start: "ابدأ", btn_pause: "إيقاف مؤقت", btn_reset: "إعادة", btn_stop_alarm: "إيقاف الرنين",
+        title_kanban: "لوحة المشاريع", kb_todo: "💡 أفكار/مهام", kb_inprog: "⏳ التنفيذ", kb_done: "✅ مكتملة", btn_edit_kb: "تعديل المشروع",
+        title_habits: "متتبع العادات", 
+        title_notes: "الملاحظات", btn_add_note: "إضافة ملاحظة", btn_edit_note: "تعديل الملاحظة",
+        title_settings: "الإعدادات والمزامنة", label_name: "الاسم", btn_save_local: "حفظ البيانات محلياً",
+        title_appearance: "المظهر والألوان 🎨",
+        title_sync: "المزامنة السحابية الحية ☁️", sync_desc: "عند تسجيل الخروج سيتم مسح بياناتك من هذا الجهاز لضمان السرية، وستبقى آمنة في حسابك.",
+        title_backup: "النسخ الاحتياطي اليدوي", btn_download: "تنزيل البيانات", btn_restore: "استرجاع ملف",
+        chart_done: "مكتملة", chart_pend: "غير مكتملة", btn_cancel: "إلغاء", btn_save: "حفظ", title_login: "تسجيل الدخول للمزامنة",
+        title_update_log: "سجل التحديثات 🔄",
+        btn_check_update: "البحث عن تحديث / تنشيط التطبيق",
+        card_pomodoro_blocks: "جلسات التركيز اليوم",
+        pom_log_title: "سجل جلسات التركيز ⏱️",
+        pom_work_log: "جلسة تركيز عمل",
+        pom_break_log: "جلسة استراحة ونقاهة",
+        pom_no_log: "لم يتم تسجيل أي جلسات تركيز بعد.",
+        title_quick_dump: "تفريغ الدماغ السريع ⚡", btn_qd_kanban: "كمشروع", btn_qd_note: "كملاحظة",
+        empty_state_title: "لوحتك بيضاء بانتظار إنجازاتك! ✨", empty_state_desc: "الرسم البياني نائم الآن.. ابدأ بإنجاز أول مهمة لتشغيله.",
+        doughnut_title: "مؤشر النشاط الشامل 📊",
+        budget_index: "مؤشر الميزانية 📊", opt_inc: "إيراد (+)", opt_exp: "مصروف (-)", opt_save: "إيداع/ادخار (🔒)", opt_withdraw: "تسييل/سحب (🔓)",
+        fin_savings: "المدخرات 🔒", fin_bal_avail: "المتاح للصرف", fin_net_worth: "صافي الثروة (إجمالي الأصول):",
+        cat_other: "أخرى", cat_food: "🍔 طعام", cat_trans: "🚕 مواصلات", cat_shop: "🛒 تسوق", cat_bills: "💡 فواتير", cat_work: "💻 عمل", cat_fun: "🎉 ترفيه",
+        cat_gold: "🪙 ذهب", cat_stocks: "📈 أسهم", cat_deposit: "🏦 وديعة بنكية", cat_emergency: "🛡️ صندوق طوارئ"
+    },
+    en: {
+        nav_dash: "Dashboard", nav_month: "Monthly Plan", nav_today: "Today", nav_pomodoro: "Focus Timer", nav_kanban: "Projects", nav_habits: "Habit Tracker", nav_finance: "Finance", nav_lib: "Library", nav_notes: "Notes", nav_settings: "Settings & Sync",
+        btn_invite: "Invite", btn_install: "Install App",
+        title_dash: "Dashboard & Stats", btn_clear_comp: "Clear Completed", btn_clear_today: "Clear Today", btn_hide_dash: "Hide from Dash", btn_reset_stats: "Reset Stats",
+        card_tasks: "Today's Tasks", card_bal: "Available Balance", card_habits: "Habits Rate",
+        title_finance: "Finance Tracker", btn_add_trans: "Transaction", fin_inc: "Income", fin_exp: "Expense", fin_bal: "Balance", btn_edit_trans: "Edit Transaction",
+        title_lib: "Library & Assets", btn_add_ref: "Add Reference", btn_edit_ref: "Edit Reference", lib_dictate_hint: "Content",
+        btn_prev: "Previous", btn_next: "Next",
+        title_today: "Today's Schedule", btn_add: "Add Task", btn_edit_task: "Edit Task", btn_update: "Update",
+        title_pom: "Focus Timer (Pomodoro)", btn_work: "Work", btn_break: "Break", btn_start: "Start", btn_pause: "Pause", btn_reset: "Reset", btn_stop_alarm: "Stop Alarm",
+        title_kanban: "Projects Board", kb_todo: "💡 Ideas / To-Do", kb_inprog: "⏳ In Progress", kb_done: "✅ Done", btn_edit_kb: "Edit Project",
+        title_habits: "Habit Tracker", 
+        title_notes: "Notes", btn_add_note: "Add Note", btn_edit_note: "Edit Note",
+        title_settings: "Settings & Sync", label_name: "Name", btn_save_local: "Save Locally",
+        title_appearance: "Appearance & Colors 🎨",
+        title_sync: "Live Cloud Sync ☁️", sync_desc: "Logging out will securely wipe data from this device. It remains safe in your cloud account.",
+        title_backup: "Manual Backup", btn_download: "Download Data", btn_restore: "Restore File",
+        chart_done: "Completed", chart_pend: "Pending", btn_cancel: "Cancel", btn_save: "Save", title_login: "Login to Sync",
+        title_update_log: "Update Log 🔄",
+        btn_check_update: "Check for Updates / Refresh App",
+        card_pomodoro_blocks: "Focus Sessions Today",
+        pom_log_title: "Focus Session Log ⏱️",
+        pom_work_log: "Focus Work Session",
+        pom_break_log: "Rest & Break Session",
+        pom_no_log: "No focus sessions logged yet.",
+        title_quick_dump: "Quick Brain Dump ⚡", btn_qd_kanban: "As Project", btn_qd_note: "As Note",
+        empty_state_title: "Your canvas is blank! ✨", empty_state_desc: "Charts are sleeping.. Complete a task to wake them up.",
+        doughnut_title: "Overall Activity Index 📊",
+        budget_index: "Budget Index 📊", opt_inc: "Income (+)", opt_exp: "Expense (-)", opt_save: "Deposit/Save (🔒)", opt_withdraw: "Liquidate/Withdraw (🔓)",
+        fin_savings: "Savings 🔒", fin_bal_avail: "Available to Spend", fin_net_worth: "Net Worth (Total Assets):",
+        cat_other: "Other", cat_food: "🍔 Food", cat_trans: "🚕 Transport", cat_shop: "🛒 Shopping", cat_bills: "💡 Bills", cat_work: "💻 Work", cat_fun: "🎉 Entertainment",
+        cat_gold: "🪙 Gold", cat_stocks: "📈 Stocks", cat_deposit: "🏦 Bank Deposit", cat_emergency: "🛡️ Emergency Fund"
+    }
+};
+
+let currentLang = localStorage.getItem('fp_lang') || 'ar';
+
+window.updateFinCategories = (typeId, catId) => {
+    const typeEl = document.getElementById(typeId);
+    const catEl = document.getElementById(catId);
+    if(!typeEl || !catEl) return;
+    
+    let val = typeEl.value;
+    let cats = [];
+    if(val === 'save' || val === 'withdraw') {
+        cats = [ {v:'gold', l:i18n[currentLang].cat_gold}, {v:'stocks', l:i18n[currentLang].cat_stocks}, {v:'deposit', l:i18n[currentLang].cat_deposit}, {v:'emergency', l:i18n[currentLang].cat_emergency}, {v:'other', l:i18n[currentLang].cat_other} ];
+    } else {
+        cats = [ {v:'other', l:i18n[currentLang].cat_other}, {v:'food', l:i18n[currentLang].cat_food}, {v:'transport', l:i18n[currentLang].cat_trans}, {v:'shopping', l:i18n[currentLang].cat_shop}, {v:'bills', l:i18n[currentLang].cat_bills}, {v:'work', l:i18n[currentLang].cat_work}, {v:'fun', l:i18n[currentLang].cat_fun} ];
+    }
+    
+    let oldVal = catEl.value;
+    catEl.innerHTML = cats.map(c => `<option value="${c.v}">${c.l}</option>`).join('');
+    if(Array.from(catEl.options).some(o => o.value === oldVal)) catEl.value = oldVal;
+};
+
+function setLanguage(lang) {
+    currentLang = lang; localStorage.setItem('fp_lang', lang);
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if(i18n[lang][key]) el.innerHTML = i18n[lang][key]; });
+    const toggleBtn = document.getElementById('langLabel'); if(toggleBtn) toggleBtn.innerHTML = lang === 'ar' ? 'EN' : 'AR';
+    const kbInp = document.getElementById('newKbItem'); if(kbInp) kbInp.placeholder = lang === 'ar' ? 'اكتب اسم المشروع / المهمة هنا... (اضغط Enter لسطر جديد)' : 'Type project name... (Press Enter for new line)';
+    const hbInp = document.getElementById('newHabitInput'); if(hbInp) hbInp.placeholder = lang === 'ar' ? 'عادة جديدة...' : 'New habit...';
+    
+    window.updateFinCategories('finType', 'finCategory');
+    window.updateFinCategories('editFinType', 'editFinCategory');
 }
 
 function initColorTheme() {
@@ -956,9 +1059,8 @@ let finChartInstance = null;
 
 function renderFinance() { 
     const container = document.getElementById('financeContainer'); 
-    let inc = 0, exp = 0;
+    let inc = 0, exp = 0, sav = 0;
     
-    // 1. ترجمة نصوص الميزانية وأدوات الفلترة
     const budgetTitle = document.getElementById('budgetTitleText');
     const btnSetBudget = document.getElementById('btnSetBudget');
     const searchInput = document.getElementById('financeSearchInput');
@@ -975,44 +1077,49 @@ function renderFinance() {
         monthFilter.options[2].text = currentLang === 'ar' ? 'الشهر الماضي' : 'Last Month';
     }
 
-    // 2. محرك الفلترة والبحث
     let searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
     let filterValue = monthFilter ? monthFilter.value : 'all';
     
     let currentDate = new Date();
     let currentMonthStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
-    
-    let lastMonthDate = new Date();
-    lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+    let lastMonthDate = new Date(); lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
     let lastMonthStr = `${lastMonthDate.getFullYear()}-${String(lastMonthDate.getMonth() + 1).padStart(2, '0')}`;
 
     let filteredFinances = finances.filter(f => {
         let matchesSearch = f.desc.toLowerCase().includes(searchQuery) || (f.category && f.category.toLowerCase().includes(searchQuery));
         let matchesMonth = true;
-        if(filterValue === 'current') {
-            matchesMonth = f.date.startsWith(currentMonthStr);
-        } else if(filterValue === 'last') {
-            matchesMonth = f.date.startsWith(lastMonthStr);
-        }
+        if(filterValue === 'current') matchesMonth = f.date.startsWith(currentMonthStr);
+        else if(filterValue === 'last') matchesMonth = f.date.startsWith(lastMonthStr);
         return matchesSearch && matchesMonth;
     });
 
-    // رسم المعاملات بعد الفلترة
     let html = filteredFinances.sort((a,b) => new Date(b.date) - new Date(a.date)).map(f => { 
         if(f.type === 'income') inc += Number(f.amount); 
-        else exp += Number(f.amount); 
+        else if(f.type === 'expense') exp += Number(f.amount); 
+        else if(f.type === 'save') sav += Number(f.amount);
+        else if(f.type === 'withdraw') sav -= Number(f.amount);
         
-        let icon = f.type === 'income' ? '<i class="fa-solid fa-arrow-trend-up"></i>' : '<i class="fa-solid fa-arrow-trend-down"></i>'; 
-        let bgStyle = f.type === 'income' ? 'border: 1px solid var(--success); background-color: rgba(16, 185, 129, 0.05);' : 'border: 1px solid var(--danger); background-color: rgba(239, 68, 68, 0.05);'; 
+        let icon = f.type === 'income' ? '<i class="fa-solid fa-arrow-trend-up"></i>' : 
+                   f.type === 'expense' ? '<i class="fa-solid fa-arrow-trend-down"></i>' : 
+                   f.type === 'save' ? '<i class="fa-solid fa-lock"></i>' : '<i class="fa-solid fa-lock-open"></i>';
+                   
+        let bgStyle = f.type === 'income' ? 'border: 1px solid var(--success); background-color: rgba(16, 185, 129, 0.05);' : 
+                      f.type === 'expense' ? 'border: 1px solid var(--danger); background-color: rgba(239, 68, 68, 0.05);' : 
+                      f.type === 'save' ? 'border: 1px solid #3b82f6; background-color: rgba(59, 130, 246, 0.05);' : 
+                      'border: 1px solid #f59e0b; background-color: rgba(245, 158, 11, 0.05);';
         
         let catLabel = f.category || '';
-        if (f.category === 'other' || f.category === 'أخرى') catLabel = i18n[currentLang].cat_other;
-        else if (f.category === 'food' || f.category === '🍔 طعام') catLabel = i18n[currentLang].cat_food;
-        else if (f.category === 'transport' || f.category === '🚕 مواصلات') catLabel = i18n[currentLang].cat_trans;
-        else if (f.category === 'shopping' || f.category === '🛒 تسوق') catLabel = i18n[currentLang].cat_shop;
-        else if (f.category === 'bills' || f.category === '💡 فواتير') catLabel = i18n[currentLang].cat_bills;
-        else if (f.category === 'work' || f.category === '💻 عمل') catLabel = i18n[currentLang].cat_work;
-        else if (f.category === 'fun' || f.category === '🎉 ترفيه') catLabel = i18n[currentLang].cat_fun;
+        if (catLabel === 'other' || catLabel === 'أخرى') catLabel = i18n[currentLang].cat_other;
+        else if (catLabel === 'food' || catLabel === '🍔 طعام') catLabel = i18n[currentLang].cat_food;
+        else if (catLabel === 'transport' || catLabel === '🚕 مواصلات') catLabel = i18n[currentLang].cat_trans;
+        else if (catLabel === 'shopping' || catLabel === '🛒 تسوق') catLabel = i18n[currentLang].cat_shop;
+        else if (catLabel === 'bills' || catLabel === '💡 فواتير') catLabel = i18n[currentLang].cat_bills;
+        else if (catLabel === 'work' || catLabel === '💻 عمل') catLabel = i18n[currentLang].cat_work;
+        else if (catLabel === 'fun' || catLabel === '🎉 ترفيه') catLabel = i18n[currentLang].cat_fun;
+        else if (catLabel === 'gold' || catLabel === '🪙 ذهب') catLabel = i18n[currentLang].cat_gold;
+        else if (catLabel === 'stocks' || catLabel === '📈 أسهم') catLabel = i18n[currentLang].cat_stocks;
+        else if (catLabel === 'deposit' || catLabel === '🏦 وديعة بنكية') catLabel = i18n[currentLang].cat_deposit;
+        else if (catLabel === 'emergency' || catLabel === '🛡️ صندوق طوارئ') catLabel = i18n[currentLang].cat_emergency;
 
         let catBadge = catLabel ? `<span style="background:var(--bg-color); padding:3px 8px; border-radius:6px; font-size:0.75rem; margin-right:8px; border:1px solid var(--border-color);">${catLabel}</span>` : '';
         
@@ -1022,28 +1129,32 @@ function renderFinance() {
                 <b style="color: var(--text-main);">${f.desc}</b> ${catBadge}
             </div>
             <div style="display:flex; align-items:center; gap:15px;">
-                <span class="fin-amt ${f.type === 'income' ? 'inc' : 'exp'}">${icon} ${f.amount}</span>
+                <span class="fin-amt" style="color: inherit; font-weight: bold; font-size: 1.1rem;">${icon} ${f.amount}</span>
                 <button class="icon-btn no-print" onclick="event.stopPropagation(); delFin(${f.id})"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>`; 
     }).join('');
     
+    let netBalance = inc - exp - sav;
+    let netWorth = inc - exp;
+
     document.getElementById('totalIncome').innerText = inc; 
     document.getElementById('totalExpense').innerText = exp; 
-    document.getElementById('netBalance').innerText = inc - exp; 
+    if(document.getElementById('totalSavings')) document.getElementById('totalSavings').innerText = sav;
+    if(document.getElementById('netBalance')) document.getElementById('netBalance').innerText = netBalance; 
+    if(document.getElementById('netWorth')) document.getElementById('netWorth').innerText = netWorth; 
+
     if(container) container.innerHTML = html || `<p style="text-align:center; color:var(--text-muted);">${currentLang==='ar'?'لا توجد معاملات مطابقة.':'No transactions found.'}</p>`; 
 
-    // 3. تحديث الرسم البياني (عداد السرعة بناءً على الفلترة)
     const ctx = document.getElementById('financeChart');
     if(ctx && window.Chart) {
         if(finChartInstance) finChartInstance.destroy();
         
-        let remaining = inc - exp;
-        let dataArr = (inc === 0 && exp === 0) ? [1] : [exp, Math.max(0, remaining)];
-        let bgColors = (inc === 0 && exp === 0) ? ['#e5e7eb'] : ['#ef4444', '#10b981'];
-        let labelsArr = (inc === 0 && exp === 0) ? 
+        let dataArr = (inc === 0 && exp === 0 && sav === 0) ? [1] : [exp, Math.max(0, sav), Math.max(0, netBalance)];
+        let bgColors = (inc === 0 && exp === 0 && sav === 0) ? ['#e5e7eb'] : ['#ef4444', '#3b82f6', '#10b981'];
+        let labelsArr = (inc === 0 && exp === 0 && sav === 0) ? 
                         (currentLang === 'ar' ? ['لا توجد بيانات'] : ['No Data']) : 
-                        (currentLang === 'ar' ? ['المصروفات', 'الرصيد المتبقي'] : ['Expenses', 'Remaining Balance']);
+                        (currentLang === 'ar' ? ['المصروفات', 'المدخرات', 'المتاح للصرف'] : ['Expenses', 'Savings', 'Available']);
 
         finChartInstance = new Chart(ctx, {
             type: 'doughnut',
@@ -1052,7 +1163,6 @@ function renderFinance() {
         });
     }
 
-    // 4. برمجة الميزانية الذكية بناءً على المصروفات المعروضة (المفلترة)
     let budgetLimit = parseFloat(localStorage.getItem('fp_monthly_budget')) || 0;
     let budgetBar = document.getElementById('budgetProgressBar');
     let budgetSpentText = document.getElementById('budgetSpentText');
@@ -1073,18 +1183,10 @@ function renderFinance() {
                 if(budgetAlert) budgetAlert.style.display = 'none';
             } else if(percent < 90) {
                 budgetBar.style.backgroundColor = 'var(--warning)';
-                if(budgetAlert) {
-                    budgetAlert.style.display = 'block';
-                    budgetAlert.style.color = 'var(--warning)';
-                    budgetAlert.innerText = currentLang === 'ar' ? '⚠️ انتبه: اقتربت من تخطي الميزانية!' : '⚠️ Alert: Nearing budget limit!';
-                }
+                if(budgetAlert) { budgetAlert.style.display = 'block'; budgetAlert.style.color = 'var(--warning)'; budgetAlert.innerText = currentLang === 'ar' ? '⚠️ انتبه: اقتربت من تخطي الميزانية!' : '⚠️ Alert: Nearing budget limit!'; }
             } else {
                 budgetBar.style.backgroundColor = 'var(--danger)';
-                if(budgetAlert) {
-                    budgetAlert.style.display = 'block';
-                    budgetAlert.style.color = 'var(--danger)';
-                    budgetAlert.innerText = currentLang === 'ar' ? '🚨 تحذير: لقد تخطيت الميزانية الآمنة!' : '🚨 Warning: Budget limit exceeded!';
-                }
+                if(budgetAlert) { budgetAlert.style.display = 'block'; budgetAlert.style.color = 'var(--danger)'; budgetAlert.innerText = currentLang === 'ar' ? '🚨 تحذير: لقد تخطيت الميزانية الآمنة!' : '🚨 Warning: Budget limit exceeded!'; }
             }
         } else {
             budgetBar.style.width = '0%';
@@ -1093,18 +1195,12 @@ function renderFinance() {
     }
 }
 
-// دالة تحديد الميزانية
 window.setMonthlyBudget = () => {
     let currentBudget = localStorage.getItem('fp_monthly_budget') || '';
     let msg = currentLang === 'ar' ? 'أدخل الحد الأقصى للمصروفات هذا الشهر (مثلاً: 5000):' : 'Enter your maximum monthly budget limit:';
     let val = prompt(msg, currentBudget);
-    if(val !== null && val.trim() !== '' && !isNaN(val)) {
-        localStorage.setItem('fp_monthly_budget', val);
-        renderFinance();
-    } else if (val !== null && val.trim() === '') {
-        localStorage.removeItem('fp_monthly_budget');
-        renderFinance();
-    }
+    if(val !== null && val.trim() !== '' && !isNaN(val)) { localStorage.setItem('fp_monthly_budget', val); renderFinance(); } 
+    else if (val !== null && val.trim() === '') { localStorage.removeItem('fp_monthly_budget'); renderFinance(); }
 };
 
 document.getElementById('saveFinBtn').onclick = () => { 
@@ -1114,14 +1210,8 @@ document.getElementById('saveFinBtn').onclick = () => {
     let cat = catEl ? catEl.value : 'other';
 
     if(!desc || !amt) return; 
-    finances.push({ 
-        id: Date.now(), desc: desc, amount: amt, type: document.getElementById('finType').value, category: cat, date: document.getElementById('finDate').value 
-    }); 
-    saveAll(); 
-    document.getElementById('financeModal').classList.remove('show'); 
-    stopContinuousDictation(); // إيقاف المايكرفون فوراً بعد الحفظ
-    renderFinance(); 
-    renderDashboard();
+    finances.push({ id: Date.now(), desc: desc, amount: amt, type: document.getElementById('finType').value, category: cat, date: document.getElementById('finDate').value }); 
+    saveAll(); document.getElementById('financeModal').classList.remove('show'); stopContinuousDictation(); renderFinance(); renderDashboard();
 };
 
 window.editFin = (id) => { 
@@ -1129,6 +1219,7 @@ window.editFin = (id) => {
     if(!f) return; 
     document.getElementById('editFinId').value = f.id; document.getElementById('editFinDesc').value = f.desc; 
     document.getElementById('editFinAmount').value = f.amount; document.getElementById('editFinType').value = f.type; 
+    window.updateFinCategories('editFinType', 'editFinCategory');
     let catEl = document.getElementById('editFinCategory');
     if(catEl) catEl.value = f.category || 'other';
     document.getElementById('editFinDate').value = f.date; 
@@ -1148,20 +1239,11 @@ document.getElementById('updateFinBtn').onclick = () => {
         let catEl = document.getElementById('editFinCategory');
         if(catEl) f.category = catEl.value;
         f.date = document.getElementById('editFinDate').value; 
-        saveAll(); 
-        renderFinance(); 
-        renderDashboard(); 
-        document.getElementById('editFinModal').classList.remove('show'); 
-        stopContinuousDictation(); // إيقاف المايكرفون فوراً بعد التحديث
+        saveAll(); renderFinance(); renderDashboard(); document.getElementById('editFinModal').classList.remove('show'); stopContinuousDictation();
     } 
 };
 
-window.delFin = id => { 
-    finances = finances.filter(f => f.id !== id); 
-    saveAll(); 
-    renderFinance(); 
-    renderDashboard(); 
-};
+window.delFin = id => { finances = finances.filter(f => f.id !== id); saveAll(); renderFinance(); renderDashboard(); };
 function renderHabits() { let dim = new Date(currentYearView, currentMonthView + 1, 0).getDate(); let habitText = currentLang === 'ar' ? 'العادة' : 'Habit'; let html = `<table class="habit-table"><thead><tr><th>${habitText}</th>`; for(let i=1; i<=dim; i++) html += `<th>${i}</th>`; html += `</tr></thead><tbody>`; habits.forEach(h => { html += `<tr><td class="habit-name"><button class="icon-btn no-print" style="color:red;" onclick="delHabit(${h.id})">x</button> ${h.name}</td>`; for(let i=1; i<=dim; i++) { let k = `${currentYearView}-${currentMonthView}-${i}`; html += `<td><div class="habit-check ${h.days[k]?'done':''}" onclick="toggleHabit(${h.id}, '${k}')">✓</div></td>`; } html += `</tr>`; }); document.getElementById('habitsContainer').innerHTML = html + `</tbody></table>`; }
 window.addNewHabit = () => { const inp = document.getElementById('newHabitInput'); if(inp.value.trim()){ habits.push({id:Date.now(), name:inp.value, days:{}}); saveAll(); inp.value=''; renderHabits(); renderDashboard(); } }
 window.toggleHabit = (id, k) => { let h = habits.find(x=>x.id===id); h.days[k] = !h.days[k]; saveAll(); renderHabits(); renderDashboard(); }
@@ -1220,61 +1302,59 @@ if(manualUpBtn) {
 window.updateFinColor = (typeId, amountId) => {
     const typeEl = document.getElementById(typeId);
     const amtEl = document.getElementById(amountId);
+    let catId = typeId === 'finType' ? 'finCategory' : 'editFinCategory';
+
     if(typeEl && amtEl) {
         if(typeEl.value === 'income') {
             typeEl.style.color = 'var(--success)'; typeEl.style.borderColor = 'var(--success)'; typeEl.style.backgroundColor = 'rgba(16, 185, 129, 0.05)';
             amtEl.style.color = 'var(--success)'; amtEl.style.borderColor = 'var(--success)'; amtEl.style.backgroundColor = 'rgba(16, 185, 129, 0.05)';
-        } else {
+        } else if(typeEl.value === 'expense') {
             typeEl.style.color = 'var(--danger)'; typeEl.style.borderColor = 'var(--danger)'; typeEl.style.backgroundColor = 'rgba(239, 68, 68, 0.05)';
             amtEl.style.color = 'var(--danger)'; amtEl.style.borderColor = 'var(--danger)'; amtEl.style.backgroundColor = 'rgba(239, 68, 68, 0.05)';
+        } else if(typeEl.value === 'save') {
+            typeEl.style.color = '#3b82f6'; typeEl.style.borderColor = '#3b82f6'; typeEl.style.backgroundColor = 'rgba(59, 130, 246, 0.05)';
+            amtEl.style.color = '#3b82f6'; amtEl.style.borderColor = '#3b82f6'; amtEl.style.backgroundColor = 'rgba(59, 130, 246, 0.05)';
+        } else if(typeEl.value === 'withdraw') {
+            typeEl.style.color = '#f59e0b'; typeEl.style.borderColor = '#f59e0b'; typeEl.style.backgroundColor = 'rgba(245, 158, 11, 0.05)';
+            amtEl.style.color = '#f59e0b'; amtEl.style.borderColor = '#f59e0b'; amtEl.style.backgroundColor = 'rgba(245, 158, 11, 0.05)';
         }
     }
+    if(window.updateFinCategories) window.updateFinCategories(typeId, catId);
 };
 
-// ==========================================
-// تصدير التقارير الاحترافية ثنائية اللغة (Excel & PDF) مع المجاميع
-// ==========================================
 window.exportFinanceExcel = () => {
     if(finances.length === 0) return alert(currentLang === 'ar' ? 'لا توجد بيانات لتصديرها' : 'No data to export');
     
-    let inc = 0, exp = 0;
+    let inc = 0, exp = 0, sav = 0;
     const sortedFinances = [...finances].sort((a,b) => new Date(b.date) - new Date(a.date));
     
-    // قاموس الترجمة الديناميكي لملف الإكسيل حسب لغة التطبيق
     const labels = {
-        ar: { date: 'التاريخ', desc: 'الوصف', type: 'النوع', amt: 'المبلغ', inc: 'إيراد (+)', exp: 'مصروف (-)', totalInc: 'إجمالي الدخل الشامل', totalExp: 'إجمالي المصروفات الشاملة', balance: 'الرصيد المتبقي المتاح' },
-        en: { date: 'Date', desc: 'Description', type: 'Type', amt: 'Amount', inc: 'Income (+)', exp: 'Expense (-)', totalInc: 'Total Aggregated Income', totalExp: 'Total Aggregated Expenses', balance: 'Remaining Net Balance' }
+        ar: { date: 'التاريخ', desc: 'الوصف', type: 'النوع', amt: 'المبلغ', inc: 'إيراد (+)', exp: 'مصروف (-)', save: 'إيداع/استثمار (🔒)', withdraw: 'تسييل/سحب (🔓)', totalInc: 'إجمالي الدخل', totalExp: 'إجمالي المصروفات', totalSav: 'إجمالي المدخرات', balance: 'المتاح للصرف', worth: 'صافي الثروة' },
+        en: { date: 'Date', desc: 'Description', type: 'Type', amt: 'Amount', inc: 'Income (+)', exp: 'Expense (-)', save: 'Deposit (🔒)', withdraw: 'Withdraw (🔓)', totalInc: 'Total Income', totalExp: 'Total Expense', totalSav: 'Total Savings', balance: 'Available Balance', worth: 'Net Worth' }
     }[currentLang];
 
-    // 1. بناء صفوف المعاملات المالية
     const rows = sortedFinances.map(f => {
         const amtNum = Number(f.amount);
-        if(f.type === 'income') inc += amtNum; else exp += exp + amtNum; // حساب تجميعي حقيقي للتحقق
-        return {
-            [labels.date]: f.date,
-            [labels.desc]: f.desc,
-            [labels.type]: f.type === 'income' ? labels.inc : labels.exp,
-            [labels.amt]: amtNum
-        };
+        let typeStr = '';
+        if(f.type === 'income') { inc += amtNum; typeStr = labels.inc; }
+        else if(f.type === 'expense') { exp += amtNum; typeStr = labels.exp; }
+        else if(f.type === 'save') { sav += amtNum; typeStr = labels.save; }
+        else if(f.type === 'withdraw') { sav -= amtNum; typeStr = labels.withdraw; }
+
+        return { [labels.date]: f.date, [labels.desc]: f.desc, [labels.type]: typeStr, [labels.amt]: amtNum };
     });
 
-    // إعادة حساب دقيقة للمجاميع الكلية لضمان عدم حدوث خطأ تكراري
-    let finalInc = finances.reduce((acc, c) => c.type === 'income' ? acc + Number(c.amount) : acc, 0);
-    let finalExp = finances.reduce((acc, c) => c.type === 'expense' ? acc + Number(c.amount) : acc, 0);
-
-    // 2. إضافة صف فارغ كفاصل بصري احترافي
     rows.push({ [labels.date]: '', [labels.desc]: '', [labels.type]: '', [labels.amt]: '' });
+    rows.push({ [labels.date]: labels.totalInc, [labels.desc]: '', [labels.type]: '', [labels.amt]: inc });
+    rows.push({ [labels.date]: labels.totalExp, [labels.desc]: '', [labels.type]: '', [labels.amt]: exp });
+    rows.push({ [labels.date]: labels.totalSav, [labels.desc]: '', [labels.type]: '', [labels.amt]: sav });
+    rows.push({ [labels.date]: labels.balance, [labels.desc]: '', [labels.type]: '', [labels.amt]: inc - exp - sav });
+    rows.push({ [labels.date]: labels.worth, [labels.desc]: '', [labels.type]: '', [labels.amt]: inc - exp });
 
-    // 3. حقن بنود المجاميع المجمعة والرصيد المتبقي في نهاية الجدول المالي
-    rows.push({ [labels.date]: labels.totalInc, [labels.desc]: '', [labels.type]: '', [labels.amt]: finalInc });
-    rows.push({ [labels.date]: labels.totalExp, [labels.desc]: '', [labels.type]: '', [labels.amt]: finalExp });
-    rows.push({ [labels.date]: labels.balance, [labels.desc]: '', [labels.type]: '', [labels.amt]: finalInc - finalExp });
-
-    // تحويل البيانات لملف الشيت وتصديره
     const ws = XLSX.utils.json_to_sheet(rows);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, currentLang === 'ar' ? "التقرير المالي الكلي" : "Comprehensive Finance Report");
-    XLSX.writeFile(wb, currentLang === 'ar' ? "تقرير_المتتبع_المالي_الشامل.xlsx" : "Planner_Comprehensive_Finance_Report.xlsx");
+    XLSX.utils.book_append_sheet(wb, ws, currentLang === 'ar' ? "التقرير المالي" : "Finance Report");
+    XLSX.writeFile(wb, currentLang === 'ar' ? "تقرير_المحفظة_المالية.xlsx" : "Finance_Portfolio.xlsx");
 };
 
 window.exportFinancePDF = () => {
@@ -1285,42 +1365,51 @@ window.exportFinancePDF = () => {
     element.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
     element.style.fontFamily = 'Inter, sans-serif';
     
-    // قاموس ترجمة الهيدر والعناوين للـ PDF
     const labels = {
-        ar: { title: 'تقرير الإدارة المالية الشامل', inc: 'إجمالي الدخل الشامل', exp: 'إجمالي المصروفات الشاملة', bal: 'صافي الرصيد المتبقي', date: 'التاريخ', desc: 'البيان / الوصف', amt: 'القيمة المادية' },
-        en: { title: 'Comprehensive Financial Management Report', inc: 'Total Gross Income', exp: 'Total Gross Expenses', bal: 'Net Remaining Balance', date: 'Date', desc: 'Description / Item', amt: 'Financial Value' }
+        ar: { title: 'تقرير المحفظة الاستثمارية والمالية', inc: 'الدخل', exp: 'المصروفات', sav: 'المدخرات', bal: 'المتاح', date: 'التاريخ', desc: 'البيان', amt: 'القيمة' },
+        en: { title: 'Financial & Investment Portfolio Report', inc: 'Income', exp: 'Expenses', sav: 'Savings', bal: 'Available', date: 'Date', desc: 'Description', amt: 'Value' }
     }[currentLang];
 
-    let inc = finances.reduce((acc, c) => c.type === 'income' ? acc + Number(c.amount) : acc, 0);
-    let exp = finances.reduce((acc, c) => c.type === 'expense' ? acc + Number(c.amount) : acc, 0);
+    let inc = 0, exp = 0, sav = 0;
     
     let rows = [...finances].sort((a,b) => new Date(b.date) - new Date(a.date)).map(f => {
-        let color = f.type === 'income' ? '#10b981' : '#ef4444';
-        let sign = f.type === 'income' ? '+' : '-';
-        return `<tr style="border-bottom:1px solid #e5e7eb; transition: 0.2s;">
+        let color = '', sign = '';
+        const amtNum = Number(f.amount);
+        if(f.type === 'income') { inc += amtNum; color = '#10b981'; sign = '+'; }
+        else if(f.type === 'expense') { exp += amtNum; color = '#ef4444'; sign = '-'; }
+        else if(f.type === 'save') { sav += amtNum; color = '#3b82f6'; sign = '🔒'; }
+        else if(f.type === 'withdraw') { sav -= amtNum; color = '#f59e0b'; sign = '🔓'; }
+
+        return `<tr style="border-bottom:1px solid #e5e7eb;">
             <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; color:#4b5563;">${f.date}</td>
             <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; font-weight:500;">${f.desc}</td>
             <td style="padding:12px 10px; color:${color}; font-weight:700; text-align:${currentLang === 'ar' ? 'left' : 'right'};" dir="ltr">${f.amount} ${sign}</td>
         </tr>`;
     }).join('');
 
+    let netBal = inc - exp - sav;
+
     element.innerHTML = `
-        <div style="text-align:center; margin-bottom:30px; border-bottom: 3px solid #25D366; padding-bottom: 15px;">
+        <div style="text-align:center; margin-bottom:30px; border-bottom: 3px solid #3b82f6; padding-bottom: 15px;">
             <h1 style="color:#111827; margin:0; font-size: 24px; font-weight:700;">Planner Pro Max</h1>
-            <h3 style="color:#6b7280; margin-top:5px; font-size: 14px; letter-spacing: 0.5px;">${labels.title}</h3>
+            <h3 style="color:#6b7280; margin-top:5px; font-size: 14px;">${labels.title}</h3>
         </div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:30px; background:#f9fafb; padding:20px; border-radius:12px; border:1px solid #e5e7eb; gap: 15px;">
-            <div style="text-align:center; flex:1;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:30px; background:#f9fafb; padding:20px; border-radius:12px; border:1px solid #e5e7eb; gap: 10px; flex-wrap: wrap;">
+            <div style="text-align:center; flex:1; min-width:80px;">
                 <strong style="color:#4b5563; font-size:12px; display:block; margin-bottom:5px;">${labels.inc}</strong>
-                <span style="color:#10b981; font-size:1.4rem; font-weight:700;">${inc}</span>
+                <span style="color:#10b981; font-size:1.2rem; font-weight:700;">${inc}</span>
             </div>
-            <div style="text-align:center; flex:1; border-right:1px solid #e5e7eb; border-left:1px solid #e5e7eb;">
+            <div style="text-align:center; flex:1; border-right:1px solid #e5e7eb; border-left:1px solid #e5e7eb; min-width:80px;">
                 <strong style="color:#4b5563; font-size:12px; display:block; margin-bottom:5px;">${labels.exp}</strong>
-                <span style="color:#ef4444; font-size:1.4rem; font-weight:700;">${exp}</span>
+                <span style="color:#ef4444; font-size:1.2rem; font-weight:700;">${exp}</span>
             </div>
-            <div style="text-align:center; flex:1;">
+            <div style="text-align:center; flex:1; border-right:${currentLang==='ar'?'none':'1px solid #e5e7eb'}; border-left:${currentLang==='ar'?'1px solid #e5e7eb':'none'}; min-width:80px;">
+                <strong style="color:#4b5563; font-size:12px; display:block; margin-bottom:5px;">${labels.sav}</strong>
+                <span style="color:#3b82f6; font-size:1.2rem; font-weight:700;">${sav}</span>
+            </div>
+            <div style="text-align:center; flex:1; min-width:80px;">
                 <strong style="color:#4b5563; font-size:12px; display:block; margin-bottom:5px;">${labels.bal}</strong>
-                <span style="color:#25D366; font-size:1.4rem; font-weight:800;">${inc - exp}</span>
+                <span style="color:#25D366; font-size:1.2rem; font-weight:800;">${netBal}</span>
             </div>
         </div>
         <table style="width:100%; border-collapse: collapse; background:#ffffff;">
@@ -1337,7 +1426,7 @@ window.exportFinancePDF = () => {
 
     const opt = {
         margin: [0.4, 0.4],
-        filename: currentLang === 'ar' ? 'تقرير_المتتبع_المالي_الشامل.pdf' : 'Comprehensive_Finance_Report.pdf',
+        filename: currentLang === 'ar' ? 'تقرير_المحفظة_المالية.pdf' : 'Finance_Portfolio_Report.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2.5, useCORS: true },
         jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
