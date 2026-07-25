@@ -15,7 +15,7 @@ const latestReleaseNotes = {
 };
 
 // كود إظهار صندوق التحديثات التلقائي
-const APP_VERSION = 'v25';
+const APP_VERSION = 'v26';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
@@ -31,9 +31,17 @@ function checkAndShowChangelog() {
 }
 window.closeChangelog = () => { document.getElementById('changelogModal').classList.remove('show'); };
 
-// 2. PWA & Update Notification
+// 2. PWA & Update Notification (مع دعم الآيفون)
 let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; const installBtn = document.getElementById('installAppBtn'); if(installBtn) installBtn.style.display = 'inline-flex'; });
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+window.addEventListener('beforeinstallprompt', (e) => { 
+    e.preventDefault(); 
+    deferredPrompt = e; 
+    const installBtn = document.getElementById('installAppBtn'); 
+    if(installBtn && !isStandalone) installBtn.style.display = 'inline-flex'; 
+});
 
 let newWorker;
 if ('serviceWorker' in navigator) {
@@ -362,16 +370,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontSizeSelect = document.getElementById('fontSizeSelect');
     if (fontSizeSelect) fontSizeSelect.value = savedFontSize;
 
-    // 2. تفعيل زر التثبيت
+    // 2. تفعيل زر التثبيت (بدعم توجيه الآيفون)
     const installBtn = document.getElementById('installAppBtn');
-    if (installBtn) {
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') { deferredPrompt = null; installBtn.style.display = 'none'; }
-            }
-        });
+    if (installBtn && !isStandalone) {
+        if (isIOS) {
+            installBtn.style.display = 'inline-flex'; // إظهار الزر إجبارياً للآيفون
+            installBtn.addEventListener('click', () => {
+                alert(currentLang === 'ar' ? '🍎 لتثبيت التطبيق على آيفون/آيباد:\n1. اضغط على زر "مشاركة" (Share) أسفل المتصفح.\n2. اختر "إضافة للشاشة الرئيسية" (Add to Home Screen).' : '🍎 To install on iPhone/iPad:\n1. Tap the Share icon at the bottom.\n2. Tap "Add to Home Screen".');
+            });
+        } else {
+            installBtn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    if (outcome === 'accepted') { deferredPrompt = null; installBtn.style.display = 'none'; }
+                } else {
+                    alert(currentLang === 'ar' ? 'يرجى التثبيت يدوياً من قائمة المتصفح.' : 'Please install manually from the browser menu.');
+                }
+            });
+        }
+    } else if (installBtn && isStandalone) {
+        installBtn.style.display = 'none'; // إخفاء الزر إذا كان التطبيق مثبتاً بالفعل
     }
 
     // 3. تفعيل زر التحديث الإجباري والآمن (مُحسّن للأوفلاين)
