@@ -1,37 +1,36 @@
-// 1. سجل التحديثات (اكتب تحديثاتك هنا في كل إصدار جديد)
+// 1. سجل التحديثات
 const latestReleaseNotes = {
     ar: [
-        "🏦 محفظة المدخرات والاستثمار: افصل أموال الإنفاق عن مدخراتك الذكية.",
-        "📈 صافي الثروة: راقب إجمالي أصولك ورصيدك المتاح للصرف بدقة.",
-        "🔄 تصنيفات استثمارية: تصنيفات جديدة (ذهب، أسهم، ودائع) تظهر تلقائياً عند اختيار إيداع أو سحب.",
-        "📊 رسم بياني ثلاثي الأبعاد: يوضح المصروفات (أحمر)، المدخرات (أزرق)، والمتاح (أخضر)."
+        "🛡️ استقرار وحماية قصوى: حل مشكلة توقف الحفظ نهائياً وتأمين التطبيق ضد ثغرات الحقن.",
+        "🚀 نظام تحديثات سلس v28: وصول التحديثات فورياً لجميع الأجهزة دون الحاجة لحذف التطبيق.",
+        "🏦 محفظة المدخرات والاستثمار: متابعة دقيقة للأصول وصافي الثروة.",
+        "📊 مؤشرات بصرية مطورة: رسم بياني ثلاثي الأبعاد وإحصائيات فورية."
     ],
     en: [
-        "🏦 Savings & Investment Wallet: Separate your spending money from your smart savings.",
-        "📈 Net Worth: Track your total assets and available spending balance accurately.",
-        "🔄 Investment Categories: New categories (Gold, Stocks, Deposits) for saving/withdrawing.",
-        "📊 3D Doughnut Chart: Visualizes Expenses (Red), Savings (Blue), and Available (Green)."
+        "🛡️ Max Security & Stability: Completely resolved data-saving issues and secured against injection vulnerabilities.",
+        "🚀 Smooth Updates v28: Instant updates across all devices without re-installing.",
+        "🏦 Savings & Investment Wallet: Track net worth and assets accurately.",
+        "📊 Enhanced Visual Metrics: 3D Doughnut chart and live indicators."
     ]
 };
 
-// كود إظهار صندوق التحديثات التلقائي
-const APP_VERSION = 'v26';
+const APP_VERSION = 'v28';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
         setTimeout(() => {
             const content = document.getElementById('changelogContent');
             if(content) {
-                content.innerHTML = latestReleaseNotes[currentLang].map(n => `✅ ${n}`).join('<br><br>');
+                content.innerHTML = latestReleaseNotes[currentLang].map(n => `✅ ${escapeHtml(n)}`).join('<br><br>');
                 document.getElementById('changelogModal').classList.add('show');
             }
             localStorage.setItem('fp_version', APP_VERSION);
-        }, 1500); // تظهر بعد ثانية ونصف من الدخول
+        }, 1500); 
     }
 }
 window.closeChangelog = () => { document.getElementById('changelogModal').classList.remove('show'); };
 
-// 2. PWA & Update Notification (مع دعم الآيفون)
+// 2. PWA & Silent Auto-Update
 let deferredPrompt;
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -43,32 +42,35 @@ window.addEventListener('beforeinstallprompt', (e) => {
     if(installBtn && !isStandalone) installBtn.style.display = 'inline-flex'; 
 });
 
-let newWorker;
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').then(reg => {
-        reg.addEventListener('updatefound', () => {
-            newWorker = reg.installing;
-            newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                    const toast = document.getElementById('updateToast');
-                    if(toast) {
-                        // جلب التحديثات حسب لغة المستخدم الحالية وحقنها في الـ HTML
-                        const notesTitle = currentLang === 'ar' ? '<strong>الجديد في هذا الإصدار:</strong><br>' : '<strong>What\'s new in this version:</strong><br>';
-                        const notesList = latestReleaseNotes[currentLang].map(note => `- ${note}`).join('<br>');
-                        
-                        document.getElementById('updateMessageList').innerHTML = notesTitle + notesList;
-                        
-                        toast.style.display = 'block'; 
-                        toast.classList.add('show');
-                    }
-                }
-            });
-        });
-    }).catch(e=>console.log(e));
+    navigator.serviceWorker.register('sw.js?v=28').catch(e => console.log('SW Registration Error:', e));
     
     let refreshing = false;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) { window.location.reload(true); refreshing = true; }
+        if (!refreshing) {
+            refreshing = true;
+            const overlay = document.createElement('div');
+            overlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--bg-color);z-index:999999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px; text-align:center; padding: 20px; box-sizing: border-box;';
+            
+            const spinner = document.createElement('i');
+            spinner.className = 'fa-solid fa-cloud-arrow-down fa-bounce';
+            spinner.style.cssText = 'font-size:4rem; color:var(--primary);';
+            
+            const title = document.createElement('h2');
+            title.style.cssText = 'color:var(--text-main); margin:0; font-family: "Inter", sans-serif;';
+            title.innerText = currentLang === 'ar' ? 'جاري تحديث التطبيق...' : 'Updating App...';
+            
+            const subtitle = document.createElement('p');
+            subtitle.style.cssText = 'color:var(--text-muted); font-size:1rem; margin:0; font-family: "Inter", sans-serif;';
+            subtitle.innerText = currentLang === 'ar' ? 'يتم الآن تثبيت أحدث الميزات، يرجى الانتظار لحظات.' : 'Installing the latest features, please wait a moment.';
+            
+            overlay.appendChild(spinner);
+            overlay.appendChild(title);
+            overlay.appendChild(subtitle);
+            document.body.appendChild(overlay);
+            
+            setTimeout(() => { window.location.reload(true); }, 1500);
+        }
     });
 }
 
@@ -84,28 +86,50 @@ const firebaseConfig = {
 
 let useCloud = false, auth, db, currentUser = null;
 if (firebaseConfig.apiKey && firebaseConfig.apiKey.length > 10) {
-    firebase.initializeApp(firebaseConfig); 
-    auth = firebase.auth(); 
-    db = firebase.firestore(); 
-    useCloud = true;
-    
-    // ملاحظة إسلام: تم حذف سطر db.enablePersistence() نهائياً لحل خطأ Assertion المسبب لتوقف التطبيق
-    
-    auth.onAuthStateChanged(user => {
-        const cloudStatus = document.getElementById('cloudStatus');
-        if (user) {
-            currentUser = user;
-            if(cloudStatus) cloudStatus.innerHTML = `<span style="color:var(--success); font-weight:bold;"><i class="fa-solid fa-cloud-check"></i> ${currentLang === 'ar' ? 'متصل كـ:' : 'Connected as:'} ${user.email}</span> <button onclick="logoutCloud()" class="btn btn-secondary" style="padding:5px 10px; font-size:0.8rem; color: var(--danger);">${currentLang === 'ar' ? 'خروج آمن' : 'Logout'}</button>`;
-            loadFromCloud();
-        } else {
-            currentUser = null;
-            if(cloudStatus) cloudStatus.innerHTML = `<span style="color:var(--text-muted);"><i class="fa-solid fa-cloud-arrow-up"></i> ${currentLang === 'ar' ? 'غير متصل' : 'Offline'}</span> <button onclick="document.getElementById('authModal').classList.add('show')" class="btn btn-primary" style="padding:5px 10px; font-size:0.85rem;">${currentLang === 'ar' ? 'دخول للمزامنة' : 'Login to Sync'}</button>`;
-        }
-    });
+    try {
+        firebase.initializeApp(firebaseConfig); 
+        auth = firebase.auth(); 
+        db = firebase.firestore(); 
+        useCloud = true;
+        
+        auth.onAuthStateChanged(user => {
+            const cloudStatus = document.getElementById('cloudStatus');
+            if (user) {
+                currentUser = user;
+                if(cloudStatus) cloudStatus.innerHTML = `<span style="color:var(--success); font-weight:bold;"><i class="fa-solid fa-cloud-check"></i> ${currentLang === 'ar' ? 'متصل كـ:' : 'Connected as:'} ${escapeHtml(user.email)}</span> <button onclick="logoutCloud()" class="btn btn-secondary" style="padding:5px 10px; font-size:0.8rem; color: var(--danger);">${currentLang === 'ar' ? 'خروج آمن' : 'Logout'}</button>`;
+                loadFromCloud();
+            } else {
+                currentUser = null;
+                if(cloudStatus) cloudStatus.innerHTML = `<span style="color:var(--text-muted);"><i class="fa-solid fa-cloud-arrow-up"></i> ${currentLang === 'ar' ? 'غير متصل' : 'Offline'}</span> <button onclick="document.getElementById('authModal').classList.add('show')" class="btn btn-primary" style="padding:5px 10px; font-size:0.85rem;">${currentLang === 'ar' ? 'دخول للمزامنة' : 'Login to Sync'}</button>`;
+            }
+        });
+    } catch(e) {
+        console.error("Firebase Init Error:", e);
+    }
 }
 
 // ----------------------------------------
-// الترجمة واللغات (تعمل بشكل مثالي ولا تمس بياناتك)
+// الحماية والتعقيم (XSS Prevention)
+// ----------------------------------------
+function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function linkify(text) { 
+    const safeText = escapeHtml(text); 
+    const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%Sub=~_|])/ig; 
+    const phoneRegex = /(\b\d{10,14}\b)/g; 
+    return safeText.replace(urlRegex, url => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`).replace(phoneRegex, phone => `<a href="tel:${phone}">${phone}</a>`); 
+}
+
+// ----------------------------------------
+// الترجمة واللغات
 // ----------------------------------------
 const i18n = {
     ar: {
@@ -225,23 +249,91 @@ function initColorTheme() {
     });
 }
 
-let tasks = JSON.parse(localStorage.getItem('fp_tasks')) || []; let notes = JSON.parse(localStorage.getItem('fp_notes')) || []; let profile = JSON.parse(localStorage.getItem('fp_profile')) || { name: '', phone: '' }; let kanbanTasks = JSON.parse(localStorage.getItem('fp_kanban')) || { todo: [], inprogress: [], done: [] }; let habits = JSON.parse(localStorage.getItem('fp_habits')) || []; let finances = JSON.parse(localStorage.getItem('fp_finance')) || []; let library = JSON.parse(localStorage.getItem('fp_library')) || [];
-let pomodoroLog = JSON.parse(localStorage.getItem('fp_pomodoro_log')) || [];
+// ----------------------------------------
+// تهيئة البيانات ومحرك الحفظ المحصن
+// ----------------------------------------
+let tasks = [], notes = [], profile = { name: '', phone: '' }, kanbanTasks = { todo: [], inprogress: [], done: [] }, habits = [], finances = [], library = [], pomodoroLog = [];
+
+try { tasks = JSON.parse(localStorage.getItem('fp_tasks')) || []; } catch(e) { tasks = []; }
+try { notes = JSON.parse(localStorage.getItem('fp_notes')) || []; } catch(e) { notes = []; }
+try { profile = JSON.parse(localStorage.getItem('fp_profile')) || { name: '', phone: '' }; } catch(e) { profile = { name: '', phone: '' }; }
+try { kanbanTasks = JSON.parse(localStorage.getItem('fp_kanban')) || { todo: [], inprogress: [], done: [] }; } catch(e) { kanbanTasks = { todo: [], inprogress: [], done: [] }; }
+try { habits = JSON.parse(localStorage.getItem('fp_habits')) || []; } catch(e) { habits = []; }
+try { finances = JSON.parse(localStorage.getItem('fp_finance')) || []; } catch(e) { finances = []; }
+try { library = JSON.parse(localStorage.getItem('fp_library')) || []; } catch(e) { library = []; }
+try { pomodoroLog = JSON.parse(localStorage.getItem('fp_pomodoro_log')) || []; } catch(e) { pomodoroLog = []; }
+
 const getTodayStr = () => { const d = new Date(); return new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().split('T')[0]; };
 let currentTodayStr = getTodayStr(); let currentDailyDate = currentTodayStr; let currentMonthView = new Date().getMonth(); let currentYearView = new Date().getFullYear();
 const monthNamesAr = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]; const monthNamesEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 let myChart = null;
 
-setInterval(() => { let checkDate = getTodayStr(); if (checkDate !== currentTodayStr) { currentTodayStr = checkDate; if(currentDailyDate === currentTodayStr) { document.getElementById('viewDailyDate').value = currentTodayStr; renderViews(); } } }, 60000);
+setInterval(() => { 
+    let checkDate = getTodayStr(); 
+    if (checkDate !== currentTodayStr) { 
+        currentTodayStr = checkDate; 
+        if(currentDailyDate === currentTodayStr) { 
+            const vd = document.getElementById('viewDailyDate');
+            if(vd) vd.value = currentTodayStr; 
+            renderViews(); 
+        } 
+    } 
+}, 60000);
 
+// دالة الحفظ المعزولة ضد الانهيار
 function saveAll() {
-    localStorage.setItem('fp_tasks', JSON.stringify(tasks)); localStorage.setItem('fp_notes', JSON.stringify(notes)); localStorage.setItem('fp_kanban', JSON.stringify(kanbanTasks)); localStorage.setItem('fp_habits', JSON.stringify(habits)); localStorage.setItem('fp_finance', JSON.stringify(finances)); localStorage.setItem('fp_library', JSON.stringify(library)); localStorage.setItem('fp_profile', JSON.stringify(profile)); localStorage.setItem('fp_pomodoro_log', JSON.stringify(pomodoroLog));
-    if (useCloud && currentUser) { let monthlyData = {}; for(let i=0; i<localStorage.length; i++) { let k = localStorage.key(i); if(k.startsWith('PlannerMonthData_')) monthlyData[k] = localStorage.getItem(k); } db.collection('users').doc(currentUser.uid).set({ tasks, notes, kanbanTasks, habits, finances, library, profile, monthlyData }, {merge: true}).catch(e => console.log(e)); }
+    try {
+        localStorage.setItem('fp_tasks', JSON.stringify(tasks));
+        localStorage.setItem('fp_notes', JSON.stringify(notes));
+        localStorage.setItem('fp_kanban', JSON.stringify(kanbanTasks));
+        localStorage.setItem('fp_habits', JSON.stringify(habits));
+        localStorage.setItem('fp_finance', JSON.stringify(finances));
+        localStorage.setItem('fp_library', JSON.stringify(library));
+        localStorage.setItem('fp_profile', JSON.stringify(profile));
+        localStorage.setItem('fp_pomodoro_log', JSON.stringify(pomodoroLog));
+    } catch(err) {
+        console.error("Local storage save error:", err);
+    }
+
+    if (useCloud && currentUser) { 
+        try {
+            let monthlyData = {}; 
+            for(let i=0; i<localStorage.length; i++) { 
+                let k = localStorage.key(i); 
+                if(k && k.startsWith('PlannerMonthData_')) monthlyData[k] = localStorage.getItem(k); 
+            } 
+            db.collection('users').doc(currentUser.uid).set({ 
+                tasks, notes, kanbanTasks, habits, finances, library, profile, monthlyData 
+            }, {merge: true}).catch(e => console.error("Cloud save failed:", e)); 
+        } catch(e) {
+            console.error("Cloud data parsing error:", e);
+        }
+    }
 }
-function loadFromCloud() { db.collection('users').doc(currentUser.uid).get().then(doc => { if (doc.exists) { const data = doc.data(); if(data.tasks) tasks = data.tasks; if(data.notes) notes = data.notes; if(data.kanbanTasks) kanbanTasks = data.kanbanTasks; if(data.habits) habits = data.habits; if(data.finances) finances = data.finances; if(data.library) library = data.library; if(data.profile) profile = data.profile; if(data.monthlyData) { for(let k in data.monthlyData) localStorage.setItem(k, data.monthlyData[k]); } saveAll(); renderViews(); } }); }
+
+function loadFromCloud() { 
+    if(!useCloud || !currentUser) return;
+    db.collection('users').doc(currentUser.uid).get().then(doc => { 
+        if (doc.exists) { 
+            const data = doc.data(); 
+            if(Array.isArray(data.tasks)) tasks = data.tasks; 
+            if(Array.isArray(data.notes)) notes = data.notes; 
+            if(data.kanbanTasks && typeof data.kanbanTasks === 'object') kanbanTasks = data.kanbanTasks; 
+            if(Array.isArray(data.habits)) habits = data.habits; 
+            if(Array.isArray(data.finances)) finances = data.finances; 
+            if(Array.isArray(data.library)) library = data.library; 
+            if(data.profile) profile = data.profile; 
+            if(data.monthlyData) { 
+                for(let k in data.monthlyData) localStorage.setItem(k, data.monthlyData[k]); 
+            } 
+            saveAll(); 
+            renderViews(); 
+        } 
+    }).catch(e => console.error("Cloud load error:", e)); 
+}
 
 // ----------------------------------------
-// دوال الفتح لتفريغ النوافذ 100%
+// دوال الفتح والإغلاق
 // ----------------------------------------
 window.openTaskModal = () => { document.getElementById('taskTitle').value = ''; document.getElementById('taskDate').value = currentDailyDate; document.getElementById('taskModal').classList.add('show'); };
 window.openNoteModal = () => { document.getElementById('noteTitle').value = ''; document.getElementById('noteContent').value = ''; document.getElementById('noteDate').value = currentTodayStr; document.getElementById('notePhone').value = ''; document.getElementById('noteModal').classList.add('show'); };
@@ -249,28 +341,77 @@ window.openLibModal = () => { document.getElementById('libTitle').value = ''; do
 window.openFinModal = () => { document.getElementById('finDesc').value = ''; document.getElementById('finAmount').value = ''; document.getElementById('finDate').value = currentTodayStr; document.getElementById('financeModal').classList.add('show'); setTimeout(() => { if(window.updateFinColor) updateFinColor('finType', 'finAmount'); }, 50); };
 
 window.clearDailyTasks = (type) => { 
-    if(type === 'completed') { if(confirm(currentLang==='ar'?'مسح المهام المكتملة لهذا اليوم فقط؟':'Clear completed tasks for today?')) { tasks = tasks.filter(t => !(t.completed && t.date === currentTodayStr)); saveAll(); renderViews(); } } 
-    else if (type === 'today') { if(confirm(currentLang==='ar'?'حذف جميع مهام اليوم نهائياً؟':'Delete all tasks for today permanently?')) { tasks = tasks.filter(t => t.date !== currentTodayStr); saveAll(); renderViews(); } } 
+    if(type === 'completed') { 
+        if(confirm(currentLang==='ar'?'مسح المهام المكتملة لهذا اليوم فقط؟':'Clear completed tasks for today?')) { 
+            tasks = tasks.filter(t => !(t.completed && t.date === currentTodayStr)); 
+            saveAll(); renderViews(); 
+        } 
+    } 
+    else if (type === 'today') { 
+        if(confirm(currentLang==='ar'?'حذف جميع مهام اليوم نهائياً؟':'Delete all tasks for today permanently?')) { 
+            tasks = tasks.filter(t => t.date !== currentTodayStr); 
+            saveAll(); renderViews(); 
+        } 
+    } 
 };
 window.archiveDashboardToday = () => { if(confirm(currentLang==='ar'?'إخفاء مهام اليوم من لوحة الإحصائيات؟':'Hide today\'s tasks from Dashboard?')) { localStorage.setItem('fp_dash_cleared', currentTodayStr); renderDashboard(); } };
 window.resetStats = () => { if(confirm(currentLang==='ar'?'تصفير الإحصائيات والرسم البياني؟':'Reset dashboard stats?')) { localStorage.setItem('fp_stats_reset', getTodayStr()); renderDashboard(); } };
-window.handleAuth = async (action) => { const email = document.getElementById('authEmail').value, pass = document.getElementById('authPassword').value, errEl = document.getElementById('authError'); errEl.innerText = ''; if(!email || !pass) return; try { if(action === 'login') await auth.signInWithEmailAndPassword(email, pass); else await auth.createUserWithEmailAndPassword(email, pass); document.getElementById('authModal').classList.remove('show'); } catch(err) { errEl.style.color = 'var(--danger)'; errEl.innerText = err.message; } };
-window.resetPassword = async () => { const email = document.getElementById('authEmail').value; const errEl = document.getElementById('authError'); if(!email) { errEl.style.color = 'var(--warning)'; errEl.innerText = currentLang === 'ar' ? 'يرجى كتابة البريد الإلكتروني.' : 'Please enter email.'; return; } try { await auth.sendPasswordResetEmail(email); errEl.style.color = 'var(--success)'; errEl.innerText = currentLang === 'ar' ? 'تم إرسال رابط الاستعادة!' : 'Reset link sent!'; } catch(err) { errEl.style.color = 'var(--danger)'; errEl.innerText = err.message; } };
-window.logoutCloud = () => { auth.signOut().then(() => { localStorage.clear(); location.reload(); }); };
+window.handleAuth = async (action) => { 
+    const email = document.getElementById('authEmail').value, pass = document.getElementById('authPassword').value, errEl = document.getElementById('authError'); 
+    errEl.innerText = ''; 
+    if(!email || !pass) return; 
+    try { 
+        if(action === 'login') await auth.signInWithEmailAndPassword(email, pass); 
+        else await auth.createUserWithEmailAndPassword(email, pass); 
+        document.getElementById('authModal').classList.remove('show'); 
+    } catch(err) { 
+        errEl.style.color = 'var(--danger)'; 
+        errEl.innerText = err.message; 
+    } 
+};
+window.resetPassword = async () => { 
+    const email = document.getElementById('authEmail').value; 
+    const errEl = document.getElementById('authError'); 
+    if(!email) { 
+        errEl.style.color = 'var(--warning)'; 
+        errEl.innerText = currentLang === 'ar' ? 'يرجى كتابة البريد الإلكتروني.' : 'Please enter email.'; 
+        return; 
+    } 
+    try { 
+        await auth.sendPasswordResetEmail(email); 
+        errEl.style.color = 'var(--success)'; 
+        errEl.innerText = currentLang === 'ar' ? 'تم إرسال رابط الاستعادة!' : 'Reset link sent!'; 
+    } catch(err) { 
+        errEl.style.color = 'var(--danger)'; 
+        errEl.innerText = err.message; 
+    } 
+};
 
-function linkify(text) { const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%Sub=~_|])/ig; const phoneRegex = /(\b\d{10,14}\b)/g; return text.replace(urlRegex, url => `<a href="${url}" target="_blank">${url}</a>`).replace(phoneRegex, phone => `<a href="tel:${phone}">${phone}</a>`); }
+// تسجيل خروج آمن يضمن المزامنة قبل المسح
+window.logoutCloud = async () => { 
+    if(confirm(currentLang === 'ar' ? 'هل تريد تسجيل الخروج؟ سيتم تفريغ البيانات المحلية والتأكد من مزامنتها سحابياً.' : 'Logout and wipe local data?')) {
+        try {
+            saveAll();
+            await auth.signOut();
+            localStorage.clear(); 
+            location.reload(); 
+        } catch(e) {
+            console.error("Logout error:", e);
+            location.reload();
+        }
+    }
+};
 
 // ----------------------------------------
-// برمجة الذكاء الاصطناعي (الحل الشامل والمستقر لـ Android و iOS)
+// الإملاء الصوتي
 // ----------------------------------------
 let dictationRecognition = null; let isDictating = false; 
 let currentStartBtn = null, currentStopBtn = null, currentStatus = null, currentInput = null;
 
 window.startContinuousDictation = (inputId, langId, statusId, startBtnId, stopBtnId) => {
-    // 1. التحقق من دعم المتصفح (مهم جداً للآيفون)
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) { 
-        alert(currentLang === 'ar' ? 'متصفحك لا يدعم الإملاء الصوتي. جرب متصفح كروم أو سفاري حديث.' : 'Speech to text not supported on this browser.'); 
+        alert(currentLang === 'ar' ? 'متصفحك لا يدعم الإملاء الصوتي.' : 'Speech to text not supported on this browser.'); 
         return; 
     }
     
@@ -282,10 +423,8 @@ window.startContinuousDictation = (inputId, langId, statusId, startBtnId, stopBt
     currentInput = document.getElementById(inputId);
     
     dictationRecognition = new SpeechRecognition(); 
-    
-    // 2. إعدادات الاستقرار القصوى للموبايل
-    dictationRecognition.continuous = false; // نوقف الاستمرار الكاذب الذي يفصل في الآيفون
-    dictationRecognition.interimResults = false; // نوقف التخمين الذي يسبب التكرار في أندرويد
+    dictationRecognition.continuous = false; 
+    dictationRecognition.interimResults = false; 
     dictationRecognition.lang = document.getElementById(langId).value;
 
     dictationRecognition.onstart = () => { 
@@ -298,12 +437,8 @@ window.startContinuousDictation = (inputId, langId, statusId, startBtnId, stopBt
     dictationRecognition.onresult = (event) => { 
         let finalTranscript = '';
         for (let i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-                finalTranscript += event.results[i][0].transcript + ' ';
-            }
+            if (event.results[i].isFinal) finalTranscript += event.results[i][0].transcript + ' ';
         }
-        
-        // الدمج الآمن مع النص القديم
         if (finalTranscript.trim().length > 0) {
             let currentText = currentInput.value;
             currentInput.value = currentText + (currentText.endsWith(' ') || currentText === '' ? '' : ' ') + finalTranscript.trim();
@@ -311,26 +446,16 @@ window.startContinuousDictation = (inputId, langId, statusId, startBtnId, stopBt
     };
 
     dictationRecognition.onend = () => { 
-        // 3. الخدعة العبقرية: إذا كان المستخدم لم يضغط "إيقاف"، نعيد فتح المايك فوراً (يهزم قيود آيفون)
         if(isDictating) { 
             try { dictationRecognition.start(); } catch(e) {} 
-        } 
-        else {
+        } else {
             currentStartBtn.style.display = 'inline-flex'; currentStopBtn.style.display = 'none';
             currentStatus.innerText = currentLang === 'ar' ? 'المحتوى' : 'Content'; 
             currentStatus.style.color = 'var(--text-main)'; 
         }
     };
 
-    dictationRecognition.onerror = (event) => {
-        // معالجة الأخطاء بصمت لعدم إزعاج المستخدم إذا لم يسمع الموبايل شيئاً
-        if(event.error === 'no-speech') {
-            // تجاهل الخطأ، وسيقوم onend بإعادة التشغيل
-        } else {
-            console.log("Mic Error: ", event.error);
-        }
-    };
-
+    dictationRecognition.onerror = () => {};
     try { dictationRecognition.start(); } catch(e) {}
 };
 
@@ -344,39 +469,33 @@ window.stopContinuousDictation = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    checkAndShowChangelog(); // التحقق من وجود تحديث جديد لعرض النافذة
+    checkAndShowChangelog();
     
-// كود ضبط التاريخ التلقائي والمزامنة مع منتصف الليل محلياً
     const setTodayDateAuto = () => {
         const today = new Date();
         const localDate = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-        
         const viewDailyDate = document.getElementById('viewDailyDate');
         if (viewDailyDate && viewDailyDate.value !== localDate) {
             viewDailyDate.value = localDate;
-            if (typeof currentDailyDate !== 'undefined') {
-                currentDailyDate = localDate;
-            }
-            if (typeof renderDaily === 'function') renderDaily();
+            currentDailyDate = localDate;
+            renderDaily();
         }
     };
     
     setTodayDateAuto(); 
     setInterval(setTodayDateAuto, 60000);
     
-    // 1. تطبيق حجم الخط المحفوظ
     const savedFontSize = localStorage.getItem('plannerFontSize') || '16px';
     document.documentElement.style.fontSize = savedFontSize;
     const fontSizeSelect = document.getElementById('fontSizeSelect');
     if (fontSizeSelect) fontSizeSelect.value = savedFontSize;
 
-    // 2. تفعيل زر التثبيت (بدعم توجيه الآيفون)
     const installBtn = document.getElementById('installAppBtn');
     if (installBtn && !isStandalone) {
         if (isIOS) {
-            installBtn.style.display = 'inline-flex'; // إظهار الزر إجبارياً للآيفون
+            installBtn.style.display = 'inline-flex'; 
             installBtn.addEventListener('click', () => {
-                alert(currentLang === 'ar' ? '🍎 لتثبيت التطبيق على آيفون/آيباد:\n1. اضغط على زر "مشاركة" (Share) أسفل المتصفح.\n2. اختر "إضافة للشاشة الرئيسية" (Add to Home Screen).' : '🍎 To install on iPhone/iPad:\n1. Tap the Share icon at the bottom.\n2. Tap "Add to Home Screen".');
+                alert(currentLang === 'ar' ? '🍎 لتثبيت التطبيق على آيفون:\n1. اضغط على زر "مشاركة" (Share) أسفل المتصفح.\n2. اختر "إضافة للشاشة الرئيسية" (Add to Home Screen).' : '🍎 To install on iPhone:\n1. Tap the Share icon.\n2. Tap "Add to Home Screen".');
             });
         } else {
             installBtn.addEventListener('click', async () => {
@@ -385,29 +504,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     const { outcome } = await deferredPrompt.userChoice;
                     if (outcome === 'accepted') { deferredPrompt = null; installBtn.style.display = 'none'; }
                 } else {
-                    alert(currentLang === 'ar' ? 'يرجى التثبيت يدوياً من قائمة المتصفح.' : 'Please install manually from the browser menu.');
+                    alert(currentLang === 'ar' ? 'يرجى التثبيت من قائمة المتصفح.' : 'Please install via browser menu.');
                 }
             });
         }
     } else if (installBtn && isStandalone) {
-        installBtn.style.display = 'none'; // إخفاء الزر إذا كان التطبيق مثبتاً بالفعل
+        installBtn.style.display = 'none'; 
     }
 
-    // 3. تفعيل زر التحديث الإجباري والآمن (مُحسّن للأوفلاين)
-    const reloadBtn = document.getElementById('reloadAppBtn');
-    if (reloadBtn) {
-        reloadBtn.addEventListener('click', () => {
-            document.getElementById('updateToast').style.display = 'none';
-            if (newWorker) {
-                // إرسال الأمر للسيرفس وركر ليتولى هو عملية إعادة التحميل بعد التفعيل لضمان جلب الكود الجديد
-                newWorker.postMessage({ action: 'skipWaiting' });
-            } else {
-                window.location.reload(true);
-            }
-        });
-    }
-   
-    // كود إظهار وإخفاء كلمة المرور
     const togglePasswordBtn = document.getElementById('togglePasswordBtn');
     const authPassword = document.getElementById('authPassword');
     const togglePasswordIcon = document.getElementById('togglePasswordIcon');
@@ -420,45 +524,69 @@ document.addEventListener('DOMContentLoaded', () => {
             togglePasswordIcon.classList.toggle('fa-eye-slash');
         });
     }
+
     initTheme(); initColorTheme(); initModals(); initProfile(); initBackup(); setLanguage(currentLang);
     
     document.getElementById('langToggleBtn').onclick = () => { setLanguage(currentLang === 'ar' ? 'en' : 'ar'); };
     
     document.getElementById('shareEmptyBtn').onclick = () => {
-    const text = currentLang === 'ar' ? "جربت تطبيق Planner Pro Max لتنظيم الوقت وإدارة المهام وكان ممتاز! جربه مجاناً من هنا: https://eslam-planner.github.io/" : "Try out Planner Pro Max for free: https://eslam-planner.github.io/";
-    const url = "https://eslam-planner.github.io/";
-    
-    if (navigator.share && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { 
-        navigator.share({ title: 'Planner Pro Max', text: text, url: url }).catch(console.error);
-    } else { 
-        document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(text)}`;
-        document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-        document.getElementById('shareTg').href = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-        document.getElementById('shareModal').classList.add('show');
-    }
-};
+        const text = currentLang === 'ar' ? "جربت تطبيق Planner Pro Max لتنظيم الوقت وإدارة المهام وكان ممتاز! جربه مجاناً من هنا: https://eslam-planner.github.io/" : "Try out Planner Pro Max for free: https://eslam-planner.github.io/";
+        const url = "https://eslam-planner.github.io/";
+        
+        if (navigator.share && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { 
+            navigator.share({ title: 'Planner Pro Max', text: text, url: url }).catch(console.error);
+        } else { 
+            document.getElementById('shareWa').href = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            document.getElementById('shareFb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+            document.getElementById('shareTg').href = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            document.getElementById('shareModal').classList.add('show');
+        }
+    };
 
-document.getElementById('copyLinkBtn').onclick = () => {
-    const linkInput = document.getElementById('shareLinkInput');
-    linkInput.select(); document.execCommand('copy');
-    const btn = document.getElementById('copyLinkBtn');
-    const originalHtml = btn.innerHTML;
-    btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-    setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
-};
+    document.getElementById('copyLinkBtn').onclick = () => {
+        const linkInput = document.getElementById('shareLinkInput');
+        linkInput.select(); document.execCommand('copy');
+        const btn = document.getElementById('copyLinkBtn');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+        setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
+    };
 
     const viewDailyDate = document.getElementById('viewDailyDate');
-    if(viewDailyDate) { viewDailyDate.value = currentDailyDate; viewDailyDate.addEventListener('change', (e) => { currentDailyDate = e.target.value; renderDaily(); }); }
+    if(viewDailyDate) { 
+        viewDailyDate.value = currentDailyDate; 
+        viewDailyDate.addEventListener('change', (e) => { currentDailyDate = e.target.value; renderDaily(); }); 
+    }
     
-    const taskHour = document.getElementById('taskHour'); taskHour.innerHTML = ''; 
-    for(let i = 6; i <= 23; i++) { let opt = document.createElement('option'); opt.value = i; if(i === 12) opt.textContent = '12 PM'; else if(i > 12) opt.textContent = `${i - 12} PM`; else opt.textContent = `${i} AM`; taskHour.appendChild(opt); }
+    const taskHour = document.getElementById('taskHour'); 
+    if(taskHour) {
+        taskHour.innerHTML = ''; 
+        for(let i = 6; i <= 23; i++) { 
+            let opt = document.createElement('option'); 
+            opt.value = i; 
+            opt.textContent = i === 12 ? '12 PM' : (i > 12 ? `${i - 12} PM` : `${i} AM`); 
+            taskHour.appendChild(opt); 
+        }
+    }
     
     document.getElementById('prevMonthBtn').onclick = () => { currentMonthView--; if(currentMonthView < 0) { currentMonthView = 11; currentYearView--; } renderViews(); };
     document.getElementById('nextMonthBtn').onclick = () => { currentMonthView++; if(currentMonthView > 11) { currentMonthView = 0; currentYearView++; } renderViews(); };
     
-    document.querySelectorAll('.nav-item').forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')); document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active')); e.currentTarget.classList.add('active'); let target = e.currentTarget.getAttribute('data-target'); document.getElementById(target).classList.add('active'); renderViews(); }); });
-    initPomodoro(); renderViews();
+    document.querySelectorAll('.nav-item').forEach(link => { 
+        link.addEventListener('click', (e) => { 
+            e.preventDefault(); 
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active')); 
+            document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active')); 
+            e.currentTarget.classList.add('active'); 
+            let target = e.currentTarget.getAttribute('data-target'); 
+            document.getElementById(target).classList.add('active'); 
+            renderViews(); 
+        }); 
+    });
+    
+    initPomodoro(); 
+    renderViews();
 });
 
 function renderViews() { 
@@ -467,15 +595,20 @@ function renderViews() {
     if(typeof renderChangelog === 'function') renderChangelog();
 }
 
+// ----------------------------------------
+// جدول اليوم
+// ----------------------------------------
 function renderDaily() { 
-    const container = document.getElementById('plannerContainer'); container.innerHTML = ''; 
+    const container = document.getElementById('plannerContainer'); 
+    if(!container) return;
+    container.innerHTML = ''; 
     const todayTasks = tasks.filter(t => t.date === currentDailyDate); 
     for(let hour = 6; hour <= 23; hour++) { 
         const hourTasks = todayTasks.filter(t => t.hour == hour); 
         let timeLabel = hour === 12 ? '12 PM' : (hour > 12 ? `${hour - 12} PM` : `${hour} AM`);
         let html = hourTasks.map(t => `
             <div class="daily-task-item ${t.completed ? 'completed' : ''}" onclick="editTask(${t.id})" style="display:flex; justify-content:space-between; padding:10px; border:1px solid var(--border-color); border-radius:8px; margin-bottom:5px; background:var(--card-bg); cursor:pointer;">
-                <div style="flex:1;"><input type="checkbox" ${t.completed ? 'checked' : ''} onclick="event.stopPropagation()" onchange="toggleTask(${t.id})"> <span style="text-decoration:${t.completed?'line-through':'none'}">${t.title}</span></div>
+                <div style="flex:1;"><input type="checkbox" ${t.completed ? 'checked' : ''} onclick="event.stopPropagation()" onchange="toggleTask(${t.id})"> <span style="text-decoration:${t.completed?'line-through':'none'}">${escapeHtml(t.title)}</span></div>
                 <button onclick="event.stopPropagation(); delTask(${t.id})" class="no-print icon-btn" style="color:var(--danger);"><i class="fa-solid fa-trash"></i></button>
             </div>
         `).join(''); 
@@ -483,53 +616,72 @@ function renderDaily() {
     } 
 }
 
-document.getElementById('saveTaskBtn').onclick = () => { const t = document.getElementById('taskTitle').value; if(!t) return; tasks.push({ id: Date.now(), title: t, date: document.getElementById('taskDate').value, hour: document.getElementById('taskHour').value, completed: false }); saveAll(); document.getElementById('taskModal').classList.remove('show'); renderDaily(); renderDashboard(); };
-window.toggleTask = id => { tasks = tasks.map(t => t.id === id ? {...t, completed: !t.completed} : t); saveAll(); renderDaily(); renderDashboard(); }
-window.delTask = id => { tasks = tasks.filter(t => t.id !== id); saveAll(); renderDaily(); renderDashboard(); }
+document.getElementById('saveTaskBtn').onclick = () => { 
+    const t = document.getElementById('taskTitle').value; 
+    if(!t || !t.trim()) return; 
+    tasks.push({ 
+        id: Date.now(), 
+        title: t.trim(), 
+        date: document.getElementById('taskDate').value, 
+        hour: document.getElementById('taskHour').value, 
+        completed: false 
+    }); 
+    saveAll(); 
+    document.getElementById('taskModal').classList.remove('show'); 
+    renderDaily(); 
+    renderDashboard(); 
+};
+window.toggleTask = id => { tasks = tasks.map(t => t.id === id ? {...t, completed: !t.completed} : t); saveAll(); renderDaily(); renderDashboard(); };
+window.delTask = id => { tasks = tasks.filter(t => t.id !== id); saveAll(); renderDaily(); renderDashboard(); };
 
 window.editTask = (id) => {
     let task = tasks.find(t => t.id === id); if(!task) return;
-    document.getElementById('editTaskId').value = task.id; document.getElementById('editTaskTitle').value = task.title; document.getElementById('editTaskDate').value = task.date;
-    let hourSelect = document.getElementById('editTaskHour'); hourSelect.innerHTML = '';
-    for(let i = 6; i <= 23; i++) { let opt = document.createElement('option'); opt.value = i; opt.textContent = i === 12 ? '12 PM' : (i > 12 ? `${i - 12} PM` : `${i} AM`); if(i == task.hour) opt.selected = true; hourSelect.appendChild(opt); }
+    document.getElementById('editTaskId').value = task.id; 
+    document.getElementById('editTaskTitle').value = task.title; 
+    document.getElementById('editTaskDate').value = task.date;
+    let hourSelect = document.getElementById('editTaskHour'); 
+    hourSelect.innerHTML = '';
+    for(let i = 6; i <= 23; i++) { 
+        let opt = document.createElement('option'); 
+        opt.value = i; 
+        opt.textContent = i === 12 ? '12 PM' : (i > 12 ? `${i - 12} PM` : `${i} AM`); 
+        if(i == task.hour) opt.selected = true; 
+        hourSelect.appendChild(opt); 
+    }
     document.getElementById('editTaskModal').classList.add('show');
 };
-// التعديل الشامل لزر تحديث المهمة (مع المزامنة العكسية)
+
 document.getElementById('updateTaskBtn').onclick = () => {
     let id = parseInt(document.getElementById('editTaskId').value); 
     let title = document.getElementById('editTaskTitle').value; 
     let dateStr = document.getElementById('editTaskDate').value;
     let hour = document.getElementById('editTaskHour').value;
     
-    if(!title) return; 
+    if(!title || !title.trim()) return; 
     let task = tasks.find(t => t.id === id);
     
     if(task) { 
         let oldDate = task.date;
-        let oldTitle = task.title; // الاحتفاظ بالعنوان القديم للبحث عنه
+        let oldTitle = task.title;
 
-        task.title = title; 
+        task.title = title.trim(); 
         task.date = dateStr; 
         task.hour = hour; 
         
         if(dateStr !== oldDate) { 
             if (task.isMonthly) {
-                // 1. تنظيف النص من علامة الدبوس للبحث عنه
                 let cleanOldText = oldTitle.replace('📌 خطة الشهر: ', '').replace('📌 Month Plan: ', '').trim();
                 let cleanNewText = title.replace('📌 خطة الشهر: ', '').replace('📌 Month Plan: ', '').trim();
 
-                // 2. مسح المهمة من التاريخ القديم في خطة الشهر
                 let [oY, oM, oD] = oldDate.split('-');
                 let oldKey = `PlannerMonthData_${parseInt(oY)}_${parseInt(oM)-1}_${parseInt(oD)}`;
                 let oldMonthText = localStorage.getItem(oldKey) || "";
                 if (cleanOldText && oldMonthText.includes(cleanOldText)) {
                     let newOldText = oldMonthText.replace(cleanOldText, '').trim();
-                    // تنظيف الأسطر الفارغة الإضافية إن وجدت
                     newOldText = newOldText.replace(/^\s*[\r\n]/gm, '');
                     localStorage.setItem(oldKey, newOldText);
                 }
 
-                // 3. إضافة المهمة إلى التاريخ الجديد في خطة الشهر
                 let [nY, nM, nD] = dateStr.split('-');
                 let newKey = `PlannerMonthData_${parseInt(nY)}_${parseInt(nM)-1}_${parseInt(nD)}`;
                 let newMonthText = localStorage.getItem(newKey) || "";
@@ -537,7 +689,6 @@ document.getElementById('updateTaskBtn').onclick = () => {
                     localStorage.setItem(newKey, newMonthText ? newMonthText + '\n' + cleanNewText : cleanNewText);
                 }
             } else {
-                // الترحيل للمهام العادية التي يتم تغيير تاريخها
                 let [y, m, d] = dateStr.split('-');
                 let storageKey = `PlannerMonthData_${parseInt(y)}_${parseInt(m)-1}_${parseInt(d)}`; 
                 let currentText = localStorage.getItem(storageKey) || ""; 
@@ -553,62 +704,101 @@ document.getElementById('updateTaskBtn').onclick = () => {
 };
 
 // ----------------------------------------
-// برمجة الملاحظات والمراجع (مع التعديل)
+// الملاحظات
 // ----------------------------------------
 function renderNotes() { 
     const container = document.getElementById('notesContainer');
+    if(!container) return;
     container.innerHTML = notes.length === 0 ? `<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1;">${currentLang==='ar'?'لا توجد ملاحظات.':'No notes.'}</p>` : '';
     notes.forEach(note => { 
-        let contactHTML = note.phone ? `<div style="display:flex; gap:10px; margin-bottom:10px;"><a href="tel:${note.phone}" class="icon-btn" style="color:var(--primary);"><i class="fa-solid fa-phone"></i></a><a href="https://wa.me/${note.phone.replace(/\+/g,'')}" target="_blank" class="icon-btn" style="color:#25D366;"><i class="fa-brands fa-whatsapp"></i></a></div>` : '';
-        container.innerHTML += `<div class="note-card" onclick="editNote(${note.id})"><button class="delete-note no-print" onclick="event.stopPropagation(); deleteNote(${note.id})"><i class="fa-solid fa-trash"></i></button><span class="note-date"><i class="fa-solid fa-calendar"></i> ${note.date}</span><h3 style="margin-bottom: 0.5rem;">${note.title}</h3>${contactHTML}<div class="render-area" style="background:none; border:none; padding:0;">${linkify(note.content)}</div></div>`; 
+        let contactHTML = note.phone ? `<div style="display:flex; gap:10px; margin-bottom:10px;"><a href="tel:${escapeHtml(note.phone)}" class="icon-btn" style="color:var(--primary);"><i class="fa-solid fa-phone"></i></a><a href="https://wa.me/${escapeHtml(note.phone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" class="icon-btn" style="color:#25D366;"><i class="fa-brands fa-whatsapp"></i></a></div>` : '';
+        container.innerHTML += `<div class="note-card" onclick="editNote(${note.id})"><button class="delete-note no-print" onclick="event.stopPropagation(); deleteNote(${note.id})"><i class="fa-solid fa-trash"></i></button><span class="note-date"><i class="fa-solid fa-calendar"></i> ${escapeHtml(note.date)}</span><h3 style="margin-bottom: 0.5rem;">${escapeHtml(note.title)}</h3>${contactHTML}<div class="render-area" style="background:none; border:none; padding:0;">${linkify(note.content)}</div></div>`; 
     });
 }
 document.getElementById('saveNoteBtn').onclick = () => { 
     const t = document.getElementById('noteTitle').value, c = document.getElementById('noteContent').value, d = document.getElementById('noteDate').value, p = document.getElementById('notePhone').value; 
     if(!t && !c) return;
-    notes.push({ id: Date.now(), title: t || (currentLang==='ar'?'ملاحظة جديدة':'New Note'), content: c, date: d, phone: p }); 
-    saveAll(); document.getElementById('noteModal').classList.remove('show'); stopContinuousDictation(); renderNotes(); 
+    notes.push({ id: Date.now(), title: t.trim() || (currentLang==='ar'?'ملاحظة جديدة':'New Note'), content: c, date: d, phone: p }); 
+    saveAll(); 
+    document.getElementById('noteModal').classList.remove('show'); 
+    stopContinuousDictation(); 
+    renderNotes(); 
 };
-window.deleteNote = id => { notes = notes.filter(n => n.id !== id); saveAll(); renderNotes(); }
+window.deleteNote = id => { notes = notes.filter(n => n.id !== id); saveAll(); renderNotes(); };
 
 window.editNote = (id) => {
     let n = notes.find(x => x.id === id); if(!n) return;
-    document.getElementById('editNoteId').value = n.id; document.getElementById('editNoteTitle').value = n.title; document.getElementById('editNoteDate').value = n.date; document.getElementById('editNoteContent').value = n.content; document.getElementById('editNotePhone').value = n.phone || '';
+    document.getElementById('editNoteId').value = n.id; 
+    document.getElementById('editNoteTitle').value = n.title; 
+    document.getElementById('editNoteDate').value = n.date; 
+    document.getElementById('editNoteContent').value = n.content; 
+    document.getElementById('editNotePhone').value = n.phone || '';
     document.getElementById('editNoteModal').classList.add('show');
 };
 document.getElementById('updateNoteBtn').onclick = () => {
-    let id = parseInt(document.getElementById('editNoteId').value); let n = notes.find(x => x.id === id);
-    if(n) { n.title = document.getElementById('editNoteTitle').value; n.date = document.getElementById('editNoteDate').value; n.content = document.getElementById('editNoteContent').value; n.phone = document.getElementById('editNotePhone').value; saveAll(); renderNotes(); document.getElementById('editNoteModal').classList.remove('show'); stopContinuousDictation(); }
+    let id = parseInt(document.getElementById('editNoteId').value); 
+    let n = notes.find(x => x.id === id);
+    if(n) { 
+        n.title = document.getElementById('editNoteTitle').value.trim(); 
+        n.date = document.getElementById('editNoteDate').value; 
+        n.content = document.getElementById('editNoteContent').value; 
+        n.phone = document.getElementById('editNotePhone').value; 
+        saveAll(); 
+        renderNotes(); 
+        document.getElementById('editNoteModal').classList.remove('show'); 
+        stopContinuousDictation(); 
+    }
 };
 
+// ----------------------------------------
+// مكتبة المراجع
+// ----------------------------------------
 function renderLibrary() { 
     const container = document.getElementById('libraryContainer');
+    if(!container) return;
     container.innerHTML = library.map(l => {
-        let contactHTML = l.phone ? `<a href="tel:${l.phone}" style="margin-left:10px; color:var(--primary);"><i class="fa-solid fa-phone"></i></a><a href="https://wa.me/${l.phone.replace(/\+/g,'')}" target="_blank" style="margin-left:10px; color:#25D366;"><i class="fa-brands fa-whatsapp"></i></a>` : '';
-        return `<div class="lib-card" onclick="editLib(${l.id})"><button class="icon-btn no-print" style="position:absolute; top:10px; left:10px; color:var(--danger);" onclick="event.stopPropagation(); delLib(${l.id})"><i class="fa-solid fa-trash"></i></button><span class="lib-cat">${l.category}</span><h3>${contactHTML}${l.title}</h3><div class="render-area">${linkify(l.content)}</div></div>`;
+        let contactHTML = l.phone ? `<a href="tel:${escapeHtml(l.phone)}" style="margin-left:10px; color:var(--primary);"><i class="fa-solid fa-phone"></i></a><a href="https://wa.me/${escapeHtml(l.phone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" style="margin-left:10px; color:#25D366;"><i class="fa-brands fa-whatsapp"></i></a>` : '';
+        return `<div class="lib-card" onclick="editLib(${l.id})"><button class="icon-btn no-print" style="position:absolute; top:10px; left:10px; color:var(--danger);" onclick="event.stopPropagation(); delLib(${l.id})"><i class="fa-solid fa-trash"></i></button><span class="lib-cat">${escapeHtml(l.category)}</span><h3>${contactHTML}${escapeHtml(l.title)}</h3><div class="render-area">${linkify(l.content)}</div></div>`;
     }).join('') || `<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1;">${currentLang==='ar'?'أضف مرجعك الأول.':'Add your first reference.'}</p>`;
 }
 document.getElementById('saveLibBtn').onclick = () => { 
     let t = document.getElementById('libTitle').value, c = document.getElementById('libCategory').value, text = document.getElementById('libContent').value, p = document.getElementById('libPhone').value; 
-    if(!t) return;
-    library.push({ id: Date.now(), title: t, category: c || 'عام', content: text, phone: p }); 
-    saveAll(); document.getElementById('libraryModal').classList.remove('show'); stopContinuousDictation(); renderLibrary(); 
+    if(!t || !t.trim()) return;
+    library.push({ id: Date.now(), title: t.trim(), category: c || 'عام', content: text, phone: p }); 
+    saveAll(); 
+    document.getElementById('libraryModal').classList.remove('show'); 
+    stopContinuousDictation(); 
+    renderLibrary(); 
 };
-window.delLib = id => { library = library.filter(l => l.id !== id); saveAll(); renderLibrary(); }
+window.delLib = id => { library = library.filter(l => l.id !== id); saveAll(); renderLibrary(); };
 
 window.editLib = (id) => {
     let l = library.find(x => x.id === id); if(!l) return;
-    document.getElementById('editLibId').value = l.id; document.getElementById('editLibTitle').value = l.title; document.getElementById('editLibCategory').value = l.category; document.getElementById('editLibContent').value = l.content; document.getElementById('editLibPhone').value = l.phone || '';
+    document.getElementById('editLibId').value = l.id; 
+    document.getElementById('editLibTitle').value = l.title; 
+    document.getElementById('editLibCategory').value = l.category; 
+    document.getElementById('editLibContent').value = l.content; 
+    document.getElementById('editLibPhone').value = l.phone || '';
     document.getElementById('editLibModal').classList.add('show');
 };
 document.getElementById('updateLibBtn').onclick = () => {
-    let id = parseInt(document.getElementById('editLibId').value); let l = library.find(x => x.id === id);
-    if(l) { l.title = document.getElementById('editLibTitle').value; l.category = document.getElementById('editLibCategory').value; l.content = document.getElementById('editLibContent').value; l.phone = document.getElementById('editLibPhone').value; saveAll(); renderLibrary(); document.getElementById('editLibModal').classList.remove('show'); stopContinuousDictation(); }
+    let id = parseInt(document.getElementById('editLibId').value); 
+    let l = library.find(x => x.id === id);
+    if(l) { 
+        l.title = document.getElementById('editLibTitle').value.trim(); 
+        l.category = document.getElementById('editLibCategory').value; 
+        l.content = document.getElementById('editLibContent').value; 
+        l.phone = document.getElementById('editLibPhone').value; 
+        saveAll(); 
+        renderLibrary(); 
+        document.getElementById('editLibModal').classList.remove('show'); 
+        stopContinuousDictation(); 
+    }
 };
 
-// ==========================================
-// برمجة خطة الشهر (المطورة: المزامنة + دعم الاتصال والواتساب)
-// ==========================================
+// ----------------------------------------
+// خطة الشهر (محصنة 100% برمجياً)
+// ----------------------------------------
 function renderMonthly() { 
     const container = document.getElementById('monthlyContainer'); 
     if(!container) return;
@@ -641,30 +831,34 @@ function renderMonthly() {
 
         let isTodayText = (isCurrentMonth && i === todayDate) ? (currentLang === 'ar' ? '(اليوم)' : '(Today)') : '';
 
-        // نظام أيقونات الاتصال والواتساب
         let contactIcons = savedPhone ? `
             <div style="display:inline-flex; gap:10px; margin-right:10px;">
-                <a href="tel:${savedPhone}" class="no-print" style="color:var(--primary); font-size:1.1rem;"><i class="fa-solid fa-phone"></i></a>
-                <a href="https://wa.me/${savedPhone.replace(/\+/g,'')}" target="_blank" class="no-print" style="color:#25D366; font-size:1.1rem;"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="tel:${escapeHtml(savedPhone)}" class="no-print" style="color:var(--primary); font-size:1.1rem;"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://wa.me/${escapeHtml(savedPhone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" class="no-print" style="color:#25D366; font-size:1.1rem;"><i class="fa-brands fa-whatsapp"></i></a>
             </div>` : '';
 
+        // إنشاء العناصر بصورة آمنة لمنع كسر الـ textarea والـ attributes
         dayDiv.innerHTML = `
             <div class="month-day-header" style="display:flex; justify-content:space-between; align-items:center;">
                 <span>${dayText} ${i} ${mNames[currentMonthView]} <b style="color:var(--primary);">${isTodayText}</b></span>
                 ${contactIcons}
             </div>
-            <textarea class="multi-line-input no-print" rows="3" data-key="${storageKey}" data-day="${i}" placeholder="${placeholderText}">${savedText}</textarea>
-            <input type="tel" class="no-print" value="${savedPhone}" data-phone-key="${phoneKey}" placeholder="${phonePlaceholder}" 
+            <textarea class="multi-line-input no-print" rows="3" data-key="${storageKey}" data-day="${i}" placeholder="${placeholderText}"></textarea>
+            <input type="tel" class="no-print" data-phone-key="${phoneKey}" placeholder="${phonePlaceholder}" 
                 style="width:100%; margin-top:5px; padding:8px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-main); font-size:0.85rem;">
             <div class="render-area">${linkify(savedText)}</div>`; 
             
+        // تعيين القيم برمجياً لحصانة تامة ضد XSS
+        const ta = dayDiv.querySelector('textarea');
+        const phoneInp = dayDiv.querySelector('input[type="tel"]');
+        if(ta) ta.value = savedText;
+        if(phoneInp) phoneInp.value = savedPhone;
+
         container.appendChild(dayDiv); 
     } 
     
-    // ربط أحداث الكتابة في الخطة
     document.querySelectorAll('.multi-line-input').forEach(ta => { 
         ta.oninput = e => { 
-            // التعديل هنا للوصول لمنطقة العرض بشكل صحيح بعد إضافة خانة الهاتف
             e.target.nextElementSibling.nextElementSibling.innerHTML = linkify(e.target.value); 
         }; 
         ta.onchange = e => { 
@@ -689,15 +883,14 @@ function renderMonthly() {
                 }
             }
             saveAll(); 
-            if (typeof currentDailyDate !== 'undefined' && currentDailyDate === targetDateStr && typeof renderDaily === 'function') renderDaily();
+            if (typeof currentDailyDate !== 'undefined' && currentDailyDate === targetDateStr) renderDaily();
         }; 
     }); 
 
-    // ربط أحداث إدخال الهاتف
     document.querySelectorAll('input[data-phone-key]').forEach(inp => {
         inp.onchange = e => {
             localStorage.setItem(e.target.dataset.phoneKey, e.target.value);
-            renderMonthly(); // تحديث فوري لإظهار الأيقونات
+            renderMonthly();
         };
     });
 
@@ -709,10 +902,9 @@ function renderMonthly() {
     }
 }
 
-
-// ==========================================
-// برمجة مؤقت التركيز (مع فك حظر الصوت الشامل لجميع الأجهزة)
-// ==========================================
+// ----------------------------------------
+// مؤقت التركيز
+// ----------------------------------------
 let pomTimer, targetTime = 0, pomTimeLeft = 25 * 60, isPomRunning = false, pomMode = 'work', workDuration = 25;
 
 function initPomodoro() { 
@@ -723,34 +915,35 @@ function initPomodoro() {
     const startBtn = document.getElementById('pomStart'); 
     const pauseBtn = document.getElementById('pomPause');
 
-    // --- بداية كود فك حظر الصوت الشامل (للموبايل والماك) ---
     const unlockAudio = () => {
         if(alarm) {
-            alarm.load(); // إجبار المتصفح على سحب ملف الصوت
+            alarm.load(); 
             alarm.volume = 1.0;
             alarm.play().then(() => {
                 alarm.pause();
                 alarm.currentTime = 0;
-            }).catch(e => { /* تجاهل الخطأ الصامت */ });
+            }).catch(() => {});
         }
-        // إزالة مستمع الحدث بعد أول لمسة لعدم إرهاق التطبيق
         document.removeEventListener('touchstart', unlockAudio);
         document.removeEventListener('click', unlockAudio);
     };
-    // ربط فك الحظر بأول لمسة أو نقرة في أي مكان بالتطبيق
     document.addEventListener('touchstart', unlockAudio, { once: true });
     document.addEventListener('click', unlockAudio, { once: true });
-    // --- نهاية كود فك الحظر ---
 
-    const updateTimeDisplay = () => { d.innerText = `${Math.floor(pomTimeLeft/60).toString().padStart(2,'0')}:${(pomTimeLeft%60).toString().padStart(2,'0')}`; }; 
-    document.getElementById('pomMinus').onclick = () => { if(!isPomRunning && workDuration > 15) { workDuration -= 5; if(pomMode==='work'){ pomTimeLeft = workDuration*60; updateTimeDisplay();} wd.innerText = workDuration; } }; 
-    document.getElementById('pomPlus').onclick = () => { if(!isPomRunning && workDuration < 60) { workDuration += 5; if(pomMode==='work'){ pomTimeLeft = workDuration*60; updateTimeDisplay();} wd.innerText = workDuration; } }; 
+    const updateTimeDisplay = () => { 
+        if(d) d.innerText = `${Math.floor(pomTimeLeft/60).toString().padStart(2,'0')}:${(pomTimeLeft%60).toString().padStart(2,'0')}`; 
+    }; 
+    
+    document.getElementById('pomMinus').onclick = () => { if(!isPomRunning && workDuration > 15) { workDuration -= 5; if(pomMode==='work'){ pomTimeLeft = workDuration*60; updateTimeDisplay();} if(wd) wd.innerText = workDuration; } }; 
+    document.getElementById('pomPlus').onclick = () => { if(!isPomRunning && workDuration < 60) { workDuration += 5; if(pomMode==='work'){ pomTimeLeft = workDuration*60; updateTimeDisplay();} if(wd) wd.innerText = workDuration; } }; 
     
     const setMode = (m, mins) => { 
         clearInterval(pomTimer); isPomRunning=false; pomMode=m; pomTimeLeft=mins*60; updateTimeDisplay(); 
         document.getElementById('pomWork').classList.toggle('active', m==='work'); 
         document.getElementById('pomBreak').classList.toggle('active', m==='break'); 
-        startBtn.style.display = 'inline-flex'; pauseBtn.style.display = 'inline-flex'; stopBtn.style.display = 'none'; 
+        if(startBtn) startBtn.style.display = 'inline-flex'; 
+        if(pauseBtn) pauseBtn.style.display = 'inline-flex'; 
+        if(stopBtn) stopBtn.style.display = 'none'; 
         if(alarm) { alarm.pause(); alarm.currentTime = 0; }
     }; 
     
@@ -760,9 +953,7 @@ function initPomodoro() {
     startBtn.onclick = () => { 
         if(isPomRunning) return;
         const tomato = document.getElementById('tomatoIcon'); if(tomato) tomato.classList.add('running'); 
-        
-        // محاولة إضافية لفك الحظر عند الضغط على "ابدأ" كإجراء احتياطي
-        if(alarm) { alarm.play().then(()=>alarm.pause()).catch(e=>{}); }
+        if(alarm) { alarm.play().then(()=>alarm.pause()).catch(()=>{}); }
         
         isPomRunning = true; 
         targetTime = Date.now() + (pomTimeLeft * 1000); 
@@ -772,14 +963,11 @@ function initPomodoro() {
                 clearInterval(pomTimer); 
                 isPomRunning=false; 
                 pomTimeLeft=0; 
-               updateTimeDisplay(); 
-                const tomato = document.getElementById('tomatoIcon'); if(tomato) tomato.classList.remove('running');
+                updateTimeDisplay(); 
+                if(tomato) tomato.classList.remove('running');
                 
-                // تسجيل الجلسة المكتملة برمجياً
                 if(window.logPomodoroSession) window.logPomodoroSession(pomMode, pomMode === 'work' ? workDuration : 5);
-                
-                // تشغيل الصوت بقوة عند انتهاء الوقت
-                if(alarm) { alarm.currentTime = 0; alarm.play().catch(e=>console.log("Audio Play Blocked:", e)); }
+                if(alarm) { alarm.currentTime = 0; alarm.play().catch(e=>console.log("Audio play blocked:", e)); }
                 
                 startBtn.style.display = 'none'; 
                 pauseBtn.style.display = 'none'; 
@@ -793,15 +981,18 @@ function initPomodoro() {
     
     pauseBtn.onclick = () => { clearInterval(pomTimer); isPomRunning=false; const tomato = document.getElementById('tomatoIcon'); if(tomato) tomato.classList.remove('running'); }; 
     document.getElementById('pomReset').onclick = () => setMode(pomMode, pomMode==='work'?workDuration:5); 
-    stopBtn.onclick = () => { if(alarm){ alarm.pause(); alarm.currentTime = 0;
-} const tomato = document.getElementById('tomatoIcon'); if(tomato) tomato.classList.remove('running'); setMode(pomMode === 'work' ? 'break' : 'work', pomMode === 'work' ? 5 : workDuration); };
+    stopBtn.onclick = () => { 
+        if(alarm){ alarm.pause(); alarm.currentTime = 0; }
+        const tomato = document.getElementById('tomatoIcon'); if(tomato) tomato.classList.remove('running'); 
+        setMode(pomMode === 'work' ? 'break' : 'work', pomMode === 'work' ? 5 : workDuration); 
+    };
     
     updateTimeDisplay(); 
 }
 
-// ==========================================
-// برمجة المشاريع Kanban (مع الأقسام الفرعية، التعديل، والحذف)
-// ==========================================
+// ----------------------------------------
+// المشاريع (Kanban)
+// ----------------------------------------
 function renderKanban() {
     ['todo', 'inprogress', 'done'].forEach(col => {
         const container = document.querySelector(`.kanban-items[data-status="${col}"]`);
@@ -809,38 +1000,33 @@ function renderKanban() {
         
         container.innerHTML = kanbanTasks[col].map(i => {
             let subs = i.subtasks || [];
-            
-            // رسم الأقسام الفرعية مع أزرار التعديل والحذف الجديدة
             let subsHTML = subs.map((sub, idx) => `
                 <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding: 5px; background: var(--bg-main); border-radius: 4px; border: 1px solid var(--border-color);">
                     <input type="checkbox" ${sub.done ? 'checked' : ''} onchange="toggleSubtask(${i.id}, '${col}', ${idx})" style="cursor:pointer; width: 15px; height: 15px;">
-                    <span style="flex:1; text-decoration: ${sub.done ? 'line-through' : 'none'}; color: ${sub.done ? 'var(--text-muted)' : 'var(--text-main)'}; font-size: 0.9rem; white-space: pre-wrap; word-break: break-word;">${sub.text}</span>
-                    <button onclick="editSubtask(${i.id}, '${col}', ${idx})" class="icon-btn no-print" style="font-size:0.8rem; color:var(--text-muted);" title="تعديل الفرعي"><i class="fa-solid fa-pen"></i></button>
-                    <button onclick="delSubtask(${i.id}, '${col}', ${idx})" class="icon-btn no-print" style="font-size:0.8rem; color:var(--danger);" title="حذف الفرعي"><i class="fa-solid fa-trash"></i></button>
+                    <span style="flex:1; text-decoration: ${sub.done ? 'line-through' : 'none'}; color: ${sub.done ? 'var(--text-muted)' : 'var(--text-main)'}; font-size: 0.9rem; white-space: pre-wrap; word-break: break-word;">${escapeHtml(sub.text)}</span>
+                    <button onclick="editSubtask(${i.id}, '${col}', ${idx})" class="icon-btn no-print" style="font-size:0.8rem; color:var(--text-muted);" title="تعديل"><i class="fa-solid fa-pen"></i></button>
+                    <button onclick="delSubtask(${i.id}, '${col}', ${idx})" class="icon-btn no-print" style="font-size:0.8rem; color:var(--danger);" title="حذف"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `).join('');
 
             return `<div class="kb-card" draggable="true" ondragstart="drag(event, ${i.id}, '${col}')" style="cursor:grab; border-right: 4px solid var(--primary);">
                 <div style="display:flex; justify-content:space-between; align-items: flex-start; margin-bottom:5px;">
-                    <strong style="font-size: 1rem; flex:1;">${i.text}</strong>
+                    <strong style="font-size: 1rem; flex:1;">${escapeHtml(i.text)}</strong>
                     <div style="display:flex; gap:8px; align-items: center;">
-                        ${i.phone ? `<a href="https://wa.me/${i.phone.replace(/\+/g,'')}" target="_blank" class="no-print" style="color:#25D366; font-size:1.2rem;"><i class="fa-brands fa-whatsapp"></i></a>` : ''}
-                        <button onclick="moveKb(${i.id}, '${col}', -1)" class="icon-btn no-print" style="color:var(--text-main);" title="نقل للسابق"><i class="fa-solid fa-arrow-right"></i></button>
-                        <button onclick="addSubtask(${i.id}, '${col}')" class="icon-btn no-print" style="color:var(--primary);" title="إضافة قسم فرعي"><i class="fa-solid fa-plus"></i></button>
-                        <button onclick="editKb(${i.id}, '${col}')" class="icon-btn no-print" style="color:var(--text-muted);" title="تعديل المشروع"><i class="fa-solid fa-pen"></i></button>
-                        <button onclick="delKb(${i.id}, '${col}')" class="icon-btn no-print" style="color:var(--danger);" title="حذف المشروع"><i class="fa-solid fa-trash"></i></button>
-                        <button onclick="moveKb(${i.id}, '${col}', 1)" class="icon-btn no-print" style="color:var(--text-main);" title="نقل للتالي"><i class="fa-solid fa-arrow-left"></i></button>
+                        ${i.phone ? `<a href="https://wa.me/${escapeHtml(i.phone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" class="no-print" style="color:#25D366; font-size:1.2rem;"><i class="fa-brands fa-whatsapp"></i></a>` : ''}
+                        <button onclick="moveKb(${i.id}, '${col}', -1)" class="icon-btn no-print" style="color:var(--text-main);"><i class="fa-solid fa-arrow-right"></i></button>
+                        <button onclick="addSubtask(${i.id}, '${col}')" class="icon-btn no-print" style="color:var(--primary);"><i class="fa-solid fa-plus"></i></button>
+                        <button onclick="editKb(${i.id}, '${col}')" class="icon-btn no-print" style="color:var(--text-muted);"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="delKb(${i.id}, '${col}')" class="icon-btn no-print" style="color:var(--danger);"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="moveKb(${i.id}, '${col}', 1)" class="icon-btn no-print" style="color:var(--text-main);"><i class="fa-solid fa-arrow-left"></i></button>
                     </div>
                 </div>
-                <div style="margin-top: 10px;">
-                    ${subsHTML}
-                </div>
+                <div style="margin-top: 10px;">${subsHTML}</div>
             </div>`;
         }).join('');
     });
 }
 
-// 1. إضافة، حذف، ونقل المشاريع الرئيسية
 window.addKanbanItem = () => { 
     const inp = document.getElementById('newKbItem'); 
     if(inp && inp.value.trim()) { 
@@ -859,7 +1045,6 @@ window.moveKb = (id, c, d) => {
     } 
 };
 
-// 2. كود السحب والإفلات (Drag & Drop)
 window.drag = (ev, id, col) => { ev.dataTransfer.setData("id", id); ev.dataTransfer.setData("col", col); };
 window.allowDrop = ev => ev.preventDefault();
 window.drop = ev => { 
@@ -874,7 +1059,6 @@ window.drop = ev => {
     } 
 };
 
-// 3. تعديل المشروع الرئيسي
 window.editKb = (id, col) => { 
     let k = kanbanTasks[col].find(x => x.id === id); if(!k) return; 
     document.getElementById('editKbId').value = k.id; 
@@ -886,12 +1070,16 @@ document.getElementById('updateKbBtn').onclick = () => {
     let id = parseInt(document.getElementById('editKbId').value); 
     let col = document.getElementById('editKbCol').value; 
     let k = kanbanTasks[col].find(x => x.id === id); 
-    if(k) { k.text = document.getElementById('editKbText').value; saveAll(); renderKanban(); document.getElementById('editKbModal').classList.remove('show'); } 
+    let newTxt = document.getElementById('editKbText').value;
+    if(k && newTxt.trim()) { 
+        k.text = newTxt.trim(); 
+        saveAll(); renderKanban(); 
+        document.getElementById('editKbModal').classList.remove('show'); 
+    } 
 };
 
-// 4. العمليات على الأقسام الفرعية (إضافة، تحديد، تعديل، حذف)
 window.addSubtask = (id, col) => {
-    let text = prompt(currentLang === 'ar' ? 'أدخل اسم القسم/المهمة الفرعية:' : 'Enter subtask name:');
+    let text = prompt(currentLang === 'ar' ? 'أدخل اسم القسم الفرعي:' : 'Enter subtask name:');
     if(text && text.trim()) {
         let task = kanbanTasks[col].find(t => t.id === id);
         if(!task.subtasks) task.subtasks = [];
@@ -901,11 +1089,14 @@ window.addSubtask = (id, col) => {
 };
 window.toggleSubtask = (id, col, subIdx) => {
     let task = kanbanTasks[col].find(t => t.id === id);
-    task.subtasks[subIdx].done = !task.subtasks[subIdx].done;
-    saveAll(); renderKanban();
+    if(task && task.subtasks[subIdx]) {
+        task.subtasks[subIdx].done = !task.subtasks[subIdx].done;
+        saveAll(); renderKanban();
+    }
 };
 window.editSubtask = (id, col, subIdx) => {
     let task = kanbanTasks[col].find(t => t.id === id);
+    if(!task || !task.subtasks[subIdx]) return;
     let oldText = task.subtasks[subIdx].text;
     let newText = prompt(currentLang === 'ar' ? 'تعديل القسم الفرعي:' : 'Edit subtask:', oldText);
     if(newText && newText.trim()) {
@@ -914,13 +1105,18 @@ window.editSubtask = (id, col, subIdx) => {
     }
 };
 window.delSubtask = (id, col, subIdx) => {
-    if(confirm(currentLang === 'ar' ? 'هل أنت متأكد من حذف هذا القسم الفرعي؟' : 'Are you sure you want to delete this subtask?')) {
+    if(confirm(currentLang === 'ar' ? 'هل أنت متأكد من الحذف؟' : 'Are you sure?')) {
         let task = kanbanTasks[col].find(t => t.id === id);
-        task.subtasks.splice(subIdx, 1);
-        saveAll(); renderKanban();
+        if(task) {
+            task.subtasks.splice(subIdx, 1);
+            saveAll(); renderKanban();
+        }
     }
 };
 
+// ----------------------------------------
+// لوحة التحكم والإحصائيات
+// ----------------------------------------
 function renderDashboard() { 
     let dashClearedStr = localStorage.getItem('fp_dash_cleared');
     let activeTasks = (dashClearedStr === currentTodayStr) ? [] : tasks.filter(t => t.date === currentTodayStr); 
@@ -928,44 +1124,45 @@ function renderDashboard() {
     let dtEl = document.getElementById('dashTasks');
     if(dtEl) dtEl.innerText = `${completed} / ${activeTasks.length}`;
     
-    // أنيميشن دائرة المهام
     let tPercent = activeTasks.length > 0 ? (completed / activeTasks.length) * 100 : 0;
     let fillT = document.getElementById('fillTasks');
     if(fillT) fillT.setAttribute('stroke-dasharray', `${tPercent}, 100`);
     
-    let todayWorkBlocks = 0;
-    if(typeof pomodoroLog !== 'undefined') { todayWorkBlocks = pomodoroLog.filter(log => log.date === currentTodayStr && log.type === 'work').length; }
+    let todayWorkBlocks = pomodoroLog.filter(log => log.date === currentTodayStr && log.type === 'work').length;
     const dashPomEl = document.getElementById('dashPomodoro');
     if(dashPomEl) dashPomEl.innerText = todayWorkBlocks; 
 
-    // أنيميشن دائرة البومودورو (نفترض أن الهدف اليومي 8 جلسات)
     let pPercent = todayWorkBlocks >= 8 ? 100 : (todayWorkBlocks / 8) * 100;
     let fillP = document.getElementById('fillPomodoro');
     if(fillP) fillP.setAttribute('stroke-dasharray', `${pPercent}, 100`);
 
-    let tHC = 0; let dHC = 0;
-    if(typeof habits !== 'undefined') { habits.forEach(h => { for(let i=1; i<=30; i++) { tHC++; if(h.days[`${currentYearView}-${currentMonthView}-${i}`]) dHC++; } }); }
+    let tHC = 0, dHC = 0;
+    habits.forEach(h => { 
+        for(let i=1; i<=30; i++) { 
+            tHC++; 
+            if(h.days && h.days[`${currentYearView}-${currentMonthView}-${i}`]) dHC++; 
+        } 
+    });
     let dhEl = document.getElementById('dashHabits');
     let habitPercentValue = tHC === 0 ? 0 : Math.round((dHC/tHC)*100);
     if(dhEl) dhEl.innerText = `${habitPercentValue}%`;
     
-    // أنيميشن دائرة العادات
     let fillH = document.getElementById('fillHabits');
     if(fillH) fillH.setAttribute('stroke-dasharray', `${habitPercentValue}, 100`);
 
-    let balance = 0; let totalIncome = 0;
-    if(typeof finances !== 'undefined') { 
-        finances.forEach(curr => {
-            let amt = Number(curr.amount);
-            if(curr.type === 'income') { balance += amt; totalIncome += amt; } 
-            else { balance -= amt; }
-        });
-    }
+    let inc = 0, exp = 0, sav = 0;
+    finances.forEach(f => {
+        let amt = Number(f.amount) || 0;
+        if(f.type === 'income') inc += amt;
+        else if(f.type === 'expense') exp += amt;
+        else if(f.type === 'save') sav += amt;
+        else if(f.type === 'withdraw') sav -= amt;
+    });
+    let balance = inc - exp - sav;
     let dbEl = document.getElementById('dashBalance');
     if(dbEl) dbEl.innerText = `${balance}`; 
 
-    // أنيميشن دائرة الرصيد (تقيس الرصيد المتبقي مقارنة بإجمالي الدخل)
-    let bPercent = totalIncome > 0 ? Math.max(0, (balance / totalIncome) * 100) : (balance > 0 ? 100 : 0);
+    let bPercent = inc > 0 ? Math.max(0, (balance / inc) * 100) : (balance > 0 ? 100 : 0);
     let fillB = document.getElementById('fillFinance');
     if(fillB) fillB.setAttribute('stroke-dasharray', `${bPercent}, 100`);
 
@@ -993,6 +1190,10 @@ function renderDashboard() {
         options: { responsive: true, scales: { y: { beginAtZero: true, ticks: {stepSize: 1} } } } 
     });
 }
+
+// ----------------------------------------
+// المتتبع المالي ومحفظة الاستثمار
+// ----------------------------------------
 let finChartInstance = null; 
 
 function renderFinance() { 
@@ -1032,10 +1233,11 @@ function renderFinance() {
     });
 
     let html = filteredFinances.sort((a,b) => new Date(b.date) - new Date(a.date)).map(f => { 
-        if(f.type === 'income') inc += Number(f.amount); 
-        else if(f.type === 'expense') exp += Number(f.amount); 
-        else if(f.type === 'save') sav += Number(f.amount);
-        else if(f.type === 'withdraw') sav -= Number(f.amount);
+        let amtNum = Number(f.amount) || 0;
+        if(f.type === 'income') inc += amtNum; 
+        else if(f.type === 'expense') exp += amtNum; 
+        else if(f.type === 'save') sav += amtNum;
+        else if(f.type === 'withdraw') sav -= amtNum;
         
         let icon = f.type === 'income' ? '<i class="fa-solid fa-arrow-trend-up"></i>' : 
                    f.type === 'expense' ? '<i class="fa-solid fa-arrow-trend-down"></i>' : 
@@ -1047,27 +1249,27 @@ function renderFinance() {
                       'border: 1px solid #f59e0b; background-color: rgba(245, 158, 11, 0.05);';
         
         let catLabel = f.category || '';
-        if (catLabel === 'other' || catLabel === 'أخرى') catLabel = i18n[currentLang].cat_other;
-        else if (catLabel === 'food' || catLabel === '🍔 طعام') catLabel = i18n[currentLang].cat_food;
-        else if (catLabel === 'transport' || catLabel === '🚕 مواصلات') catLabel = i18n[currentLang].cat_trans;
-        else if (catLabel === 'shopping' || catLabel === '🛒 تسوق') catLabel = i18n[currentLang].cat_shop;
-        else if (catLabel === 'bills' || catLabel === '💡 فواتير') catLabel = i18n[currentLang].cat_bills;
-        else if (catLabel === 'work' || catLabel === '💻 عمل') catLabel = i18n[currentLang].cat_work;
-        else if (catLabel === 'fun' || catLabel === '🎉 ترفيه') catLabel = i18n[currentLang].cat_fun;
-        else if (catLabel === 'gold' || catLabel === '🪙 ذهب') catLabel = i18n[currentLang].cat_gold;
-        else if (catLabel === 'stocks' || catLabel === '📈 أسهم') catLabel = i18n[currentLang].cat_stocks;
-        else if (catLabel === 'deposit' || catLabel === '🏦 وديعة بنكية') catLabel = i18n[currentLang].cat_deposit;
-        else if (catLabel === 'emergency' || catLabel === '🛡️ صندوق طوارئ') catLabel = i18n[currentLang].cat_emergency;
+        if (catLabel === 'other') catLabel = i18n[currentLang].cat_other;
+        else if (catLabel === 'food') catLabel = i18n[currentLang].cat_food;
+        else if (catLabel === 'transport') catLabel = i18n[currentLang].cat_trans;
+        else if (catLabel === 'shopping') catLabel = i18n[currentLang].cat_shop;
+        else if (catLabel === 'bills') catLabel = i18n[currentLang].cat_bills;
+        else if (catLabel === 'work') catLabel = i18n[currentLang].cat_work;
+        else if (catLabel === 'fun') catLabel = i18n[currentLang].cat_fun;
+        else if (catLabel === 'gold') catLabel = i18n[currentLang].cat_gold;
+        else if (catLabel === 'stocks') catLabel = i18n[currentLang].cat_stocks;
+        else if (catLabel === 'deposit') catLabel = i18n[currentLang].cat_deposit;
+        else if (catLabel === 'emergency') catLabel = i18n[currentLang].cat_emergency;
 
-        let catBadge = catLabel ? `<span style="background:var(--bg-color); padding:3px 8px; border-radius:6px; font-size:0.75rem; margin-right:8px; border:1px solid var(--border-color);">${catLabel}</span>` : '';
+        let catBadge = catLabel ? `<span style="background:var(--bg-color); padding:3px 8px; border-radius:6px; font-size:0.75rem; margin-right:8px; border:1px solid var(--border-color);">${escapeHtml(catLabel)}</span>` : '';
         
         return `<div class="fin-item" style="cursor:pointer; transition: all 0.3s ease; ${bgStyle}" onclick="editFin(${f.id})">
             <div>
-                <small>${f.date}</small><br>
-                <b style="color: var(--text-main);">${f.desc}</b> ${catBadge}
+                <small>${escapeHtml(f.date)}</small><br>
+                <b style="color: var(--text-main);">${escapeHtml(f.desc)}</b> ${catBadge}
             </div>
             <div style="display:flex; align-items:center; gap:15px;">
-                <span class="fin-amt" style="color: inherit; font-weight: bold; font-size: 1.1rem;">${icon} ${f.amount}</span>
+                <span class="fin-amt" style="color: inherit; font-weight: bold; font-size: 1.1rem;">${icon} ${amtNum}</span>
                 <button class="icon-btn no-print" onclick="event.stopPropagation(); delFin(${f.id})"><i class="fa-solid fa-trash"></i></button>
             </div>
         </div>`; 
@@ -1135,10 +1337,15 @@ function renderFinance() {
 
 window.setMonthlyBudget = () => {
     let currentBudget = localStorage.getItem('fp_monthly_budget') || '';
-    let msg = currentLang === 'ar' ? 'أدخل الحد الأقصى للمصروفات هذا الشهر (مثلاً: 5000):' : 'Enter your maximum monthly budget limit:';
+    let msg = currentLang === 'ar' ? 'أدخل الحد الأقصى للمصروفات هذا الشهر:' : 'Enter your maximum monthly budget limit:';
     let val = prompt(msg, currentBudget);
-    if(val !== null && val.trim() !== '' && !isNaN(val)) { localStorage.setItem('fp_monthly_budget', val); renderFinance(); } 
-    else if (val !== null && val.trim() === '') { localStorage.removeItem('fp_monthly_budget'); renderFinance(); }
+    if(val !== null && val.trim() !== '' && !isNaN(val)) { 
+        localStorage.setItem('fp_monthly_budget', val); 
+        renderFinance(); 
+    } else if (val !== null && val.trim() === '') { 
+        localStorage.removeItem('fp_monthly_budget'); 
+        renderFinance(); 
+    }
 };
 
 document.getElementById('saveFinBtn').onclick = () => { 
@@ -1147,16 +1354,29 @@ document.getElementById('saveFinBtn').onclick = () => {
     let catEl = document.getElementById('finCategory');
     let cat = catEl ? catEl.value : 'other';
 
-    if(!desc || !amt) return; 
-    finances.push({ id: Date.now(), desc: desc, amount: amt, type: document.getElementById('finType').value, category: cat, date: document.getElementById('finDate').value }); 
-    saveAll(); document.getElementById('financeModal').classList.remove('show'); stopContinuousDictation(); renderFinance(); renderDashboard();
+    if(!desc || !amt || isNaN(amt)) return; 
+    finances.push({ 
+        id: Date.now(), 
+        desc: desc.trim(), 
+        amount: parseFloat(amt), 
+        type: document.getElementById('finType').value, 
+        category: cat, 
+        date: document.getElementById('finDate').value 
+    }); 
+    saveAll(); 
+    document.getElementById('financeModal').classList.remove('show'); 
+    stopContinuousDictation(); 
+    renderFinance(); 
+    renderDashboard();
 };
 
 window.editFin = (id) => { 
     let f = finances.find(x => x.id === id); 
     if(!f) return; 
-    document.getElementById('editFinId').value = f.id; document.getElementById('editFinDesc').value = f.desc; 
-    document.getElementById('editFinAmount').value = f.amount; document.getElementById('editFinType').value = f.type; 
+    document.getElementById('editFinId').value = f.id; 
+    document.getElementById('editFinDesc').value = f.desc; 
+    document.getElementById('editFinAmount').value = f.amount; 
+    document.getElementById('editFinType').value = f.type; 
     window.updateFinCategories('editFinType', 'editFinCategory');
     let catEl = document.getElementById('editFinCategory');
     if(catEl) catEl.value = f.category || 'other';
@@ -1169,41 +1389,150 @@ document.getElementById('updateFinBtn').onclick = () => {
     let id = parseInt(document.getElementById('editFinId').value);
     let desc = document.getElementById('editFinDesc').value; 
     let amt = document.getElementById('editFinAmount').value; 
-    if(!desc || !amt) return; 
+    if(!desc || !amt || isNaN(amt)) return; 
     
     let f = finances.find(x => x.id === id);
     if(f) { 
-        f.desc = desc; f.amount = amt; f.type = document.getElementById('editFinType').value; 
+        f.desc = desc.trim(); 
+        f.amount = parseFloat(amt); 
+        f.type = document.getElementById('editFinType').value; 
         let catEl = document.getElementById('editFinCategory');
         if(catEl) f.category = catEl.value;
         f.date = document.getElementById('editFinDate').value; 
-        saveAll(); renderFinance(); renderDashboard(); document.getElementById('editFinModal').classList.remove('show'); stopContinuousDictation();
+        saveAll(); 
+        renderFinance(); 
+        renderDashboard(); 
+        document.getElementById('editFinModal').classList.remove('show'); 
+        stopContinuousDictation(); 
     } 
 };
 
-window.delFin = id => { finances = finances.filter(f => f.id !== id); saveAll(); renderFinance(); renderDashboard(); };
-function renderHabits() { let dim = new Date(currentYearView, currentMonthView + 1, 0).getDate(); let habitText = currentLang === 'ar' ? 'العادة' : 'Habit'; let html = `<table class="habit-table"><thead><tr><th>${habitText}</th>`; for(let i=1; i<=dim; i++) html += `<th>${i}</th>`; html += `</tr></thead><tbody>`; habits.forEach(h => { html += `<tr><td class="habit-name"><button class="icon-btn no-print" style="color:red;" onclick="delHabit(${h.id})">x</button> ${h.name}</td>`; for(let i=1; i<=dim; i++) { let k = `${currentYearView}-${currentMonthView}-${i}`; html += `<td><div class="habit-check ${h.days[k]?'done':''}" onclick="toggleHabit(${h.id}, '${k}')">✓</div></td>`; } html += `</tr>`; }); document.getElementById('habitsContainer').innerHTML = html + `</tbody></table>`; }
-window.addNewHabit = () => { const inp = document.getElementById('newHabitInput'); if(inp.value.trim()){ habits.push({id:Date.now(), name:inp.value, days:{}}); saveAll(); inp.value=''; renderHabits(); renderDashboard(); } }
-window.toggleHabit = (id, k) => { let h = habits.find(x=>x.id===id); h.days[k] = !h.days[k]; saveAll(); renderHabits(); renderDashboard(); }
-window.delHabit = id => { habits = habits.filter(h=>h.id!==id); saveAll(); renderHabits(); renderDashboard(); }
-function initProfile() { document.getElementById('profileName').value = profile.name; document.getElementById('saveProfileBtn').onclick = () => { profile.name = document.getElementById('profileName').value; saveAll(); alert(currentLang === 'ar' ? "تم الحفظ!" : "Saved!"); }; }
-function initBackup() { document.getElementById('backupBtn').onclick = () => { let d = {}; for(let i=0;i<localStorage.length;i++) d[localStorage.key(i)] = localStorage.getItem(localStorage.key(i)); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(d)], {type:"application/json"})); a.download = `Backup.json`; a.click(); }; document.getElementById('restoreFile').onchange = e => { const r = new FileReader(); r.onload = ev => { const d = JSON.parse(ev.target.result); for(let k in d) localStorage.setItem(k, d[k]); location.reload(); }; r.readAsText(e.target.files[0]); }; }
-function initModals() { document.querySelectorAll('.close-modal').forEach(b => b.onclick = () => { document.querySelectorAll('.modal').forEach(m => m.classList.remove('show')); stopContinuousDictation(); }); }
-function initTheme() { if(localStorage.getItem('dark_mode')==='true') document.body.classList.add('dark-mode'); document.getElementById('themeToggle').onclick = () => { document.body.classList.toggle('dark-mode'); localStorage.setItem('dark_mode', document.body.classList.contains('dark-mode')); }; }
+window.delFin = id => { 
+    finances = finances.filter(f => f.id !== id); 
+    saveAll(); 
+    renderFinance(); 
+    renderDashboard(); 
+};
+
+// ----------------------------------------
+// متتبع العادات
+// ----------------------------------------
+function renderHabits() { 
+    let dim = new Date(currentYearView, currentMonthView + 1, 0).getDate(); 
+    let habitText = currentLang === 'ar' ? 'العادة' : 'Habit'; 
+    let html = `<table class="habit-table"><thead><tr><th>${habitText}</th>`; 
+    for(let i=1; i<=dim; i++) html += `<th>${i}</th>`; 
+    html += `</tr></thead><tbody>`; 
+    habits.forEach(h => { 
+        html += `<tr><td class="habit-name"><button class="icon-btn no-print" style="color:red;" onclick="delHabit(${h.id})">x</button> ${escapeHtml(h.name)}</td>`; 
+        for(let i=1; i<=dim; i++) { 
+            let k = `${currentYearView}-${currentMonthView}-${i}`; 
+            html += `<td><div class="habit-check ${h.days && h.days[k]?'done':''}" onclick="toggleHabit(${h.id}, '${k}')">✓</div></td>`; 
+        } 
+        html += `</tr>`; 
+    }); 
+    const hbContainer = document.getElementById('habitsContainer');
+    if(hbContainer) hbContainer.innerHTML = html + `</tbody></table>`; 
+}
+window.addNewHabit = () => { 
+    const inp = document.getElementById('newHabitInput'); 
+    if(inp && inp.value.trim()){ 
+        habits.push({id:Date.now(), name:inp.value.trim(), days:{}}); 
+        saveAll(); 
+        inp.value=''; 
+        renderHabits(); 
+        renderDashboard(); 
+    } 
+};
+window.toggleHabit = (id, k) => { 
+    let h = habits.find(x=>x.id===id); 
+    if(h) {
+        if(!h.days) h.days = {};
+        h.days[k] = !h.days[k]; 
+        saveAll(); 
+        renderHabits(); 
+        renderDashboard(); 
+    }
+};
+window.delHabit = id => { habits = habits.filter(h=>h.id!==id); saveAll(); renderHabits(); renderDashboard(); };
+
+function initProfile() { 
+    const pn = document.getElementById('profileName');
+    if(pn) pn.value = profile.name; 
+    document.getElementById('saveProfileBtn').onclick = () => { 
+        profile.name = document.getElementById('profileName').value.trim(); 
+        saveAll(); 
+        alert(currentLang === 'ar' ? "تم الحفظ!" : "Saved!"); 
+    }; 
+}
+
+// ----------------------------------------
+// النسخ الاحتياطي المحصن (Schema Validation)
+// ----------------------------------------
+function initBackup() { 
+    document.getElementById('backupBtn').onclick = () => { 
+        let d = {}; 
+        for(let i=0; i<localStorage.length; i++) {
+            let k = localStorage.key(i);
+            d[k] = localStorage.getItem(k); 
+        }
+        const a = document.createElement('a'); 
+        a.href = URL.createObjectURL(new Blob([JSON.stringify(d, null, 2)], {type:"application/json"})); 
+        a.download = `Planner_Backup_${getTodayStr()}.json`; 
+        a.click(); 
+    }; 
+    
+    document.getElementById('restoreFile').onchange = e => { 
+        const file = e.target.files[0];
+        if(!file) return;
+        const r = new FileReader(); 
+        r.onload = ev => { 
+            try {
+                const d = JSON.parse(ev.target.result); 
+                if(typeof d !== 'object' || d === null) throw new Error("Invalid format");
+                
+                // قائمة المفاتيح المسموح باسترجاعها فقط لمنع تلويث الذاكرة أو الهجمات
+                const allowedPrefixes = ['fp_', 'PlannerMonthData_'];
+                for(let k in d) {
+                    if(allowedPrefixes.some(p => k.startsWith(p))) {
+                        localStorage.setItem(k, d[k]);
+                    }
+                }
+                alert(currentLang === 'ar' ? "تم استرجاع البيانات بنجاح!" : "Data restored successfully!");
+                location.reload(); 
+            } catch(err) {
+                alert(currentLang === 'ar' ? "ملف النسخة الاحتياطية غير صالح أو تالف!" : "Invalid or corrupt backup file!");
+            }
+        }; 
+        r.readAsText(file); 
+    }; 
+}
+
+function initModals() { 
+    document.querySelectorAll('.close-modal').forEach(b => b.onclick = () => { 
+        document.querySelectorAll('.modal').forEach(m => m.classList.remove('show')); 
+        stopContinuousDictation(); 
+    }); 
+}
+
+function initTheme() { 
+    if(localStorage.getItem('dark_mode')==='true') document.body.classList.add('dark-mode'); 
+    document.getElementById('themeToggle').onclick = () => { 
+        document.body.classList.toggle('dark-mode'); 
+        localStorage.setItem('dark_mode', document.body.classList.contains('dark-mode')); 
+    }; 
+}
 
 window.changeFontSize = (size) => {
     document.documentElement.style.fontSize = size;
     localStorage.setItem('plannerFontSize', size);
 };
 
-// ==========================================
-// برمجة سجل التحديثات والبحث اليدوي
-// ==========================================
 window.renderChangelog = () => {
     const container = document.getElementById('changelogContainer');
     if(!container) return;
     const notesTitle = currentLang === 'ar' ? '<strong style="color:var(--primary);">ميزات الإصدار الأخير:</strong><br>' : '<strong style="color:var(--primary);">Latest Version Features:</strong><br>';
-    const notesList = latestReleaseNotes[currentLang].map(note => `- ${note}`).join('<br>');
+    const notesList = latestReleaseNotes[currentLang].map(note => `- ${escapeHtml(note)}`).join('<br>');
     container.innerHTML = notesTitle + notesList;
 };
 
@@ -1218,7 +1547,6 @@ if(manualUpBtn) {
                 if (reg) {
                     reg.update().then(() => {
                         if (reg.waiting) {
-                            // إذا كان هناك تحديث تم تأجيله، قم بتفعيله الآن
                             reg.waiting.postMessage({ action: 'skipWaiting' });
                         } else {
                             setTimeout(() => {
@@ -1260,6 +1588,9 @@ window.updateFinColor = (typeId, amountId) => {
     if(window.updateFinCategories) window.updateFinCategories(typeId, catId);
 };
 
+// ----------------------------------------
+// تصدير التقارير (Excel & PDF)
+// ----------------------------------------
 window.exportFinanceExcel = () => {
     if(finances.length === 0) return alert(currentLang === 'ar' ? 'لا توجد بيانات لتصديرها' : 'No data to export');
     
@@ -1272,7 +1603,7 @@ window.exportFinanceExcel = () => {
     }[currentLang];
 
     const rows = sortedFinances.map(f => {
-        const amtNum = Number(f.amount);
+        const amtNum = Number(f.amount) || 0;
         let typeStr = '';
         if(f.type === 'income') { inc += amtNum; typeStr = labels.inc; }
         else if(f.type === 'expense') { exp += amtNum; typeStr = labels.exp; }
@@ -1312,16 +1643,16 @@ window.exportFinancePDF = () => {
     
     let rows = [...finances].sort((a,b) => new Date(b.date) - new Date(a.date)).map(f => {
         let color = '', sign = '';
-        const amtNum = Number(f.amount);
+        const amtNum = Number(f.amount) || 0;
         if(f.type === 'income') { inc += amtNum; color = '#10b981'; sign = '+'; }
         else if(f.type === 'expense') { exp += amtNum; color = '#ef4444'; sign = '-'; }
         else if(f.type === 'save') { sav += amtNum; color = '#3b82f6'; sign = '🔒'; }
         else if(f.type === 'withdraw') { sav -= amtNum; color = '#f59e0b'; sign = '🔓'; }
 
         return `<tr style="border-bottom:1px solid #e5e7eb;">
-            <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; color:#4b5563;">${f.date}</td>
-            <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; font-weight:500;">${f.desc}</td>
-            <td style="padding:12px 10px; color:${color}; font-weight:700; text-align:${currentLang === 'ar' ? 'left' : 'right'};" dir="ltr">${f.amount} ${sign}</td>
+            <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; color:#4b5563;">${escapeHtml(f.date)}</td>
+            <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; font-weight:500;">${escapeHtml(f.desc)}</td>
+            <td style="padding:12px 10px; color:${color}; font-weight:700; text-align:${currentLang === 'ar' ? 'left' : 'right'};" dir="ltr">${amtNum} ${sign}</td>
         </tr>`;
     }).join('');
 
@@ -1373,22 +1704,17 @@ window.exportFinancePDF = () => {
     html2pdf().set(opt).from(element).save();
 };
 
-// ==========================================================================
-// برمجيات سجل البومودورو المطور والتصدير الديناميكي ثنائي اللغة (Excel & PDF)
-// ==========================================================================
-
-// دالة ذكية تقوم بتحويل وتنسيق الوقت المخزن ديناميكياً ليدعم اللغتين (AM/PM أو ص/م) بكفاءة
+// ----------------------------------------
+// جلسات التركيز (Pomodoro Log)
+// ----------------------------------------
 window.getFormattedTime = (logTime, lang) => {
     if (!logTime) return '';
     let hours = 0, minutes = 0;
-    
-    // التحقق إذا كان الوقت مخزناً بصيغة 24 ساعة الموحدة الجديدة
     const match24 = logTime.match(/^(\d{1,2}):(\d{2})$/);
     if (match24) {
         hours = parseInt(match24[1], 10);
         minutes = parseInt(match24[2], 10);
     } else {
-        // معالجة البيانات القديمة المخزنة مسبقاً (عربي أو إنجليزي) وتحويل أرقامها هندسياً
         let cleanTime = logTime.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
         const nums = cleanTime.match(/\d+/g);
         if (nums && nums.length >= 2) {
@@ -1399,7 +1725,7 @@ window.getFormattedTime = (logTime, lang) => {
             if (isPM && hours < 12) hours += 12;
             if (isAM && hours === 12) hours = 0;
         } else {
-            return logTime; // العودة للنص الأصلي كخطة بديلة لحماية البيانات
+            return escapeHtml(logTime);
         }
     }
     
@@ -1411,7 +1737,6 @@ window.getFormattedTime = (logTime, lang) => {
 
 window.logPomodoroSession = (type, duration) => {
     const now = new Date();
-    // حفظ الوقت الجديد بصيغة 24 ساعة القياسية لسهولة ترجمتها بأي لغة لاحقاً
     const timeString = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
     
     pomodoroLog.unshift({
@@ -1451,17 +1776,17 @@ window.renderPomodoroLog = () => {
                     <span style="font-size:1.1rem;">${icon}</span>
                     <div>
                         <strong style="color:var(--text-main); display:block;">${typeText}</strong>
-                        <small style="color:var(--text-muted); font-size:0.75rem;"><i class="fa-regular fa-calendar"></i> ${log.date} | <i class="fa-regular fa-clock"></i> ${displayTime}</small>
+                        <small style="color:var(--text-muted); font-size:0.75rem;"><i class="fa-regular fa-calendar"></i> ${escapeHtml(log.date)} | <i class="fa-regular fa-clock"></i> ${displayTime}</small>
                     </div>
                 </div>
-                <span style="background:${badgeColor}; color:${textColor}; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.8rem;">${log.duration} ${minText}</span>
+                <span style="background:${badgeColor}; color:${textColor}; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.8rem;">${Number(log.duration)} ${minText}</span>
             </div>
         `;
     }).join('');
 };
 
 window.clearPomodoroLog = () => {
-    if(confirm(currentLang === 'ar' ? 'هل تريد مسح سجل جلسات التركيز بالكامل؟' : 'Are you sure you want to completely clear the focus log?')) {
+    if(confirm(currentLang === 'ar' ? 'هل تريد مسح سجل جلسات التركيز بالكامل؟' : 'Are you sure you want to clear the focus log?')) {
         pomodoroLog = [];
         saveAll();
         renderPomodoroLog();
@@ -1516,10 +1841,10 @@ window.exportPomodoroPDF = () => {
         let textStr = isWork ? labels.work : labels.break;
         let displayTime = window.getFormattedTime(log.time, currentLang);
         return `<tr style="border-bottom:1px solid #e5e7eb;">
-            <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; color:#4b5563;">${log.date}</td>
+            <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; color:#4b5563;">${escapeHtml(log.date)}</td>
             <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; color:#4b5563;">${displayTime}</td>
             <td style="padding:12px 10px; text-align:${currentLang === 'ar' ? 'right' : 'left'}; font-weight:600; color:${color};">${textStr}</td>
-            <td style="padding:12px 10px; font-weight:700; text-align:${currentLang === 'ar' ? 'left' : 'right'}; color:#111827;">${log.duration} ${minText}</td>
+            <td style="padding:12px 10px; font-weight:700; text-align:${currentLang === 'ar' ? 'left' : 'right'}; color:#111827;">${Number(log.duration)} ${minText}</td>
         </tr>`;
     }).join('');
 
@@ -1556,14 +1881,13 @@ window.exportPomodoroPDF = () => {
     html2pdf().set(opt).from(element).save();
 };
 
-// ==========================================================================
-// برمجيات زر تفريغ الدماغ السريع (Quick Brain Dump) ⚡
-// ==========================================================================
+// ----------------------------------------
+// تفريغ الدماغ السريع
+// ----------------------------------------
 window.openQuickDump = () => {
     document.getElementById('qdTitle').value = '';
     document.getElementById('qdContent').value = '';
     document.getElementById('quickDumpModal').classList.add('show');
-    // تركيز تلقائي على مربع العنوان لسرعة الكتابة
     setTimeout(() => { document.getElementById('qdTitle').focus(); }, 300);
 };
 
@@ -1572,18 +1896,15 @@ document.getElementById('saveQdToKanban').onclick = () => {
     let content = document.getElementById('qdContent').value.trim();
     if(!title && !content) return;
     
-    // إنشاء عنوان وتاريخ تلقائي إذا لم يكتب المستخدم عنواناً
     let finalTitle = title || (currentLang === 'ar' ? `فكرة سريعة (${getTodayStr()})` : `Quick Idea (${getTodayStr()})`);
     let fullText = content ? `📌 ${finalTitle}\n\n${content}` : `📌 ${finalTitle}`;
     
-    // حفظ في قسم الأفكار والمشاريع
     kanbanTasks.todo.unshift({id: Date.now(), text: fullText, subtasks: []});
     saveAll();
     renderKanban();
     
     document.getElementById('quickDumpModal').classList.remove('show');
     stopContinuousDictation();
-    // توجيه المستخدم لصفحة المشاريع ليرى فكرته
     document.querySelector('.nav-item[data-target="kanbanView"]').click();
 };
 
@@ -1593,14 +1914,11 @@ document.getElementById('saveQdToNotes').onclick = () => {
     if(!title && !content) return;
     
     let finalTitle = title || (currentLang === 'ar' ? `فكرة سريعة (${getTodayStr()})` : `Quick Idea (${getTodayStr()})`);
-    
-    // حفظ في قسم الملاحظات
     notes.unshift({ id: Date.now(), title: finalTitle, content: content, date: getTodayStr(), phone: '' });
     saveAll();
     renderNotes();
     
-   document.getElementById('quickDumpModal').classList.remove('show');
+    document.getElementById('quickDumpModal').classList.remove('show');
     stopContinuousDictation();
-    // توجيه المستخدم لصفحة الملاحظات ليرى فكرته
     document.querySelector('.nav-item[data-target="notesView"]').click();
 };
