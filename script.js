@@ -1,20 +1,20 @@
 // 1. سجل التحديثات
 const latestReleaseNotes = {
     ar: [
-        "🔍 بحث فوري في الملاحظات والمراجع.",
-        "🗂️ عرض المراجع حسب التصنيف أو الأحدث أولاً، مع فلتر تصنيف مخصص.",
-        "✏️ إمكانية تعديل اسم أي عادة بعد إضافتها.",
-        "↕️ إعادة ترتيب العادات بالسحب والإفلات أو بأسهم فوق/تحت."
+        "📌 دبوس تثبيت في الملاحظات والمشاريع، مع ترتيب حر بالسحب والإفلات أو الأسهم.",
+        "📖 كروت الملاحظات والمراجع بقت أصغر مع زر \"اقرأ المزيد / عرض أقل\".",
+        "🔔 صفحة \"التحديثات\" الجديدة بتجمع كل تحديثات التطبيق في مكان واحد.",
+        "📄 تصدير خطة الشهر كملف PDF بمقاس A4، بدعم كامل للعربي والإنجليزي."
     ],
     en: [
-        "🔍 Instant search in Notes and Library.",
-        "🗂️ View references by category or newest-first, with a category filter.",
-        "✏️ Edit any habit's name after adding it.",
-        "↕️ Reorder habits via drag-and-drop or up/down arrows."
+        "📌 Pin notes and projects to the top, with free reordering via drag-and-drop or arrows.",
+        "📖 Notes and reference cards are now compact with a \"Read more / Show less\" toggle.",
+        "🔔 New \"Updates\" page collects the app's full update history in one place.",
+        "📄 Export the monthly plan as an A4 PDF, with full Arabic and English support."
     ]
 };
 
-const APP_VERSION = 'v33';
+const APP_VERSION = 'v34';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
@@ -23,6 +23,12 @@ function checkAndShowChangelog() {
             if(content) {
                 content.innerHTML = latestReleaseNotes[currentLang].map(n => `✅ ${escapeHtml(n)}`).join('<br><br>');
                 document.getElementById('changelogModal').classList.add('show');
+            }
+            // إضافة هذا الإصدار لسجل التحديثات الدائم (لو لسه مش مضاف)
+            if (!updateLog.some(u => u.version === APP_VERSION)) {
+                updateLog.unshift({ version: APP_VERSION, date: getTodayStr(), ar: latestReleaseNotes.ar, en: latestReleaseNotes.en });
+                saveAll();
+                if (typeof renderUpdatesLog === 'function') renderUpdatesLog();
             }
             localStorage.setItem('fp_version', APP_VERSION);
         }, 1500); 
@@ -142,6 +148,30 @@ function linkify(text) {
 }
 
 // ----------------------------------------
+// نظام "اقرأ المزيد / عرض أقل" لكروت الملاحظات والمراجع
+// ----------------------------------------
+window.toggleCardExpand = (id) => {
+    const el = document.getElementById('content-' + id);
+    const btn = document.getElementById('btn-' + id);
+    if (!el || !btn) return;
+    const collapsed = el.classList.toggle('card-content-collapsed');
+    btn.innerHTML = collapsed 
+        ? (currentLang === 'ar' ? 'اقرأ المزيد <i class="fa-solid fa-chevron-down"></i>' : 'Read more <i class="fa-solid fa-chevron-down"></i>')
+        : (currentLang === 'ar' ? 'عرض أقل <i class="fa-solid fa-chevron-up"></i>' : 'Show less <i class="fa-solid fa-chevron-up"></i>');
+};
+// بعد الرندر، بيخفي زرار "اقرأ المزيد" تلقائياً لو المحتوى أصلاً بيتسع في المساحة المصغّرة من غير قص
+function setupReadMoreButtons(container) {
+    if (!container) return;
+    requestAnimationFrame(() => {
+        container.querySelectorAll('.card-content-collapsed').forEach(el => {
+            const btn = document.getElementById('btn-' + el.id.replace('content-', ''));
+            if (!btn) return;
+            btn.style.display = (el.scrollHeight > el.clientHeight + 2) ? '' : 'none';
+        });
+    });
+}
+
+// ----------------------------------------
 // الترجمة واللغات
 // ----------------------------------------
 const i18n = {
@@ -178,7 +208,8 @@ const i18n = {
         cat_other: "أخرى", cat_food: "🍔 طعام", cat_trans: "🚕 مواصلات", cat_shop: "🛒 تسوق", cat_bills: "💡 فواتير", cat_work: "💻 عمل", cat_fun: "🎉 ترفيه",
         cat_gold: "🪙 ذهب", cat_stocks: "📈 أسهم", cat_deposit: "🏦 وديعة بنكية", cat_emergency: "🛡️ صندوق طوارئ",
         lib_search_ph: "🔍 بحث في المراجع...", notes_search_ph: "🔍 بحث في الملاحظات...",
-        lib_view_date: "الأحدث أولاً", lib_view_cat: "عرض حسب التصنيف", lib_cat_all: "كل التصنيفات"
+        lib_view_date: "الأحدث أولاً", lib_view_cat: "عرض حسب التصنيف", lib_cat_all: "كل التصنيفات",
+        nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄"
     },
     en: {
         nav_dash: "Dashboard", nav_month: "Monthly Plan", nav_today: "Today", nav_pomodoro: "Focus Timer", nav_kanban: "Projects", nav_habits: "Habit Tracker", nav_finance: "Finance", nav_lib: "Library", nav_notes: "Notes", nav_settings: "Settings & Sync",
@@ -213,7 +244,8 @@ const i18n = {
         cat_other: "Other", cat_food: "🍔 Food", cat_trans: "🚕 Transport", cat_shop: "🛒 Shopping", cat_bills: "💡 Bills", cat_work: "💻 Work", cat_fun: "🎉 Entertainment",
         cat_gold: "🪙 Gold", cat_stocks: "📈 Stocks", cat_deposit: "🏦 Bank Deposit", cat_emergency: "🛡️ Emergency Fund",
         lib_search_ph: "🔍 Search references...", notes_search_ph: "🔍 Search notes...",
-        lib_view_date: "Newest first", lib_view_cat: "View by category", lib_cat_all: "All categories"
+        lib_view_date: "Newest first", lib_view_cat: "View by category", lib_cat_all: "All categories",
+        nav_updates: "Updates", title_updates: "App Update Log 🔄"
     }
 };
 
@@ -270,9 +302,10 @@ function initColorTheme() {
 // ----------------------------------------
 // تهيئة البيانات ومحرك الحفظ المحصن
 // ----------------------------------------
-let tasks = [], notes = [], profile = { name: '', phone: '' }, kanbanTasks = { todo: [], inprogress: [], done: [] }, habits = [], finances = [], library = [], pomodoroLog = [];
+let tasks = [], notes = [], profile = { name: '', phone: '' }, kanbanTasks = { todo: [], inprogress: [], done: [] }, habits = [], finances = [], library = [], pomodoroLog = [], updateLog = [];
 let lastModified = parseInt(localStorage.getItem('fp_last_modified')) || 0;
 
+try { updateLog = JSON.parse(localStorage.getItem('fp_update_log')) || []; } catch(e) { updateLog = []; }
 try { tasks = JSON.parse(localStorage.getItem('fp_tasks')) || []; } catch(e) { tasks = []; }
 try { notes = JSON.parse(localStorage.getItem('fp_notes')) || []; } catch(e) { notes = []; }
 try { profile = JSON.parse(localStorage.getItem('fp_profile')) || { name: '', phone: '' }; } catch(e) { profile = { name: '', phone: '' }; }
@@ -310,6 +343,7 @@ function persistLocalOnly() {
         localStorage.setItem('fp_library', JSON.stringify(library));
         localStorage.setItem('fp_profile', JSON.stringify(profile));
         localStorage.setItem('fp_pomodoro_log', JSON.stringify(pomodoroLog));
+        localStorage.setItem('fp_update_log', JSON.stringify(updateLog));
         localStorage.setItem('fp_last_modified', String(lastModified));
     } catch(err) {
         console.error("Local storage save error:", err);
@@ -346,7 +380,7 @@ function saveAll() {
             // بنمسح صراحة أي حقل monthlyData قديم متراكم من نسخ سابقة، عشان لو هو سبب تخطي حد الـ 1MB،
             // المستند يرجع يصغر ويقدر يتحفظ تاني بدل ما يفضل عالق فوق الحد للأبد
             userRef.set({ 
-                tasks, notes, kanbanTasks, habits, finances, library, profile, lastModified,
+                tasks, notes, kanbanTasks, habits, finances, library, profile, lastModified, updateLog,
                 monthlyData: firebase.firestore.FieldValue.delete()
             }, {merge: true}).then(() => {
                 setCloudSyncWarning(false);
@@ -399,6 +433,7 @@ function loadFromCloud() {
         if(Array.isArray(data.finances)) finances = data.finances; 
         if(Array.isArray(data.library)) library = data.library; 
         if(data.profile) profile = data.profile; 
+        if(Array.isArray(data.updateLog)) updateLog = data.updateLog;
         if (typeof data.lastModified === 'number') lastModified = data.lastModified;
         persistLocalOnly(); 
         renderViews(); 
@@ -689,7 +724,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderViews() { 
     renderDashboard(); renderMonthly(); renderDaily(); renderKanban(); renderHabits(); renderFinance(); renderLibrary(); renderNotes(); 
     if(typeof renderPomodoroLog === 'function') renderPomodoroLog();
-    if(typeof renderChangelog === 'function') renderChangelog();
+    if(typeof renderUpdatesLog === 'function') renderUpdatesLog();
 }
 
 // ----------------------------------------
@@ -810,7 +845,8 @@ function renderNotes() {
     const searchInput = document.getElementById('notesSearchInput');
     const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
 
-    let items = notes.slice().sort((a, b) => b.id - a.id); // الأحدث أولاً
+    // المثبتة (pinned) تظهر أولاً، وبعدين باقي الملاحظات بترتيبها المحفوظ (اللي ممكن يتغير بالسحب/الأسهم)
+    let items = notes.map((n, idx) => ({...n, _idx: idx})).sort((a, b) => (b.pinned?1:0) - (a.pinned?1:0));
     if (query) {
         items = items.filter(n => 
             (n.title || '').toLowerCase().includes(query) || 
@@ -828,13 +864,48 @@ function renderNotes() {
     container.innerHTML = '';
     items.forEach(note => { 
         let contactHTML = note.phone ? `<div style="display:flex; gap:10px; margin-bottom:10px;"><a href="tel:${escapeHtml(note.phone)}" class="icon-btn" style="color:var(--primary);"><i class="fa-solid fa-phone"></i></a><a href="https://wa.me/${escapeHtml(note.phone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" class="icon-btn" style="color:#25D366;"><i class="fa-brands fa-whatsapp"></i></a></div>` : '';
-        container.innerHTML += `<div class="note-card" onclick="editNote(${note.id})"><button class="delete-note no-print" onclick="event.stopPropagation(); deleteNote(${note.id})"><i class="fa-solid fa-trash"></i></button><span class="note-date"><i class="fa-solid fa-calendar"></i> ${escapeHtml(note.date)}</span><h3 style="margin-bottom: 0.5rem;">${escapeHtml(note.title)}</h3>${contactHTML}<div class="render-area" style="background:none; border:none; padding:0;">${linkify(note.content)}</div></div>`; 
+        container.innerHTML += `<div class="note-card" draggable="true" data-note-id="${note.id}" ondragstart="noteDragStart(event)" ondragover="noteDragOver(event)" ondrop="noteDrop(event)" ondragend="noteDragEnd(event)" onclick="editNote(${note.id})">
+            <div class="no-print" style="position:absolute; top:10px; left:10px; display:flex; gap:6px; align-items:center;">
+                <button class="icon-btn" style="color:${note.pinned?'var(--primary)':'var(--text-muted)'};" onclick="event.stopPropagation(); toggleNotePin(${note.id})" title="${currentLang==='ar'?'تثبيت':'Pin'}"><i class="fa-solid fa-thumbtack"></i></button>
+                <button class="icon-btn" style="color:var(--text-muted);" onclick="event.stopPropagation(); moveNotePosition(${note.id}, -1)" title="${currentLang==='ar'?'لأعلى':'Up'}"><i class="fa-solid fa-chevron-up"></i></button>
+                <button class="icon-btn" style="color:var(--text-muted);" onclick="event.stopPropagation(); moveNotePosition(${note.id}, 1)" title="${currentLang==='ar'?'لأسفل':'Down'}"><i class="fa-solid fa-chevron-down"></i></button>
+                <button class="delete-note" style="position:static;" onclick="event.stopPropagation(); deleteNote(${note.id})"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            ${note.pinned ? `<i class="fa-solid fa-thumbtack" style="position:absolute; top:10px; right:10px; color:var(--primary); font-size:0.8rem;"></i>` : ''}
+            <span class="note-date"><i class="fa-solid fa-calendar"></i> ${escapeHtml(note.date)}</span><h3 style="margin-bottom: 0.5rem;">${escapeHtml(note.title)}</h3>${contactHTML}<div class="render-area card-content-collapsed" id="content-note-${note.id}" style="background:none; border:none; padding:0;">${linkify(note.content)}</div><button class="read-more-btn no-print" id="btn-note-${note.id}" onclick="event.stopPropagation(); toggleCardExpand('note-${note.id}')">${currentLang==='ar'?'اقرأ المزيد <i class="fa-solid fa-chevron-down"></i>':'Read more <i class="fa-solid fa-chevron-down"></i>'}</button></div>`; 
     });
+    setupReadMoreButtons(container);
 }
+window.toggleNotePin = id => { let n = notes.find(x => x.id === id); if(n) { n.pinned = !n.pinned; saveAll(); renderNotes(); } };
+window.moveNotePosition = (id, direction) => {
+    const idx = notes.findIndex(n => n.id === id);
+    if (idx === -1) return;
+    const newIdx = idx + direction;
+    if (newIdx < 0 || newIdx >= notes.length) return;
+    [notes[idx], notes[newIdx]] = [notes[newIdx], notes[idx]];
+    saveAll();
+    renderNotes();
+};
+let draggedNoteId = null;
+window.noteDragStart = (e) => { draggedNoteId = parseInt(e.currentTarget.dataset.noteId); e.currentTarget.style.opacity = '0.4'; };
+window.noteDragOver = (e) => { e.preventDefault(); };
+window.noteDrop = (e) => {
+    e.preventDefault();
+    const targetId = parseInt(e.currentTarget.dataset.noteId);
+    if (draggedNoteId === null || draggedNoteId === targetId) return;
+    const fromIdx = notes.findIndex(n => n.id === draggedNoteId);
+    const toIdx = notes.findIndex(n => n.id === targetId);
+    if (fromIdx === -1 || toIdx === -1) return;
+    const [moved] = notes.splice(fromIdx, 1);
+    notes.splice(toIdx, 0, moved);
+    saveAll();
+    renderNotes();
+};
+window.noteDragEnd = (e) => { e.currentTarget.style.opacity = '1'; draggedNoteId = null; };
 document.getElementById('saveNoteBtn').onclick = () => { 
     const t = document.getElementById('noteTitle').value, c = document.getElementById('noteContent').value, d = document.getElementById('noteDate').value, p = document.getElementById('notePhone').value; 
     if(!t && !c) return;
-    notes.push({ id: Date.now(), title: t.trim() || (currentLang==='ar'?'ملاحظة جديدة':'New Note'), content: c, date: d, phone: p }); 
+    notes.unshift({ id: Date.now(), title: t.trim() || (currentLang==='ar'?'ملاحظة جديدة':'New Note'), content: c, date: d, phone: p, pinned: false }); 
     saveAll(); 
     document.getElementById('noteModal').classList.remove('show'); 
     stopContinuousDictation(); 
@@ -900,7 +971,7 @@ function renderLibrary() {
 
     const renderCard = l => {
         let contactHTML = l.phone ? `<a href="tel:${escapeHtml(l.phone)}" style="margin-left:10px; color:var(--primary);"><i class="fa-solid fa-phone"></i></a><a href="https://wa.me/${escapeHtml(l.phone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" style="margin-left:10px; color:#25D366;"><i class="fa-brands fa-whatsapp"></i></a>` : '';
-        return `<div class="lib-card" onclick="editLib(${l.id})"><button class="icon-btn no-print" style="position:absolute; top:10px; left:10px; color:var(--danger);" onclick="event.stopPropagation(); delLib(${l.id})"><i class="fa-solid fa-trash"></i></button><span class="lib-cat">${escapeHtml(l.category)}</span><h3>${contactHTML}${escapeHtml(l.title)}</h3><div class="render-area">${linkify(l.content)}</div></div>`;
+        return `<div class="lib-card" onclick="editLib(${l.id})"><button class="icon-btn no-print" style="position:absolute; top:10px; left:10px; color:var(--danger);" onclick="event.stopPropagation(); delLib(${l.id})"><i class="fa-solid fa-trash"></i></button><span class="lib-cat">${escapeHtml(l.category)}</span><h3>${contactHTML}${escapeHtml(l.title)}</h3><div class="render-area card-content-collapsed" id="content-lib-${l.id}">${linkify(l.content)}</div><button class="read-more-btn no-print" id="btn-lib-${l.id}" onclick="event.stopPropagation(); toggleCardExpand('lib-${l.id}')">${currentLang==='ar'?'اقرأ المزيد <i class="fa-solid fa-chevron-down"></i>':'Read more <i class="fa-solid fa-chevron-down"></i>'}</button></div>`;
     };
 
     const emptyMsg = library.length === 0 
@@ -922,6 +993,7 @@ function renderLibrary() {
         items.sort((a, b) => b.id - a.id); // الأحدث أولاً (id مبني على Date.now())
         container.innerHTML = items.map(renderCard).join('') || emptyMsg;
     }
+    setupReadMoreButtons(container);
 }
 window.onLibViewModeChange = () => {
     const viewMode = document.getElementById('libViewModeSelect').value;
@@ -1165,8 +1237,11 @@ function renderKanban() {
     ['todo', 'inprogress', 'done'].forEach(col => {
         const container = document.querySelector(`.kanban-items[data-status="${col}"]`);
         if(!container) return;
+
+        // المثبتة (pinned) تظهر أولاً في نفس العمود
+        const sortedItems = [...kanbanTasks[col]].sort((a, b) => (b.pinned?1:0) - (a.pinned?1:0));
         
-        container.innerHTML = kanbanTasks[col].map(i => {
+        container.innerHTML = sortedItems.map(i => {
             let subs = i.subtasks || [];
             let subsHTML = subs.map((sub, idx) => `
                 <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding: 5px; background: var(--bg-main); border-radius: 4px; border: 1px solid var(--border-color);">
@@ -1177,11 +1252,15 @@ function renderKanban() {
                 </div>
             `).join('');
 
-            return `<div class="kb-card" draggable="true" ondragstart="drag(event, ${i.id}, '${col}')" style="cursor:grab; border-right: 4px solid var(--primary);">
+            return `<div class="kb-card" draggable="true" data-kb-id="${i.id}" data-kb-col="${col}" ondragstart="drag(event, ${i.id}, '${col}')" ondragover="allowDrop(event)" ondrop="dropOnCard(event, ${i.id}, '${col}')" style="cursor:grab; border-right: 4px solid var(--primary); position:relative;">
+                ${i.pinned ? `<i class="fa-solid fa-thumbtack" style="position:absolute; top:8px; left:8px; color:var(--primary); font-size:0.8rem;"></i>` : ''}
                 <div style="display:flex; justify-content:space-between; align-items: flex-start; margin-bottom:5px;">
                     <strong style="font-size: 1rem; flex:1;">${escapeHtml(i.text)}</strong>
-                    <div style="display:flex; gap:8px; align-items: center;">
+                    <div style="display:flex; gap:8px; align-items: center; flex-wrap:wrap;">
                         ${i.phone ? `<a href="https://wa.me/${escapeHtml(i.phone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" class="no-print" style="color:#25D366; font-size:1.2rem;"><i class="fa-brands fa-whatsapp"></i></a>` : ''}
+                        <button onclick="toggleKbPin(${i.id}, '${col}')" class="icon-btn no-print" style="color:${i.pinned?'var(--primary)':'var(--text-main)'};" title="${currentLang==='ar'?'تثبيت':'Pin'}"><i class="fa-solid fa-thumbtack"></i></button>
+                        <button onclick="moveKbPosition(${i.id}, '${col}', -1)" class="icon-btn no-print" style="color:var(--text-main);" title="${currentLang==='ar'?'لأعلى':'Up'}"><i class="fa-solid fa-arrow-up"></i></button>
+                        <button onclick="moveKbPosition(${i.id}, '${col}', 1)" class="icon-btn no-print" style="color:var(--text-main);" title="${currentLang==='ar'?'لأسفل':'Down'}"><i class="fa-solid fa-arrow-down"></i></button>
                         <button onclick="moveKb(${i.id}, '${col}', -1)" class="icon-btn no-print" style="color:var(--text-main);"><i class="fa-solid fa-arrow-right"></i></button>
                         <button onclick="addSubtask(${i.id}, '${col}')" class="icon-btn no-print" style="color:var(--primary);"><i class="fa-solid fa-plus"></i></button>
                         <button onclick="editKb(${i.id}, '${col}')" class="icon-btn no-print" style="color:var(--text-muted);"><i class="fa-solid fa-pen"></i></button>
@@ -1198,7 +1277,7 @@ function renderKanban() {
 window.addKanbanItem = () => { 
     const inp = document.getElementById('newKbItem'); 
     if(inp && inp.value.trim()) { 
-        kanbanTasks.todo.push({id: Date.now(), text: inp.value.trim(), subtasks: []}); 
+        kanbanTasks.todo.push({id: Date.now(), text: inp.value.trim(), subtasks: [], pinned: false}); 
         inp.value = ''; saveAll(); renderKanban(); 
     } 
 };
@@ -1211,6 +1290,19 @@ window.moveKb = (id, c, d) => {
         kanbanTasks[c]=kanbanTasks[c].filter(x=>x.id!==id); 
         kanbanTasks[cols[n]].push(i); saveAll(); renderKanban(); 
     } 
+};
+window.moveKbPosition = (id, col, direction) => {
+    const idx = kanbanTasks[col].findIndex(x => x.id === id);
+    if (idx === -1) return;
+    const newIdx = idx + direction;
+    if (newIdx < 0 || newIdx >= kanbanTasks[col].length) return;
+    [kanbanTasks[col][idx], kanbanTasks[col][newIdx]] = [kanbanTasks[col][newIdx], kanbanTasks[col][idx]];
+    saveAll();
+    renderKanban();
+};
+window.toggleKbPin = (id, col) => {
+    let i = kanbanTasks[col].find(x => x.id === id);
+    if (i) { i.pinned = !i.pinned; saveAll(); renderKanban(); }
 };
 
 window.drag = (ev, id, col) => { ev.dataTransfer.setData("id", id); ev.dataTransfer.setData("col", col); };
@@ -1225,6 +1317,21 @@ window.drop = ev => {
         kanbanTasks[sc]=kanbanTasks[sc].filter(x=>x.id!==id); 
         kanbanTasks[tc].push(i); saveAll(); renderKanban(); 
     } 
+};
+window.dropOnCard = (ev, targetId, targetCol) => {
+    ev.preventDefault();
+    ev.stopPropagation(); // منع وصول الحدث لـ drop() بتاع العمود، عشان نتحكم في الموضع بالظبط
+    let id = parseInt(ev.dataTransfer.getData("id"));
+    let sc = ev.dataTransfer.getData("col");
+    if (!sc || id === targetId) return;
+    let item = kanbanTasks[sc].find(x => x.id === id);
+    if (!item) return;
+    kanbanTasks[sc] = kanbanTasks[sc].filter(x => x.id !== id);
+    let targetIdx = kanbanTasks[targetCol].findIndex(x => x.id === targetId);
+    if (targetIdx === -1) targetIdx = kanbanTasks[targetCol].length;
+    kanbanTasks[targetCol].splice(targetIdx, 0, item);
+    saveAll();
+    renderKanban();
 };
 
 window.editKb = (id, col) => { 
@@ -1749,12 +1856,23 @@ window.changeFontSize = (size) => {
     localStorage.setItem('plannerFontSize', size);
 };
 
-window.renderChangelog = () => {
-    const container = document.getElementById('changelogContainer');
+window.renderUpdatesLog = () => {
+    const container = document.getElementById('updatesLogContainer');
     if(!container) return;
-    const notesTitle = currentLang === 'ar' ? '<strong style="color:var(--primary);">ميزات الإصدار الأخير:</strong><br>' : '<strong style="color:var(--primary);">Latest Version Features:</strong><br>';
-    const notesList = latestReleaseNotes[currentLang].map(note => `- ${escapeHtml(note)}`).join('<br>');
-    container.innerHTML = notesTitle + notesList;
+    if (updateLog.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color:var(--text-muted);">${currentLang==='ar'?'هيظهر هنا كل تحديث جديد للتطبيق أول ما يصدر.':'New app updates will appear here as they are released.'}</p>`;
+        return;
+    }
+    container.innerHTML = updateLog.map((entry, idx) => {
+        const items = (entry[currentLang] || entry.ar || []).map(n => `<div style="margin-bottom:8px;">✅ ${escapeHtml(n)}</div>`).join('');
+        return `<div class="lib-card" style="margin-bottom:15px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <h3 style="margin:0; color:var(--primary);">${escapeHtml(entry.version)} ${idx===0 ? `<span style="font-size:0.75rem; background:var(--primary); color:#fff; padding:2px 8px; border-radius:10px; margin-${currentLang==='ar'?'right':'left'}:8px;">${currentLang==='ar'?'الأحدث':'Latest'}</span>` : ''}</h3>
+                <span style="color:var(--text-muted); font-size:0.85rem;"><i class="fa-solid fa-calendar"></i> ${escapeHtml(entry.date)}</span>
+            </div>
+            <div>${items}</div>
+        </div>`;
+    }).join('');
 };
 
 const manualUpBtn = document.getElementById('manualUpdateBtn');
@@ -1845,6 +1963,53 @@ window.exportFinanceExcel = () => {
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, currentLang === 'ar' ? "التقرير المالي" : "Finance Report");
     XLSX.writeFile(wb, currentLang === 'ar' ? "تقرير_المحفظة_المالية.xlsx" : "Finance_Portfolio.xlsx");
+};
+
+window.exportMonthPDF = () => {
+    const dim = new Date(currentYearView, currentMonthView + 1, 0).getDate();
+    const monthNames = {
+        ar: ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],
+        en: ['January','February','March','April','May','June','July','August','September','October','November','December']
+    }[currentLang];
+
+    let daysHTML = '';
+    let hasContent = false;
+    for (let d = 1; d <= dim; d++) {
+        const storageKey = `PlannerMonthData_${currentYearView}_${currentMonthView}_${d}`;
+        const text = localStorage.getItem(storageKey);
+        const phone = localStorage.getItem(storageKey + '_phone');
+        if (!text && !phone) continue;
+        hasContent = true;
+        daysHTML += `<div style="margin-bottom:18px; padding:14px; border:1px solid #e5e7eb; border-radius:10px; page-break-inside: avoid;">
+            <div style="font-weight:700; color:#3b82f6; margin-bottom:8px; font-size:14px;">${d} ${monthNames[currentMonthView]} ${currentYearView}</div>
+            ${text ? `<div style="white-space:pre-wrap; word-break:break-word; color:#111827; font-size:13px; line-height:1.6;">${escapeHtml(text)}</div>` : ''}
+            ${phone ? `<div style="margin-top:8px; color:#4b5563; font-size:12px;" dir="ltr">📞 ${escapeHtml(phone)}</div>` : ''}
+        </div>`;
+    }
+
+    if (!hasContent) return alert(currentLang === 'ar' ? 'لا توجد بيانات لتصديرها في هذا الشهر' : 'No data to export for this month');
+
+    const element = document.createElement('div');
+    element.style.padding = '30px';
+    element.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
+    element.style.fontFamily = 'Inter, sans-serif';
+    element.innerHTML = `
+        <div style="text-align:center; margin-bottom:30px; border-bottom: 3px solid #3b82f6; padding-bottom: 15px;">
+            <h1 style="color:#111827; margin:0; font-size: 24px; font-weight:700;">Planner Pro Max</h1>
+            <h3 style="color:#6b7280; margin-top:5px; font-size: 14px;">${currentLang==='ar' ? `خطة شهر ${monthNames[currentMonthView]} ${currentYearView}` : `${monthNames[currentMonthView]} ${currentYearView} Plan`}</h3>
+        </div>
+        ${daysHTML}
+    `;
+
+    const opt = {
+        margin: [0.4, 0.4],
+        filename: currentLang === 'ar' ? `خطة_${monthNames[currentMonthView]}_${currentYearView}.pdf` : `Plan_${monthNames[currentMonthView]}_${currentYearView}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2.5, useCORS: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
 };
 
 window.exportFinancePDF = () => {

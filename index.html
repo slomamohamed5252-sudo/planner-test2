@@ -32,7 +32,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=33">
+    <link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
 
@@ -69,6 +69,7 @@
                 <a href="#" class="nav-item" data-target="financeView"><i class="fa-solid fa-wallet"></i> <span data-i18n="nav_finance">المتتبع المالي</span></a>
                 <a href="#" class="nav-item" data-target="libraryView"><i class="fa-solid fa-bookmark"></i> <span data-i18n="nav_lib">مكتبة المراجع</span></a>
                 <a href="#" class="nav-item" data-target="notesView"><i class="fa-solid fa-book"></i> <span data-i18n="nav_notes">الملاحظات</span></a>
+                <a href="#" class="nav-item" data-target="updatesView"><i class="fa-solid fa-bell"></i> <span data-i18n="nav_updates">التحديثات</span></a>
                 <a href="#" class="nav-item" data-target="profileView"><i class="fa-solid fa-gear"></i> <span data-i18n="nav_settings">الإعدادات والمزامنة</span></a>
             </nav>
         </aside>
@@ -204,7 +205,10 @@
                 <div class="content-header" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
                     <button id="prevMonthBtn" class="btn btn-secondary no-print"><i class="fa-solid fa-chevron-right"></i> <span data-i18n="btn_prev">السابق</span></button>
                     <h2 id="monthlyTitle" style="color: var(--primary); margin: 0;"></h2>
-                    <button id="nextMonthBtn" class="btn btn-secondary no-print"><span data-i18n="btn_next">التالي</span> <i class="fa-solid fa-chevron-left"></i></button>
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <button class="btn btn-secondary no-print" onclick="exportMonthPDF()" title="Export PDF"><i class="fa-solid fa-file-pdf" style="color:#ef4444; font-size:1.2rem;"></i></button>
+                        <button id="nextMonthBtn" class="btn btn-secondary no-print"><span data-i18n="btn_next">التالي</span> <i class="fa-solid fa-chevron-left"></i></button>
+                    </div>
                 </div>
                 <div id="monthlyContainer" class="monthly-list"></div>
             </div>
@@ -279,6 +283,11 @@
                     <input type="text" id="notesSearchInput" data-i18n-ph="notes_search_ph" placeholder="🔍 بحث في الملاحظات..." style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;" oninput="renderNotes()">
                 </div>
                 <div id="notesContainer" class="notes-grid"></div>
+            </div>
+
+            <div id="updatesView" class="view-section">
+                <div class="content-header"><h2 data-i18n="title_updates">سجل تحديثات التطبيق 🔄</h2></div>
+                <div id="updatesLogContainer"></div>
             </div>
 
             <div id="profileView" class="view-section">
@@ -603,6 +612,6 @@
         <i class="fa-solid fa-bolt"></i>
     </button>
 
-<script src="script.js?v=33"></script>
+<script src="script.js?v=34"></script>
 </body>
 </html>
