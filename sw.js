@@ -1,10 +1,10 @@
-// تم تصحيح الخطأ النحوي وترقية الإصدار إلى v28 لكسر الكاش
-const CACHE_NAME = 'planner-pro-v28';
+// ترقية الإصدار إلى v33 لإجبار كل الأجهزة على تحميل إصلاح مزامنة السحابة
+const CACHE_NAME = 'planner-pro-v33';
 const assets = [
   './',
-  './index.html?v=28',
-  './style.css?v=28',
-  './script.js?v=28',
+  './index.html?v=33',
+  './style.css?v=33',
+  './script.js?v=33',
   './manifest.json'
 ];
 
@@ -29,6 +29,14 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  // متعرضش خالص لطلبات مواقع تانية غير موقعنا (زي Firebase/Firestore/Google APIs) —
+  // سيبها للمتصفح يتعامل معاها طبيعي زي ما لو مفيش Service Worker خالص.
+  // بدون السطر ده، الاتصال الفوري (WebChannel) بتاع Firestore بينكسر تماماً
+  // لأنه محتاج اتصال شبكة مباشر ومستمر مش ممكن يعدي من خلال طبقة كاش.
+  if (new URL(event.request.url).origin !== self.location.origin) {
+    return;
+  }
+
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(event.request))

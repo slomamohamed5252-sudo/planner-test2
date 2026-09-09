@@ -1,20 +1,20 @@
 // 1. سجل التحديثات
 const latestReleaseNotes = {
     ar: [
-        "🛡️ استقرار وحماية قصوى: حل مشكلة توقف الحفظ نهائياً وتأمين التطبيق ضد ثغرات الحقن.",
-        "🚀 نظام تحديثات سلس v28: وصول التحديثات فورياً لجميع الأجهزة دون الحاجة لحذف التطبيق.",
-        "🏦 محفظة المدخرات والاستثمار: متابعة دقيقة للأصول وصافي الثروة.",
-        "📊 مؤشرات بصرية مطورة: رسم بياني ثلاثي الأبعاد وإحصائيات فورية."
+        "🔍 بحث فوري في الملاحظات والمراجع.",
+        "🗂️ عرض المراجع حسب التصنيف أو الأحدث أولاً، مع فلتر تصنيف مخصص.",
+        "✏️ إمكانية تعديل اسم أي عادة بعد إضافتها.",
+        "↕️ إعادة ترتيب العادات بالسحب والإفلات أو بأسهم فوق/تحت."
     ],
     en: [
-        "🛡️ Max Security & Stability: Completely resolved data-saving issues and secured against injection vulnerabilities.",
-        "🚀 Smooth Updates v28: Instant updates across all devices without re-installing.",
-        "🏦 Savings & Investment Wallet: Track net worth and assets accurately.",
-        "📊 Enhanced Visual Metrics: 3D Doughnut chart and live indicators."
+        "🔍 Instant search in Notes and Library.",
+        "🗂️ View references by category or newest-first, with a category filter.",
+        "✏️ Edit any habit's name after adding it.",
+        "↕️ Reorder habits via drag-and-drop or up/down arrows."
     ]
 };
 
-const APP_VERSION = 'v28';
+const APP_VERSION = 'v33';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
@@ -43,7 +43,19 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js?v=28').catch(e => console.log('SW Registration Error:', e));
+    // updateViaCache: 'none' يمنع المتصفح من الاعتماد على أي كاش HTTP قديم
+    // لملف sw.js نفسه، فبيجيب أحدث نسخة منه دايماً عند أي فحص تحديث،
+    // بدل ما ننتظر 24 ساعة (سلوك المتصفح الافتراضي) أو نعتمد على تغيير رقم إصدار يدوي هنا.
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(reg => {
+        // فحص فوري عند فتح الصفحة
+        reg.update().catch(() => {});
+        // وفحص دوري كل دقيقتين طول ما الصفحة مفتوحة، عشان لو المستخدم سايب التاب فاتح لمدة طويلة
+        setInterval(() => reg.update().catch(() => {}), 120000);
+        // وفحص إضافي كل مرة يرجع فيها المستخدم للتاب (بعد ما كان في تاب/تطبيق تاني)
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') reg.update().catch(() => {});
+        });
+    }).catch(e => console.log('SW Registration Error:', e));
     
     let refreshing = false;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
@@ -84,7 +96,7 @@ const firebaseConfig = {
     appId: "1:334354781516:web:d7d3b13ba7157d617d2be9",
 };
 
-let useCloud = false, auth, db, currentUser = null;
+let useCloud = false, auth, db, currentUser = null, cloudUnsubscribe = [];
 if (firebaseConfig.apiKey && firebaseConfig.apiKey.length > 10) {
     try {
         firebase.initializeApp(firebaseConfig); 
@@ -100,6 +112,7 @@ if (firebaseConfig.apiKey && firebaseConfig.apiKey.length > 10) {
                 loadFromCloud();
             } else {
                 currentUser = null;
+                if (cloudUnsubscribe.length) { cloudUnsubscribe.forEach(u => u()); cloudUnsubscribe = []; }
                 if(cloudStatus) cloudStatus.innerHTML = `<span style="color:var(--text-muted);"><i class="fa-solid fa-cloud-arrow-up"></i> ${currentLang === 'ar' ? 'غير متصل' : 'Offline'}</span> <button onclick="document.getElementById('authModal').classList.add('show')" class="btn btn-primary" style="padding:5px 10px; font-size:0.85rem;">${currentLang === 'ar' ? 'دخول للمزامنة' : 'Login to Sync'}</button>`;
             }
         });
@@ -163,7 +176,9 @@ const i18n = {
         budget_index: "مؤشر الميزانية 📊", opt_inc: "إيراد (+)", opt_exp: "مصروف (-)", opt_save: "إيداع/ادخار (🔒)", opt_withdraw: "تسييل/سحب (🔓)",
         fin_savings: "المدخرات 🔒", fin_bal_avail: "المتاح للصرف", fin_net_worth: "صافي الثروة (إجمالي الأصول):",
         cat_other: "أخرى", cat_food: "🍔 طعام", cat_trans: "🚕 مواصلات", cat_shop: "🛒 تسوق", cat_bills: "💡 فواتير", cat_work: "💻 عمل", cat_fun: "🎉 ترفيه",
-        cat_gold: "🪙 ذهب", cat_stocks: "📈 أسهم", cat_deposit: "🏦 وديعة بنكية", cat_emergency: "🛡️ صندوق طوارئ"
+        cat_gold: "🪙 ذهب", cat_stocks: "📈 أسهم", cat_deposit: "🏦 وديعة بنكية", cat_emergency: "🛡️ صندوق طوارئ",
+        lib_search_ph: "🔍 بحث في المراجع...", notes_search_ph: "🔍 بحث في الملاحظات...",
+        lib_view_date: "الأحدث أولاً", lib_view_cat: "عرض حسب التصنيف", lib_cat_all: "كل التصنيفات"
     },
     en: {
         nav_dash: "Dashboard", nav_month: "Monthly Plan", nav_today: "Today", nav_pomodoro: "Focus Timer", nav_kanban: "Projects", nav_habits: "Habit Tracker", nav_finance: "Finance", nav_lib: "Library", nav_notes: "Notes", nav_settings: "Settings & Sync",
@@ -196,7 +211,9 @@ const i18n = {
         budget_index: "Budget Index 📊", opt_inc: "Income (+)", opt_exp: "Expense (-)", opt_save: "Deposit/Save (🔒)", opt_withdraw: "Liquidate/Withdraw (🔓)",
         fin_savings: "Savings 🔒", fin_bal_avail: "Available to Spend", fin_net_worth: "Net Worth (Total Assets):",
         cat_other: "Other", cat_food: "🍔 Food", cat_trans: "🚕 Transport", cat_shop: "🛒 Shopping", cat_bills: "💡 Bills", cat_work: "💻 Work", cat_fun: "🎉 Entertainment",
-        cat_gold: "🪙 Gold", cat_stocks: "📈 Stocks", cat_deposit: "🏦 Bank Deposit", cat_emergency: "🛡️ Emergency Fund"
+        cat_gold: "🪙 Gold", cat_stocks: "📈 Stocks", cat_deposit: "🏦 Bank Deposit", cat_emergency: "🛡️ Emergency Fund",
+        lib_search_ph: "🔍 Search references...", notes_search_ph: "🔍 Search notes...",
+        lib_view_date: "Newest first", lib_view_cat: "View by category", lib_cat_all: "All categories"
     }
 };
 
@@ -224,6 +241,7 @@ function setLanguage(lang) {
     currentLang = lang; localStorage.setItem('fp_lang', lang);
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if(i18n[lang][key]) el.innerHTML = i18n[lang][key]; });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => { const key = el.getAttribute('data-i18n-ph'); if(i18n[lang][key]) el.placeholder = i18n[lang][key]; });
     const toggleBtn = document.getElementById('langLabel'); if(toggleBtn) toggleBtn.innerHTML = lang === 'ar' ? 'EN' : 'AR';
     const kbInp = document.getElementById('newKbItem'); if(kbInp) kbInp.placeholder = lang === 'ar' ? 'اكتب اسم المشروع / المهمة هنا... (اضغط Enter لسطر جديد)' : 'Type project name... (Press Enter for new line)';
     const hbInp = document.getElementById('newHabitInput'); if(hbInp) hbInp.placeholder = lang === 'ar' ? 'عادة جديدة...' : 'New habit...';
@@ -253,6 +271,7 @@ function initColorTheme() {
 // تهيئة البيانات ومحرك الحفظ المحصن
 // ----------------------------------------
 let tasks = [], notes = [], profile = { name: '', phone: '' }, kanbanTasks = { todo: [], inprogress: [], done: [] }, habits = [], finances = [], library = [], pomodoroLog = [];
+let lastModified = parseInt(localStorage.getItem('fp_last_modified')) || 0;
 
 try { tasks = JSON.parse(localStorage.getItem('fp_tasks')) || []; } catch(e) { tasks = []; }
 try { notes = JSON.parse(localStorage.getItem('fp_notes')) || []; } catch(e) { notes = []; }
@@ -280,8 +299,8 @@ setInterval(() => {
     } 
 }, 60000);
 
-// دالة الحفظ المعزولة ضد الانهيار
-function saveAll() {
+// كتابة البيانات في localStorage فقط، من غير لمس الوقت أو السحابة
+function persistLocalOnly() {
     try {
         localStorage.setItem('fp_tasks', JSON.stringify(tasks));
         localStorage.setItem('fp_notes', JSON.stringify(notes));
@@ -291,20 +310,68 @@ function saveAll() {
         localStorage.setItem('fp_library', JSON.stringify(library));
         localStorage.setItem('fp_profile', JSON.stringify(profile));
         localStorage.setItem('fp_pomodoro_log', JSON.stringify(pomodoroLog));
+        localStorage.setItem('fp_last_modified', String(lastModified));
     } catch(err) {
         console.error("Local storage save error:", err);
     }
+}
+
+// إظهار/إخفاء تنبيه بصري لو فشلت آخر عملية مزامنة سحابية
+function setCloudSyncWarning(hasError) {
+    const cloudStatus = document.getElementById('cloudStatus');
+    if (!cloudStatus) return;
+    let warn = cloudStatus.querySelector('.sync-warning');
+    if (hasError && !warn) {
+        warn = document.createElement('span');
+        warn.className = 'sync-warning';
+        warn.style.cssText = 'color:var(--danger); margin-left:8px; font-weight:bold;';
+        warn.title = currentLang === 'ar' ? 'فشلت آخر مزامنة سحابية، بياناتك محفوظة محلياً فقط على هذا الجهاز' : 'Last cloud sync failed — your data is saved locally on this device only';
+        warn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+        cloudStatus.appendChild(warn);
+    } else if (!hasError && warn) {
+        warn.remove();
+    }
+}
+
+// دالة الحفظ المعزولة ضد الانهيار
+function saveAll() {
+    lastModified = Date.now();
+    persistLocalOnly();
 
     if (useCloud && currentUser) { 
         try {
-            let monthlyData = {}; 
+            const userRef = db.collection('users').doc(currentUser.uid);
+
+            // المستند الرئيسي: بيانات خفيفة بس (المهام، الملاحظات، الكانبان، العادات، المالية، المكتبة، البروفايل)
+            // بنمسح صراحة أي حقل monthlyData قديم متراكم من نسخ سابقة، عشان لو هو سبب تخطي حد الـ 1MB،
+            // المستند يرجع يصغر ويقدر يتحفظ تاني بدل ما يفضل عالق فوق الحد للأبد
+            userRef.set({ 
+                tasks, notes, kanbanTasks, habits, finances, library, profile, lastModified,
+                monthlyData: firebase.firestore.FieldValue.delete()
+            }, {merge: true}).then(() => {
+                setCloudSyncWarning(false);
+            }).catch(e => {
+                console.error("Cloud save failed:", e);
+                setCloudSyncWarning(true);
+            }); 
+
+            // الخطط الشهرية: كل مفتاح (يوم/شهر) في مستنده الخاص جوه subcollection منفصلة،
+            // فمهما البيانات كبرت بمرور الوقت، المستند الرئيسي فوق يفضل صغير ومحفوظ دايماً
+            const batch = db.batch();
+            let hasMonthlyWrites = false;
             for(let i=0; i<localStorage.length; i++) { 
                 let k = localStorage.key(i); 
-                if(k && k.startsWith('PlannerMonthData_')) monthlyData[k] = localStorage.getItem(k); 
+                if(k && k.startsWith('PlannerMonthData_')) {
+                    batch.set(userRef.collection('monthlyData').doc(k), { value: localStorage.getItem(k) });
+                    hasMonthlyWrites = true;
+                }
             } 
-            db.collection('users').doc(currentUser.uid).set({ 
-                tasks, notes, kanbanTasks, habits, finances, library, profile, monthlyData 
-            }, {merge: true}).catch(e => console.error("Cloud save failed:", e)); 
+            if (hasMonthlyWrites) {
+                batch.commit().catch(e => {
+                    console.error("Monthly data cloud save failed:", e);
+                    setCloudSyncWarning(true);
+                });
+            }
         } catch(e) {
             console.error("Cloud data parsing error:", e);
         }
@@ -313,23 +380,52 @@ function saveAll() {
 
 function loadFromCloud() { 
     if(!useCloud || !currentUser) return;
-    db.collection('users').doc(currentUser.uid).get().then(doc => { 
-        if (doc.exists) { 
-            const data = doc.data(); 
-            if(Array.isArray(data.tasks)) tasks = data.tasks; 
-            if(Array.isArray(data.notes)) notes = data.notes; 
-            if(data.kanbanTasks && typeof data.kanbanTasks === 'object') kanbanTasks = data.kanbanTasks; 
-            if(Array.isArray(data.habits)) habits = data.habits; 
-            if(Array.isArray(data.finances)) finances = data.finances; 
-            if(Array.isArray(data.library)) library = data.library; 
-            if(data.profile) profile = data.profile; 
-            if(data.monthlyData) { 
-                for(let k in data.monthlyData) localStorage.setItem(k, data.monthlyData[k]); 
-            } 
-            saveAll(); 
-            renderViews(); 
-        } 
-    }).catch(e => console.error("Cloud load error:", e)); 
+    if (cloudUnsubscribe.length) { cloudUnsubscribe.forEach(u => u()); cloudUnsubscribe = []; }
+
+    const userRef = db.collection('users').doc(currentUser.uid);
+
+    // onSnapshot بيفتح قناة مباشرة مع Firestore: أي جهاز تاني يحفظ حاجة،
+    // كل الأجهزة الأخرى المسجلة بنفس الحساب وفاتحة التطبيق تستقبل التحديث فوراً
+    // من غير ما تحتاج تعمل Refresh، وبيتجنب مشكلة مقارنة ساعات الأجهزة المختلفة.
+    const unsubMain = userRef.onSnapshot(doc => {
+        if (!doc.exists) { setCloudSyncWarning(false); return; }
+        if (doc.metadata.hasPendingWrites) return; // ده انعكاس لحفظنا إحنا نفسنا، متلزمش نطبقه تاني
+
+        const data = doc.data(); 
+        if(Array.isArray(data.tasks)) tasks = data.tasks; 
+        if(Array.isArray(data.notes)) notes = data.notes; 
+        if(data.kanbanTasks && typeof data.kanbanTasks === 'object') kanbanTasks = data.kanbanTasks; 
+        if(Array.isArray(data.habits)) habits = data.habits; 
+        if(Array.isArray(data.finances)) finances = data.finances; 
+        if(Array.isArray(data.library)) library = data.library; 
+        if(data.profile) profile = data.profile; 
+        if (typeof data.lastModified === 'number') lastModified = data.lastModified;
+        persistLocalOnly(); 
+        renderViews(); 
+        setCloudSyncWarning(false);
+    }, e => {
+        console.error("Cloud sync error:", e);
+        setCloudSyncWarning(true);
+    });
+
+    // مستمع منفصل لـ subcollection الخطط الشهرية
+    const unsubMonthly = userRef.collection('monthlyData').onSnapshot(snap => {
+        snap.docChanges().forEach(change => {
+            if (change.doc.metadata.hasPendingWrites) return;
+            if (change.type === 'removed') {
+                localStorage.removeItem(change.doc.id);
+            } else {
+                const val = change.doc.data().value;
+                if (typeof val === 'string') localStorage.setItem(change.doc.id, val);
+            }
+        });
+        renderViews();
+    }, e => {
+        console.error("Monthly cloud sync error:", e);
+        setCloudSyncWarning(true);
+    });
+
+    cloudUnsubscribe = [unsubMain, unsubMonthly];
 }
 
 // ----------------------------------------
@@ -392,6 +488,7 @@ window.logoutCloud = async () => {
     if(confirm(currentLang === 'ar' ? 'هل تريد تسجيل الخروج؟ سيتم تفريغ البيانات المحلية والتأكد من مزامنتها سحابياً.' : 'Logout and wipe local data?')) {
         try {
             saveAll();
+            if (cloudUnsubscribe.length) { cloudUnsubscribe.forEach(u => u()); cloudUnsubscribe = []; }
             await auth.signOut();
             localStorage.clear(); 
             location.reload(); 
@@ -709,8 +806,27 @@ document.getElementById('updateTaskBtn').onclick = () => {
 function renderNotes() { 
     const container = document.getElementById('notesContainer');
     if(!container) return;
-    container.innerHTML = notes.length === 0 ? `<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1;">${currentLang==='ar'?'لا توجد ملاحظات.':'No notes.'}</p>` : '';
-    notes.forEach(note => { 
+
+    const searchInput = document.getElementById('notesSearchInput');
+    const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+    let items = notes.slice().sort((a, b) => b.id - a.id); // الأحدث أولاً
+    if (query) {
+        items = items.filter(n => 
+            (n.title || '').toLowerCase().includes(query) || 
+            (n.content || '').toLowerCase().includes(query)
+        );
+    }
+
+    if (items.length === 0) {
+        const msg = notes.length === 0 
+            ? (currentLang==='ar'?'لا توجد ملاحظات.':'No notes.') 
+            : (currentLang==='ar'?'لا توجد نتائج.':'No results.');
+        container.innerHTML = `<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1;">${msg}</p>`;
+        return;
+    }
+    container.innerHTML = '';
+    items.forEach(note => { 
         let contactHTML = note.phone ? `<div style="display:flex; gap:10px; margin-bottom:10px;"><a href="tel:${escapeHtml(note.phone)}" class="icon-btn" style="color:var(--primary);"><i class="fa-solid fa-phone"></i></a><a href="https://wa.me/${escapeHtml(note.phone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" class="icon-btn" style="color:#25D366;"><i class="fa-brands fa-whatsapp"></i></a></div>` : '';
         container.innerHTML += `<div class="note-card" onclick="editNote(${note.id})"><button class="delete-note no-print" onclick="event.stopPropagation(); deleteNote(${note.id})"><i class="fa-solid fa-trash"></i></button><span class="note-date"><i class="fa-solid fa-calendar"></i> ${escapeHtml(note.date)}</span><h3 style="margin-bottom: 0.5rem;">${escapeHtml(note.title)}</h3>${contactHTML}<div class="render-area" style="background:none; border:none; padding:0;">${linkify(note.content)}</div></div>`; 
     });
@@ -756,11 +872,63 @@ document.getElementById('updateNoteBtn').onclick = () => {
 function renderLibrary() { 
     const container = document.getElementById('libraryContainer');
     if(!container) return;
-    container.innerHTML = library.map(l => {
+
+    const searchInput = document.getElementById('libSearchInput');
+    const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    const viewMode = document.getElementById('libViewModeSelect') ? document.getElementById('libViewModeSelect').value : 'date';
+    const catFilterEl = document.getElementById('libCategoryFilterSelect');
+    const catFilter = catFilterEl ? catFilterEl.value : 'all';
+
+    // تحديث قائمة التصنيفات المتاحة في الفلتر (لو فيه تصنيفات جديدة اتضافت)
+    if (catFilterEl) {
+        const cats = [...new Set(library.map(l => l.category || 'عام'))].sort();
+        const currentVal = catFilterEl.value;
+        catFilterEl.innerHTML = `<option value="all">${i18n[currentLang].lib_cat_all}</option>` + cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+        if (cats.includes(currentVal) || currentVal === 'all') catFilterEl.value = currentVal;
+    }
+
+    let items = library.slice();
+
+    // فلترة البحث (بتشتغل على العنوان والمحتوى والتصنيف)
+    if (query) {
+        items = items.filter(l => 
+            (l.title || '').toLowerCase().includes(query) || 
+            (l.content || '').toLowerCase().includes(query) ||
+            (l.category || '').toLowerCase().includes(query)
+        );
+    }
+
+    const renderCard = l => {
         let contactHTML = l.phone ? `<a href="tel:${escapeHtml(l.phone)}" style="margin-left:10px; color:var(--primary);"><i class="fa-solid fa-phone"></i></a><a href="https://wa.me/${escapeHtml(l.phone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" style="margin-left:10px; color:#25D366;"><i class="fa-brands fa-whatsapp"></i></a>` : '';
         return `<div class="lib-card" onclick="editLib(${l.id})"><button class="icon-btn no-print" style="position:absolute; top:10px; left:10px; color:var(--danger);" onclick="event.stopPropagation(); delLib(${l.id})"><i class="fa-solid fa-trash"></i></button><span class="lib-cat">${escapeHtml(l.category)}</span><h3>${contactHTML}${escapeHtml(l.title)}</h3><div class="render-area">${linkify(l.content)}</div></div>`;
-    }).join('') || `<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1;">${currentLang==='ar'?'أضف مرجعك الأول.':'Add your first reference.'}</p>`;
+    };
+
+    const emptyMsg = library.length === 0 
+        ? `<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1;">${currentLang==='ar'?'أضف مرجعك الأول.':'Add your first reference.'}</p>`
+        : `<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1;">${currentLang==='ar'?'لا توجد نتائج.':'No results.'}</p>`;
+
+    if (viewMode === 'category') {
+        let filteredItems = catFilter === 'all' ? items : items.filter(l => (l.category || 'عام') === catFilter);
+        if (filteredItems.length === 0) { container.innerHTML = emptyMsg; return; }
+        // تجميع حسب التصنيف، وترتيب المجموعات أبجدياً، وكل مجموعة بترتيب الأحدث أولاً
+        const groups = {};
+        filteredItems.forEach(l => { const c = l.category || 'عام'; (groups[c] = groups[c] || []).push(l); });
+        container.innerHTML = Object.keys(groups).sort().map(cat => {
+            const catItems = groups[cat].sort((a, b) => b.id - a.id);
+            return `<div style="grid-column: 1/-1; font-weight:bold; color:var(--primary); margin:10px 0 5px; padding-bottom:5px; border-bottom:2px solid var(--border-color);">${escapeHtml(cat)}</div>` +
+                   `<div style="grid-column: 1/-1; display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:15px;">${catItems.map(renderCard).join('')}</div>`;
+        }).join('');
+    } else {
+        items.sort((a, b) => b.id - a.id); // الأحدث أولاً (id مبني على Date.now())
+        container.innerHTML = items.map(renderCard).join('') || emptyMsg;
+    }
 }
+window.onLibViewModeChange = () => {
+    const viewMode = document.getElementById('libViewModeSelect').value;
+    const catFilterEl = document.getElementById('libCategoryFilterSelect');
+    if (catFilterEl) catFilterEl.style.display = viewMode === 'category' ? '' : 'none';
+    renderLibrary();
+};
 document.getElementById('saveLibBtn').onclick = () => { 
     let t = document.getElementById('libTitle').value, c = document.getElementById('libCategory').value, text = document.getElementById('libContent').value, p = document.getElementById('libPhone').value; 
     if(!t || !t.trim()) return;
@@ -1423,8 +1591,19 @@ function renderHabits() {
     let html = `<table class="habit-table"><thead><tr><th>${habitText}</th>`; 
     for(let i=1; i<=dim; i++) html += `<th>${i}</th>`; 
     html += `</tr></thead><tbody>`; 
-    habits.forEach(h => { 
-        html += `<tr><td class="habit-name"><button class="icon-btn no-print" style="color:red;" onclick="delHabit(${h.id})">x</button> ${escapeHtml(h.name)}</td>`; 
+    habits.forEach((h, idx) => { 
+        html += `<tr draggable="true" data-habit-id="${h.id}" ondragstart="habitDragStart(event)" ondragover="habitDragOver(event)" ondrop="habitDrop(event)" ondragend="habitDragEnd(event)">
+            <td class="habit-name">
+                <div class="no-print" style="display:inline-flex; align-items:center; gap:2px; vertical-align:middle;">
+                    <i class="fa-solid fa-grip-vertical" style="cursor:grab; color:var(--text-muted); font-size:0.75rem;" title="${currentLang==='ar'?'اسحب لإعادة الترتيب':'Drag to reorder'}"></i>
+                    <span style="display:inline-flex; flex-direction:column; line-height:0.6;">
+                        <button class="icon-btn" style="color:var(--text-muted); font-size:0.65rem; padding:0;" onclick="moveHabit(${h.id}, -1)" ${idx===0?'disabled style="opacity:0.3;"':''} title="${currentLang==='ar'?'لأعلى':'Up'}"><i class="fa-solid fa-caret-up"></i></button>
+                        <button class="icon-btn" style="color:var(--text-muted); font-size:0.65rem; padding:0;" onclick="moveHabit(${h.id}, 1)" ${idx===habits.length-1?'disabled style="opacity:0.3;"':''} title="${currentLang==='ar'?'لأسفل':'Down'}"><i class="fa-solid fa-caret-down"></i></button>
+                    </span>
+                    <button class="icon-btn" style="color:red;" onclick="delHabit(${h.id})">x</button>
+                </div>
+                <span onclick="editHabit(${h.id})" style="cursor:pointer;" title="${currentLang==='ar'?'اضغط للتعديل':'Click to edit'}"> ${escapeHtml(h.name)}</span>
+            </td>`; 
         for(let i=1; i<=dim; i++) { 
             let k = `${currentYearView}-${currentMonthView}-${i}`; 
             html += `<td><div class="habit-check ${h.days && h.days[k]?'done':''}" onclick="toggleHabit(${h.id}, '${k}')">✓</div></td>`; 
@@ -1443,6 +1622,48 @@ window.addNewHabit = () => {
         renderHabits(); 
         renderDashboard(); 
     } 
+};
+window.editHabit = (id) => {
+    let h = habits.find(x => x.id === id);
+    if(!h) return;
+    const newName = prompt(currentLang==='ar' ? 'عدّل اسم العادة:' : 'Edit habit name:', h.name);
+    if (newName !== null && newName.trim()) {
+        h.name = newName.trim();
+        saveAll();
+        renderHabits();
+        renderDashboard();
+    }
+};
+window.moveHabit = (id, direction) => {
+    const idx = habits.findIndex(h => h.id === id);
+    if (idx === -1) return;
+    const newIdx = idx + direction;
+    if (newIdx < 0 || newIdx >= habits.length) return;
+    [habits[idx], habits[newIdx]] = [habits[newIdx], habits[idx]];
+    saveAll();
+    renderHabits();
+};
+let draggedHabitId = null;
+window.habitDragStart = (e) => {
+    draggedHabitId = parseInt(e.currentTarget.dataset.habitId);
+    e.currentTarget.style.opacity = '0.4';
+};
+window.habitDragOver = (e) => { e.preventDefault(); };
+window.habitDrop = (e) => {
+    e.preventDefault();
+    const targetId = parseInt(e.currentTarget.dataset.habitId);
+    if (draggedHabitId === null || draggedHabitId === targetId) return;
+    const fromIdx = habits.findIndex(h => h.id === draggedHabitId);
+    const toIdx = habits.findIndex(h => h.id === targetId);
+    if (fromIdx === -1 || toIdx === -1) return;
+    const [moved] = habits.splice(fromIdx, 1);
+    habits.splice(toIdx, 0, moved);
+    saveAll();
+    renderHabits();
+};
+window.habitDragEnd = (e) => {
+    e.currentTarget.style.opacity = '1';
+    draggedHabitId = null;
 };
 window.toggleHabit = (id, k) => { 
     let h = habits.find(x=>x.id===id); 

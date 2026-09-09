@@ -32,7 +32,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=28">
+    <link rel="stylesheet" href="style.css?v=33">
 </head>
 <body>
 
@@ -187,6 +187,16 @@
 
             <div id="libraryView" class="view-section">
                 <div class="content-header" style="display: flex; justify-content: space-between;"><h2 data-i18n="title_lib">المراجع والأصول</h2><button class="btn btn-primary no-print" onclick="openLibModal()"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add_ref">إضافة مرجع</span></button></div>
+                <div class="no-print" style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:15px;">
+                    <input type="text" id="libSearchInput" data-i18n-ph="lib_search_ph" placeholder="🔍 بحث في المراجع..." style="flex:2; min-width:150px; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main);" oninput="renderLibrary()">
+                    <select id="libViewModeSelect" style="flex:1; min-width:150px; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main);" onchange="onLibViewModeChange()">
+                        <option value="date" data-i18n="lib_view_date">الأحدث أولاً</option>
+                        <option value="category" data-i18n="lib_view_cat">عرض حسب التصنيف</option>
+                    </select>
+                    <select id="libCategoryFilterSelect" style="display:none; flex:1; min-width:150px; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main);" onchange="renderLibrary()">
+                        <option value="all" data-i18n="lib_cat_all">كل التصنيفات</option>
+                    </select>
+                </div>
                 <div class="library-grid" id="libraryContainer"></div>
             </div>
 
@@ -265,6 +275,9 @@
 
             <div id="notesView" class="view-section">
                 <div class="content-header" style="display: flex; justify-content: space-between;"><h2 data-i18n="title_notes">الملاحظات</h2><button class="btn btn-primary no-print" onclick="openNoteModal()"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add_note">ملاحظة</span></button></div>
+                <div class="no-print" style="margin-bottom:15px;">
+                    <input type="text" id="notesSearchInput" data-i18n-ph="notes_search_ph" placeholder="🔍 بحث في الملاحظات..." style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;" oninput="renderNotes()">
+                </div>
                 <div id="notesContainer" class="notes-grid"></div>
             </div>
 
@@ -590,6 +603,6 @@
         <i class="fa-solid fa-bolt"></i>
     </button>
 
-<script src="script.js?v=28"></script>
+<script src="script.js?v=33"></script>
 </body>
 </html>
