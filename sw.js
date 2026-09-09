@@ -1,10 +1,10 @@
-// ترقية الإصدار إلى v34 لإجبار كل الأجهزة على تحميل إصلاح مزامنة السحابة
-const CACHE_NAME = 'planner-pro-v34';
+// ترقية الإصدار إلى v35 لإجبار كل الأجهزة على تحميل إصلاح مزامنة السحابة
+const CACHE_NAME = 'planner-pro-v35';
 const assets = [
   './',
-  './index.html?v=34',
-  './style.css?v=34',
-  './script.js?v=34',
+  './index.html?v=35',
+  './style.css?v=35',
+  './script.js?v=35',
   './manifest.json'
 ];
 

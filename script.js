@@ -1,20 +1,18 @@
 // 1. سجل التحديثات
 const latestReleaseNotes = {
     ar: [
-        "📌 دبوس تثبيت في الملاحظات والمشاريع، مع ترتيب حر بالسحب والإفلات أو الأسهم.",
-        "📖 كروت الملاحظات والمراجع بقت أصغر مع زر \"اقرأ المزيد / عرض أقل\".",
-        "🔔 صفحة \"التحديثات\" الجديدة بتجمع كل تحديثات التطبيق في مكان واحد.",
-        "📄 تصدير خطة الشهر كملف PDF بمقاس A4، بدعم كامل للعربي والإنجليزي."
+        "🗂️ تبديل العرض في المراجع (الأحدث أولاً / حسب التصنيف) مع فلتر تصنيف تلقائي.",
+        "🔍 خانة بحث فورية في الملاحظات والمراجع.",
+        "✏️ تعديل اسم أي عادة + ترتيبها بالسحب والإفلات أو الأسهم."
     ],
     en: [
-        "📌 Pin notes and projects to the top, with free reordering via drag-and-drop or arrows.",
-        "📖 Notes and reference cards are now compact with a \"Read more / Show less\" toggle.",
-        "🔔 New \"Updates\" page collects the app's full update history in one place.",
-        "📄 Export the monthly plan as an A4 PDF, with full Arabic and English support."
+        "🗂️ Switch reference view (Newest first / By category) with an automatic category filter.",
+        "🔍 Instant search box in Notes and Library.",
+        "✏️ Edit any habit's name + reorder via drag-and-drop or arrows."
     ]
 };
 
-const APP_VERSION = 'v34';
+const APP_VERSION = 'v35';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
@@ -108,6 +106,13 @@ if (firebaseConfig.apiKey && firebaseConfig.apiKey.length > 10) {
         firebase.initializeApp(firebaseConfig); 
         auth = firebase.auth(); 
         db = firebase.firestore(); 
+        // تفعيل العمل بدون إنترنت: أي تعديل بيتم أوفلاين يتخزن محلياً في طابور الانتظار
+        // وبيتبعت تلقائياً للسيرفر أول ما الاتصال يرجع، من غير ما نضطر نعمل أي كود إضافي.
+        try {
+            db.enablePersistence({ synchronizeTabs: true }).catch(err => {
+                console.warn('Firestore offline persistence not enabled:', err.code);
+            });
+        } catch(e) { console.warn('Firestore offline persistence error:', e); }
         useCloud = true;
         
         auth.onAuthStateChanged(user => {
@@ -317,6 +322,7 @@ try { pomodoroLog = JSON.parse(localStorage.getItem('fp_pomodoro_log')) || []; }
 
 const getTodayStr = () => { const d = new Date(); return new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().split('T')[0]; };
 let currentTodayStr = getTodayStr(); let currentDailyDate = currentTodayStr; let currentMonthView = new Date().getMonth(); let currentYearView = new Date().getFullYear();
+let shouldScrollToToday = false; // بيتفعل بس لما ندخل "خطة الشهر" قادمين من أداة تانية
 const monthNamesAr = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]; const monthNamesEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 let myChart = null;
 
@@ -713,6 +719,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.currentTarget.classList.add('active'); 
             let target = e.currentTarget.getAttribute('data-target'); 
             document.getElementById(target).classList.add('active'); 
+            if (target === 'monthlyView') shouldScrollToToday = true;
             renderViews(); 
         }); 
     });
@@ -1134,7 +1141,8 @@ function renderMonthly() {
         };
     });
 
-    if (isCurrentMonth) {
+    if (isCurrentMonth && shouldScrollToToday) {
+        shouldScrollToToday = false;
         setTimeout(() => {
             let todayCard = document.getElementById('todayMonthCard');
             if (todayCard) todayCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1234,6 +1242,12 @@ function initPomodoro() {
 // المشاريع (Kanban)
 // ----------------------------------------
 function renderKanban() {
+    // FLIP: نلقط مواضع الكروت الحالية قبل ما نعيد الرسم، عشان نحركها بسلاسة بدل القفزة المفاجئة
+    const firstRects = {};
+    document.querySelectorAll('.kb-card[data-kb-id]').forEach(el => {
+        firstRects[el.dataset.kbId] = el.getBoundingClientRect();
+    });
+
     ['todo', 'inprogress', 'done'].forEach(col => {
         const container = document.querySelector(`.kanban-items[data-status="${col}"]`);
         if(!container) return;
@@ -1271,6 +1285,23 @@ function renderKanban() {
                 <div style="margin-top: 10px;">${subsHTML}</div>
             </div>`;
         }).join('');
+    });
+
+    // FLIP: نحرك كل كارت من مكانه القديم لمكانه الجديد بانتقال ناعم بدل القفزة المفاجئة
+    document.querySelectorAll('.kb-card[data-kb-id]').forEach(el => {
+        const first = firstRects[el.dataset.kbId];
+        if (!first) return;
+        const last = el.getBoundingClientRect();
+        const dx = first.left - last.left;
+        const dy = first.top - last.top;
+        if (dx || dy) {
+            el.style.transition = 'none';
+            el.style.transform = `translate(${dx}px, ${dy}px)`;
+            requestAnimationFrame(() => {
+                el.style.transition = 'transform 0.3s ease';
+                el.style.transform = '';
+            });
+        }
     });
 }
 
