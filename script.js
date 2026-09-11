@@ -1,18 +1,26 @@
 // 1. سجل التحديثات
 const latestReleaseNotes = {
     ar: [
+        "🔔 صفحة \"التحديثات\" الجديدة بتجمع كل تحديثات التطبيق في مكان واحد.",
+        "📄 تصدير خطة الشهر كملف PDF بمقاس A4، بدعم كامل للعربي والإنجليزي.",
+        "📌 دبوس تثبيت في الملاحظات والمشاريع، مع ترتيب حر بالسحب والإفلات أو الأسهم.",
+        "📖 كروت الملاحظات والمراجع بقت أصغر مع زر \"اقرأ المزيد / عرض أقل\".",
         "🗂️ تبديل العرض في المراجع (الأحدث أولاً / حسب التصنيف) مع فلتر تصنيف تلقائي.",
         "🔍 خانة بحث فورية في الملاحظات والمراجع.",
         "✏️ تعديل اسم أي عادة + ترتيبها بالسحب والإفلات أو الأسهم."
     ],
     en: [
+        "🔔 New \"Updates\" page collects the app's full update history in one place.",
+        "📄 Export the monthly plan as an A4 PDF, with full Arabic and English support.",
+        "📌 Pin notes and projects to the top, with free reordering via drag-and-drop or arrows.",
+        "📖 Notes and reference cards are now compact with a \"Read more / Show less\" toggle.",
         "🗂️ Switch reference view (Newest first / By category) with an automatic category filter.",
         "🔍 Instant search box in Notes and Library.",
         "✏️ Edit any habit's name + reorder via drag-and-drop or arrows."
     ]
 };
 
-const APP_VERSION = 'v35';
+const APP_VERSION = 'v36';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
