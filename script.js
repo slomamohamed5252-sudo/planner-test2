@@ -20,7 +20,7 @@ const latestReleaseNotes = {
     ]
 };
 
-const APP_VERSION = 'v37';
+const APP_VERSION = 'v38';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
@@ -30,10 +30,8 @@ function checkAndShowChangelog() {
                 content.innerHTML = latestReleaseNotes[currentLang].map(n => `✅ ${escapeHtml(n)}`).join('<br><br>');
                 document.getElementById('changelogModal').classList.add('show');
             }
-            // تنظيف تكرار قديم: v34 وv36 كانا بيعرضوا نفس البنود دي مقسّمة/مكررة، فبنشيلهم من السجل عشان مايتلخبطش المستخدم
-            if (APP_VERSION === 'v37') {
-                updateLog = updateLog.filter(u => u.version !== 'v34' && u.version !== 'v36');
-            }
+            // تنظيف تكرار قديم: v34 وv36 وv37 كانوا بيعرضوا نفس البنود دي مقسّمة/مكررة، فبنشيلهم من السجل عشان مايتلخبطش المستخدم
+            updateLog = updateLog.filter(u => u.version !== 'v34' && u.version !== 'v36' && u.version !== 'v37');
             // إضافة هذا الإصدار لسجل التحديثات الدائم (لو لسه مش مضاف)
             if (!updateLog.some(u => u.version === APP_VERSION)) {
                 updateLog.unshift({ version: APP_VERSION, date: getTodayStr(), ar: latestReleaseNotes.ar, en: latestReleaseNotes.en });
