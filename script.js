@@ -224,7 +224,8 @@ const i18n = {
         cat_gold: "🪙 ذهب", cat_stocks: "📈 أسهم", cat_deposit: "🏦 وديعة بنكية", cat_emergency: "🛡️ صندوق طوارئ",
         lib_search_ph: "🔍 بحث في المراجع...", notes_search_ph: "🔍 بحث في الملاحظات...",
         lib_view_date: "الأحدث أولاً", lib_view_cat: "عرض حسب التصنيف", lib_cat_all: "كل التصنيفات",
-        nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄"
+        nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
+        nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة"
     },
     en: {
         nav_dash: "Dashboard", nav_month: "Monthly Plan", nav_today: "Today", nav_pomodoro: "Focus Timer", nav_kanban: "Projects", nav_habits: "Habit Tracker", nav_finance: "Finance", nav_lib: "Library", nav_notes: "Notes", nav_settings: "Settings & Sync",
@@ -260,7 +261,8 @@ const i18n = {
         cat_gold: "🪙 Gold", cat_stocks: "📈 Stocks", cat_deposit: "🏦 Bank Deposit", cat_emergency: "🛡️ Emergency Fund",
         lib_search_ph: "🔍 Search references...", notes_search_ph: "🔍 Search notes...",
         lib_view_date: "Newest first", lib_view_cat: "View by category", lib_cat_all: "All categories",
-        nav_updates: "Updates", title_updates: "App Update Log 🔄"
+        nav_updates: "Updates", title_updates: "App Update Log 🔄",
+        nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add"
     }
 };
 
@@ -319,8 +321,13 @@ function initColorTheme() {
 // ----------------------------------------
 let tasks = [], notes = [], profile = { name: '', phone: '' }, kanbanTasks = { todo: [], inprogress: [], done: [] }, habits = [], finances = [], library = [], pomodoroLog = [], updateLog = [];
 let lastModified = parseInt(localStorage.getItem('fp_last_modified')) || 0;
+let weightLog = [], weightGoal = { target: '', date: '' }, calorieLog = [], calorieGoal = 2000, weightChartInstance = null;
 
 try { updateLog = JSON.parse(localStorage.getItem('fp_update_log')) || []; } catch(e) { updateLog = []; }
+try { weightLog = JSON.parse(localStorage.getItem('fp_weight')) || []; } catch(e) { weightLog = []; }
+try { weightGoal = JSON.parse(localStorage.getItem('fp_weight_goal')) || { target: '', date: '' }; } catch(e) { weightGoal = { target: '', date: '' }; }
+try { calorieLog = JSON.parse(localStorage.getItem('fp_calories')) || []; } catch(e) { calorieLog = []; }
+calorieGoal = parseInt(localStorage.getItem('fp_calorie_goal')) || 2000;
 try { tasks = JSON.parse(localStorage.getItem('fp_tasks')) || []; } catch(e) { tasks = []; }
 try { notes = JSON.parse(localStorage.getItem('fp_notes')) || []; } catch(e) { notes = []; }
 try { profile = JSON.parse(localStorage.getItem('fp_profile')) || { name: '', phone: '' }; } catch(e) { profile = { name: '', phone: '' }; }
@@ -360,6 +367,10 @@ function persistLocalOnly() {
         localStorage.setItem('fp_profile', JSON.stringify(profile));
         localStorage.setItem('fp_pomodoro_log', JSON.stringify(pomodoroLog));
         localStorage.setItem('fp_update_log', JSON.stringify(updateLog));
+        localStorage.setItem('fp_weight', JSON.stringify(weightLog));
+        localStorage.setItem('fp_weight_goal', JSON.stringify(weightGoal));
+        localStorage.setItem('fp_calories', JSON.stringify(calorieLog));
+        localStorage.setItem('fp_calorie_goal', String(calorieGoal));
         localStorage.setItem('fp_last_modified', String(lastModified));
     } catch(err) {
         console.error("Local storage save error:", err);
@@ -396,7 +407,7 @@ function saveAll() {
             // بنمسح صراحة أي حقل monthlyData قديم متراكم من نسخ سابقة، عشان لو هو سبب تخطي حد الـ 1MB،
             // المستند يرجع يصغر ويقدر يتحفظ تاني بدل ما يفضل عالق فوق الحد للأبد
             userRef.set({ 
-                tasks, notes, kanbanTasks, habits, finances, library, profile, lastModified, updateLog,
+                tasks, notes, kanbanTasks, habits, finances, library, profile, lastModified, updateLog, weightLog, weightGoal, calorieLog, calorieGoal,
                 monthlyData: firebase.firestore.FieldValue.delete()
             }, {merge: true}).then(() => {
                 setCloudSyncWarning(false);
@@ -450,6 +461,10 @@ function loadFromCloud() {
         if(Array.isArray(data.library)) library = data.library; 
         if(data.profile) profile = data.profile; 
         if(Array.isArray(data.updateLog)) updateLog = data.updateLog;
+        if(Array.isArray(data.weightLog)) weightLog = data.weightLog;
+        if(data.weightGoal && typeof data.weightGoal === 'object') weightGoal = data.weightGoal;
+        if(Array.isArray(data.calorieLog)) calorieLog = data.calorieLog;
+        if(typeof data.calorieGoal === 'number') calorieGoal = data.calorieGoal;
         if (typeof data.lastModified === 'number') lastModified = data.lastModified;
         persistLocalOnly(); 
         renderViews(); 
@@ -571,7 +586,7 @@ window.startContinuousDictation = (inputId, langId, statusId, startBtnId, stopBt
     currentInput = document.getElementById(inputId);
     
     dictationRecognition = new SpeechRecognition(); 
-    dictationRecognition.continuous = false; 
+    dictationRecognition.continuous = true; 
     dictationRecognition.interimResults = false; 
     dictationRecognition.lang = document.getElementById(langId).value;
 
@@ -603,7 +618,10 @@ window.startContinuousDictation = (inputId, langId, statusId, startBtnId, stopBt
         }
     };
 
-    dictationRecognition.onerror = () => {};
+    dictationRecognition.onerror = (e) => {
+        // لو المستخدم رفض صلاحية الميكروفون، نوقف إعادة التشغيل التلقائي عشان منعملش حلقة لا نهائية
+        if (e && (e.error === 'not-allowed' || e.error === 'service-not-allowed')) { isDictating = false; }
+    };
     try { dictationRecognition.start(); } catch(e) {}
 };
 
@@ -739,7 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderViews() { 
-    renderDashboard(); renderMonthly(); renderDaily(); renderKanban(); renderHabits(); renderFinance(); renderLibrary(); renderNotes(); 
+    renderDashboard(); renderMonthly(); renderDaily(); renderKanban(); renderHabits(); renderFinance(); renderHealth(); renderLibrary(); renderNotes(); 
     if(typeof renderPomodoroLog === 'function') renderPomodoroLog();
     if(typeof renderUpdatesLog === 'function') renderUpdatesLog();
 }
@@ -2005,6 +2023,130 @@ window.exportFinanceExcel = () => {
     XLSX.utils.book_append_sheet(wb, ws, currentLang === 'ar' ? "التقرير المالي" : "Finance Report");
     XLSX.writeFile(wb, currentLang === 'ar' ? "تقرير_المحفظة_المالية.xlsx" : "Finance_Portfolio.xlsx");
 };
+
+
+// ----------------------------------------
+// قسم الوزن والسعرات
+// ----------------------------------------
+const healthNum = v => { const n = parseFloat(v); return isNaN(n) ? null : n; };
+window.addWeight = () => {
+    const w = healthNum(document.getElementById('weightInput').value);
+    const d = document.getElementById('weightDate').value || getTodayStr();
+    if (w === null || w <= 0) return;
+    weightLog.push({ id: Date.now(), date: d, weight: w });
+    document.getElementById('weightInput').value = '';
+    saveAll(); renderHealth();
+};
+window.delWeight = id => { weightLog = weightLog.filter(x => x.id !== id); saveAll(); renderHealth(); };
+window.saveWeightGoal = () => {
+    weightGoal = { target: document.getElementById('goalWeight').value, date: document.getElementById('goalDate').value };
+    saveAll(); renderHealth();
+};
+window.addCalorie = () => {
+    const desc = document.getElementById('calDesc').value.trim();
+    const cal = healthNum(document.getElementById('calValue').value);
+    const type = document.getElementById('calType').value;
+    const d = document.getElementById('calDate').value || getTodayStr();
+    if (!desc || cal === null || cal <= 0) return;
+    calorieLog.push({ id: Date.now(), date: d, desc, calories: cal, type });
+    document.getElementById('calDesc').value = ''; document.getElementById('calValue').value = '';
+    saveAll(); renderHealth();
+};
+window.delCalorie = id => { calorieLog = calorieLog.filter(x => x.id !== id); saveAll(); renderHealth(); };
+window.saveCalorieGoal = () => {
+    const g = parseInt(document.getElementById('calGoal').value);
+    if (g > 0) { calorieGoal = g; saveAll(); renderHealth(); }
+};
+
+function renderHealth() {
+    const wrap = document.getElementById('healthView');
+    if (!wrap) return;
+    const ar = currentLang === 'ar';
+    const today = getTodayStr();
+    const wDate = document.getElementById('weightDate'); if (wDate && !wDate.value) wDate.value = today;
+    const cDate = document.getElementById('calDate'); if (cDate && !cDate.value) cDate.value = today;
+    const gw = document.getElementById('goalWeight'), gd = document.getElementById('goalDate'), cg = document.getElementById('calGoal');
+    if (gw && document.activeElement !== gw) gw.value = weightGoal.target || '';
+    if (gd && document.activeElement !== gd) gd.value = weightGoal.date || '';
+    if (cg && document.activeElement !== cg) cg.value = calorieGoal;
+
+    // ---- الوزن ----
+    const sorted = weightLog.slice().sort((a, b) => a.date.localeCompare(b.date) || a.id - b.id);
+    const target = healthNum(weightGoal.target);
+    const summary = document.getElementById('weightSummary');
+    if (summary) {
+        if (sorted.length === 0) {
+            summary.innerHTML = `<p style="color:var(--text-muted);">${ar ? 'سجّل أول وزن لك للبدء.' : 'Log your first weight to get started.'}</p>`;
+        } else {
+            const start = sorted[0].weight, cur = sorted[sorted.length - 1].weight;
+            let html = `<div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:10px;">
+                <div><small>${ar ? 'البداية' : 'Start'}</small><div style="font-size:1.3rem; font-weight:bold;">${start} kg</div></div>
+                <div><small>${ar ? 'الحالي' : 'Current'}</small><div style="font-size:1.3rem; font-weight:bold; color:var(--primary);">${cur} kg</div></div>
+                ${target !== null ? `<div><small>${ar ? 'الهدف' : 'Target'}</small><div style="font-size:1.3rem; font-weight:bold;">${target} kg</div></div>` : ''}
+            </div>`;
+            if (target !== null) {
+                const total = start - target, done = start - cur;
+                const pct = total === 0 ? 100 : Math.max(0, Math.min(100, (done / total) * 100));
+                const reached = total > 0 ? cur <= target : cur >= target;
+                let daysTxt = '';
+                if (weightGoal.date) {
+                    const left = Math.ceil((new Date(weightGoal.date) - new Date(today)) / 86400000);
+                    daysTxt = left >= 0 ? (ar ? `متبقي ${left} يوم` : `${left} days left`) : (ar ? 'انتهت المدة' : 'Deadline passed');
+                }
+                html += `<div style="background:var(--border-color); border-radius:10px; height:14px; overflow:hidden;"><div style="width:${pct}%; height:100%; background:var(--primary);"></div></div>
+                    <div style="margin-top:6px; font-size:0.9rem;">${reached ? '🎉 ' + (ar ? 'وصلت للهدف!' : 'Goal reached!') : (ar ? `باقي ${Math.abs(cur - target).toFixed(1)} كجم` : `${Math.abs(cur - target).toFixed(1)} kg to go`)} ${daysTxt ? ' · ' + daysTxt : ''} · ${pct.toFixed(0)}%</div>`;
+            }
+            summary.innerHTML = html;
+        }
+    }
+    const wList = document.getElementById('weightList');
+    if (wList) {
+        wList.innerHTML = sorted.slice().reverse().slice(0, 15).map(x => `<div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border-color);"><span>${escapeHtml(x.date)}</span><strong>${x.weight} kg</strong><button class="icon-btn no-print" style="color:var(--danger);" onclick="delWeight(${x.id})"><i class="fa-solid fa-trash"></i></button></div>`).join('');
+    }
+    const canvas = document.getElementById('weightChart');
+    if (canvas && typeof Chart !== 'undefined') {
+        if (weightChartInstance) { weightChartInstance.destroy(); weightChartInstance = null; }
+        if (sorted.length > 0) {
+            const datasets = [{ label: ar ? 'الوزن' : 'Weight', data: sorted.map(x => x.weight), borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.15)', fill: true, tension: 0.3 }];
+            if (target !== null) datasets.push({ label: ar ? 'الهدف' : 'Target', data: sorted.map(() => target), borderColor: '#f59e0b', borderDash: [6, 6], pointRadius: 0, fill: false });
+            weightChartInstance = new Chart(canvas.getContext('2d'), { type: 'line', data: { labels: sorted.map(x => x.date), datasets }, options: { responsive: true, plugins: { legend: { display: true } } } });
+        }
+    }
+
+    // ---- السعرات ----
+    const selDate = (cDate && cDate.value) || today;
+    const dayEntries = calorieLog.filter(x => x.date === selDate).sort((a, b) => b.id - a.id);
+    const sum = t => dayEntries.filter(x => x.type === t).reduce((a, b) => a + b.calories, 0);
+    const eaten = sum('in'), burned = sum('out'), net = eaten - burned, remaining = calorieGoal - net;
+    const cs = document.getElementById('calSummary');
+    if (cs) {
+        const pct = Math.max(0, Math.min(100, (net / calorieGoal) * 100));
+        cs.innerHTML = `<div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:10px;">
+            <div><small>${ar ? 'تناولت' : 'Ate'}</small><div style="font-size:1.2rem; font-weight:bold;">${eaten}</div></div>
+            <div><small>${ar ? 'حرقت' : 'Burned'}</small><div style="font-size:1.2rem; font-weight:bold;">${burned}</div></div>
+            <div><small>${ar ? 'الصافي' : 'Net'}</small><div style="font-size:1.2rem; font-weight:bold; color:${net > calorieGoal ? 'var(--danger)' : 'var(--primary)'};">${net}</div></div>
+            <div><small>${ar ? 'المتبقي' : 'Remaining'}</small><div style="font-size:1.2rem; font-weight:bold;">${remaining}</div></div>
+        </div>
+        <div style="background:var(--border-color); border-radius:10px; height:14px; overflow:hidden;"><div style="width:${pct}%; height:100%; background:${net > calorieGoal ? 'var(--danger)' : 'var(--primary)'};"></div></div>`;
+    }
+    const cl = document.getElementById('calList');
+    if (cl) {
+        cl.innerHTML = dayEntries.map(x => `<div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--border-color);"><span>${x.type === 'in' ? '🍽️' : '🏃'} ${escapeHtml(x.desc)}</span><strong>${x.type === 'in' ? '+' : '-'}${x.calories}</strong><button class="icon-btn no-print" style="color:var(--danger);" onclick="delCalorie(${x.id})"><i class="fa-solid fa-trash"></i></button></div>`).join('') || `<p style="color:var(--text-muted);">${ar ? 'لا توجد إدخالات لهذا اليوم.' : 'No entries for this day.'}</p>`;
+    }
+    const histTitle = document.getElementById('calHistTitle'); if (histTitle) histTitle.textContent = ar ? 'آخر 7 أيام (الصافي)' : 'Last 7 days (net)';
+    const hist = document.getElementById('calHistory');
+    if (hist) {
+        const rows = [];
+        for (let i = 0; i < 7; i++) {
+            const dt = new Date(); dt.setDate(dt.getDate() - i);
+            const ds = dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0');
+            const list = calorieLog.filter(x => x.date === ds);
+            const n = list.reduce((a, b) => a + (b.type === 'in' ? b.calories : -b.calories), 0);
+            rows.push(`<div style="display:flex; justify-content:space-between; padding:4px 0;"><span>${ds}</span><strong style="color:${n > calorieGoal ? 'var(--danger)' : 'inherit'};">${n}</strong></div>`);
+        }
+        hist.innerHTML = rows.join('');
+    }
+}
 
 window.exportMonthPDF = () => {
     const dim = new Date(currentYearView, currentMonthView + 1, 0).getDate();

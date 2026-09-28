@@ -13,7 +13,20 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Planner Pro Max</title>
+    <title>Planner Pro Max | Eslam Planner - تطبيق تنظيم المهام والعادات والمشاريع</title>
+    <meta name="description" content="Eslam Planner (Planner Pro Max) - تطبيق تنظيم شخصي مجاني بالكامل: مهام يومية، خطة شهرية، متتبع عادات، مشاريع Kanban، متتبع مالي، مكتبة مراجع وملاحظات. يعمل بدون إنترنت، ومزامنة سحابية فورية بين كل أجهزتك، ويدعم العربية والإنجليزية.">
+    <meta name="keywords" content="Eslam Planner, eslam-planner, Planner Pro Max, تطبيق تنظيم المهام, مخطط يومي, متتبع عادات, لوحة كانبان, متتبع مالي, تطبيق تنظيم مجاني">
+    <link rel="canonical" href="https://eslam-planner.github.io/">
+    <meta property="og:title" content="Planner Pro Max | Eslam Planner">
+    <meta property="og:description" content="تطبيق تنظيم شخصي مجاني بالكامل: مهام، عادات، مشاريع، متتبع مالي، ملاحظات - يعمل بدون إنترنت ومتزامن بين كل أجهزتك.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eslam-planner.github.io/">
+    <meta property="og:image" content="https://eslam-planner.github.io/logo.png">
+    <meta property="og:locale" content="ar_AR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Planner Pro Max | Eslam Planner">
+    <meta name="twitter:description" content="تطبيق تنظيم شخصي مجاني بالكامل: مهام، عادات، مشاريع، متتبع مالي، ملاحظات.">
+    <meta name="twitter:image" content="https://eslam-planner.github.io/logo.png">
     <link rel="manifest" href="manifest.json">
     <!-- دعم سفاري و PWA للآيفون -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,7 +45,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=38-1">
+    <link rel="stylesheet" href="style.css?v=38-4">
 </head>
 <body>
 
@@ -66,6 +79,7 @@
                 <a href="#" class="nav-item" data-target="pomodoroView"><i class="fa-solid fa-stopwatch"></i> <span data-i18n="nav_pomodoro">مؤقت التركيز</span></a>
                 <a href="#" class="nav-item" data-target="kanbanView"><i class="fa-solid fa-kanban"></i> <span data-i18n="nav_kanban">المشاريع</span></a>
                 <a href="#" class="nav-item" data-target="habitsView"><i class="fa-solid fa-check-double"></i> <span data-i18n="nav_habits">متتبع العادات</span></a>
+                <a href="#" class="nav-item" data-target="healthView"><i class="fa-solid fa-weight-scale"></i> <span data-i18n="nav_health">الوزن والسعرات</span></a>
                 <a href="#" class="nav-item" data-target="financeView"><i class="fa-solid fa-wallet"></i> <span data-i18n="nav_finance">المتتبع المالي</span></a>
                 <a href="#" class="nav-item" data-target="libraryView"><i class="fa-solid fa-bookmark"></i> <span data-i18n="nav_lib">مكتبة المراجع</span></a>
                 <a href="#" class="nav-item" data-target="notesView"><i class="fa-solid fa-book"></i> <span data-i18n="nav_notes">الملاحظات</span></a>
@@ -269,6 +283,44 @@
                     <div class="kanban-col" id="kb-todo"><h3 style="border-bottom: 3px solid var(--danger);"><span data-i18n="kb_todo">💡 أفكار/مهام</span></h3><div class="kanban-items" data-status="todo" ondragover="allowDrop(event)" ondrop="drop(event)"></div></div>
                     <div class="kanban-col" id="kb-inprogress"><h3 style="border-bottom: 3px solid var(--warning);"><span data-i18n="kb_inprog">⏳ التنفيذ</span></h3><div class="kanban-items" data-status="inprogress" ondragover="allowDrop(event)" ondrop="drop(event)"></div></div>
                     <div class="kanban-col" id="kb-done"><h3 style="border-bottom: 3px solid var(--success);"><span data-i18n="kb_done">✅ مكتملة</span></h3><div class="kanban-items" data-status="done" ondragover="allowDrop(event)" ondrop="drop(event)"></div></div>
+                </div>
+            </div>
+
+            <div id="healthView" class="view-section">
+                <div class="content-header"><h2 data-i18n="title_health">الوزن والسعرات ⚖️</h2></div>
+                <div class="profile-card" style="max-width:100%; margin-bottom:20px;">
+                    <h3 data-i18n="w_title">متابعة الوزن</h3>
+                    <div id="weightSummary" style="margin:12px 0;"></div>
+                    <div class="no-print" style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                        <input type="number" step="0.1" id="weightInput" data-i18n-ph="w_kg" placeholder="الوزن (كجم)" style="padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;">
+                        <input type="date" id="weightDate" style="padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;">
+                        <button class="btn btn-primary" onclick="addWeight()"><i class="fa-solid fa-plus"></i> <span data-i18n="w_add">إضافة وزن</span></button>
+                    </div>
+                    <div class="no-print" style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:12px;">
+                        <strong data-i18n="w_goal_title">🎯 الهدف</strong>
+                        <input type="number" step="0.1" id="goalWeight" data-i18n-ph="w_target" placeholder="الوزن المستهدف (كجم)" style="padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;">
+                        <input type="date" id="goalDate" title="تاريخ الوصول للهدف" style="padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;">
+                        <button class="btn btn-secondary" onclick="saveWeightGoal()" data-i18n="w_save_goal">حفظ الهدف</button>
+                    </div>
+                    <canvas id="weightChart" height="110"></canvas>
+                    <div id="weightList" style="margin-top:12px;"></div>
+                </div>
+                <div class="profile-card" style="max-width:100%;">
+                    <h3 data-i18n="c_title">🔥 السعرات الحرارية</h3>
+                    <div class="no-print" style="display:flex; flex-wrap:wrap; gap:10px; margin:12px 0;">
+                        <input type="date" id="calDate" onchange="renderHealth()" style="padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;">
+                        <input type="number" id="calGoal" onchange="saveCalorieGoal()" title="الهدف اليومي" style="padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;">
+                    </div>
+                    <div id="calSummary" style="margin-bottom:12px;"></div>
+                    <div class="no-print" style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                        <input type="text" id="calDesc" data-i18n-ph="c_desc" placeholder="اسم الوجبة / التمرين" style="flex:2; min-width:140px; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;">
+                        <input type="number" id="calValue" data-i18n-ph="c_cal" placeholder="السعرات" style="padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;">
+                        <select id="calType" style="padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main); box-sizing:border-box;"><option value="in" data-i18n="c_in">تناولت</option><option value="out" data-i18n="c_out">حرقت</option></select>
+                        <button class="btn btn-primary" onclick="addCalorie()"><i class="fa-solid fa-plus"></i> <span data-i18n="c_add">إضافة</span></button>
+                    </div>
+                    <div id="calList"></div>
+                    <h4 style="margin-top:16px;">📅 <span id="calHistTitle"></span></h4>
+                    <div id="calHistory"></div>
                 </div>
             </div>
 
@@ -612,6 +664,6 @@
         <i class="fa-solid fa-bolt"></i>
     </button>
 
-<script src="script.js?v=38-1"></script>
+<script src="script.js?v=38-4"></script>
 </body>
 </html>
