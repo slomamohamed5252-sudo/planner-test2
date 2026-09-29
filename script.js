@@ -2208,6 +2208,15 @@ function addInterval(dateStr, freq, n) {
     else if (freq === 'yearly') d.setFullYear(d.getFullYear() + n);
     return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 }
+function subCyclesBetween(start, end, freq) {
+    const s = new Date(start + 'T00:00:00'), e = new Date(end + 'T00:00:00');
+    const diffDays = Math.round((e - s) / 86400000);
+    if (freq === 'daily') return diffDays;
+    if (freq === 'weekly') return Math.round(diffDays / 7);
+    if (freq === 'monthly') return (e.getFullYear() - s.getFullYear()) * 12 + (e.getMonth() - s.getMonth());
+    if (freq === 'yearly') return e.getFullYear() - s.getFullYear();
+    return diffDays;
+}
 function subFreqLabel(freq) {
     return { daily: i18n[currentLang].sub_daily, weekly: i18n[currentLang].sub_weekly, monthly: i18n[currentLang].sub_monthly, yearly: i18n[currentLang].sub_yearly }[freq] || freq;
 }
@@ -2215,9 +2224,12 @@ function checkSubsArchive() {
     const today = getTodayStr();
     let changed = false;
     subscriptions.forEach(s => {
-        if (!s.archived && s.endDate && s.endDate < today) { s.archived = true; changed = true; }
+        if (s.archived) return;
+        const cyclesDone = s.frequency === 'yearly' ? (s.paid ? 1 : 0) : (s.paymentsCount || 0);
+        const cyclesTarget = s.frequency === 'yearly' ? 1 : s.durationCount;
+        if ((s.endDate && s.endDate < today) || cyclesDone >= cyclesTarget) { s.archived = true; changed = true; }
     });
-    if (changed) persistLocalOnly();
+    if (changed) saveAll();
 }
 window.openSubModal = (id) => {
     const editing = !!id;
@@ -2239,6 +2251,25 @@ window.subAutoEnd = () => {
     const freq = document.getElementById('subFreq').value;
     const count = parseInt(document.getElementById('subCount').value) || 1;
     if (start) document.getElementById('subEnd').value = addInterval(start, freq, count);
+    window.subCalcFromTotal();
+};
+window.subAutoCount = () => {
+    const start = document.getElementById('subStart').value;
+    const end = document.getElementById('subEnd').value;
+    const freq = document.getElementById('subFreq').value;
+    if (!start || !end) return;
+    const count = subCyclesBetween(start, end, freq);
+    if (count > 0) { document.getElementById('subCount').value = count; window.subCalcFromTotal(); }
+};
+window.subCalcFromTotal = () => {
+    const total = parseFloat(document.getElementById('subTotal').value);
+    const count = parseInt(document.getElementById('subCount').value) || 1;
+    if (!isNaN(total) && count > 0) document.getElementById('subPerCycle').value = (total / count).toFixed(2);
+};
+window.subCalcFromPerCycle = () => {
+    const per = parseFloat(document.getElementById('subPerCycle').value);
+    const count = parseInt(document.getElementById('subCount').value) || 1;
+    if (!isNaN(per)) document.getElementById('subTotal').value = (per * count).toFixed(2);
 };
 window.saveSubscription = () => {
     const id = document.getElementById('subEditId').value;
@@ -2288,14 +2319,16 @@ window.subDrop = e => {
 window.subDragEnd = e => { e.currentTarget.style.opacity = '1'; draggedSubId = null; };
 window.confirmSubPayment = id => {
     const s = subscriptions.find(x => x.id === id);
-    if (!s) return;
-    finances.push({ id: Date.now(), type: 'expense', date: getTodayStr(), amount: String(s.amountPerCycle), category: 'subscriptions', desc: s.name });
+    if (!s || s.archived) return;
     if (s.frequency === 'yearly') {
+        if (s.paid) return;
         s.paid = true;
     } else {
+        if ((s.paymentsCount || 0) >= s.durationCount) return;
         s.paymentsCount = (s.paymentsCount || 0) + 1;
         s.nextPaymentDate = addInterval(s.nextPaymentDate || s.startDate, s.frequency, 1);
     }
+    finances.push({ id: Date.now(), type: 'expense', date: getTodayStr(), amount: String(s.amountPerCycle), category: 'subscriptions', desc: s.name });
     saveAll(); renderSubscriptions(); renderFinance();
 };
 window.setSubView = mode => { subViewMode = mode; renderSubscriptions(); };
@@ -2319,8 +2352,10 @@ function renderSubscriptions() {
         return;
     }
     container.innerHTML = list.map(s => {
-        const isDue = !s.archived && s.frequency !== 'yearly' && s.nextPaymentDate <= getTodayStr();
-        const isPaidYearly = s.frequency === 'yearly' && s.paid;
+        const cyclesDone = s.frequency === 'yearly' ? (s.paid ? 1 : 0) : (s.paymentsCount || 0);
+        const cyclesTarget = s.frequency === 'yearly' ? 1 : s.durationCount;
+        const isExhausted = cyclesDone >= cyclesTarget;
+        const isDue = !s.archived && !isExhausted && s.frequency !== 'yearly' && s.nextPaymentDate <= getTodayStr();
         return `<div class="lib-card" draggable="${subViewMode==='active'}" data-sub-id="${s.id}" ondragstart="subDragStart(event)" ondragover="subDragOver(event)" ondrop="subDrop(event)" ondragend="subDragEnd(event)" style="position:relative;">
             ${s.pinned ? `<i class="fa-solid fa-thumbtack" style="position:absolute; top:10px; ${ar?'left':'right'}:10px; color:var(--primary);"></i>` : ''}
             <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px; flex-wrap:wrap;">
@@ -2343,7 +2378,7 @@ function renderSubscriptions() {
             ${s.notes ? `<div class="render-area" style="margin-top:8px;">${linkify(s.notes)}</div>` : ''}
             <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                 <span style="font-size:0.8rem; color:var(--text-muted);">${s.frequency === 'yearly' ? '' : `${s.paymentsCount || 0} ${i18n[currentLang].sub_cycles_paid}`}</span>
-                ${subViewMode === 'active' ? (isPaidYearly ? `<span style="color:var(--success); font-weight:bold;"><i class="fa-solid fa-circle-check"></i> ${i18n[currentLang].sub_paid}</span>` : `<button class="btn btn-primary no-print" onclick="confirmSubPayment(${s.id})" style="${isDue ? '' : 'opacity:0.7;'}"><i class="fa-solid fa-check"></i> ${i18n[currentLang].sub_confirm_pay}</button>`) : ''}
+                ${subViewMode === 'active' ? (isExhausted ? `<span style="color:var(--success); font-weight:bold;"><i class="fa-solid fa-circle-check"></i> ${i18n[currentLang].sub_paid}</span>` : `<button class="btn btn-primary no-print" onclick="confirmSubPayment(${s.id})" style="${isDue ? '' : 'opacity:0.7;'}"><i class="fa-solid fa-check"></i> ${i18n[currentLang].sub_confirm_pay}</button>`) : ''}
             </div>
         </div>`;
     }).join('');
@@ -2352,34 +2387,39 @@ function renderSubscriptions() {
 window.exportSubscriptionsPDF = () => {
     if (subscriptions.length === 0) return alert(currentLang === 'ar' ? 'لا توجد بيانات لتصديرها' : 'No data to export');
     const ar = currentLang === 'ar';
-    let rowsHTML = subscriptions.map(s => `<tr>
-        <td style="padding:8px; border:1px solid #e5e7eb;">${escapeHtml(s.name)}</td>
-        <td style="padding:8px; border:1px solid #e5e7eb;">${subFreqLabel(s.frequency)} × ${s.durationCount}</td>
-        <td style="padding:8px; border:1px solid #e5e7eb;">${s.totalAmount}</td>
-        <td style="padding:8px; border:1px solid #e5e7eb;">${s.amountPerCycle}</td>
-        <td style="padding:8px; border:1px solid #e5e7eb;">${escapeHtml(s.startDate)}</td>
-        <td style="padding:8px; border:1px solid #e5e7eb;">${escapeHtml(s.endDate)}</td>
-        <td style="padding:8px; border:1px solid #e5e7eb;">${s.archived ? (ar?'محفوظات':'Archived') : (ar?'نشط':'Active')}</td>
+    const th = `padding:8px; border:1px solid #d1d5db; color:#111827;`;
+    const td = `padding:8px; border:1px solid #e5e7eb; color:#374151;`;
+    const rowsFor = list => list.map(s => `<tr>
+        <td style="${td}">${escapeHtml(s.name)}</td>
+        <td style="${td}">${subFreqLabel(s.frequency)} × ${s.durationCount}</td>
+        <td style="${td}">${s.totalAmount}</td>
+        <td style="${td}">${s.amountPerCycle}</td>
+        <td style="${td}">${escapeHtml(s.startDate)}</td>
+        <td style="${td}">${escapeHtml(s.endDate)}</td>
     </tr>`).join('');
-    const element = document.createElement('div');
-    element.style.padding = '20px'; element.style.direction = ar ? 'rtl' : 'ltr'; element.style.fontFamily = 'Inter, sans-serif';
-    element.innerHTML = `<h2 style="text-align:center;">${i18n[currentLang].title_subs}</h2>
-        <table style="width:100%; border-collapse:collapse; font-size:12px; margin-top:15px;">
+    const tableFor = (title, list) => list.length === 0 ? '' : `
+        <h3 style="color:#111827; margin-top:20px;">${title}</h3>
+        <table style="width:100%; border-collapse:collapse; font-size:12px;">
             <thead><tr style="background:#f3f4f6;">
-                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_name}</th>
-                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_freq}</th>
-                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_total}</th>
-                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_per_cycle}</th>
-                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_start}</th>
-                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_end}</th>
-                <th style="padding:8px; border:1px solid #e5e7eb;">${ar?'الحالة':'Status'}</th>
-            </tr></thead><tbody>${rowsHTML}</tbody></table>`;
+                <th style="${th}">${i18n[currentLang].sub_name}</th>
+                <th style="${th}">${i18n[currentLang].sub_freq}</th>
+                <th style="${th}">${i18n[currentLang].sub_total}</th>
+                <th style="${th}">${i18n[currentLang].sub_per_cycle}</th>
+                <th style="${th}">${i18n[currentLang].sub_start}</th>
+                <th style="${th}">${i18n[currentLang].sub_end}</th>
+            </tr></thead><tbody>${rowsFor(list)}</tbody></table>`;
+    const active = subscriptions.filter(s => !s.archived), archived = subscriptions.filter(s => s.archived);
+    const element = document.createElement('div');
+    element.style.padding = '20px'; element.style.direction = ar ? 'rtl' : 'ltr'; element.style.fontFamily = 'Inter, sans-serif'; element.style.background = '#ffffff';
+    element.innerHTML = `<h2 style="text-align:center; color:#111827;">${i18n[currentLang].title_subs}</h2>
+        ${tableFor(i18n[currentLang].sub_active, active)}
+        ${tableFor(i18n[currentLang].sub_archive, archived)}`;
     html2pdf().set({ margin: [0.4, 0.4], filename: 'Subscriptions.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } }).from(element).save();
 };
 window.exportSubscriptionsExcel = () => {
     if (subscriptions.length === 0) return alert(currentLang === 'ar' ? 'لا توجد بيانات لتصديرها' : 'No data to export');
     const ar = currentLang === 'ar';
-    const rows = subscriptions.map(s => ({
+    const rowOf = s => ({
         [i18n[currentLang].sub_name]: s.name,
         [i18n[currentLang].sub_freq]: subFreqLabel(s.frequency),
         [i18n[currentLang].sub_count]: s.durationCount,
@@ -2387,12 +2427,12 @@ window.exportSubscriptionsExcel = () => {
         [i18n[currentLang].sub_per_cycle]: s.amountPerCycle,
         [i18n[currentLang].sub_start]: s.startDate,
         [i18n[currentLang].sub_end]: s.endDate,
-        [ar ? 'الحالة' : 'Status']: s.archived ? (ar ? 'محفوظات' : 'Archived') : (ar ? 'نشط' : 'Active'),
         [i18n[currentLang].sub_notes]: s.notes || ''
-    }));
-    const ws = XLSX.utils.json_to_sheet(rows);
+    });
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Subscriptions');
+    const active = subscriptions.filter(s => !s.archived), archived = subscriptions.filter(s => s.archived);
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(active.map(rowOf)), i18n[currentLang].sub_active);
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(archived.map(rowOf)), i18n[currentLang].sub_archive);
     XLSX.writeFile(wb, 'Subscriptions.xlsx');
 };
 

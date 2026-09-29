@@ -45,7 +45,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=38-5">
+    <link rel="stylesheet" href="style.css?v=38-6">
 </head>
 <body>
 
@@ -166,25 +166,49 @@
                 <div class="modal-content">
                     <h3 id="subModalTitle" data-i18n="sub_add">إضافة اشتراك</h3>
                     <input type="hidden" id="subEditId">
-                    <input type="text" id="subName" data-i18n-ph="sub_name" placeholder="اسم الاشتراك" style="width:100%; margin-bottom:8px;">
-                    <div class="input-group">
-                        <select id="subFreq" onchange="subAutoEnd()" style="flex:1;">
-                            <option value="daily" data-i18n="sub_daily">يومي</option>
-                            <option value="weekly" data-i18n="sub_weekly">أسبوعي</option>
-                            <option value="monthly" selected data-i18n="sub_monthly">شهري</option>
-                            <option value="yearly" data-i18n="sub_yearly">سنوي</option>
-                        </select>
-                        <input type="number" id="subCount" onchange="subAutoEnd()" min="1" value="1" data-i18n-ph="sub_count" placeholder="عدد الدورات" style="flex:1;">
+                    <label style="font-size:0.85rem; color:var(--text-muted); margin-top:10px; display:block;" data-i18n="sub_name">اسم الاشتراك</label>
+                    <input type="text" id="subName" data-i18n-ph="sub_name" placeholder="اسم الاشتراك" style="width:100%;">
+
+                    <div class="input-group" style="flex-wrap:wrap;">
+                        <div style="flex:1; min-width:140px;">
+                            <label style="font-size:0.85rem; color:var(--text-muted); display:block;" data-i18n="sub_freq">الدورية</label>
+                            <select id="subFreq" onchange="subAutoEnd()" style="width:100%;">
+                                <option value="daily" data-i18n="sub_daily">يومي</option>
+                                <option value="weekly" data-i18n="sub_weekly">أسبوعي</option>
+                                <option value="monthly" selected data-i18n="sub_monthly">شهري</option>
+                                <option value="yearly" data-i18n="sub_yearly">سنوي</option>
+                            </select>
+                        </div>
+                        <div style="flex:1; min-width:140px;">
+                            <label style="font-size:0.85rem; color:var(--text-muted); display:block;" data-i18n="sub_count">عدد الدورات</label>
+                            <input type="number" id="subCount" onchange="subAutoEnd()" min="1" value="1" style="width:100%;">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <input type="number" id="subTotal" data-i18n-ph="sub_total" placeholder="المبلغ الكلي" style="flex:1;">
-                        <input type="number" id="subPerCycle" data-i18n-ph="sub_per_cycle" placeholder="المبلغ لكل دورة" style="flex:1;">
+
+                    <div class="input-group" style="flex-wrap:wrap;">
+                        <div style="flex:1; min-width:140px;">
+                            <label style="font-size:0.85rem; color:var(--text-muted); display:block;" data-i18n="sub_total">المبلغ الكلي</label>
+                            <input type="number" id="subTotal" onchange="subCalcFromTotal()" style="width:100%;">
+                        </div>
+                        <div style="flex:1; min-width:140px;">
+                            <label style="font-size:0.85rem; color:var(--text-muted); display:block;" data-i18n="sub_per_cycle">المبلغ لكل دورة</label>
+                            <input type="number" id="subPerCycle" onchange="subCalcFromPerCycle()" style="width:100%;">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <input type="date" id="subStart" onchange="subAutoEnd()" style="flex:1;">
-                        <input type="date" id="subEnd" style="flex:1;">
+
+                    <div class="input-group" style="flex-wrap:wrap;">
+                        <div style="flex:1; min-width:140px;">
+                            <label style="font-size:0.85rem; color:var(--text-muted); display:block;" data-i18n="sub_start">تاريخ البداية</label>
+                            <input type="date" id="subStart" onchange="subAutoEnd()" style="width:100%;">
+                        </div>
+                        <div style="flex:1; min-width:140px;">
+                            <label style="font-size:0.85rem; color:var(--text-muted); display:block;" data-i18n="sub_end">تاريخ النهاية</label>
+                            <input type="date" id="subEnd" onchange="subAutoCount()" style="width:100%;">
+                        </div>
                     </div>
-                    <textarea id="subNotes" data-i18n-ph="sub_notes" placeholder="ملاحظات" rows="2" style="width:100%; margin-top:8px;"></textarea>
+
+                    <label style="font-size:0.85rem; color:var(--text-muted); margin-top:10px; display:block;" data-i18n="sub_notes">ملاحظات</label>
+                    <textarea id="subNotes" data-i18n-ph="sub_notes" placeholder="ملاحظات" rows="2" style="width:100%;"></textarea>
                     <div class="modal-actions">
                         <button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button>
                         <button class="btn btn-primary" onclick="saveSubscription()" data-i18n="sub_save">حفظ</button>
@@ -720,6 +744,6 @@
         <i class="fa-solid fa-bolt"></i>
     </button>
 
-<script src="script.js?v=38-5"></script>
+<script src="script.js?v=38-6"></script>
 </body>
 </html>
