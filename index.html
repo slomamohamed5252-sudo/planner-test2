@@ -45,7 +45,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=38-4">
+    <link rel="stylesheet" href="style.css?v=38-5">
 </head>
 <body>
 
@@ -80,6 +80,7 @@
                 <a href="#" class="nav-item" data-target="kanbanView"><i class="fa-solid fa-kanban"></i> <span data-i18n="nav_kanban">المشاريع</span></a>
                 <a href="#" class="nav-item" data-target="habitsView"><i class="fa-solid fa-check-double"></i> <span data-i18n="nav_habits">متتبع العادات</span></a>
                 <a href="#" class="nav-item" data-target="healthView"><i class="fa-solid fa-weight-scale"></i> <span data-i18n="nav_health">الوزن والسعرات</span></a>
+                <a href="#" class="nav-item" data-target="subsView"><i class="fa-solid fa-receipt"></i> <span data-i18n="nav_subs">الاشتراكات</span></a>
                 <a href="#" class="nav-item" data-target="financeView"><i class="fa-solid fa-wallet"></i> <span data-i18n="nav_finance">المتتبع المالي</span></a>
                 <a href="#" class="nav-item" data-target="libraryView"><i class="fa-solid fa-bookmark"></i> <span data-i18n="nav_lib">مكتبة المراجع</span></a>
                 <a href="#" class="nav-item" data-target="notesView"><i class="fa-solid fa-book"></i> <span data-i18n="nav_notes">الملاحظات</span></a>
@@ -142,6 +143,52 @@
                 </div>
                 <div class="chart-container" style="background: var(--card-bg); padding: 20px; border-radius: 12px; margin-top: 20px; border: 1px solid var(--border-color);">
                     <canvas id="tasksChart" height="100"></canvas>
+                </div>
+            </div>
+
+            <div id="subsView" class="view-section">
+                <div class="content-header" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+                    <h2 data-i18n="title_subs">الاشتراكات 📱</h2>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button class="btn btn-secondary no-print" onclick="exportSubscriptionsPDF()"><i class="fa-solid fa-file-pdf" style="color:#ef4444;"></i> <span data-i18n="sub_export_pdf">تصدير PDF</span></button>
+                        <button class="btn btn-secondary no-print" onclick="exportSubscriptionsExcel()"><i class="fa-solid fa-file-excel" style="color:#22c55e;"></i> <span data-i18n="sub_export_excel">تصدير Excel</span></button>
+                        <button class="btn btn-primary no-print" onclick="openSubModal()"><i class="fa-solid fa-plus"></i> <span data-i18n="sub_add">إضافة اشتراك</span></button>
+                    </div>
+                </div>
+                <div class="no-print" style="display:flex; gap:10px; margin-bottom:15px;">
+                    <button id="subTabActive" class="btn btn-primary" onclick="setSubView('active')" data-i18n="sub_active">نشطة</button>
+                    <button id="subTabArchive" class="btn btn-secondary" onclick="setSubView('archive')" data-i18n="sub_archive">المحفوظات</button>
+                </div>
+                <div id="subsContainer" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:15px;"></div>
+            </div>
+
+            <div id="subModal" class="modal">
+                <div class="modal-content">
+                    <h3 id="subModalTitle" data-i18n="sub_add">إضافة اشتراك</h3>
+                    <input type="hidden" id="subEditId">
+                    <input type="text" id="subName" data-i18n-ph="sub_name" placeholder="اسم الاشتراك" style="width:100%; margin-bottom:8px;">
+                    <div class="input-group">
+                        <select id="subFreq" onchange="subAutoEnd()" style="flex:1;">
+                            <option value="daily" data-i18n="sub_daily">يومي</option>
+                            <option value="weekly" data-i18n="sub_weekly">أسبوعي</option>
+                            <option value="monthly" selected data-i18n="sub_monthly">شهري</option>
+                            <option value="yearly" data-i18n="sub_yearly">سنوي</option>
+                        </select>
+                        <input type="number" id="subCount" onchange="subAutoEnd()" min="1" value="1" data-i18n-ph="sub_count" placeholder="عدد الدورات" style="flex:1;">
+                    </div>
+                    <div class="input-group">
+                        <input type="number" id="subTotal" data-i18n-ph="sub_total" placeholder="المبلغ الكلي" style="flex:1;">
+                        <input type="number" id="subPerCycle" data-i18n-ph="sub_per_cycle" placeholder="المبلغ لكل دورة" style="flex:1;">
+                    </div>
+                    <div class="input-group">
+                        <input type="date" id="subStart" onchange="subAutoEnd()" style="flex:1;">
+                        <input type="date" id="subEnd" style="flex:1;">
+                    </div>
+                    <textarea id="subNotes" data-i18n-ph="sub_notes" placeholder="ملاحظات" rows="2" style="width:100%; margin-top:8px;"></textarea>
+                    <div class="modal-actions">
+                        <button class="btn btn-secondary close-modal" data-i18n="btn_cancel">إلغاء</button>
+                        <button class="btn btn-primary" onclick="saveSubscription()" data-i18n="sub_save">حفظ</button>
+                    </div>
                 </div>
             </div>
 
@@ -234,6 +281,15 @@
                         <input type="date" id="viewDailyDate" class="btn btn-secondary no-print" style="padding:5px 10px; font-family: inherit;">
                     </div>
                     <button class="btn btn-primary no-print" onclick="openTaskModal()"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add">إضافة</span></button>
+                </div>
+                <div class="no-print" style="margin-bottom:10px;">
+                    <select id="dailyQFilter" onchange="renderDaily()" style="padding:8px; border-radius:8px; border:1px solid var(--border-color); background:var(--card-bg); color:var(--text-main);">
+                        <option value="all" data-i18n="q_all">الكل</option>
+                        <option value="urgent" data-i18n="q_urgent">عاجل</option>
+                        <option value="important" data-i18n="q_important">مهم</option>
+                        <option value="delegate" data-i18n="q_delegate">مفوّض</option>
+                        <option value="cancelled" data-i18n="q_cancelled">ملغي</option>
+                    </select>
                 </div>
                 <div id="plannerContainer" class="planner-container"></div>
             </div>
@@ -664,6 +720,6 @@
         <i class="fa-solid fa-bolt"></i>
     </button>
 
-<script src="script.js?v=38-4"></script>
+<script src="script.js?v=38-5"></script>
 </body>
 </html>

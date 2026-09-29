@@ -224,6 +224,8 @@ const i18n = {
         cat_gold: "🪙 ذهب", cat_stocks: "📈 أسهم", cat_deposit: "🏦 وديعة بنكية", cat_emergency: "🛡️ صندوق طوارئ",
         lib_search_ph: "🔍 بحث في المراجع...", notes_search_ph: "🔍 بحث في الملاحظات...",
         lib_view_date: "الأحدث أولاً", lib_view_cat: "عرض حسب التصنيف", lib_cat_all: "كل التصنيفات",
+        q_urgent: "عاجل", q_important: "مهم", q_delegate: "مفوّض", q_cancelled: "ملغي", q_all: "الكل", q_filter: "تصفية حسب التصنيف", q_add_ph: "أضف مهمة سريعة لهذا اليوم...", q_none: "بدون تصنيف",
+cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", title_subs: "الاشتراكات 📱", sub_active: "نشطة", sub_archive: "المحفوظات", sub_add: "إضافة اشتراك", sub_name: "اسم الاشتراك", sub_freq: "الدورية", sub_daily: "يومي", sub_weekly: "أسبوعي", sub_monthly: "شهري", sub_yearly: "سنوي", sub_count: "عدد الدورات", sub_total: "المبلغ الكلي", sub_per_cycle: "المبلغ لكل دورة", sub_start: "تاريخ البداية", sub_end: "تاريخ النهاية", sub_next: "الدفعة القادمة", sub_notes: "ملاحظات", sub_save: "حفظ", sub_confirm_pay: "تأكيد الدفع", sub_paid: "مدفوع", sub_edit: "تعديل", sub_delete: "حذف", sub_empty: "لا توجد اشتراكات نشطة.", sub_archive_empty: "لا توجد اشتراكات في المحفوظات.", sub_export_pdf: "تصدير PDF", sub_export_excel: "تصدير Excel", sub_cycles_paid: "دورات مدفوعة",
         nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
         nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة"
     },
@@ -261,6 +263,8 @@ const i18n = {
         cat_gold: "🪙 Gold", cat_stocks: "📈 Stocks", cat_deposit: "🏦 Bank Deposit", cat_emergency: "🛡️ Emergency Fund",
         lib_search_ph: "🔍 Search references...", notes_search_ph: "🔍 Search notes...",
         lib_view_date: "Newest first", lib_view_cat: "View by category", lib_cat_all: "All categories",
+        q_urgent: "Urgent", q_important: "Important", q_delegate: "Delegate", q_cancelled: "Cancelled", q_all: "All", q_filter: "Filter by tag", q_add_ph: "Quick-add a tagged task for this day...", q_none: "No tag",
+cat_subscriptions: "📱 Subscriptions", nav_subs: "Subscriptions", title_subs: "Subscriptions 📱", sub_active: "Active", sub_archive: "Archive", sub_add: "Add subscription", sub_name: "Subscription name", sub_freq: "Frequency", sub_daily: "Daily", sub_weekly: "Weekly", sub_monthly: "Monthly", sub_yearly: "Yearly", sub_count: "Number of cycles", sub_total: "Total amount", sub_per_cycle: "Amount per cycle", sub_start: "Start date", sub_end: "End date", sub_next: "Next payment", sub_notes: "Notes", sub_save: "Save", sub_confirm_pay: "Confirm payment", sub_paid: "Paid", sub_edit: "Edit", sub_delete: "Delete", sub_empty: "No active subscriptions.", sub_archive_empty: "No archived subscriptions.", sub_export_pdf: "Export PDF", sub_export_excel: "Export Excel", sub_cycles_paid: "cycles paid",
         nav_updates: "Updates", title_updates: "App Update Log 🔄",
         nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add"
     }
@@ -278,7 +282,7 @@ window.updateFinCategories = (typeId, catId) => {
     if(val === 'save' || val === 'withdraw') {
         cats = [ {v:'gold', l:i18n[currentLang].cat_gold}, {v:'stocks', l:i18n[currentLang].cat_stocks}, {v:'deposit', l:i18n[currentLang].cat_deposit}, {v:'emergency', l:i18n[currentLang].cat_emergency}, {v:'other', l:i18n[currentLang].cat_other} ];
     } else {
-        cats = [ {v:'other', l:i18n[currentLang].cat_other}, {v:'food', l:i18n[currentLang].cat_food}, {v:'transport', l:i18n[currentLang].cat_trans}, {v:'shopping', l:i18n[currentLang].cat_shop}, {v:'bills', l:i18n[currentLang].cat_bills}, {v:'work', l:i18n[currentLang].cat_work}, {v:'fun', l:i18n[currentLang].cat_fun} ];
+        cats = [ {v:'other', l:i18n[currentLang].cat_other}, {v:'food', l:i18n[currentLang].cat_food}, {v:'transport', l:i18n[currentLang].cat_trans}, {v:'shopping', l:i18n[currentLang].cat_shop}, {v:'bills', l:i18n[currentLang].cat_bills}, {v:'work', l:i18n[currentLang].cat_work}, {v:'fun', l:i18n[currentLang].cat_fun}, {v:'subscriptions', l:i18n[currentLang].cat_subscriptions} ];
     }
     
     let oldVal = catEl.value;
@@ -322,12 +326,14 @@ function initColorTheme() {
 let tasks = [], notes = [], profile = { name: '', phone: '' }, kanbanTasks = { todo: [], inprogress: [], done: [] }, habits = [], finances = [], library = [], pomodoroLog = [], updateLog = [];
 let lastModified = parseInt(localStorage.getItem('fp_last_modified')) || 0;
 let weightLog = [], weightGoal = { target: '', date: '' }, calorieLog = [], calorieGoal = 2000, weightChartInstance = null;
+let subscriptions = [], draggedSubId = null, subViewMode = 'active';
 
 try { updateLog = JSON.parse(localStorage.getItem('fp_update_log')) || []; } catch(e) { updateLog = []; }
 try { weightLog = JSON.parse(localStorage.getItem('fp_weight')) || []; } catch(e) { weightLog = []; }
 try { weightGoal = JSON.parse(localStorage.getItem('fp_weight_goal')) || { target: '', date: '' }; } catch(e) { weightGoal = { target: '', date: '' }; }
 try { calorieLog = JSON.parse(localStorage.getItem('fp_calories')) || []; } catch(e) { calorieLog = []; }
 calorieGoal = parseInt(localStorage.getItem('fp_calorie_goal')) || 2000;
+try { subscriptions = JSON.parse(localStorage.getItem('fp_subscriptions')) || []; } catch(e) { subscriptions = []; }
 try { tasks = JSON.parse(localStorage.getItem('fp_tasks')) || []; } catch(e) { tasks = []; }
 try { notes = JSON.parse(localStorage.getItem('fp_notes')) || []; } catch(e) { notes = []; }
 try { profile = JSON.parse(localStorage.getItem('fp_profile')) || { name: '', phone: '' }; } catch(e) { profile = { name: '', phone: '' }; }
@@ -371,6 +377,7 @@ function persistLocalOnly() {
         localStorage.setItem('fp_weight_goal', JSON.stringify(weightGoal));
         localStorage.setItem('fp_calories', JSON.stringify(calorieLog));
         localStorage.setItem('fp_calorie_goal', String(calorieGoal));
+        localStorage.setItem('fp_subscriptions', JSON.stringify(subscriptions));
         localStorage.setItem('fp_last_modified', String(lastModified));
     } catch(err) {
         console.error("Local storage save error:", err);
@@ -407,7 +414,7 @@ function saveAll() {
             // بنمسح صراحة أي حقل monthlyData قديم متراكم من نسخ سابقة، عشان لو هو سبب تخطي حد الـ 1MB،
             // المستند يرجع يصغر ويقدر يتحفظ تاني بدل ما يفضل عالق فوق الحد للأبد
             userRef.set({ 
-                tasks, notes, kanbanTasks, habits, finances, library, profile, lastModified, updateLog, weightLog, weightGoal, calorieLog, calorieGoal,
+                tasks, notes, kanbanTasks, habits, finances, library, profile, lastModified, updateLog, weightLog, weightGoal, calorieLog, calorieGoal, subscriptions,
                 monthlyData: firebase.firestore.FieldValue.delete()
             }, {merge: true}).then(() => {
                 setCloudSyncWarning(false);
@@ -465,6 +472,7 @@ function loadFromCloud() {
         if(data.weightGoal && typeof data.weightGoal === 'object') weightGoal = data.weightGoal;
         if(Array.isArray(data.calorieLog)) calorieLog = data.calorieLog;
         if(typeof data.calorieGoal === 'number') calorieGoal = data.calorieGoal;
+        if(Array.isArray(data.subscriptions)) subscriptions = data.subscriptions;
         if (typeof data.lastModified === 'number') lastModified = data.lastModified;
         persistLocalOnly(); 
         renderViews(); 
@@ -757,7 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderViews() { 
-    renderDashboard(); renderMonthly(); renderDaily(); renderKanban(); renderHabits(); renderFinance(); renderHealth(); renderLibrary(); renderNotes(); 
+    renderDashboard(); renderMonthly(); renderDaily(); renderKanban(); renderHabits(); renderFinance(); renderHealth(); renderSubscriptions(); renderLibrary(); renderNotes(); 
     if(typeof renderPomodoroLog === 'function') renderPomodoroLog();
     if(typeof renderUpdatesLog === 'function') renderUpdatesLog();
 }
@@ -767,15 +775,20 @@ function renderViews() {
 // ----------------------------------------
 function renderDaily() { 
     const container = document.getElementById('plannerContainer'); 
+    const filterEl = document.getElementById('dailyQFilter');
     if(!container) return;
     container.innerHTML = ''; 
-    const todayTasks = tasks.filter(t => t.date === currentDailyDate); 
+    const qColors = {urgent:'#ef4444',important:'#f59e0b',delegate:'#3b82f6',cancelled:'#6b7280'};
+    const qLabels = { urgent: i18n[currentLang].q_urgent, important: i18n[currentLang].q_important, delegate: i18n[currentLang].q_delegate, cancelled: i18n[currentLang].q_cancelled };
+    const activeFilter = filterEl ? filterEl.value : 'all';
+    let todayTasks = tasks.filter(t => t.date === currentDailyDate); 
+    if (activeFilter !== 'all') todayTasks = todayTasks.filter(t => t.quadrant === activeFilter);
     for(let hour = 6; hour <= 23; hour++) { 
         const hourTasks = todayTasks.filter(t => t.hour == hour); 
         let timeLabel = hour === 12 ? '12 PM' : (hour > 12 ? `${hour - 12} PM` : `${hour} AM`);
         let html = hourTasks.map(t => `
             <div class="daily-task-item ${t.completed ? 'completed' : ''}" onclick="editTask(${t.id})" style="display:flex; justify-content:space-between; padding:10px; border:1px solid var(--border-color); border-radius:8px; margin-bottom:5px; background:var(--card-bg); cursor:pointer;">
-                <div style="flex:1;"><input type="checkbox" ${t.completed ? 'checked' : ''} onclick="event.stopPropagation()" onchange="toggleTask(${t.id})"> <span style="text-decoration:${t.completed?'line-through':'none'}">${escapeHtml(t.title)}</span></div>
+                <div style="flex:1;"><input type="checkbox" ${t.completed ? 'checked' : ''} onclick="event.stopPropagation()" onchange="toggleTask(${t.id})"> <span style="text-decoration:${t.completed?'line-through':'none'}">${escapeHtml(t.title)}</span> ${t.quadrant ? `<span style="font-size:0.7rem; color:${qColors[t.quadrant]||'#888'}; border:1px solid ${qColors[t.quadrant]||'#888'}; border-radius:8px; padding:1px 6px; margin-${currentLang==='ar'?'right':'left'}:6px;">${escapeHtml(qLabels[t.quadrant]||'')}</span>` : ''}</div>
                 <button onclick="event.stopPropagation(); delTask(${t.id})" class="no-print icon-btn" style="color:var(--danger);"><i class="fa-solid fa-trash"></i></button>
             </div>
         `).join(''); 
@@ -1113,6 +1126,14 @@ function renderMonthly() {
             </div>` : '';
 
         // إنشاء العناصر بصورة آمنة لمنع كسر الـ textarea والـ attributes
+        let dStrPad = String(i).padStart(2, '0');
+        let mStrPad = String(currentMonthView + 1).padStart(2, '0');
+        let dayDateStr = `${currentYearView}-${mStrPad}-${dStrPad}`;
+        let qColors = {urgent:'#ef4444',important:'#f59e0b',delegate:'#3b82f6',cancelled:'#6b7280'};
+        let qLabels = { urgent: i18n[currentLang].q_urgent, important: i18n[currentLang].q_important, delegate: i18n[currentLang].q_delegate, cancelled: i18n[currentLang].q_cancelled };
+        let dayQItems = tasks.filter(t => t.date === dayDateStr && t.quadrantItem);
+        let qItemsHTML = dayQItems.map(t => `<div style="display:flex; align-items:center; gap:6px; margin-top:4px; padding:4px 8px; background:var(--bg-color); border-radius:6px; border-right:3px solid ${qColors[t.quadrant] || '#888'};"><input type="checkbox" ${t.completed ? 'checked' : ''} onchange="toggleTask(${t.id})" style="cursor:pointer;"><span style="flex:1; font-size:0.85rem; text-decoration:${t.completed?'line-through':'none'};">${escapeHtml(t.title)}</span><span style="font-size:0.7rem; color:${qColors[t.quadrant] || '#888'};">${escapeHtml(qLabels[t.quadrant] || '')}</span><button class="icon-btn no-print" style="color:var(--danger); font-size:0.8rem;" onclick="delTask(${t.id})"><i class="fa-solid fa-trash"></i></button></div>`).join('');
+
         dayDiv.innerHTML = `
             <div class="month-day-header" style="display:flex; justify-content:space-between; align-items:center;">
                 <span>${dayText} ${i} ${mNames[currentMonthView]} <b style="color:var(--primary);">${isTodayText}</b></span>
@@ -1121,7 +1142,18 @@ function renderMonthly() {
             <textarea class="multi-line-input no-print" rows="3" data-key="${storageKey}" data-day="${i}" placeholder="${placeholderText}"></textarea>
             <input type="tel" class="no-print" data-phone-key="${phoneKey}" placeholder="${phonePlaceholder}" 
                 style="width:100%; margin-top:5px; padding:8px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-main); font-size:0.85rem;">
-            <div class="render-area">${linkify(savedText)}</div>`; 
+            <div class="render-area">${linkify(savedText)}</div>
+            <div class="no-print" style="display:flex; gap:6px; margin-top:8px;">
+                <input type="text" class="q-quick-input" data-qdate="${dayDateStr}" placeholder="${i18n[currentLang].q_add_ph}" style="flex:2; min-width:0; padding:6px 8px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-main); font-size:0.8rem;">
+                <select class="q-quick-select" style="flex:1; padding:6px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-main); font-size:0.8rem;">
+                    <option value="urgent">${i18n[currentLang].q_urgent}</option>
+                    <option value="important">${i18n[currentLang].q_important}</option>
+                    <option value="delegate">${i18n[currentLang].q_delegate}</option>
+                    <option value="cancelled">${i18n[currentLang].q_cancelled}</option>
+                </select>
+                <button class="btn btn-secondary q-quick-add" style="padding:6px 10px;"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="q-items-list">${qItemsHTML}</div>`; 
             
         // تعيين القيم برمجياً لحصانة تامة ضد XSS
         const ta = dayDiv.querySelector('textarea');
@@ -1166,6 +1198,22 @@ function renderMonthly() {
         inp.onchange = e => {
             localStorage.setItem(e.target.dataset.phoneKey, e.target.value);
             renderMonthly();
+        };
+    });
+
+    document.querySelectorAll('.q-quick-add').forEach(btn => {
+        btn.onclick = e => {
+            const row = e.target.closest('div').parentElement.querySelector('.q-quick-input') ? e.target.closest('.month-day-card') : null;
+            const card = e.target.closest('.month-day-card');
+            if (!card) return;
+            const inp = card.querySelector('.q-quick-input');
+            const sel = card.querySelector('.q-quick-select');
+            if (!inp.value.trim()) return;
+            tasks.push({ id: Date.now(), title: inp.value.trim(), date: inp.dataset.qdate, hour: 9, completed: false, quadrantItem: true, quadrant: sel.value });
+            inp.value = '';
+            saveAll();
+            renderMonthly();
+            if (currentDailyDate === card.querySelector('.q-quick-input').dataset.qdate) renderDaily();
         };
     });
 
@@ -2147,6 +2195,206 @@ function renderHealth() {
         hist.innerHTML = rows.join('');
     }
 }
+
+
+// ----------------------------------------
+// قسم الاشتراكات
+// ----------------------------------------
+function addInterval(dateStr, freq, n) {
+    const d = new Date(dateStr + 'T00:00:00');
+    if (freq === 'daily') d.setDate(d.getDate() + n);
+    else if (freq === 'weekly') d.setDate(d.getDate() + 7 * n);
+    else if (freq === 'monthly') d.setMonth(d.getMonth() + n);
+    else if (freq === 'yearly') d.setFullYear(d.getFullYear() + n);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function subFreqLabel(freq) {
+    return { daily: i18n[currentLang].sub_daily, weekly: i18n[currentLang].sub_weekly, monthly: i18n[currentLang].sub_monthly, yearly: i18n[currentLang].sub_yearly }[freq] || freq;
+}
+function checkSubsArchive() {
+    const today = getTodayStr();
+    let changed = false;
+    subscriptions.forEach(s => {
+        if (!s.archived && s.endDate && s.endDate < today) { s.archived = true; changed = true; }
+    });
+    if (changed) persistLocalOnly();
+}
+window.openSubModal = (id) => {
+    const editing = !!id;
+    document.getElementById('subModalTitle').innerText = editing ? i18n[currentLang].sub_edit : i18n[currentLang].sub_add;
+    document.getElementById('subEditId').value = id || '';
+    const s = editing ? subscriptions.find(x => x.id === id) : null;
+    document.getElementById('subName').value = s ? s.name : '';
+    document.getElementById('subFreq').value = s ? s.frequency : 'monthly';
+    document.getElementById('subCount').value = s ? s.durationCount : 1;
+    document.getElementById('subTotal').value = s ? s.totalAmount : '';
+    document.getElementById('subPerCycle').value = s ? s.amountPerCycle : '';
+    document.getElementById('subStart').value = s ? s.startDate : getTodayStr();
+    document.getElementById('subEnd').value = s ? s.endDate : '';
+    document.getElementById('subNotes').value = s ? (s.notes || '') : '';
+    document.getElementById('subModal').classList.add('show');
+};
+window.subAutoEnd = () => {
+    const start = document.getElementById('subStart').value;
+    const freq = document.getElementById('subFreq').value;
+    const count = parseInt(document.getElementById('subCount').value) || 1;
+    if (start) document.getElementById('subEnd').value = addInterval(start, freq, count);
+};
+window.saveSubscription = () => {
+    const id = document.getElementById('subEditId').value;
+    const name = document.getElementById('subName').value.trim();
+    const frequency = document.getElementById('subFreq').value;
+    const durationCount = parseInt(document.getElementById('subCount').value) || 1;
+    const totalAmount = parseFloat(document.getElementById('subTotal').value) || 0;
+    const amountPerCycle = parseFloat(document.getElementById('subPerCycle').value) || 0;
+    const startDate = document.getElementById('subStart').value;
+    let endDate = document.getElementById('subEnd').value;
+    const notes = document.getElementById('subNotes').value.trim();
+    if (!name || !startDate) return;
+    if (!endDate) endDate = addInterval(startDate, frequency, durationCount);
+
+    if (id) {
+        const s = subscriptions.find(x => x.id === parseInt(id));
+        if (s) Object.assign(s, { name, frequency, durationCount, totalAmount, amountPerCycle, startDate, endDate, notes });
+    } else {
+        subscriptions.push({ id: Date.now(), name, frequency, durationCount, totalAmount, amountPerCycle, startDate, endDate, notes, nextPaymentDate: startDate, paid: false, paymentsCount: 0, pinned: false, archived: false });
+    }
+    document.getElementById('subModal').classList.remove('show');
+    saveAll(); renderSubscriptions();
+};
+window.deleteSubscription = id => { subscriptions = subscriptions.filter(x => x.id !== id); saveAll(); renderSubscriptions(); };
+window.toggleSubPin = id => { const s = subscriptions.find(x => x.id === id); if (s) { s.pinned = !s.pinned; saveAll(); renderSubscriptions(); } };
+window.moveSubPosition = (id, dir) => {
+    const idx = subscriptions.findIndex(x => x.id === id);
+    if (idx === -1) return;
+    const n = idx + dir;
+    if (n < 0 || n >= subscriptions.length) return;
+    [subscriptions[idx], subscriptions[n]] = [subscriptions[n], subscriptions[idx]];
+    saveAll(); renderSubscriptions();
+};
+window.subDragStart = e => { draggedSubId = parseInt(e.currentTarget.dataset.subId); e.currentTarget.style.opacity = '0.4'; };
+window.subDragOver = e => e.preventDefault();
+window.subDrop = e => {
+    e.preventDefault();
+    const targetId = parseInt(e.currentTarget.dataset.subId);
+    if (draggedSubId === null || draggedSubId === targetId) return;
+    const fromIdx = subscriptions.findIndex(x => x.id === draggedSubId);
+    const toIdx = subscriptions.findIndex(x => x.id === targetId);
+    if (fromIdx === -1 || toIdx === -1) return;
+    const [moved] = subscriptions.splice(fromIdx, 1);
+    subscriptions.splice(toIdx, 0, moved);
+    saveAll(); renderSubscriptions();
+};
+window.subDragEnd = e => { e.currentTarget.style.opacity = '1'; draggedSubId = null; };
+window.confirmSubPayment = id => {
+    const s = subscriptions.find(x => x.id === id);
+    if (!s) return;
+    finances.push({ id: Date.now(), type: 'expense', date: getTodayStr(), amount: String(s.amountPerCycle), category: 'subscriptions', desc: s.name });
+    if (s.frequency === 'yearly') {
+        s.paid = true;
+    } else {
+        s.paymentsCount = (s.paymentsCount || 0) + 1;
+        s.nextPaymentDate = addInterval(s.nextPaymentDate || s.startDate, s.frequency, 1);
+    }
+    saveAll(); renderSubscriptions(); renderFinance();
+};
+window.setSubView = mode => { subViewMode = mode; renderSubscriptions(); };
+
+function renderSubscriptions() {
+    const container = document.getElementById('subsContainer');
+    if (!container) return;
+    checkSubsArchive();
+    const ar = currentLang === 'ar';
+    const activeBtn = document.getElementById('subTabActive'), archBtn = document.getElementById('subTabArchive');
+    if (activeBtn && archBtn) {
+        activeBtn.classList.toggle('btn-primary', subViewMode === 'active');
+        activeBtn.classList.toggle('btn-secondary', subViewMode !== 'active');
+        archBtn.classList.toggle('btn-primary', subViewMode === 'archive');
+        archBtn.classList.toggle('btn-secondary', subViewMode !== 'archive');
+    }
+    let list = subscriptions.filter(s => subViewMode === 'archive' ? s.archived : !s.archived);
+    list = list.slice().sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+    if (list.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color:var(--text-muted);">${subViewMode === 'archive' ? i18n[currentLang].sub_archive_empty : i18n[currentLang].sub_empty}</p>`;
+        return;
+    }
+    container.innerHTML = list.map(s => {
+        const isDue = !s.archived && s.frequency !== 'yearly' && s.nextPaymentDate <= getTodayStr();
+        const isPaidYearly = s.frequency === 'yearly' && s.paid;
+        return `<div class="lib-card" draggable="${subViewMode==='active'}" data-sub-id="${s.id}" ondragstart="subDragStart(event)" ondragover="subDragOver(event)" ondrop="subDrop(event)" ondragend="subDragEnd(event)" style="position:relative;">
+            ${s.pinned ? `<i class="fa-solid fa-thumbtack" style="position:absolute; top:10px; ${ar?'left':'right'}:10px; color:var(--primary);"></i>` : ''}
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px; flex-wrap:wrap;">
+                <h3 style="margin:0;">${escapeHtml(s.name)}</h3>
+                <div class="no-print" style="display:flex; gap:6px;">
+                    <button class="icon-btn" style="color:${s.pinned?'var(--primary)':'var(--text-muted)'};" onclick="toggleSubPin(${s.id})"><i class="fa-solid fa-thumbtack"></i></button>
+                    ${subViewMode==='active' ? `<button class="icon-btn" onclick="moveSubPosition(${s.id}, -1)"><i class="fa-solid fa-chevron-up"></i></button><button class="icon-btn" onclick="moveSubPosition(${s.id}, 1)"><i class="fa-solid fa-chevron-down"></i></button>` : ''}
+                    <button class="icon-btn" onclick="openSubModal(${s.id})"><i class="fa-solid fa-pen"></i></button>
+                    <button class="icon-btn" style="color:var(--danger);" onclick="deleteSubscription(${s.id})"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div style="font-size:0.9rem; color:var(--text-muted); margin-top:6px; display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+                <span>${subFreqLabel(s.frequency)} × ${s.durationCount}</span>
+                <span>${i18n[currentLang].sub_total}: ${s.totalAmount}</span>
+                <span>${i18n[currentLang].sub_per_cycle}: ${s.amountPerCycle}</span>
+                <span>${i18n[currentLang].sub_start}: ${escapeHtml(s.startDate)}</span>
+                <span>${i18n[currentLang].sub_end}: ${escapeHtml(s.endDate)}</span>
+                ${s.frequency !== 'yearly' ? `<span>${i18n[currentLang].sub_next}: ${escapeHtml(s.nextPaymentDate)}</span>` : ''}
+            </div>
+            ${s.notes ? `<div class="render-area" style="margin-top:8px;">${linkify(s.notes)}</div>` : ''}
+            <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <span style="font-size:0.8rem; color:var(--text-muted);">${s.frequency === 'yearly' ? '' : `${s.paymentsCount || 0} ${i18n[currentLang].sub_cycles_paid}`}</span>
+                ${subViewMode === 'active' ? (isPaidYearly ? `<span style="color:var(--success); font-weight:bold;"><i class="fa-solid fa-circle-check"></i> ${i18n[currentLang].sub_paid}</span>` : `<button class="btn btn-primary no-print" onclick="confirmSubPayment(${s.id})" style="${isDue ? '' : 'opacity:0.7;'}"><i class="fa-solid fa-check"></i> ${i18n[currentLang].sub_confirm_pay}</button>`) : ''}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+window.exportSubscriptionsPDF = () => {
+    if (subscriptions.length === 0) return alert(currentLang === 'ar' ? 'لا توجد بيانات لتصديرها' : 'No data to export');
+    const ar = currentLang === 'ar';
+    let rowsHTML = subscriptions.map(s => `<tr>
+        <td style="padding:8px; border:1px solid #e5e7eb;">${escapeHtml(s.name)}</td>
+        <td style="padding:8px; border:1px solid #e5e7eb;">${subFreqLabel(s.frequency)} × ${s.durationCount}</td>
+        <td style="padding:8px; border:1px solid #e5e7eb;">${s.totalAmount}</td>
+        <td style="padding:8px; border:1px solid #e5e7eb;">${s.amountPerCycle}</td>
+        <td style="padding:8px; border:1px solid #e5e7eb;">${escapeHtml(s.startDate)}</td>
+        <td style="padding:8px; border:1px solid #e5e7eb;">${escapeHtml(s.endDate)}</td>
+        <td style="padding:8px; border:1px solid #e5e7eb;">${s.archived ? (ar?'محفوظات':'Archived') : (ar?'نشط':'Active')}</td>
+    </tr>`).join('');
+    const element = document.createElement('div');
+    element.style.padding = '20px'; element.style.direction = ar ? 'rtl' : 'ltr'; element.style.fontFamily = 'Inter, sans-serif';
+    element.innerHTML = `<h2 style="text-align:center;">${i18n[currentLang].title_subs}</h2>
+        <table style="width:100%; border-collapse:collapse; font-size:12px; margin-top:15px;">
+            <thead><tr style="background:#f3f4f6;">
+                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_name}</th>
+                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_freq}</th>
+                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_total}</th>
+                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_per_cycle}</th>
+                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_start}</th>
+                <th style="padding:8px; border:1px solid #e5e7eb;">${i18n[currentLang].sub_end}</th>
+                <th style="padding:8px; border:1px solid #e5e7eb;">${ar?'الحالة':'Status'}</th>
+            </tr></thead><tbody>${rowsHTML}</tbody></table>`;
+    html2pdf().set({ margin: [0.4, 0.4], filename: 'Subscriptions.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } }).from(element).save();
+};
+window.exportSubscriptionsExcel = () => {
+    if (subscriptions.length === 0) return alert(currentLang === 'ar' ? 'لا توجد بيانات لتصديرها' : 'No data to export');
+    const ar = currentLang === 'ar';
+    const rows = subscriptions.map(s => ({
+        [i18n[currentLang].sub_name]: s.name,
+        [i18n[currentLang].sub_freq]: subFreqLabel(s.frequency),
+        [i18n[currentLang].sub_count]: s.durationCount,
+        [i18n[currentLang].sub_total]: s.totalAmount,
+        [i18n[currentLang].sub_per_cycle]: s.amountPerCycle,
+        [i18n[currentLang].sub_start]: s.startDate,
+        [i18n[currentLang].sub_end]: s.endDate,
+        [ar ? 'الحالة' : 'Status']: s.archived ? (ar ? 'محفوظات' : 'Archived') : (ar ? 'نشط' : 'Active'),
+        [i18n[currentLang].sub_notes]: s.notes || ''
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Subscriptions');
+    XLSX.writeFile(wb, 'Subscriptions.xlsx');
+};
 
 window.exportMonthPDF = () => {
     const dim = new Date(currentYearView, currentMonthView + 1, 0).getDate();
