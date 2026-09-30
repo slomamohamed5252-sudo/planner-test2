@@ -227,6 +227,8 @@ const i18n = {
         q_urgent: "عاجل", q_important: "مهم", q_delegate: "مفوّض", q_cancelled: "ملغي", q_all: "الكل", q_filter: "تصفية حسب التصنيف", q_add_ph: "أضف مهمة سريعة لهذا اليوم...", q_none: "بدون تصنيف",
 cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", title_subs: "الاشتراكات 📱", sub_active: "نشطة", sub_archive: "المحفوظات", sub_add: "إضافة اشتراك", sub_name: "اسم الاشتراك", sub_freq: "الدورية", sub_daily: "يومي", sub_weekly: "أسبوعي", sub_monthly: "شهري", sub_yearly: "سنوي", sub_count: "عدد الدورات", sub_total: "المبلغ الكلي", sub_per_cycle: "المبلغ لكل دورة", sub_start: "تاريخ البداية", sub_end: "تاريخ النهاية", sub_next: "الدفعة القادمة", sub_notes: "ملاحظات", sub_save: "حفظ", sub_confirm_pay: "تأكيد الدفع", sub_paid: "مدفوع", sub_edit: "تعديل", sub_delete: "حذف", sub_empty: "لا توجد اشتراكات نشطة.", sub_archive_empty: "لا توجد اشتراكات في المحفوظات.", sub_export_pdf: "تصدير PDF", sub_export_excel: "تصدير Excel", sub_cycles_paid: "دورات مدفوعة",
         nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
+pareto_title: "قاعدة 80/20 📌", pareto_cumulative: "التراكمي %", pareto_stuck_title: "📌 قاعدة 80/20: مشاريع شايلة وقتك", pareto_stuck_none: "مفيش مشاريع قديمة عالقة، تمام كده!",
+notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة",
         nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة"
     },
     en: {
@@ -266,6 +268,8 @@ cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", ti
         q_urgent: "Urgent", q_important: "Important", q_delegate: "Delegate", q_cancelled: "Cancelled", q_all: "All", q_filter: "Filter by tag", q_add_ph: "Quick-add a tagged task for this day...", q_none: "No tag",
 cat_subscriptions: "📱 Subscriptions", nav_subs: "Subscriptions", title_subs: "Subscriptions 📱", sub_active: "Active", sub_archive: "Archive", sub_add: "Add subscription", sub_name: "Subscription name", sub_freq: "Frequency", sub_daily: "Daily", sub_weekly: "Weekly", sub_monthly: "Monthly", sub_yearly: "Yearly", sub_count: "Number of cycles", sub_total: "Total amount", sub_per_cycle: "Amount per cycle", sub_start: "Start date", sub_end: "End date", sub_next: "Next payment", sub_notes: "Notes", sub_save: "Save", sub_confirm_pay: "Confirm payment", sub_paid: "Paid", sub_edit: "Edit", sub_delete: "Delete", sub_empty: "No active subscriptions.", sub_archive_empty: "No archived subscriptions.", sub_export_pdf: "Export PDF", sub_export_excel: "Export Excel", sub_cycles_paid: "cycles paid",
         nav_updates: "Updates", title_updates: "App Update Log 🔄",
+pareto_title: "The 80/20 Rule 📌", pareto_cumulative: "Cumulative %", pareto_stuck_title: "📌 80/20: Projects eating your time", pareto_stuck_none: "No old stuck projects, nice!",
+notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished",
         nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add"
     }
 };
@@ -644,6 +648,15 @@ window.stopContinuousDictation = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     checkAndShowChangelog();
+    setTimeout(checkNotificationTriggers, 3000);
+    setInterval(checkNotificationTriggers, 60000);
+    setTimeout(() => {
+        const statusEl = document.getElementById('notifStatusText');
+        if (statusEl && typeof Notification !== 'undefined') {
+            if (Notification.permission === 'granted' && localStorage.getItem('fp_notifications_enabled') === 'true') statusEl.innerText = i18n[currentLang].notif_enabled_msg;
+            else if (Notification.permission === 'denied') statusEl.innerText = i18n[currentLang].notif_denied_msg;
+        }
+    }, 500);
     
     const setTodayDateAuto = () => {
         const today = new Date();
@@ -1291,6 +1304,7 @@ function initPomodoro() {
                 if(tomato) tomato.classList.remove('running');
                 
                 if(window.logPomodoroSession) window.logPomodoroSession(pomMode, pomMode === 'work' ? workDuration : 5);
+                if(window.showAppNotification) window.showAppNotification(i18n[currentLang].notif_pomodoro_title, pomMode === 'work' ? (currentLang==='ar'?'وقت الاستراحة!':'Break time!') : (currentLang==='ar'?'ارجع للتركيز!':'Back to focus!'));
                 if(alarm) { alarm.currentTime = 0; alarm.play().catch(e=>console.log("Audio play blocked:", e)); }
                 
                 startBtn.style.display = 'none'; 
@@ -1379,6 +1393,8 @@ function renderKanban() {
             });
         }
     });
+
+    renderKanbanPareto();
 }
 
 window.addKanbanItem = () => { 
@@ -1667,6 +1683,8 @@ function renderFinance() {
     if(document.getElementById('netWorth')) document.getElementById('netWorth').innerText = netWorth; 
 
     if(container) container.innerHTML = html || `<p style="text-align:center; color:var(--text-muted);">${currentLang==='ar'?'لا توجد معاملات مطابقة.':'No transactions found.'}</p>`; 
+
+    renderFinancePareto(filteredFinances);
 
     const ctx = document.getElementById('financeChart');
     if(ctx && window.Chart) {
@@ -2435,6 +2453,138 @@ window.exportSubscriptionsExcel = () => {
     XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(archived.map(rowOf)), i18n[currentLang].sub_archive);
     XLSX.writeFile(wb, 'Subscriptions.xlsx');
 };
+
+
+// ----------------------------------------
+// قاعدة 80/20 (Pareto)
+// ----------------------------------------
+let paretoChartInstance = null;
+function renderFinancePareto(list) {
+    const canvas = document.getElementById('financeParetoChart');
+    const insight = document.getElementById('financeParetoInsight');
+    if (!canvas || !window.Chart) return;
+    const catLabels = { food: i18n[currentLang].cat_food, transport: i18n[currentLang].cat_trans, shopping: i18n[currentLang].cat_shop, bills: i18n[currentLang].cat_bills, work: i18n[currentLang].cat_work, fun: i18n[currentLang].cat_fun, subscriptions: i18n[currentLang].cat_subscriptions, other: i18n[currentLang].cat_other };
+    const byCat = {};
+    list.filter(f => f.type === 'expense').forEach(f => {
+        const c = f.category || 'other';
+        byCat[c] = (byCat[c] || 0) + (Number(f.amount) || 0);
+    });
+    const entries = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
+    if (paretoChartInstance) { paretoChartInstance.destroy(); paretoChartInstance = null; }
+    if (entries.length === 0) { if (insight) insight.innerHTML = ''; return; }
+    const total = entries.reduce((a, [, v]) => a + v, 0);
+    let cum = 0;
+    const cumPercents = entries.map(([, v]) => { cum += v; return +(cum / total * 100).toFixed(1); });
+    const labels = entries.map(([c]) => catLabels[c] || c);
+    let vitalCount = cumPercents.findIndex(p => p >= 80) + 1;
+    if (vitalCount <= 0) vitalCount = entries.length;
+    paretoChartInstance = new Chart(canvas.getContext('2d'), {
+        data: {
+            labels,
+            datasets: [
+                { type: 'bar', label: currentLang === 'ar' ? 'المصروفات' : 'Expenses', data: entries.map(([, v]) => v), backgroundColor: '#ef4444', order: 2, yAxisID: 'y' },
+                { type: 'line', label: i18n[currentLang].pareto_cumulative, data: cumPercents, borderColor: '#f59e0b', backgroundColor: '#f59e0b', yAxisID: 'y1', order: 1, tension: 0.25 }
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true }, y1: { position: currentLang === 'ar' ? 'left' : 'right', beginAtZero: true, max: 100, grid: { drawOnChartArea: false } } },
+            plugins: { legend: { position: 'bottom', labels: { color: '#6b7280' } } }
+        }
+    });
+    if (insight) {
+        const vitalCats = labels.slice(0, vitalCount).join(currentLang === 'ar' ? '، ' : ', ');
+        insight.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${currentLang === 'ar' ? `أكتر ${vitalCount} تصنيف (${vitalCats}) بياخدوا حوالي 80% من مصروفاتك.` : `Top ${vitalCount} categories (${vitalCats}) make up about 80% of your spending.`}`;
+    }
+}
+
+function renderKanbanPareto() {
+    const box = document.getElementById('kanbanParetoInsight');
+    if (!box) return;
+    const openItems = [...kanbanTasks.todo, ...kanbanTasks.inprogress].map(i => ({ ...i, ageDays: Math.floor((Date.now() - i.id) / 86400000) }));
+    const stuck = openItems.filter(i => i.ageDays >= 7).sort((a, b) => b.ageDays - a.ageDays);
+    if (stuck.length === 0) { box.style.display = 'none'; return; }
+    box.style.display = 'block';
+    const count = Math.max(1, Math.ceil(stuck.length * 0.2));
+    const top = stuck.slice(0, count);
+    box.innerHTML = `<strong>${i18n[currentLang].pareto_stuck_title}</strong><div style="margin-top:6px;">${top.map(i => `<div style="display:flex; justify-content:space-between; padding:3px 0;"><span>${escapeHtml(i.text)}</span><span style="color:var(--danger);">${i.ageDays} ${currentLang === 'ar' ? 'يوم' : 'd'}</span></div>`).join('')}</div>`;
+}
+
+// ----------------------------------------
+// الإشعارات (مجانية، تعمل طول ما التطبيق مفتوح)
+// ----------------------------------------
+let notifiedLog = { date: '', sent: [] };
+try { notifiedLog = JSON.parse(localStorage.getItem('fp_notified_log')) || { date: '', sent: [] }; } catch (e) {}
+function alreadyNotified(key) {
+    if (notifiedLog.date !== getTodayStr()) notifiedLog = { date: getTodayStr(), sent: [] };
+    return notifiedLog.sent.includes(key);
+}
+function markNotified(key) {
+    if (notifiedLog.date !== getTodayStr()) notifiedLog = { date: getTodayStr(), sent: [] };
+    notifiedLog.sent.push(key);
+    localStorage.setItem('fp_notified_log', JSON.stringify(notifiedLog));
+}
+window.showAppNotification = (title, body) => {
+    try {
+        if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+        if (navigator.serviceWorker && navigator.serviceWorker.ready) {
+            navigator.serviceWorker.ready.then(reg => reg.showNotification(title, { body, icon: './icon.png', badge: './icon.png' })).catch(() => { try { new Notification(title, { body, icon: './icon.png' }); } catch (e) {} });
+        } else {
+            new Notification(title, { body, icon: './icon.png' });
+        }
+    } catch (e) { console.warn('Notification failed:', e); }
+};
+window.enableAppNotifications = () => {
+    if (typeof Notification === 'undefined') { alert(currentLang === 'ar' ? 'المتصفح ده مش بيدعم الإشعارات' : 'This browser does not support notifications'); return; }
+    Notification.requestPermission().then(perm => {
+        const statusEl = document.getElementById('notifStatusText');
+        if (perm === 'granted') {
+            localStorage.setItem('fp_notifications_enabled', 'true');
+            if (statusEl) statusEl.innerText = i18n[currentLang].notif_enabled_msg;
+        } else {
+            localStorage.setItem('fp_notifications_enabled', 'false');
+            if (statusEl) statusEl.innerText = i18n[currentLang].notif_denied_msg;
+        }
+    });
+};
+function checkNotificationTriggers() {
+    if (localStorage.getItem('fp_notifications_enabled') !== 'true') return;
+    if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+    const today = getTodayStr();
+    const now = new Date();
+    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+    tasks.filter(t => t.quadrant === 'urgent' && t.date === today && !t.completed).forEach(t => {
+        const key = 'task-' + t.id;
+        if (alreadyNotified(key)) return;
+        const taskMinutes = (parseInt(t.hour) || 0) * 60;
+        if (nowMinutes >= taskMinutes - 15 && nowMinutes <= taskMinutes + 60) {
+            window.showAppNotification(i18n[currentLang].notif_urgent_title, t.title);
+            markNotified(key);
+        }
+    });
+
+    subscriptions.filter(s => !s.archived).forEach(s => {
+        const cyclesDone = s.frequency === 'yearly' ? (s.paid ? 1 : 0) : (s.paymentsCount || 0);
+        const cyclesTarget = s.frequency === 'yearly' ? 1 : s.durationCount;
+        if (cyclesDone >= cyclesTarget) return;
+        const due = s.frequency === 'yearly' ? s.endDate : s.nextPaymentDate;
+        if (due === today) {
+            const key = 'sub-' + s.id + '-' + today;
+            if (!alreadyNotified(key)) { window.showAppNotification(i18n[currentLang].notif_sub_title, s.name); markNotified(key); }
+        }
+    });
+
+    if (now.getHours() === 20 && habits.length > 0) {
+        const key = 'habits-' + today;
+        if (!alreadyNotified(key)) {
+            const todayKey = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+            const incomplete = habits.some(h => !(h.days && h.days[todayKey]));
+            if (incomplete) { window.showAppNotification(i18n[currentLang].notif_habit_title, i18n[currentLang].notif_habit_body); }
+            markNotified(key);
+        }
+    }
+}
 
 window.exportMonthPDF = () => {
     const dim = new Date(currentYearView, currentMonthView + 1, 0).getDate();

@@ -45,7 +45,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=38-6">
+    <link rel="stylesheet" href="style.css?v=38-7">
 </head>
 <body>
 
@@ -243,6 +243,14 @@
                     </div>
                 </div>
 
+                <div style="background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin: 20px 0;">
+                    <h4 style="margin-bottom: 10px; color: var(--text-main); font-size: 1rem; font-weight: 600;" data-i18n="pareto_title">قاعدة 80/20 📌</h4>
+                    <div style="position: relative; width: 100%; height: 220px;">
+                        <canvas id="financeParetoChart"></canvas>
+                    </div>
+                    <div id="financeParetoInsight" style="margin-top:10px; font-size:0.85rem; color:var(--text-muted);"></div>
+                </div>
+
                 <div style="background: var(--card-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                         <h4 style="margin: 0; color: var(--text-main); font-size: 1rem;" id="budgetTitleText">الميزانية الشهرية</h4>
@@ -359,6 +367,7 @@
                         <button class="btn btn-primary" onclick="addKanbanItem()" style="height: auto;"><i class="fa-solid fa-plus"></i> <span data-i18n="btn_add">إضافة</span></button>
                     </div>
                 </div>
+                <div id="kanbanParetoInsight" class="no-print" style="display:none; background: var(--card-bg); padding:12px 15px; border-radius:10px; border:1px solid var(--border-color); margin-bottom:15px; font-size:0.85rem; color:var(--text-muted);"></div>
                 <div class="kanban-board">
                     <div class="kanban-col" id="kb-todo"><h3 style="border-bottom: 3px solid var(--danger);"><span data-i18n="kb_todo">💡 أفكار/مهام</span></h3><div class="kanban-items" data-status="todo" ondragover="allowDrop(event)" ondrop="drop(event)"></div></div>
                     <div class="kanban-col" id="kb-inprogress"><h3 style="border-bottom: 3px solid var(--warning);"><span data-i18n="kb_inprog">⏳ التنفيذ</span></h3><div class="kanban-items" data-status="inprogress" ondragover="allowDrop(event)" ondrop="drop(event)"></div></div>
@@ -447,6 +456,12 @@
                 <option value="20px">كبير جداً</option>
             </select>
         </div>
+
+                    <hr style="margin: 20px 0;">
+                    <h3>🔔 <span data-i18n="notif_enable">تفعيل الإشعارات</span></h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:10px;">Urgent tasks, subscriptions, habits & focus sessions — works while the app is open.</p>
+                    <button class="btn btn-secondary no-print" style="width:100%;" onclick="enableAppNotifications()" data-i18n="notif_enable">تفعيل الإشعارات</button>
+                    <p id="notifStatusText" style="font-size:0.85rem; color:var(--text-muted); margin-top:8px;"></p>
 
                     <hr style="margin: 20px 0;">
                     <h3 data-i18n="title_sync">المزامنة السحابية الحية ☁️</h3>
@@ -744,6 +759,6 @@
         <i class="fa-solid fa-bolt"></i>
     </button>
 
-<script src="script.js?v=38-6"></script>
+<script src="script.js?v=38-7"></script>
 </body>
 </html>
