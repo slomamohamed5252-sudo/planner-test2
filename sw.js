@@ -1,10 +1,10 @@
-// ترقية الإصدار إلى v38-7 لإجبار كل الأجهزة على تحميل إصلاح مزامنة السحابة
-const CACHE_NAME = 'planner-pro-v38-7';
+// ترقية الإصدار إلى v39 لإجبار كل الأجهزة على تحميل إصلاح مزامنة السحابة
+const CACHE_NAME = 'planner-pro-v39';
 const assets = [
   './',
-  './index.html?v=38-7',
-  './style.css?v=38-7',
-  './script.js?v=38-7',
+  './index.html?v=39',
+  './style.css?v=39',
+  './script.js?v=39',
   './manifest.json'
 ];
 
@@ -40,7 +40,7 @@ self.addEventListener('fetch', event => {
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request).catch(async () => {
-        // بنتجاهل أي اختلاف في الـ query string (زي ?v=38-7) عند المطابقة مع الكاش،
+        // بنتجاهل أي اختلاف في الـ query string (زي ?v=39) عند المطابقة مع الكاش،
         // لأن التطبيق لما بيتفتح من الشاشة الرئيسية (مثبت كـ PWA) بيطلب "index.html"
         // من غير أي باراميتر، وده كان بيفشل في المطابقة مع النسخة المخزنة اللي معاها ?v= فيسبب
         // "لا يمكن الوصول لهذا الموقع" لما يكون الجهاز أوفلاين.

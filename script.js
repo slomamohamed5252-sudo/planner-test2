@@ -1,26 +1,24 @@
 // 1. سجل التحديثات
 const latestReleaseNotes = {
     ar: [
-        "🔔 صفحة \"التحديثات\" الجديدة بتجمع كل تحديثات التطبيق في مكان واحد.",
-        "📄 تصدير خطة الشهر كملف PDF بمقاس A4، بدعم كامل للعربي والإنجليزي.",
-        "📌 دبوس تثبيت في الملاحظات والمشاريع، مع ترتيب حر بالسحب والإفلات أو الأسهم.",
-        "📖 كروت الملاحظات والمراجع بقت أصغر مع زر \"اقرأ المزيد / عرض أقل\".",
-        "🗂️ تبديل العرض في المراجع (الأحدث أولاً / حسب التصنيف) مع فلتر تصنيف تلقائي.",
-        "🔍 خانة بحث فورية في الملاحظات والمراجع.",
-        "✏️ تعديل اسم أي عادة + ترتيبها بالسحب والإفلات أو الأسهم."
+        "⚖️ قسم جديد \"الوزن والسعرات\": تتبع وزنك بهدف واضح، وسجل سعراتك اليومية.",
+        "📱 قسم جديد \"الاشتراكات\": تابع اشتراكاتك (جيمعية، برامج، أقساط) مع تذكير بالدفع وربط تلقائي بالمتتبع المالي.",
+        "🎯 تصنيف عاجل/مهم/مفوّض/ملغي في خطة الشهر، يتحول تلقائياً لمهام حقيقية قابلة للفلترة في جدول اليوم.",
+        "📊 قاعدة 80/20: مؤشر جديد في المتتبع المالي والمشاريع يوريك فين بيروح تركيزك وفلوسك فعلاً.",
+        "🔔 إشعارات مجانية للمهام العاجلة، مواعيد الاشتراكات، تذكير العادات، ونهاية جلسات التركيز.",
+        "🎙️ تحسين كبير في دقة التسجيل الصوتي المستمر."
     ],
     en: [
-        "🔔 New \"Updates\" page collects the app's full update history in one place.",
-        "📄 Export the monthly plan as an A4 PDF, with full Arabic and English support.",
-        "📌 Pin notes and projects to the top, with free reordering via drag-and-drop or arrows.",
-        "📖 Notes and reference cards are now compact with a \"Read more / Show less\" toggle.",
-        "🗂️ Switch reference view (Newest first / By category) with an automatic category filter.",
-        "🔍 Instant search box in Notes and Library.",
-        "✏️ Edit any habit's name + reorder via drag-and-drop or arrows."
+        "⚖️ New \"Weight & Calories\" section: track your weight against a clear goal, and log daily calories.",
+        "📱 New \"Subscriptions\" section: track recurring payments (memberships, software, installments) with payment reminders and automatic finance logging.",
+        "🎯 Urgent/Important/Delegate/Cancelled tagging in the monthly plan, auto-creating real, filterable tasks in Today's view.",
+        "📊 The 80/20 rule: a new indicator in Finance and Projects showing where your focus and money actually go.",
+        "🔔 Free notifications for urgent tasks, subscription due dates, habit reminders, and focus session endings.",
+        "🎙️ Major accuracy improvement for continuous voice dictation."
     ]
 };
 
-const APP_VERSION = 'v38';
+const APP_VERSION = 'v39';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
