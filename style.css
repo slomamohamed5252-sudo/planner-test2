@@ -356,3 +356,9 @@ html[dir="ltr"] .nav-item:hover {
     color: var(--text-main);
     white-space: nowrap;
 }
+
+/* خطة الشهر: على الشاشات الصغيرة حقل المهمة السريعة ياخد سطر كامل، والتوقيت والتصنيف والزر في السطر اللي بعده */
+@media (max-width: 600px) {
+    .q-quick-row { flex-wrap: wrap; }
+    .q-quick-row .q-quick-input { flex: 1 1 100% !important; }
+}

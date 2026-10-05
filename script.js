@@ -140,6 +140,17 @@ if (firebaseConfig.apiKey && firebaseConfig.apiKey.length > 10) {
     }
 }
 
+// تحديث نص حالة المزامنة عند تغيير اللغة (بدون إعادة تحميل)
+window.refreshCloudStatus = () => {
+    const cloudStatus = document.getElementById('cloudStatus');
+    if (!cloudStatus || !useCloud) return;
+    if (currentUser) {
+        cloudStatus.innerHTML = `<span style="color:var(--success); font-weight:bold;"><i class="fa-solid fa-cloud-check"></i> ${currentLang === 'ar' ? 'متصل كـ:' : 'Connected as:'} ${escapeHtml(currentUser.email)}</span> <button onclick="logoutCloud()" class="btn btn-secondary" style="padding:5px 10px; font-size:0.8rem; color: var(--danger);">${currentLang === 'ar' ? 'خروج آمن' : 'Logout'}</button>`;
+    } else {
+        cloudStatus.innerHTML = `<span style="color:var(--text-muted);"><i class="fa-solid fa-cloud-arrow-up"></i> ${currentLang === 'ar' ? 'غير متصل' : 'Offline'}</span> <button onclick="document.getElementById('authModal').classList.add('show')" class="btn btn-primary" style="padding:5px 10px; font-size:0.85rem;">${currentLang === 'ar' ? 'دخول للمزامنة' : 'Login to Sync'}</button>`;
+    }
+};
+
 // ----------------------------------------
 // الحماية والتعقيم (XSS Prevention)
 // ----------------------------------------
@@ -227,7 +238,11 @@ cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", ti
         nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
 pareto_title: "قاعدة 80/20 📌", pareto_cumulative: "التراكمي %", pareto_stuck_title: "📌 قاعدة 80/20: مشاريع شايلة وقتك", pareto_stuck_none: "مفيش مشاريع قديمة عالقة، تمام كده!",
 notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة",
-        nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة"
+        nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة",
+        q_time: "التوقيت", fs_label: "حجم الخط داخل التطبيق:", fs_small: "صغير", fs_medium: "متوسط (الافتراضي)", fs_large: "كبير", fs_xlarge: "كبير جداً", dict_ar: "عربي",
+        ph_title: "العنوان...", ph_title_plain: "العنوان", ph_phone_opt: "رقم الهاتف (اختياري)...", ph_desc: "الوصف", ph_amount: "المبلغ", ph_category: "التصنيف", ph_email: "البريد الإلكتروني", ph_password: "كلمة المرور (6 حروف على الأقل)", ph_qd_title: "عنوان الفكرة (اختياري)...",
+        tt_dic_start: "بدء التسجيل", tt_dic_stop: "إيقاف التسجيل", tt_copy_link: "نسخ الرابط", tt_fab_dump: "تفريغ الدماغ ⚡", tt_daily_goal: "الهدف اليومي",
+        auth_forgot: "هل نسيت كلمة المرور؟", auth_login: "دخول", auth_signup: "حساب جديد", changelog_ok: "رائع، شكراً!", share_desc: "شارك التطبيق مع أصدقائك لزيادة إنتاجيتهم!", update_title: "تحديث جديد متاح! ✨"
     },
     en: {
         nav_dash: "Dashboard", nav_month: "Monthly Plan", nav_today: "Today", nav_pomodoro: "Focus Timer", nav_kanban: "Projects", nav_habits: "Habit Tracker", nav_finance: "Finance", nav_lib: "Library", nav_notes: "Notes", nav_settings: "Settings & Sync",
@@ -268,7 +283,11 @@ cat_subscriptions: "📱 Subscriptions", nav_subs: "Subscriptions", title_subs: 
         nav_updates: "Updates", title_updates: "App Update Log 🔄",
 pareto_title: "The 80/20 Rule 📌", pareto_cumulative: "Cumulative %", pareto_stuck_title: "📌 80/20: Projects eating your time", pareto_stuck_none: "No old stuck projects, nice!",
 notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished",
-        nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add"
+        nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add",
+        q_time: "Time", fs_label: "In-app font size:", fs_small: "Small", fs_medium: "Medium (default)", fs_large: "Large", fs_xlarge: "Extra large", dict_ar: "Arabic",
+        ph_title: "Title...", ph_title_plain: "Title", ph_phone_opt: "Phone (optional)...", ph_desc: "Description", ph_amount: "Amount", ph_category: "Category", ph_email: "Email", ph_password: "Password (at least 6 characters)", ph_qd_title: "Idea title (optional)...",
+        tt_dic_start: "Start recording", tt_dic_stop: "Stop recording", tt_copy_link: "Copy link", tt_fab_dump: "Quick Brain Dump ⚡", tt_daily_goal: "Daily goal",
+        auth_forgot: "Forgot your password?", auth_login: "Log in", auth_signup: "Sign up", changelog_ok: "Great, thanks!", share_desc: "Share the app with your friends to boost their productivity!", update_title: "New update available! ✨"
     }
 };
 
@@ -297,6 +316,19 @@ function setLanguage(lang) {
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; document.documentElement.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if(i18n[lang][key]) el.innerHTML = i18n[lang][key]; });
     document.querySelectorAll('[data-i18n-ph]').forEach(el => { const key = el.getAttribute('data-i18n-ph'); if(i18n[lang][key]) el.placeholder = i18n[lang][key]; });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => { const key = el.getAttribute('data-i18n-title'); if(i18n[lang][key]) el.title = i18n[lang][key]; });
+    // لغة حقول التاريخ: المتصفح بيبني شكل الحقل (الأرقام والترتيب) مرة واحدة حسب lang، فلازم نحدد lang لكل حقل ونعيد بناءه عند تغيير اللغة
+    try {
+        const dateLoc = lang === 'ar' ? 'ar' : 'en-GB';
+        document.querySelectorAll('input[type="date"]').forEach(el => {
+            if (el.lang === dateLoc) return;
+            const v = el.value;
+            el.lang = dateLoc;
+            el.type = 'text';
+            el.type = 'date';
+            el.value = v;
+        });
+    } catch(e) { console.warn('Date locale refresh failed:', e); }
     const toggleBtn = document.getElementById('langLabel'); if(toggleBtn) toggleBtn.innerHTML = lang === 'ar' ? 'EN' : 'AR';
     const kbInp = document.getElementById('newKbItem'); if(kbInp) kbInp.placeholder = lang === 'ar' ? 'اكتب اسم المشروع / المهمة هنا... (اضغط Enter لسطر جديد)' : 'Type project name... (Press Enter for new line)';
     const hbInp = document.getElementById('newHabitInput'); if(hbInp) hbInp.placeholder = lang === 'ar' ? 'عادة جديدة...' : 'New habit...';
@@ -712,7 +744,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initTheme(); initColorTheme(); initModals(); initProfile(); initBackup(); setLanguage(currentLang);
     
-    document.getElementById('langToggleBtn').onclick = () => { setLanguage(currentLang === 'ar' ? 'en' : 'ar'); };
+    document.getElementById('langToggleBtn').onclick = () => { setLanguage(currentLang === 'ar' ? 'en' : 'ar'); renderViews(); if (typeof window.refreshCloudStatus === 'function') window.refreshCloudStatus(); if (typeof window.refreshNotifStatus === 'function') window.refreshNotifStatus(); };
     
     document.getElementById('shareEmptyBtn').onclick = () => {
         const text = currentLang === 'ar' ? "جربت تطبيق Planner Pro Max لتنظيم الوقت وإدارة المهام وكان ممتاز! جربه مجاناً من هنا: https://eslam-planner.github.io/" : "Try out Planner Pro Max for free: https://eslam-planner.github.io/";
@@ -999,6 +1031,9 @@ document.getElementById('updateNoteBtn').onclick = () => {
 // ----------------------------------------
 // مكتبة المراجع
 // ----------------------------------------
+// التصنيف الافتراضي المخزن 'عام' يُعرض بالإنجليزية عند استخدام اللغة الإنجليزية (القيمة المخزنة لا تتغير)
+const libCatLabel = c => (c === 'عام' && currentLang !== 'ar') ? 'General' : c;
+
 function renderLibrary() { 
     const container = document.getElementById('libraryContainer');
     if(!container) return;
@@ -1013,7 +1048,7 @@ function renderLibrary() {
     if (catFilterEl) {
         const cats = [...new Set(library.map(l => l.category || 'عام'))].sort();
         const currentVal = catFilterEl.value;
-        catFilterEl.innerHTML = `<option value="all">${i18n[currentLang].lib_cat_all}</option>` + cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+        catFilterEl.innerHTML = `<option value="all">${i18n[currentLang].lib_cat_all}</option>` + cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(libCatLabel(c))}</option>`).join('');
         if (cats.includes(currentVal) || currentVal === 'all') catFilterEl.value = currentVal;
     }
 
@@ -1030,7 +1065,7 @@ function renderLibrary() {
 
     const renderCard = l => {
         let contactHTML = l.phone ? `<a href="tel:${escapeHtml(l.phone)}" style="margin-left:10px; color:var(--primary);"><i class="fa-solid fa-phone"></i></a><a href="https://wa.me/${escapeHtml(l.phone).replace(/\+/g,'')}" target="_blank" rel="noopener noreferrer" style="margin-left:10px; color:#25D366;"><i class="fa-brands fa-whatsapp"></i></a>` : '';
-        return `<div class="lib-card" onclick="editLib(${l.id})"><button class="icon-btn no-print" style="position:absolute; top:10px; left:10px; color:var(--danger);" onclick="event.stopPropagation(); delLib(${l.id})"><i class="fa-solid fa-trash"></i></button><span class="lib-cat">${escapeHtml(l.category)}</span><h3>${contactHTML}${escapeHtml(l.title)}</h3><div class="render-area card-content-collapsed" id="content-lib-${l.id}">${linkify(l.content)}</div><button class="read-more-btn no-print" id="btn-lib-${l.id}" onclick="event.stopPropagation(); toggleCardExpand('lib-${l.id}')">${currentLang==='ar'?'اقرأ المزيد <i class="fa-solid fa-chevron-down"></i>':'Read more <i class="fa-solid fa-chevron-down"></i>'}</button></div>`;
+        return `<div class="lib-card" onclick="editLib(${l.id})"><button class="icon-btn no-print" style="position:absolute; top:10px; left:10px; color:var(--danger);" onclick="event.stopPropagation(); delLib(${l.id})"><i class="fa-solid fa-trash"></i></button><span class="lib-cat">${escapeHtml(libCatLabel(l.category))}</span><h3>${contactHTML}${escapeHtml(l.title)}</h3><div class="render-area card-content-collapsed" id="content-lib-${l.id}">${linkify(l.content)}</div><button class="read-more-btn no-print" id="btn-lib-${l.id}" onclick="event.stopPropagation(); toggleCardExpand('lib-${l.id}')">${currentLang==='ar'?'اقرأ المزيد <i class="fa-solid fa-chevron-down"></i>':'Read more <i class="fa-solid fa-chevron-down"></i>'}</button></div>`;
     };
 
     const emptyMsg = library.length === 0 
@@ -1045,7 +1080,7 @@ function renderLibrary() {
         filteredItems.forEach(l => { const c = l.category || 'عام'; (groups[c] = groups[c] || []).push(l); });
         container.innerHTML = Object.keys(groups).sort().map(cat => {
             const catItems = groups[cat].sort((a, b) => b.id - a.id);
-            return `<div style="grid-column: 1/-1; font-weight:bold; color:var(--primary); margin:10px 0 5px; padding-bottom:5px; border-bottom:2px solid var(--border-color);">${escapeHtml(cat)}</div>` +
+            return `<div style="grid-column: 1/-1; font-weight:bold; color:var(--primary); margin:10px 0 5px; padding-bottom:5px; border-bottom:2px solid var(--border-color);">${escapeHtml(libCatLabel(cat))}</div>` +
                    `<div style="grid-column: 1/-1; display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:15px;">${catItems.map(renderCard).join('')}</div>`;
         }).join('');
     } else {
@@ -1113,6 +1148,11 @@ function renderMonthly() {
     const isCurrentMonth = (todayObj.getMonth() === currentMonthView && todayObj.getFullYear() === currentYearView);
     const todayDate = todayObj.getDate();
 
+    // خيارات التوقيت (نفس ساعات جدول اليوم 6 AM - 11 PM) والافتراضي 9 AM
+    const fmtHourLabel = h => { h = parseInt(h); if (isNaN(h)) return ''; return h === 12 ? '12 PM' : (h > 12 ? `${h - 12} PM` : `${h} AM`); };
+    let hourOptionsHTML = '';
+    for (let h = 6; h <= 23; h++) hourOptionsHTML += `<option value="${h}"${h === 9 ? ' selected' : ''}>${fmtHourLabel(h)}</option>`;
+
     for(let i = 1; i <= daysInMonth; i++) { 
         let storageKey = `PlannerMonthData_${currentYearView}_${currentMonthView}_${i}`; 
         let phoneKey = storageKey + '_phone'; 
@@ -1143,7 +1183,7 @@ function renderMonthly() {
         let qColors = {urgent:'#ef4444',important:'#f59e0b',delegate:'#3b82f6',cancelled:'#6b7280'};
         let qLabels = { urgent: i18n[currentLang].q_urgent, important: i18n[currentLang].q_important, delegate: i18n[currentLang].q_delegate, cancelled: i18n[currentLang].q_cancelled };
         let dayQItems = tasks.filter(t => t.date === dayDateStr && t.quadrantItem);
-        let qItemsHTML = dayQItems.map(t => `<div style="display:flex; align-items:center; gap:6px; margin-top:4px; padding:4px 8px; background:var(--bg-color); border-radius:6px; border-right:3px solid ${qColors[t.quadrant] || '#888'};"><input type="checkbox" ${t.completed ? 'checked' : ''} onchange="toggleTask(${t.id})" style="cursor:pointer;"><span style="flex:1; font-size:0.85rem; text-decoration:${t.completed?'line-through':'none'};">${escapeHtml(t.title)}</span><span style="font-size:0.7rem; color:${qColors[t.quadrant] || '#888'};">${escapeHtml(qLabels[t.quadrant] || '')}</span><button class="icon-btn no-print" style="color:var(--danger); font-size:0.8rem;" onclick="delTask(${t.id})"><i class="fa-solid fa-trash"></i></button></div>`).join('');
+        let qItemsHTML = dayQItems.map(t => `<div style="display:flex; align-items:center; gap:6px; margin-top:4px; padding:4px 8px; background:var(--bg-color); border-radius:6px; border-right:3px solid ${qColors[t.quadrant] || '#888'};"><input type="checkbox" ${t.completed ? 'checked' : ''} onchange="toggleTask(${t.id})" style="cursor:pointer;"><span style="flex:1; font-size:0.85rem; text-decoration:${t.completed?'line-through':'none'};">${escapeHtml(t.title)}</span><span style="font-size:0.7rem; color:var(--text-muted);">${fmtHourLabel(t.hour)}</span><span style="font-size:0.7rem; color:${qColors[t.quadrant] || '#888'};">${escapeHtml(qLabels[t.quadrant] || '')}</span><button class="icon-btn no-print" style="color:var(--danger); font-size:0.8rem;" onclick="delTask(${t.id})"><i class="fa-solid fa-trash"></i></button></div>`).join('');
 
         dayDiv.innerHTML = `
             <div class="month-day-header" style="display:flex; justify-content:space-between; align-items:center;">
@@ -1154,8 +1194,9 @@ function renderMonthly() {
             <input type="tel" class="no-print" data-phone-key="${phoneKey}" placeholder="${phonePlaceholder}" 
                 style="width:100%; margin-top:5px; padding:8px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-main); font-size:0.85rem;">
             <div class="render-area">${linkify(savedText)}</div>
-            <div class="no-print" style="display:flex; gap:6px; margin-top:8px;">
+            <div class="no-print q-quick-row" style="display:flex; gap:6px; margin-top:8px;">
                 <input type="text" class="q-quick-input" data-qdate="${dayDateStr}" placeholder="${i18n[currentLang].q_add_ph}" style="flex:2; min-width:0; padding:6px 8px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-main); font-size:0.8rem;">
+                <select class="q-quick-hour" title="${i18n[currentLang].q_time}" style="flex:1; min-width:0; padding:6px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-main); font-size:0.8rem;">${hourOptionsHTML}</select>
                 <select class="q-quick-select" style="flex:1; padding:6px; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-main); font-size:0.8rem;">
                     <option value="urgent">${i18n[currentLang].q_urgent}</option>
                     <option value="important">${i18n[currentLang].q_important}</option>
@@ -1220,7 +1261,10 @@ function renderMonthly() {
             const inp = card.querySelector('.q-quick-input');
             const sel = card.querySelector('.q-quick-select');
             if (!inp.value.trim()) return;
-            tasks.push({ id: Date.now(), title: inp.value.trim(), date: inp.dataset.qdate, hour: 9, completed: false, quadrantItem: true, quadrant: sel.value });
+            const hourSel = card.querySelector('.q-quick-hour');
+            let qHour = hourSel ? parseInt(hourSel.value) : 9;
+            if (isNaN(qHour)) qHour = 9;
+            tasks.push({ id: Date.now(), title: inp.value.trim(), date: inp.dataset.qdate, hour: qHour, completed: false, quadrantItem: true, quadrant: sel.value });
             inp.value = '';
             saveAll();
             renderMonthly();
@@ -1349,8 +1393,8 @@ function renderKanban() {
                 <div style="display:flex; align-items:center; gap:8px; margin-top:8px; padding: 5px; background: var(--bg-main); border-radius: 4px; border: 1px solid var(--border-color);">
                     <input type="checkbox" ${sub.done ? 'checked' : ''} onchange="toggleSubtask(${i.id}, '${col}', ${idx})" style="cursor:pointer; width: 15px; height: 15px;">
                     <span style="flex:1; text-decoration: ${sub.done ? 'line-through' : 'none'}; color: ${sub.done ? 'var(--text-muted)' : 'var(--text-main)'}; font-size: 0.9rem; white-space: pre-wrap; word-break: break-word;">${escapeHtml(sub.text)}</span>
-                    <button onclick="editSubtask(${i.id}, '${col}', ${idx})" class="icon-btn no-print" style="font-size:0.8rem; color:var(--text-muted);" title="تعديل"><i class="fa-solid fa-pen"></i></button>
-                    <button onclick="delSubtask(${i.id}, '${col}', ${idx})" class="icon-btn no-print" style="font-size:0.8rem; color:var(--danger);" title="حذف"><i class="fa-solid fa-trash"></i></button>
+                    <button onclick="editSubtask(${i.id}, '${col}', ${idx})" class="icon-btn no-print" style="font-size:0.8rem; color:var(--text-muted);" title="${i18n[currentLang].sub_edit}"><i class="fa-solid fa-pen"></i></button>
+                    <button onclick="delSubtask(${i.id}, '${col}', ${idx})" class="icon-btn no-print" style="font-size:0.8rem; color:var(--danger);" title="${i18n[currentLang].sub_delete}"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `).join('');
 
@@ -2544,6 +2588,13 @@ window.enableAppNotifications = () => {
             if (statusEl) statusEl.innerText = i18n[currentLang].notif_denied_msg;
         }
     });
+};
+// تحديث نص حالة الإشعارات عند تغيير اللغة (بدون إعادة تحميل)
+window.refreshNotifStatus = () => {
+    const statusEl = document.getElementById('notifStatusText');
+    if (!statusEl || !statusEl.innerText.trim() || typeof Notification === 'undefined') return;
+    if (Notification.permission === 'granted' && localStorage.getItem('fp_notifications_enabled') === 'true') statusEl.innerText = i18n[currentLang].notif_enabled_msg;
+    else if (Notification.permission === 'denied') statusEl.innerText = i18n[currentLang].notif_denied_msg;
 };
 function checkNotificationTriggers() {
     if (localStorage.getItem('fp_notifications_enabled') !== 'true') return;
