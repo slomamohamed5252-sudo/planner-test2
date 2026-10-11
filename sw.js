@@ -1,10 +1,10 @@
-// ترقية الإصدار إلى v39 لإجبار كل الأجهزة على تحميل إصلاح مزامنة السحابة
-const CACHE_NAME = 'planner-pro-v39.1';
+// ترقية الإصدار إلى v40 لإجبار كل الأجهزة على تحميل تحديث التوقيت والترجمة الإنجليزية
+const CACHE_NAME = 'planner-pro-v40';
 const assets = [
   './',
-  './index.html?v=39.1',
-  './style.css?v=39.1',
-  './script.js?v=39.1',
+  './index.html?v=40',
+  './style.css?v=40',
+  './script.js?v=40',
   './manifest.json'
 ];
 

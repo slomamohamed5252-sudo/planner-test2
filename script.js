@@ -1,24 +1,18 @@
 // 1. سجل التحديثات
 const latestReleaseNotes = {
     ar: [
-        "⚖️ قسم جديد \"الوزن والسعرات\": تتبع وزنك بهدف واضح، وسجل سعراتك اليومية.",
-        "📱 قسم جديد \"الاشتراكات\": تابع اشتراكاتك (جيمعية، برامج، أقساط) مع تذكير بالدفع وربط تلقائي بالمتتبع المالي.",
-        "🎯 تصنيف عاجل/مهم/مفوّض/ملغي في خطة الشهر، يتحول تلقائياً لمهام حقيقية قابلة للفلترة في جدول اليوم.",
-        "📊 قاعدة 80/20: مؤشر جديد في المتتبع المالي والمشاريع يوريك فين بيروح تركيزك وفلوسك فعلاً.",
-        "🔔 إشعارات مجانية للمهام العاجلة، مواعيد الاشتراكات، تذكير العادات، ونهاية جلسات التركيز.",
-        "🎙️ تحسين كبير في دقة التسجيل الصوتي المستمر."
+        "⏰ اختيار توقيت المهمة السريعة في خطة الشهر: تظهر تلقائياً في جدول اليوم في نفس الساعة التي تختارها، ويمكنك تعديلها من جدول اليوم.",
+        "🌐 تحسين كبير للغة الإنجليزية: ترجمة أداة تفريغ الأفكار، وحجم الخط، ونافذة الدخول، وباقي النصوص التي كانت تظهر بالعربية.",
+        "🔄 تبديل اللغة صار يحدّث الشاشة الحالية فوراً (خطة الشهر، المشاريع، المكتبة، حالة المزامنة والإشعارات) من غير الحاجة للتنقل بين الأقسام."
     ],
     en: [
-        "⚖️ New \"Weight & Calories\" section: track your weight against a clear goal, and log daily calories.",
-        "📱 New \"Subscriptions\" section: track recurring payments (memberships, software, installments) with payment reminders and automatic finance logging.",
-        "🎯 Urgent/Important/Delegate/Cancelled tagging in the monthly plan, auto-creating real, filterable tasks in Today's view.",
-        "📊 The 80/20 rule: a new indicator in Finance and Projects showing where your focus and money actually go.",
-        "🔔 Free notifications for urgent tasks, subscription due dates, habit reminders, and focus session endings.",
-        "🎙️ Major accuracy improvement for continuous voice dictation."
+        "⏰ Pick a time for quick tasks in the monthly plan: they appear automatically in Today's schedule at the hour you choose, and you can still edit them there.",
+        "🌐 Major English-language improvements: the Quick Brain Dump, font size, login window, and other texts that used to show in Arabic are now translated.",
+        "🔄 Switching language now refreshes the current screen instantly (monthly plan, projects, library, sync and notification status) without navigating between sections."
     ]
 };
 
-const APP_VERSION = 'v39';
+const APP_VERSION = 'v40';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
