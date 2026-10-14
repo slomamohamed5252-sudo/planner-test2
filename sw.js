@@ -1,10 +1,10 @@
 // ترقية الإصدار إلى v40 لإجبار كل الأجهزة على تحميل تحديث التوقيت والترجمة الإنجليزية
-const CACHE_NAME = 'planner-pro-v40';
+const CACHE_NAME = 'planner-pro-v40.2';
 const assets = [
   './',
-  './index.html?v=40',
-  './style.css?v=40',
-  './script.js?v=40',
+  './index.html?v=40.2',
+  './style.css?v=40.2',
+  './script.js?v=40.2',
   './manifest.json'
 ];
 

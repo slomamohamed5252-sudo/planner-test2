@@ -231,7 +231,7 @@ const i18n = {
 cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", title_subs: "الاشتراكات 📱", sub_active: "نشطة", sub_archive: "المحفوظات", sub_add: "إضافة اشتراك", sub_name: "اسم الاشتراك", sub_freq: "الدورية", sub_daily: "يومي", sub_weekly: "أسبوعي", sub_monthly: "شهري", sub_yearly: "سنوي", sub_count: "عدد الدورات", sub_total: "المبلغ الكلي", sub_per_cycle: "المبلغ لكل دورة", sub_start: "تاريخ البداية", sub_end: "تاريخ النهاية", sub_next: "الدفعة القادمة", sub_notes: "ملاحظات", sub_save: "حفظ", sub_confirm_pay: "تأكيد الدفع", sub_paid: "مدفوع", sub_edit: "تعديل", sub_delete: "حذف", sub_empty: "لا توجد اشتراكات نشطة.", sub_archive_empty: "لا توجد اشتراكات في المحفوظات.", sub_export_pdf: "تصدير PDF", sub_export_excel: "تصدير Excel", sub_cycles_paid: "دورات مدفوعة",
         nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
 pareto_title: "قاعدة 80/20 📌", pareto_cumulative: "التراكمي %", pareto_stuck_title: "📌 قاعدة 80/20: مشاريع شايلة وقتك", pareto_stuck_none: "مفيش مشاريع قديمة عالقة، تمام كده!",
-notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة",
+notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
         nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة",
         q_time: "التوقيت", fs_label: "حجم الخط داخل التطبيق:", fs_small: "صغير", fs_medium: "متوسط (الافتراضي)", fs_large: "كبير", fs_xlarge: "كبير جداً", dict_ar: "عربي",
         ph_title: "العنوان...", ph_title_plain: "العنوان", ph_phone_opt: "رقم الهاتف (اختياري)...", ph_desc: "الوصف", ph_amount: "المبلغ", ph_category: "التصنيف", ph_email: "البريد الإلكتروني", ph_password: "كلمة المرور (6 حروف على الأقل)", ph_qd_title: "عنوان الفكرة (اختياري)...",
@@ -276,7 +276,7 @@ notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعا�
 cat_subscriptions: "📱 Subscriptions", nav_subs: "Subscriptions", title_subs: "Subscriptions 📱", sub_active: "Active", sub_archive: "Archive", sub_add: "Add subscription", sub_name: "Subscription name", sub_freq: "Frequency", sub_daily: "Daily", sub_weekly: "Weekly", sub_monthly: "Monthly", sub_yearly: "Yearly", sub_count: "Number of cycles", sub_total: "Total amount", sub_per_cycle: "Amount per cycle", sub_start: "Start date", sub_end: "End date", sub_next: "Next payment", sub_notes: "Notes", sub_save: "Save", sub_confirm_pay: "Confirm payment", sub_paid: "Paid", sub_edit: "Edit", sub_delete: "Delete", sub_empty: "No active subscriptions.", sub_archive_empty: "No archived subscriptions.", sub_export_pdf: "Export PDF", sub_export_excel: "Export Excel", sub_cycles_paid: "cycles paid",
         nav_updates: "Updates", title_updates: "App Update Log 🔄",
 pareto_title: "The 80/20 Rule 📌", pareto_cumulative: "Cumulative %", pareto_stuck_title: "📌 80/20: Projects eating your time", pareto_stuck_none: "No old stuck projects, nice!",
-notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished",
+notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
         nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add",
         q_time: "Time", fs_label: "In-app font size:", fs_small: "Small", fs_medium: "Medium (default)", fs_large: "Large", fs_xlarge: "Extra large", dict_ar: "Arabic",
         ph_title: "Title...", ph_title_plain: "Title", ph_phone_opt: "Phone (optional)...", ph_desc: "Description", ph_amount: "Amount", ph_category: "Category", ph_email: "Email", ph_password: "Password (at least 6 characters)", ph_qd_title: "Idea title (optional)...",
@@ -674,10 +674,11 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAndShowChangelog();
     setTimeout(checkNotificationTriggers, 3000);
     setInterval(checkNotificationTriggers, 60000);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') checkNotificationTriggers(); });
     setTimeout(() => {
         const statusEl = document.getElementById('notifStatusText');
         if (statusEl && typeof Notification !== 'undefined') {
-            if (Notification.permission === 'granted' && localStorage.getItem('fp_notifications_enabled') === 'true') statusEl.innerText = i18n[currentLang].notif_enabled_msg;
+            if (notifEnabled()) statusEl.innerText = i18n[currentLang].notif_enabled_msg;
             else if (Notification.permission === 'denied') statusEl.innerText = i18n[currentLang].notif_denied_msg;
         }
     }, 500);
@@ -2561,14 +2562,45 @@ function markNotified(key) {
     localStorage.setItem('fp_notified_log', JSON.stringify(notifiedLog));
 }
 window.showAppNotification = (title, body) => {
+    const done = (ok, err) => { window.__lastNotifResult = ok ? 'ok' : ('failed' + (err ? ': ' + err : '')); return ok; };
+    const direct = () => { try { new Notification(title, { body, icon: './icon.png' }); return true; } catch (e) { return false; } };
     try {
-        if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
-        if (navigator.serviceWorker && navigator.serviceWorker.ready) {
-            navigator.serviceWorker.ready.then(reg => reg.showNotification(title, { body, icon: './icon.png', badge: './icon.png' })).catch(() => { try { new Notification(title, { body, icon: './icon.png' }); } catch (e) {} });
-        } else {
-            new Notification(title, { body, icon: './icon.png' });
-        }
-    } catch (e) { console.warn('Notification failed:', e); }
+        if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return Promise.resolve(done(false, 'no-permission'));
+        if (!('serviceWorker' in navigator)) return Promise.resolve(done(direct(), 'no-sw'));
+        // لو الـ Service Worker مش جاهز في ثانيتين ونص نستخدم الطريقة المباشرة بدل ما الإشعار يضيع في صمت
+        const swReg = Promise.race([
+            navigator.serviceWorker.getRegistration().then(r => r || navigator.serviceWorker.ready),
+            new Promise((_, rej) => setTimeout(() => rej(new Error('sw-timeout')), 2500))
+        ]);
+        return swReg
+            .then(reg => reg.showNotification(title, { body, icon: './icon.png', badge: './icon.png' }))
+            .then(() => done(true))
+            .catch(e => done(direct(), e && e.message));
+    } catch (e) { console.warn('Notification failed:', e); return Promise.resolve(done(false, e && e.message)); }
+};
+// زر الفحص في الإعدادات: بيبعت إشعار تجريبي ويعرض حالة كل حاجة بتأثر على الإشعارات
+window.testAppNotification = async () => {
+    const out = document.getElementById('notifDiag');
+    if (!out) return;
+    const ar = currentLang === 'ar';
+    const lines = [];
+    const perm = typeof Notification === 'undefined' ? 'unsupported' : Notification.permission;
+    lines.push((ar ? 'صلاحية المتصفح: ' : 'Browser permission: ') + perm);
+    lines.push((ar ? 'مفتاح التطبيق: ' : 'In-app switch: ') + (localStorage.getItem('fp_notifications_enabled') || (ar ? 'غير محدد' : 'not set')));
+    let sw = ar ? 'غير مدعوم' : 'unsupported';
+    try { if ('serviceWorker' in navigator) { const r = await navigator.serviceWorker.getRegistration(); sw = r ? (r.active ? 'active' : 'installing') : (ar ? 'غير مسجّل' : 'not registered'); } } catch (e) {}
+    lines.push('Service Worker: ' + sw);
+    try { const keys = await caches.keys(); lines.push((ar ? 'إصدار الكاش: ' : 'Cache version: ') + (keys.join(', ') || '-')); } catch (e) {}
+    try { const h = loadHandledLog(); lines.push((ar ? 'سجل الفائت: ' : 'Missed log: ') + h.tasks.length + (ar ? ' مهام، ' : ' tasks, ') + h.subs.length + (ar ? ' اشتراكات' : ' subs')); } catch (e) {}
+    if (perm !== 'granted') {
+        lines.push(ar ? '⚠️ اضغط "تفعيل الإشعارات" واسمح للمتصفح أولاً' : '⚠️ Press "Enable notifications" and allow it in the browser first');
+        out.innerText = lines.join('\n');
+        return;
+    }
+    const ok = await window.showAppNotification(i18n[currentLang].notif_test_title, i18n[currentLang].notif_test_body);
+    if (ok) lines.push(ar ? '✅ اتبعت الإشعار للنظام. لو ما ظهرش، افحص إعدادات الجهاز (عدم الإزعاج / وضع التركيز / إذن المتصفح من النظام).' : '✅ Sent to the system. If you do not see it, check device settings (Do Not Disturb / Focus mode / browser permission in the OS).');
+    else lines.push((ar ? '❌ فشل الإرسال: ' : '❌ Failed: ') + (window.__lastNotifResult || ''));
+    out.innerText = lines.join('\n');
 };
 window.enableAppNotifications = () => {
     if (typeof Notification === 'undefined') { alert(currentLang === 'ar' ? 'المتصفح ده مش بيدعم الإشعارات' : 'This browser does not support notifications'); return; }
@@ -2587,12 +2619,93 @@ window.enableAppNotifications = () => {
 window.refreshNotifStatus = () => {
     const statusEl = document.getElementById('notifStatusText');
     if (!statusEl || !statusEl.innerText.trim() || typeof Notification === 'undefined') return;
-    if (Notification.permission === 'granted' && localStorage.getItem('fp_notifications_enabled') === 'true') statusEl.innerText = i18n[currentLang].notif_enabled_msg;
+    if (notifEnabled()) statusEl.innerText = i18n[currentLang].notif_enabled_msg;
     else if (Notification.permission === 'denied') statusEl.innerText = i18n[currentLang].notif_denied_msg;
 };
+// ----------------------------------------
+// الإشعارات الفائتة (v40.1): لو التطبيق كان مقفول وقت الإشعار، بتظهر أول ما يتفتح تاني
+// ----------------------------------------
+const MISSED_LOOKBACK_DAYS = 3; // أقصى عدد أيام بنرجع لها لمراجعة المهام العاجلة الفائتة
+let handledLog = null; // سجل دائم (مش بيتصفر كل يوم) للمهام والاشتراكات اللي اتعامل معاها
+function pendingSubDue(s) {
+    if (s.archived) return null;
+    const cyclesDone = s.frequency === 'yearly' ? (s.paid ? 1 : 0) : (s.paymentsCount || 0);
+    const cyclesTarget = s.frequency === 'yearly' ? 1 : s.durationCount;
+    if (cyclesDone >= cyclesTarget) return null;
+    return s.frequency === 'yearly' ? s.endDate : s.nextPaymentDate;
+}
+function saveHandledLog() {
+    if (!handledLog) return;
+    try {
+        // تنظيف السجل من المهام/الاشتراكات المحذوفة (بس لو البيانات اتحملت فعلاً)
+        if (tasks.length > 0) { const ids = new Set(tasks.map(t => String(t.id))); handledLog.tasks = handledLog.tasks.filter(id => ids.has(String(id))); }
+        if (subscriptions.length > 0) { const sids = new Set(subscriptions.map(s => String(s.id))); handledLog.subs = handledLog.subs.filter(k => sids.has(String(k).split('|')[0])); }
+        localStorage.setItem('fp_notified_persist', JSON.stringify(handledLog));
+    } catch (e) {}
+}
+function loadHandledLog() {
+    if (handledLog) return handledLog;
+    let raw = null;
+    try { raw = JSON.parse(localStorage.getItem('fp_notified_persist')); } catch (e) {}
+    if (raw && Array.isArray(raw.tasks) && Array.isArray(raw.subs)) { handledLog = raw; return handledLog; }
+    // أول تشغيل بعد التحديث: نعتبر المتأخر الحالي "اتعامل معاه" عشان ما يظهرش سيل إشعارات قديمة مرة واحدة
+    const today = getTodayStr();
+    handledLog = { tasks: [], subs: [] };
+    tasks.forEach(t => { if (t.quadrant === 'urgent' && t.date && t.date < today) handledLog.tasks.push(t.id); });
+    subscriptions.forEach(s => { const due = pendingSubDue(s); if (due && due < today) handledLog.subs.push(s.id + '|' + due); });
+    saveHandledLog();
+    return handledLog;
+}
+function markTaskHandled(id) { const h = loadHandledLog(); if (!h.tasks.some(x => String(x) === String(id))) { h.tasks.push(id); saveHandledLog(); } }
+function markSubHandled(key) { const h = loadHandledLog(); if (!h.subs.includes(key)) { h.subs.push(key); saveHandledLog(); } }
+function showMissedNotifications(items) {
+    if (!items.length) return;
+    if (items.length <= 3) { items.forEach(it => window.showAppNotification(it.title, it.body)); return; }
+    // لو الفائت كتير نجمعه في إشعار واحد بدل ما نزعج المستخدم بسيل إشعارات
+    window.showAppNotification(`${i18n[currentLang].notif_missed_summary_title} (${items.length})`, items.slice(0, 3).map(it => it.body).join(' • ') + ' …');
+}
+function checkMissedNotifications() {
+    const today = getTodayStr();
+    const nowMs = Date.now();
+    const items = [];
+    const hourLabel = h => { h = parseInt(h) || 0; return h === 0 ? '12 AM' : h === 12 ? '12 PM' : (h > 12 ? `${h - 12} PM` : `${h} AM`); };
+    const lb = new Date(); lb.setDate(lb.getDate() - MISSED_LOOKBACK_DAYS);
+    const minStr = new Date(lb.getTime() - (lb.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
+    const handled = loadHandledLog();
+
+    // 1) المهام العاجلة اللي فات وقتها ولسه مش مكتملة
+    tasks.filter(t => t.quadrant === 'urgent' && !t.completed && t.date && t.date >= minStr && t.date <= today).forEach(t => {
+        if (handled.tasks.some(x => String(x) === String(t.id)) || alreadyNotified('task-' + t.id)) return;
+        const parts = String(t.date).split('-').map(Number);
+        const windowEnd = new Date(parts[0], parts[1] - 1, parts[2], parseInt(t.hour) || 0, 0, 0).getTime() + 60 * 60000;
+        if (nowMs <= windowEnd) return; // لسه وقتها ماخلصش، والإشعار العادي هو اللي بيتعامل معاها
+        const created = Number(t.id);
+        // لو المهمة اتضافت بعد ما وقتها كان فات، يبقى ماكانش في إشعار مستحق أصلاً
+        if (created > 1e12 && created > windowEnd) { markTaskHandled(t.id); return; }
+        items.push({ title: i18n[currentLang].notif_missed_urgent_title, body: `${t.title} — ${t.date} ${hourLabel(t.hour)}` });
+        markTaskHandled(t.id);
+    });
+
+    // 2) الاشتراكات اللي موعد دفعها عدّى ولسه ماتدفعتش
+    subscriptions.forEach(s => {
+        const due = pendingSubDue(s);
+        if (!due || due >= today) return;
+        const key = s.id + '|' + due;
+        if (handled.subs.includes(key)) return;
+        items.push({ title: i18n[currentLang].notif_missed_sub_title, body: `${s.name} — ${due}` });
+        markSubHandled(key);
+    });
+
+    showMissedNotifications(items);
+}
+
+// الإشعارات شغالة طالما صلاحية المتصفح ممنوحة، إلا لو المستخدم قفلها صراحةً
+function notifEnabled() {
+    return typeof Notification !== 'undefined' && Notification.permission === 'granted' && localStorage.getItem('fp_notifications_enabled') !== 'false';
+}
 function checkNotificationTriggers() {
-    if (localStorage.getItem('fp_notifications_enabled') !== 'true') return;
-    if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+    if (!notifEnabled()) return;
+    checkMissedNotifications();
     const today = getTodayStr();
     const now = new Date();
     const nowMinutes = now.getHours() * 60 + now.getMinutes();
@@ -2604,6 +2717,7 @@ function checkNotificationTriggers() {
         if (nowMinutes >= taskMinutes - 15 && nowMinutes <= taskMinutes + 60) {
             window.showAppNotification(i18n[currentLang].notif_urgent_title, t.title);
             markNotified(key);
+            markTaskHandled(t.id);
         }
     });
 
@@ -2614,11 +2728,11 @@ function checkNotificationTriggers() {
         const due = s.frequency === 'yearly' ? s.endDate : s.nextPaymentDate;
         if (due === today) {
             const key = 'sub-' + s.id + '-' + today;
-            if (!alreadyNotified(key)) { window.showAppNotification(i18n[currentLang].notif_sub_title, s.name); markNotified(key); }
+            if (!alreadyNotified(key)) { window.showAppNotification(i18n[currentLang].notif_sub_title, s.name); markNotified(key); markSubHandled(s.id + '|' + due); }
         }
     });
 
-    if (now.getHours() === 20 && habits.length > 0) {
+    if (now.getHours() >= 20 && habits.length > 0) { // من 8 مساءً وطالع: لو التطبيق اتفتح متأخر برضه يظهر التنبيه
         const key = 'habits-' + today;
         if (!alreadyNotified(key)) {
             const todayKey = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
