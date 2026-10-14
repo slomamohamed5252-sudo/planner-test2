@@ -231,7 +231,7 @@ const i18n = {
 cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", title_subs: "الاشتراكات 📱", sub_active: "نشطة", sub_archive: "المحفوظات", sub_add: "إضافة اشتراك", sub_name: "اسم الاشتراك", sub_freq: "الدورية", sub_daily: "يومي", sub_weekly: "أسبوعي", sub_monthly: "شهري", sub_yearly: "سنوي", sub_count: "عدد الدورات", sub_total: "المبلغ الكلي", sub_per_cycle: "المبلغ لكل دورة", sub_start: "تاريخ البداية", sub_end: "تاريخ النهاية", sub_next: "الدفعة القادمة", sub_notes: "ملاحظات", sub_save: "حفظ", sub_confirm_pay: "تأكيد الدفع", sub_paid: "مدفوع", sub_edit: "تعديل", sub_delete: "حذف", sub_empty: "لا توجد اشتراكات نشطة.", sub_archive_empty: "لا توجد اشتراكات في المحفوظات.", sub_export_pdf: "تصدير PDF", sub_export_excel: "تصدير Excel", sub_cycles_paid: "دورات مدفوعة",
         nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
 pareto_title: "قاعدة 80/20 📌", pareto_cumulative: "التراكمي %", pareto_stuck_title: "📌 قاعدة 80/20: مشاريع شايلة وقتك", pareto_stuck_none: "مفيش مشاريع قديمة عالقة، تمام كده!",
-notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
+notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_important_title: "⭐ مهمة مهمة", notif_delegate_title: "👥 مهمة مفوّضة", notif_cancelled_title: "🚫 مهمة ملغية", notif_missed_important_title: "⭐ مهمة مهمة فائتة", notif_missed_delegate_title: "👥 مهمة مفوّضة فائتة", notif_missed_cancelled_title: "🚫 مهمة ملغية فائتة", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
         nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة",
         q_time: "التوقيت", fs_label: "حجم الخط داخل التطبيق:", fs_small: "صغير", fs_medium: "متوسط (الافتراضي)", fs_large: "كبير", fs_xlarge: "كبير جداً", dict_ar: "عربي",
         ph_title: "العنوان...", ph_title_plain: "العنوان", ph_phone_opt: "رقم الهاتف (اختياري)...", ph_desc: "الوصف", ph_amount: "المبلغ", ph_category: "التصنيف", ph_email: "البريد الإلكتروني", ph_password: "كلمة المرور (6 حروف على الأقل)", ph_qd_title: "عنوان الفكرة (اختياري)...",
@@ -276,7 +276,7 @@ notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعا�
 cat_subscriptions: "📱 Subscriptions", nav_subs: "Subscriptions", title_subs: "Subscriptions 📱", sub_active: "Active", sub_archive: "Archive", sub_add: "Add subscription", sub_name: "Subscription name", sub_freq: "Frequency", sub_daily: "Daily", sub_weekly: "Weekly", sub_monthly: "Monthly", sub_yearly: "Yearly", sub_count: "Number of cycles", sub_total: "Total amount", sub_per_cycle: "Amount per cycle", sub_start: "Start date", sub_end: "End date", sub_next: "Next payment", sub_notes: "Notes", sub_save: "Save", sub_confirm_pay: "Confirm payment", sub_paid: "Paid", sub_edit: "Edit", sub_delete: "Delete", sub_empty: "No active subscriptions.", sub_archive_empty: "No archived subscriptions.", sub_export_pdf: "Export PDF", sub_export_excel: "Export Excel", sub_cycles_paid: "cycles paid",
         nav_updates: "Updates", title_updates: "App Update Log 🔄",
 pareto_title: "The 80/20 Rule 📌", pareto_cumulative: "Cumulative %", pareto_stuck_title: "📌 80/20: Projects eating your time", pareto_stuck_none: "No old stuck projects, nice!",
-notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
+notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_important_title: "⭐ Important task", notif_delegate_title: "👥 Delegated task", notif_cancelled_title: "🚫 Cancelled task", notif_missed_important_title: "⭐ Missed important task", notif_missed_delegate_title: "👥 Missed delegated task", notif_missed_cancelled_title: "🚫 Missed cancelled task", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
         nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add",
         q_time: "Time", fs_label: "In-app font size:", fs_small: "Small", fs_medium: "Medium (default)", fs_large: "Large", fs_xlarge: "Extra large", dict_ar: "Arabic",
         ph_title: "Title...", ph_title_plain: "Title", ph_phone_opt: "Phone (optional)...", ph_desc: "Description", ph_amount: "Amount", ph_category: "Category", ph_email: "Email", ph_password: "Password (at least 6 characters)", ph_qd_title: "Idea title (optional)...",
@@ -2625,7 +2625,14 @@ window.refreshNotifStatus = () => {
 // ----------------------------------------
 // الإشعارات الفائتة (v40.1): لو التطبيق كان مقفول وقت الإشعار، بتظهر أول ما يتفتح تاني
 // ----------------------------------------
-const MISSED_LOOKBACK_DAYS = 3; // أقصى عدد أيام بنرجع لها لمراجعة المهام العاجلة الفائتة
+const MISSED_LOOKBACK_DAYS = 3; // أقصى عدد أيام بنرجع لها لمراجعة المهام الفائتة
+const NOTIF_QUADRANTS = ['urgent', 'important', 'delegate', 'cancelled']; // كل التصنيفات اللي بتطلع لها إشعارات
+const HANDLED_LOG_VERSION = 2;
+// نهاية نافذة إشعار المهمة (ساعة بعد موعدها) بالملي ثانية
+function taskWindowEnd(t) {
+    const parts = String(t.date).split('-').map(Number);
+    return new Date(parts[0], parts[1] - 1, parts[2], parseInt(t.hour) || 0, 0, 0).getTime() + 60 * 60000;
+}
 let handledLog = null; // سجل دائم (مش بيتصفر كل يوم) للمهام والاشتراكات اللي اتعامل معاها
 function pendingSubDue(s) {
     if (s.archived) return null;
@@ -2647,12 +2654,20 @@ function loadHandledLog() {
     if (handledLog) return handledLog;
     let raw = null;
     try { raw = JSON.parse(localStorage.getItem('fp_notified_persist')); } catch (e) {}
-    if (raw && Array.isArray(raw.tasks) && Array.isArray(raw.subs)) { handledLog = raw; return handledLog; }
-    // أول تشغيل بعد التحديث: نعتبر المتأخر الحالي "اتعامل معاه" عشان ما يظهرش سيل إشعارات قديمة مرة واحدة
+    const hasLog = raw && Array.isArray(raw.tasks) && Array.isArray(raw.subs);
+    if (hasLog && raw.v >= HANDLED_LOG_VERSION) { handledLog = raw; return handledLog; }
+    // أول تشغيل (أو ترقية من نسخة أقدم): نعتبر المتأخر الحالي "اتعامل معاه" عشان ما يظهرش سيل إشعارات قديمة مرة واحدة
     const today = getTodayStr();
-    handledLog = { tasks: [], subs: [] };
-    tasks.forEach(t => { if (t.quadrant === 'urgent' && t.date && t.date < today) handledLog.tasks.push(t.id); });
-    subscriptions.forEach(s => { const due = pendingSubDue(s); if (due && due < today) handledLog.subs.push(s.id + '|' + due); });
+    const nowMs = Date.now();
+    handledLog = hasLog ? raw : { tasks: [], subs: [] };
+    handledLog.v = HANDLED_LOG_VERSION;
+    tasks.forEach(t => {
+        if (!NOTIF_QUADRANTS.includes(t.quadrant) || !t.date) return;
+        if (handledLog.tasks.some(x => String(x) === String(t.id))) return;
+        // الجديد في الترقية: التصنيفات غير العاجل اللي وقتها فات قبل كده ماكانش ليها إشعارات أصلاً
+        if (t.date < today || (t.date === today && nowMs > taskWindowEnd(t))) handledLog.tasks.push(t.id);
+    });
+    if (!hasLog) subscriptions.forEach(s => { const due = pendingSubDue(s); if (due && due < today) handledLog.subs.push(s.id + '|' + due); });
     saveHandledLog();
     return handledLog;
 }
@@ -2673,16 +2688,15 @@ function checkMissedNotifications() {
     const minStr = new Date(lb.getTime() - (lb.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
     const handled = loadHandledLog();
 
-    // 1) المهام العاجلة اللي فات وقتها ولسه مش مكتملة
-    tasks.filter(t => t.quadrant === 'urgent' && !t.completed && t.date && t.date >= minStr && t.date <= today).forEach(t => {
+    // 1) المهام (عاجل/مهم/مفوّض/ملغي) اللي فات وقتها ولسه مش مكتملة
+    tasks.filter(t => NOTIF_QUADRANTS.includes(t.quadrant) && !t.completed && t.date && t.date >= minStr && t.date <= today).forEach(t => {
         if (handled.tasks.some(x => String(x) === String(t.id)) || alreadyNotified('task-' + t.id)) return;
-        const parts = String(t.date).split('-').map(Number);
-        const windowEnd = new Date(parts[0], parts[1] - 1, parts[2], parseInt(t.hour) || 0, 0, 0).getTime() + 60 * 60000;
+        const windowEnd = taskWindowEnd(t);
         if (nowMs <= windowEnd) return; // لسه وقتها ماخلصش، والإشعار العادي هو اللي بيتعامل معاها
         const created = Number(t.id);
         // لو المهمة اتضافت بعد ما وقتها كان فات، يبقى ماكانش في إشعار مستحق أصلاً
         if (created > 1e12 && created > windowEnd) { markTaskHandled(t.id); return; }
-        items.push({ title: i18n[currentLang].notif_missed_urgent_title, body: `${t.title} — ${t.date} ${hourLabel(t.hour)}` });
+        items.push({ title: i18n[currentLang]['notif_missed_' + t.quadrant + '_title'], body: `${t.title} — ${t.date} ${hourLabel(t.hour)}` });
         markTaskHandled(t.id);
     });
 
@@ -2710,12 +2724,12 @@ function checkNotificationTriggers() {
     const now = new Date();
     const nowMinutes = now.getHours() * 60 + now.getMinutes();
 
-    tasks.filter(t => t.quadrant === 'urgent' && t.date === today && !t.completed).forEach(t => {
+    tasks.filter(t => NOTIF_QUADRANTS.includes(t.quadrant) && t.date === today && !t.completed).forEach(t => {
         const key = 'task-' + t.id;
         if (alreadyNotified(key)) return;
         const taskMinutes = (parseInt(t.hour) || 0) * 60;
         if (nowMinutes >= taskMinutes - 15 && nowMinutes <= taskMinutes + 60) {
-            window.showAppNotification(i18n[currentLang].notif_urgent_title, t.title);
+            window.showAppNotification(i18n[currentLang]['notif_' + t.quadrant + '_title'], t.title);
             markNotified(key);
             markTaskHandled(t.id);
         }
