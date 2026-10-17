@@ -46,7 +46,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=41.1">
+    <link rel="stylesheet" href="style.css?v=41.2">
 </head>
 <body>
 
@@ -75,6 +75,7 @@
         <aside class="sidebar">
             <nav id="mainNav">
                 <a href="#" class="nav-item active" data-target="dashboardView"><i class="fa-solid fa-chart-pie"></i> <span data-i18n="nav_dash">لوحة التحكم</span></a>
+                <a href="#" class="nav-item" data-target="notifCenterView"><i class="fa-solid fa-inbox"></i> <span data-i18n="nav_notifs">الإشعارات</span> <span id="notifBadge" class="notif-badge" style="display:none;">0</span></a>
                 <a href="#" class="nav-item" data-target="monthlyView"><i class="fa-solid fa-calendar-days"></i> <span data-i18n="nav_month">خطة الشهر</span></a>
                 <a href="#" class="nav-item" data-target="dailyView"><i class="fa-solid fa-list-check"></i> <span data-i18n="nav_today">اليوم</span></a>
                 <a href="#" class="nav-item" data-target="pomodoroView"><i class="fa-solid fa-stopwatch"></i> <span data-i18n="nav_pomodoro">مؤقت التركيز</span></a>
@@ -427,6 +428,23 @@
                 <div id="notesContainer" class="notes-grid"></div>
             </div>
 
+            <div id="notifCenterView" class="view-section">
+                <div class="content-header"><h2 data-i18n="title_notifs">مركز الإشعارات 🔔</h2></div>
+                <p class="notif-desc" data-i18n="notif_c_desc">الإشعارات الفائتة والقادمة خلال 24 ساعة (قبل وبعد الآن).</p>
+                <div class="notif-toolbar no-print">
+                    <div class="notif-tabs" id="notifTabs">
+                        <button type="button" class="notif-tab active" data-filter="all"><span data-i18n="notif_c_all">الكل</span> <span class="notif-cnt" id="notifCntAll">0</span></button>
+                        <button type="button" class="notif-tab" data-filter="missed"><span data-i18n="notif_c_missed">فائتة</span> <span class="notif-cnt" id="notifCntMissed">0</span></button>
+                        <button type="button" class="notif-tab" data-filter="upcoming"><span data-i18n="notif_c_upcoming">قادمة</span> <span class="notif-cnt" id="notifCntUpcoming">0</span></button>
+                    </div>
+                    <div class="notif-bulk">
+                        <button type="button" class="btn btn-secondary" onclick="markAllNotifRead()"><i class="fa-solid fa-check-double"></i> <span data-i18n="notif_c_mark_all">تحديد الكل كمقروء</span></button>
+                        <button type="button" class="btn btn-secondary" style="color: var(--danger);" onclick="deleteAllNotifs()"><i class="fa-solid fa-trash"></i> <span data-i18n="notif_c_delete_all">حذف الكل</span></button>
+                    </div>
+                </div>
+                <div id="notifCenterContainer"></div>
+            </div>
+
             <div id="updatesView" class="view-section">
                 <div class="content-header"><h2 data-i18n="title_updates">سجل تحديثات التطبيق 🔄</h2></div>
                 <div id="updatesLogContainer"></div>
@@ -762,6 +780,6 @@
         <i class="fa-solid fa-bolt"></i>
     </button>
 
-<script src="script.js?v=41.1"></script>
+<script src="script.js?v=41.2"></script>
 </body>
 </html>

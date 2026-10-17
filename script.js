@@ -1,18 +1,18 @@
 // 1. سجل التحديثات
 const latestReleaseNotes = {
     ar: [
-        "⏰ اختيار توقيت المهمة السريعة في خطة الشهر: تظهر تلقائياً في جدول اليوم في نفس الساعة التي تختارها، ويمكنك تعديلها من جدول اليوم.",
-        "🌐 تحسين كبير للغة الإنجليزية: ترجمة أداة تفريغ الأفكار، وحجم الخط، ونافذة الدخول، وباقي النصوص التي كانت تظهر بالعربية.",
-        "🔄 تبديل اللغة صار يحدّث الشاشة الحالية فوراً (خطة الشهر، المشاريع، المكتبة، حالة المزامنة والإشعارات) من غير الحاجة للتنقل بين الأقسام."
+        "🔔 إشعارات لكل تصنيفات المهام: عاجل ⏰ ومهم ⭐ ومفوّض 👥 وملغي 🚫، بالإضافة إلى العادات ومؤقت التركيز.",
+        "📬 الإشعارات الفائتة: لو فاتك إشعار لأن التطبيق كان مقفولاً، يظهر لك أول ما تفتح التطبيق أو ترجع له (مهام آخر 3 أيام، الاشتراكات المتأخرة، وعادات الليل بعد 8 مساءً).",
+        "🛠️ زر «إرسال إشعار تجريبي» في الإعدادات لفحص حالة الإشعارات على جهازك، وتحسين ثبات وصول الإشعارات."
     ],
     en: [
-        "⏰ Pick a time for quick tasks in the monthly plan: they appear automatically in Today's schedule at the hour you choose, and you can still edit them there.",
-        "🌐 Major English-language improvements: the Quick Brain Dump, font size, login window, and other texts that used to show in Arabic are now translated.",
-        "🔄 Switching language now refreshes the current screen instantly (monthly plan, projects, library, sync and notification status) without navigating between sections."
+        "🔔 Notifications for all task tags: Urgent ⏰, Important ⭐, Delegate 👥 and Cancelled 🚫, in addition to habits and the focus timer.",
+        "📬 Missed notifications: if you missed an alert because the app was closed, it now appears as soon as you open or return to the app (tasks from the last 3 days, overdue subscriptions, and evening habits after 8 PM).",
+        "🛠️ New «Send test notification» button in Settings to check notification status on your device, plus more reliable delivery."
     ]
 };
 
-const APP_VERSION = 'v40';
+const APP_VERSION = 'v41';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
@@ -231,7 +231,7 @@ const i18n = {
 cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", title_subs: "الاشتراكات 📱", sub_active: "نشطة", sub_archive: "المحفوظات", sub_add: "إضافة اشتراك", sub_name: "اسم الاشتراك", sub_freq: "الدورية", sub_daily: "يومي", sub_weekly: "أسبوعي", sub_monthly: "شهري", sub_yearly: "سنوي", sub_count: "عدد الدورات", sub_total: "المبلغ الكلي", sub_per_cycle: "المبلغ لكل دورة", sub_start: "تاريخ البداية", sub_end: "تاريخ النهاية", sub_next: "الدفعة القادمة", sub_notes: "ملاحظات", sub_save: "حفظ", sub_confirm_pay: "تأكيد الدفع", sub_paid: "مدفوع", sub_edit: "تعديل", sub_delete: "حذف", sub_empty: "لا توجد اشتراكات نشطة.", sub_archive_empty: "لا توجد اشتراكات في المحفوظات.", sub_export_pdf: "تصدير PDF", sub_export_excel: "تصدير Excel", sub_cycles_paid: "دورات مدفوعة",
         nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
 pareto_title: "قاعدة 80/20 📌", pareto_cumulative: "التراكمي %", pareto_stuck_title: "📌 قاعدة 80/20: مشاريع شايلة وقتك", pareto_stuck_none: "مفيش مشاريع قديمة عالقة، تمام كده!",
-notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_important_title: "⭐ مهمة مهمة", notif_delegate_title: "👥 مهمة مفوّضة", notif_cancelled_title: "🚫 مهمة ملغية", notif_missed_important_title: "⭐ مهمة مهمة فائتة", notif_missed_delegate_title: "👥 مهمة مفوّضة فائتة", notif_missed_cancelled_title: "🚫 مهمة ملغية فائتة", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
+notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_important_title: "⭐ مهمة مهمة", notif_delegate_title: "👥 مهمة مفوّضة", notif_cancelled_title: "🚫 مهمة ملغية", notif_missed_important_title: "⭐ مهمة مهمة فائتة", notif_missed_delegate_title: "👥 مهمة مفوّضة فائتة", notif_missed_cancelled_title: "🚫 مهمة ملغية فائتة", nav_notifs: "الإشعارات", title_notifs: "مركز الإشعارات 🔔", notif_c_desc: "الإشعارات الفائتة والقادمة خلال 24 ساعة (قبل وبعد الآن).", notif_c_all: "الكل", notif_c_missed: "فائتة", notif_c_upcoming: "قادمة", notif_c_mark_all: "تحديد الكل كمقروء", notif_c_delete_all: "حذف الكل", notif_c_confirm_delete: "حذف كل الإشعارات المعروضة؟ (المهام نفسها لن تتأثر)", notif_c_empty: "لا توجد إشعارات فائتة أو قادمة خلال 24 ساعة 🎉", notif_c_mark_read: "تحديد كمقروء", notif_c_mark_unread: "تحديد كغير مقروء", notif_c_delete: "حذف الإشعار", notif_c_sub_due: "اشتراك", notif_c_today: "اليوم", notif_c_tomorrow: "غداً", notif_c_yesterday: "أمس", notif_c_pom_running: "جلسة التركيز شغالة", notif_c_pom_ends: "تنتهي الساعة", notif_c_pom_ended: "انتهت جلسة التركيز", notif_c_sub_body: "موعد الدفع", notif_c_in: "بعد", notif_c_ago: "منذ", notif_c_h: "س", notif_c_m: "د", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
         nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة",
         q_time: "التوقيت", fs_label: "حجم الخط داخل التطبيق:", fs_small: "صغير", fs_medium: "متوسط (الافتراضي)", fs_large: "كبير", fs_xlarge: "كبير جداً", dict_ar: "عربي",
         ph_title: "العنوان...", ph_title_plain: "العنوان", ph_phone_opt: "رقم الهاتف (اختياري)...", ph_desc: "الوصف", ph_amount: "المبلغ", ph_category: "التصنيف", ph_email: "البريد الإلكتروني", ph_password: "كلمة المرور (6 حروف على الأقل)", ph_qd_title: "عنوان الفكرة (اختياري)...",
@@ -276,7 +276,7 @@ notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعا�
 cat_subscriptions: "📱 Subscriptions", nav_subs: "Subscriptions", title_subs: "Subscriptions 📱", sub_active: "Active", sub_archive: "Archive", sub_add: "Add subscription", sub_name: "Subscription name", sub_freq: "Frequency", sub_daily: "Daily", sub_weekly: "Weekly", sub_monthly: "Monthly", sub_yearly: "Yearly", sub_count: "Number of cycles", sub_total: "Total amount", sub_per_cycle: "Amount per cycle", sub_start: "Start date", sub_end: "End date", sub_next: "Next payment", sub_notes: "Notes", sub_save: "Save", sub_confirm_pay: "Confirm payment", sub_paid: "Paid", sub_edit: "Edit", sub_delete: "Delete", sub_empty: "No active subscriptions.", sub_archive_empty: "No archived subscriptions.", sub_export_pdf: "Export PDF", sub_export_excel: "Export Excel", sub_cycles_paid: "cycles paid",
         nav_updates: "Updates", title_updates: "App Update Log 🔄",
 pareto_title: "The 80/20 Rule 📌", pareto_cumulative: "Cumulative %", pareto_stuck_title: "📌 80/20: Projects eating your time", pareto_stuck_none: "No old stuck projects, nice!",
-notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_important_title: "⭐ Important task", notif_delegate_title: "👥 Delegated task", notif_cancelled_title: "🚫 Cancelled task", notif_missed_important_title: "⭐ Missed important task", notif_missed_delegate_title: "👥 Missed delegated task", notif_missed_cancelled_title: "🚫 Missed cancelled task", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
+notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_important_title: "⭐ Important task", notif_delegate_title: "👥 Delegated task", notif_cancelled_title: "🚫 Cancelled task", notif_missed_important_title: "⭐ Missed important task", notif_missed_delegate_title: "👥 Missed delegated task", notif_missed_cancelled_title: "🚫 Missed cancelled task", nav_notifs: "Notifications", title_notifs: "Notification Center 🔔", notif_c_desc: "Missed and upcoming alerts within 24 hours (before and after now).", notif_c_all: "All", notif_c_missed: "Missed", notif_c_upcoming: "Upcoming", notif_c_mark_all: "Mark all as read", notif_c_delete_all: "Delete all", notif_c_confirm_delete: "Delete all shown notifications? (the tasks themselves are not affected)", notif_c_empty: "No missed or upcoming notifications within 24 hours 🎉", notif_c_mark_read: "Mark as read", notif_c_mark_unread: "Mark as unread", notif_c_delete: "Delete notification", notif_c_sub_due: "Subscription", notif_c_today: "Today", notif_c_tomorrow: "Tomorrow", notif_c_yesterday: "Yesterday", notif_c_pom_running: "Focus session running", notif_c_pom_ends: "Ends at", notif_c_pom_ended: "Focus session finished", notif_c_sub_body: "Payment due", notif_c_in: "in", notif_c_ago: "ago", notif_c_h: "h", notif_c_m: "min", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
         nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add",
         q_time: "Time", fs_label: "In-app font size:", fs_small: "Small", fs_medium: "Medium (default)", fs_large: "Large", fs_xlarge: "Extra large", dict_ar: "Arabic",
         ph_title: "Title...", ph_title_plain: "Title", ph_phone_opt: "Phone (optional)...", ph_desc: "Description", ph_amount: "Amount", ph_category: "Category", ph_email: "Email", ph_password: "Password (at least 6 characters)", ph_qd_title: "Idea title (optional)...",
@@ -674,7 +674,8 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAndShowChangelog();
     setTimeout(checkNotificationTriggers, 3000);
     setInterval(checkNotificationTriggers, 60000);
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') checkNotificationTriggers(); });
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { checkNotificationTriggers(); renderNotifCenter(); } });
+    setInterval(renderNotifCenter, 30000); // تحديث مركز الإشعارات (القادم بيتحول لفائت لما وقته يعدي)
     setTimeout(() => {
         const statusEl = document.getElementById('notifStatusText');
         if (statusEl && typeof Notification !== 'undefined') {
@@ -806,6 +807,7 @@ function renderViews() {
     renderDashboard(); renderMonthly(); renderDaily(); renderKanban(); renderHabits(); renderFinance(); renderHealth(); renderSubscriptions(); renderLibrary(); renderNotes(); 
     if(typeof renderPomodoroLog === 'function') renderPomodoroLog();
     if(typeof renderUpdatesLog === 'function') renderUpdatesLog();
+    if(typeof renderNotifCenter === 'function') renderNotifCenter();
 }
 
 // ----------------------------------------
@@ -2615,6 +2617,160 @@ window.enableAppNotifications = () => {
         }
     });
 };
+// ----------------------------------------
+// مركز الإشعارات (v41.2): الفائتة والقادمة خلال 24 ساعة، مع تحديد كمقروء وحذف
+// ----------------------------------------
+const NOTIF_CENTER_HOURS = 24;     // المدى الزمني (قبل وبعد الوقت الحالي)
+const NOTIF_CENTER_KEEP_DAYS = 8;  // مدة الاحتفاظ بحالة (مقروء/محذوف) قبل التنظيف
+let notifCenterFilter = 'all';
+let notifCenterState = null;
+let notifCenterSig = '';
+
+function loadNotifCenterState() {
+    if (notifCenterState) return notifCenterState;
+    let raw = null;
+    try { raw = JSON.parse(localStorage.getItem('fp_notif_center')); } catch (e) {}
+    const st = { read: {}, deleted: {} };
+    const cutoff = Date.now() - NOTIF_CENTER_KEEP_DAYS * 86400000;
+    if (raw && typeof raw === 'object') ['read', 'deleted'].forEach(k => { Object.keys(raw[k] || {}).forEach(key => { if (raw[k][key] > cutoff) st[k][key] = raw[k][key]; }); });
+    notifCenterState = st;
+    return st;
+}
+function saveNotifCenterState() { try { localStorage.setItem('fp_notif_center', JSON.stringify(notifCenterState)); } catch (e) {} }
+const notifLocalStr = d => new Date(d.getTime() - (d.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
+function notifHourLabel(h) { h = parseInt(h) || 0; return h === 0 ? '12 AM' : h === 12 ? '12 PM' : (h > 12 ? `${h - 12} PM` : `${h} AM`); }
+function notifClock(ms) { return new Date(ms).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); }
+function notifDayWord(dateStr) {
+    const L = i18n[currentLang];
+    const now = new Date(); const tm = new Date(now); tm.setDate(tm.getDate() + 1); const ym = new Date(now); ym.setDate(ym.getDate() - 1);
+    if (dateStr === notifLocalStr(now)) return L.notif_c_today;
+    if (dateStr === notifLocalStr(tm)) return L.notif_c_tomorrow;
+    if (dateStr === notifLocalStr(ym)) return L.notif_c_yesterday;
+    return dateStr;
+}
+function notifRelative(diffMs) { // الموجب = في المستقبل
+    const L = i18n[currentLang];
+    const mins = Math.max(1, Math.round(Math.abs(diffMs) / 60000));
+    const h = Math.floor(mins / 60), m = mins % 60;
+    const txt = h > 0 ? `${h} ${L.notif_c_h}${m ? ' ' + m + ' ' + L.notif_c_m : ''}` : `${m} ${L.notif_c_m}`;
+    return currentLang === 'ar' ? `${diffMs > 0 ? L.notif_c_in : L.notif_c_ago} ${txt}` : (diffMs > 0 ? `${L.notif_c_in} ${txt}` : `${txt} ${L.notif_c_ago}`);
+}
+const notifStripEmoji = s => String(s || '').replace(/^[^\p{L}\p{N}]+/u, '');
+
+function buildNotifCenterItems() {
+    const st = loadNotifCenterState();
+    const L = i18n[currentLang];
+    const now = Date.now(), span = NOTIF_CENTER_HOURS * 3600000;
+    const items = [];
+    const add = it => {
+        const diff = it.at - now;
+        if (diff > span || -diff > span) return;
+        if (st.deleted[it.key]) return;
+        it.status = diff > 0 ? 'upcoming' : 'missed';
+        it.diff = diff;
+        it.read = !!st.read[it.key + '|' + it.status]; // لما القادم يبقى فائت بيرجع غير مقروء لأنه خبر جديد
+        items.push(it);
+    };
+    const qEmoji = { urgent: '⏰', important: '⭐', delegate: '👥', cancelled: '🚫' };
+    tasks.forEach(t => {
+        if (!NOTIF_QUADRANTS.includes(t.quadrant) || t.completed || !t.date) return;
+        const p = String(t.date).split('-').map(Number);
+        const hr = parseInt(t.hour) || 0;
+        add({ key: 't-' + t.id + '-' + t.date + '-' + hr, kind: 'task', icon: qEmoji[t.quadrant], title: t.title, tag: L['q_' + t.quadrant], when: `${notifDayWord(t.date)} ${notifHourLabel(hr)}`, at: new Date(p[0], p[1] - 1, p[2], hr, 0, 0).getTime(), date: t.date });
+    });
+    subscriptions.forEach(s => {
+        const due = pendingSubDue(s);
+        if (!due) return;
+        const p = String(due).split('-').map(Number);
+        add({ key: 's-' + s.id + '-' + due, kind: 'sub', icon: '📱', title: s.name, sub: L.notif_c_sub_body, tag: L.notif_c_sub_due, when: notifDayWord(due), at: new Date(p[0], p[1] - 1, p[2], 23, 59, 0).getTime() });
+    });
+    if (habits.length > 0) {
+        const n = new Date();
+        const todayKey = `${n.getFullYear()}-${n.getMonth()}-${n.getDate()}`;
+        if (habits.some(h => !(h.days && h.days[todayKey]))) {
+            add({ key: 'h-' + notifLocalStr(n), kind: 'habit', icon: '✅', title: notifStripEmoji(L.notif_habit_title), sub: L.notif_habit_body, tag: '', when: `${L.notif_c_today} ${notifHourLabel(20)}`, at: new Date(n.getFullYear(), n.getMonth(), n.getDate(), 20, 0, 0).getTime() });
+        }
+    }
+    if (targetTime > 0 && (isPomRunning || pomTimeLeft === 0)) {
+        add({ key: 'p-' + targetTime, kind: 'pom', icon: '⏱️', title: isPomRunning ? L.notif_c_pom_running : L.notif_c_pom_ended, sub: `${L.notif_c_pom_ends} ${notifClock(targetTime)}`, tag: notifStripEmoji(L.nav_pomodoro), when: notifClock(targetTime), at: targetTime });
+    }
+    return items;
+}
+function getNotifCenterShown() {
+    const items = buildNotifCenterItems();
+    const missed = items.filter(i => i.status === 'missed').sort((a, b) => b.at - a.at);
+    const upcoming = items.filter(i => i.status === 'upcoming').sort((a, b) => a.at - b.at);
+    const shown = notifCenterFilter === 'missed' ? missed : notifCenterFilter === 'upcoming' ? upcoming : missed.concat(upcoming);
+    return { items, missed, upcoming, shown };
+}
+function renderNotifCenter() {
+    const { items, missed, upcoming, shown } = getNotifCenterShown();
+    const L = i18n[currentLang];
+    const unread = items.filter(i => !i.read).length;
+    const badge = document.getElementById('notifBadge');
+    if (badge) { badge.textContent = unread > 99 ? '99+' : String(unread); badge.style.display = unread ? 'inline-flex' : 'none'; }
+    const view = document.getElementById('notifCenterView');
+    const box = document.getElementById('notifCenterContainer');
+    if (!view || !box || !view.classList.contains('active')) return;
+    const setTxt = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    setTxt('notifCntAll', items.length); setTxt('notifCntMissed', missed.length); setTxt('notifCntUpcoming', upcoming.length);
+    document.querySelectorAll('#notifTabs .notif-tab').forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === notifCenterFilter));
+    const html = shown.length === 0 ? `<div class="notif-empty">${escapeHtml(L.notif_c_empty)}</div>` : shown.map(i => {
+        const tagTxt = i.status === 'missed' ? L.notif_c_missed : L.notif_c_upcoming;
+        return `<div class="notif-item ${i.status}${i.read ? ' read' : ''}" data-key="${escapeHtml(i.key)}" data-status="${i.status}" data-kind="${i.kind}" data-date="${escapeHtml(i.date || '')}">
+            <div class="notif-icon" aria-hidden="true">${i.icon}</div>
+            <div class="notif-body">
+                <div class="notif-title">${i.read ? '' : '<span class="notif-dot"></span>'}${escapeHtml(i.title)}</div>
+                ${i.sub ? `<div class="notif-sub">${escapeHtml(i.sub)}</div>` : ''}
+                <div class="notif-meta"><span class="notif-tag">${escapeHtml(tagTxt)}</span>${i.tag ? `<span>${escapeHtml(i.tag)}</span>` : ''}<span>${escapeHtml(i.when)}</span><span>${escapeHtml(notifRelative(i.diff))}</span></div>
+            </div>
+            <div class="notif-actions no-print">
+                <button type="button" class="icon-btn" data-act="read" title="${escapeHtml(i.read ? L.notif_c_mark_unread : L.notif_c_mark_read)}" aria-label="${escapeHtml(i.read ? L.notif_c_mark_unread : L.notif_c_mark_read)}"><i class="fa-solid ${i.read ? 'fa-envelope' : 'fa-envelope-open'}"></i></button>
+                <button type="button" class="icon-btn" data-act="delete" title="${escapeHtml(L.notif_c_delete)}" aria-label="${escapeHtml(L.notif_c_delete)}" style="color:var(--danger);"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>`;
+    }).join('');
+    const sig = currentLang + '|' + notifCenterFilter + '|' + html;
+    if (sig === notifCenterSig) return;
+    notifCenterSig = sig;
+    box.innerHTML = html;
+    if (!box.__bound) {
+        box.__bound = true;
+        box.addEventListener('click', e => {
+            const card = e.target.closest('.notif-item'); if (!card) return;
+            const key = card.getAttribute('data-key'), status = card.getAttribute('data-status');
+            const act = e.target.closest('[data-act]');
+            const st = loadNotifCenterState();
+            if (act && act.getAttribute('data-act') === 'delete') { st.deleted[key] = Date.now(); }
+            else if (act && act.getAttribute('data-act') === 'read') { const rk = key + '|' + status; if (st.read[rk]) delete st.read[rk]; else st.read[rk] = Date.now(); }
+            else { st.read[key + '|' + status] = Date.now(); saveNotifCenterState(); openNotifSource(card.getAttribute('data-kind'), card.getAttribute('data-date')); return; }
+            saveNotifCenterState(); renderNotifCenter();
+        });
+        const tabs = document.getElementById('notifTabs');
+        if (tabs) tabs.addEventListener('click', e => { const b = e.target.closest('.notif-tab'); if (!b) return; notifCenterFilter = b.getAttribute('data-filter'); renderNotifCenter(); });
+    }
+}
+function openNotifSource(kind, date) {
+    const go = target => { const nav = document.querySelector(`.nav-item[data-target="${target}"]`); if (nav) nav.click(); };
+    if (kind === 'task') { if (date) { currentDailyDate = date; const vd = document.getElementById('viewDailyDate'); if (vd) vd.value = date; } go('dailyView'); }
+    else if (kind === 'sub') go('subsView');
+    else if (kind === 'habit') go('habitsView');
+    else if (kind === 'pom') go('pomodoroView');
+}
+window.markAllNotifRead = () => {
+    const st = loadNotifCenterState();
+    getNotifCenterShown().shown.forEach(i => { st.read[i.key + '|' + i.status] = Date.now(); });
+    saveNotifCenterState(); renderNotifCenter();
+};
+window.deleteAllNotifs = () => {
+    const { shown } = getNotifCenterShown();
+    if (shown.length === 0) return;
+    if (!confirm(i18n[currentLang].notif_c_confirm_delete)) return;
+    const st = loadNotifCenterState();
+    shown.forEach(i => { st.deleted[i.key] = Date.now(); });
+    saveNotifCenterState(); renderNotifCenter();
+};
+
 // تحديث نص حالة الإشعارات عند تغيير اللغة (بدون إعادة تحميل)
 window.refreshNotifStatus = () => {
     const statusEl = document.getElementById('notifStatusText');

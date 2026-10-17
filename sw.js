@@ -1,10 +1,10 @@
 // ترقية الإصدار إلى v41 لإجبار كل الأجهزة على تحميل تحديث الإشعارات (كل التصنيفات + الفائتة)
-const CACHE_NAME = 'planner-pro-v41.1';
+const CACHE_NAME = 'planner-pro-v41.2';
 const assets = [
   './',
-  './index.html?v=41.1',
-  './style.css?v=41.1',
-  './script.js?v=41.1',
+  './index.html?v=41.2',
+  './style.css?v=41.2',
+  './script.js?v=41.2',
   './manifest.json',
   './icon.png',
   './logo.png'
