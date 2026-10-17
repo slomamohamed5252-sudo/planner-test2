@@ -1,18 +1,18 @@
 // 1. سجل التحديثات
 const latestReleaseNotes = {
     ar: [
-        "🔔 إشعارات لكل تصنيفات المهام: عاجل ⏰ ومهم ⭐ ومفوّض 👥 وملغي 🚫، بالإضافة إلى العادات ومؤقت التركيز.",
-        "📬 الإشعارات الفائتة: لو فاتك إشعار لأن التطبيق كان مقفولاً، يظهر لك أول ما تفتح التطبيق أو ترجع له (مهام آخر 3 أيام، الاشتراكات المتأخرة، وعادات الليل بعد 8 مساءً).",
-        "🛠️ زر «إرسال إشعار تجريبي» في الإعدادات لفحص حالة الإشعارات على جهازك، وتحسين ثبات وصول الإشعارات."
+        "📥 قسم جديد «الإشعارات»: يعرض الإشعارات الفائتة والقادمة خلال 24 ساعة (مهام، اشتراكات، عادات، مؤقت التركيز)، وعند مرور وقت القادم يتحول تلقائياً إلى فائت بلون مختلف.",
+        "👁️ إمكانية تحديد الإشعار كمقروء أو غير مقروء، وحذفه، أو تحديد/حذف الكل، مع عدّاد للإشعارات غير المقروءة في القائمة.",
+        "🖼️ شعار التطبيق صار يظهر كأيقونة للموقع في التبويب والمفضلة وعند التثبيت على الشاشة الرئيسية."
     ],
     en: [
-        "🔔 Notifications for all task tags: Urgent ⏰, Important ⭐, Delegate 👥 and Cancelled 🚫, in addition to habits and the focus timer.",
-        "📬 Missed notifications: if you missed an alert because the app was closed, it now appears as soon as you open or return to the app (tasks from the last 3 days, overdue subscriptions, and evening habits after 8 PM).",
-        "🛠️ New «Send test notification» button in Settings to check notification status on your device, plus more reliable delivery."
+        "📥 New «Notifications» section: shows missed and upcoming alerts within 24 hours (tasks, subscriptions, habits, focus timer). When an upcoming alert's time passes it automatically becomes missed, in a different color.",
+        "👁️ Mark alerts as read or unread, delete them, or mark/delete all, with an unread counter in the menu.",
+        "🖼️ The app logo now shows as the site icon in the browser tab, bookmarks and when installed on the home screen."
     ]
 };
 
-const APP_VERSION = 'v41';
+const APP_VERSION = 'v42';
 function checkAndShowChangelog() {
     const savedVersion = localStorage.getItem('fp_version');
     if(savedVersion !== APP_VERSION) {
