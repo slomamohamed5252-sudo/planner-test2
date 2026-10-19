@@ -46,7 +46,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=42">
+    <link rel="stylesheet" href="style.css?v=42.1">
 </head>
 <body>
 
@@ -86,6 +86,7 @@
                 <a href="#" class="nav-item" data-target="financeView"><i class="fa-solid fa-wallet"></i> <span data-i18n="nav_finance">المتتبع المالي</span></a>
                 <a href="#" class="nav-item" data-target="libraryView"><i class="fa-solid fa-bookmark"></i> <span data-i18n="nav_lib">مكتبة المراجع</span></a>
                 <a href="#" class="nav-item" data-target="notesView"><i class="fa-solid fa-book"></i> <span data-i18n="nav_notes">الملاحظات</span></a>
+                <a href="#" class="nav-item" data-target="writingView"><i class="fa-solid fa-pen-nib"></i> <span data-i18n="wr_nav">لوحة الكتابة</span></a>
                 <a href="#" class="nav-item" data-target="updatesView"><i class="fa-solid fa-bell"></i> <span data-i18n="nav_updates">التحديثات</span></a>
                 <a href="#" class="nav-item" data-target="profileView"><i class="fa-solid fa-gear"></i> <span data-i18n="nav_settings">الإعدادات والمزامنة</span></a>
             </nav>
@@ -445,6 +446,15 @@
                 <div id="notifCenterContainer"></div>
             </div>
 
+            <div id="writingView" class="view-section">
+                <div class="content-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+                    <h2 data-i18n="wr_title_h">لوحة الكتابة ✍️</h2>
+                    <button type="button" class="btn btn-primary" id="wrNewBtn"><i class="fa-solid fa-plus"></i> <span data-i18n="wr_new">لوحة جديدة</span></button>
+                </div>
+                <p class="notif-desc" data-i18n="wr_desc">اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز.</p>
+                <div id="writingList"></div>
+            </div>
+
             <div id="updatesView" class="view-section">
                 <div class="content-header"><h2 data-i18n="title_updates">سجل تحديثات التطبيق 🔄</h2></div>
                 <div id="updatesLogContainer"></div>
@@ -780,6 +790,35 @@
         <i class="fa-solid fa-bolt"></i>
     </button>
 
-<script src="script.js?v=42"></script>
+<div id="writingEditor" class="wr-editor" style="display:none;" role="dialog" aria-modal="true">
+    <div class="wr-topbar">
+        <button type="button" class="wr-btn wr-back" id="wrBack" data-i18n-title="wr_back" title="رجوع (حفظ تلقائي)"><i class="fa-solid fa-arrow-left"></i></button>
+        <input type="text" id="wrTitle" class="wr-title" maxlength="80" placeholder="عنوان اللوحة..." data-i18n-ph="wr_title_ph" autocomplete="off">
+        <span id="wrSaveState" class="wr-savestate"></span>
+        <button type="button" class="wr-btn" id="wrUndo" data-i18n-title="wr_undo" title="تراجع" disabled><i class="fa-solid fa-rotate-left"></i></button>
+        <button type="button" class="wr-btn" id="wrRedo" data-i18n-title="wr_redo" title="إعادة" disabled><i class="fa-solid fa-rotate-right"></i></button>
+    </div>
+    <div class="wr-toolbar">
+        <button type="button" class="wr-btn active" id="wrPen" data-i18n-title="wr_pen" title="قلم"><i class="fa-solid fa-pen"></i></button>
+        <button type="button" class="wr-btn" id="wrEraser" data-i18n-title="wr_eraser" title="ممحاة"><i class="fa-solid fa-eraser"></i></button>
+        <span class="wr-sep"></span>
+        <button type="button" class="wr-color active" data-color="#111827" style="background:#111827;" data-i18n-title="wr_color" title="لون القلم"></button>
+        <button type="button" class="wr-color" data-color="#2563eb" style="background:#2563eb;" data-i18n-title="wr_color" title="لون القلم"></button>
+        <button type="button" class="wr-color" data-color="#dc2626" style="background:#dc2626;" data-i18n-title="wr_color" title="لون القلم"></button>
+        <button type="button" class="wr-color" data-color="#16a34a" style="background:#16a34a;" data-i18n-title="wr_color" title="لون القلم"></button>
+        <button type="button" class="wr-color" data-color="#f59e0b" style="background:#f59e0b;" data-i18n-title="wr_color" title="لون القلم"></button>
+        <button type="button" class="wr-color" data-color="#7c3aed" style="background:#7c3aed;" data-i18n-title="wr_color" title="لون القلم"></button>
+        <span class="wr-sep"></span>
+        <button type="button" class="wr-btn wr-size" data-size="1.6" data-i18n-title="wr_thin" title="رفيع"><span class="wr-dot" style="width:4px;height:4px;"></span></button>
+        <button type="button" class="wr-btn wr-size active" data-size="3" data-i18n-title="wr_med" title="وسط"><span class="wr-dot" style="width:8px;height:8px;"></span></button>
+        <button type="button" class="wr-btn wr-size" data-size="6" data-i18n-title="wr_thick" title="سميك"><span class="wr-dot" style="width:13px;height:13px;"></span></button>
+        <span class="wr-sep"></span>
+        <button type="button" class="wr-btn wr-mode" id="wrMode" data-i18n-title="wr_mode_hint" title="بدّل بين الكتابة بالإصبع وتمرير الورقة بالإصبع"><i class="fa-solid fa-pen-nib"></i> <span data-i18n="wr_mode_write">الإصبع يكتب</span></button>
+        <button type="button" class="wr-btn" id="wrDown" data-i18n-title="wr_down" title="انزل للأسفل"><i class="fa-solid fa-arrow-down"></i></button>
+    </div>
+    <div class="wr-scroll" id="wrScroll"><canvas id="wrCanvas" class="wr-canvas"></canvas><div class="wr-sizer" id="wrSizer"></div></div>
+</div>
+
+<script src="script.js?v=42.1"></script>
 </body>
 </html>

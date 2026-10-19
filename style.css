@@ -396,3 +396,39 @@ html[dir="ltr"] .nav-item:hover {
     .notif-item { padding: 10px 10px; gap: 8px; }
     .notif-icon { flex-basis: 34px; width: 34px; height: 34px; font-size: 1rem; }
 }
+
+/* ===== لوحة الكتابة (v42.1) ===== */
+.wr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+.wr-card { position: relative; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.2s; }
+.wr-card:hover, .wr-card:focus { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); outline: none; border-color: var(--primary); }
+.wr-thumb { aspect-ratio: 3 / 4; background: #fff; display: flex; }
+.wr-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wr-card-body { padding: 8px 10px 10px; }
+.wr-card-title { font-weight: 700; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wr-card-date { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+.wr-del { position: absolute; top: 6px; inset-inline-end: 6px; min-width: 36px; min-height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 255, 255, 0.92); color: var(--danger); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25); }
+body.wr-open { overflow: hidden; overscroll-behavior: none; }
+body.wr-open .fab-btn { display: none !important; } /* زر تفريغ الأفكار العائم يغطي الورقة */
+.wr-editor { position: fixed; inset: 0; z-index: 2000; display: flex; flex-direction: column; background: #d1d5db; color: var(--text-main); height: 100%; height: 100dvh; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.wr-topbar, .wr-toolbar { display: flex; align-items: center; gap: 6px; padding: 6px 8px; background: var(--card-bg); border-bottom: 1px solid var(--border-color); flex: 0 0 auto; }
+.wr-topbar { padding-top: calc(6px + env(safe-area-inset-top, 0px)); }
+.wr-toolbar { flex-wrap: wrap; row-gap: 4px; }
+.wr-btn { min-width: 40px; height: 40px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); cursor: pointer; font-size: 0.95rem; }
+.wr-btn:disabled { opacity: 0.35; cursor: default; }
+.wr-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+html[dir="rtl"] .wr-back i { transform: scaleX(-1); }
+.wr-title { flex: 1; min-width: 0; height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); font-size: 1rem; font-weight: 600; -webkit-user-select: text; user-select: text; }
+.wr-savestate { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; min-width: 0; }
+.wr-savestate.err { color: var(--danger); }
+.wr-color { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--card-bg); box-shadow: 0 0 0 1px var(--border-color); cursor: pointer; padding: 0; margin: 2px 3px; flex: 0 0 auto; }
+.wr-color.active { box-shadow: 0 0 0 3px var(--primary); }
+.wr-dot { display: block; border-radius: 50%; background: currentColor; }
+.wr-sep { width: 1px; height: 26px; background: var(--border-color); margin: 0 4px; }
+.wr-scroll { position: relative; flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.wr-canvas { position: sticky; top: 0; display: block; touch-action: none; cursor: crosshair; }
+.wr-sizer { pointer-events: none; width: 1px; }
+@media (max-width: 560px) {
+    .wr-mode span { display: none; }
+    .wr-btn { min-width: 38px; padding: 0 8px; }
+    .wr-sep { display: none; }
+}

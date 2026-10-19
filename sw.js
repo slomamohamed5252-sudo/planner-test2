@@ -1,10 +1,10 @@
 // ترقية الإصدار إلى v42 لإجبار كل الأجهزة على تحميل قسم الإشعارات وأيقونة الموقع
-const CACHE_NAME = 'planner-pro-v42';
+const CACHE_NAME = 'planner-pro-v42.1';
 const assets = [
   './',
-  './index.html?v=42',
-  './style.css?v=42',
-  './script.js?v=42',
+  './index.html?v=42.1',
+  './style.css?v=42.1',
+  './script.js?v=42.1',
   './manifest.json',
   './icon.png',
   './logo.png'
