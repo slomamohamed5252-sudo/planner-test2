@@ -231,7 +231,7 @@ const i18n = {
 cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", title_subs: "الاشتراكات 📱", sub_active: "نشطة", sub_archive: "المحفوظات", sub_add: "إضافة اشتراك", sub_name: "اسم الاشتراك", sub_freq: "الدورية", sub_daily: "يومي", sub_weekly: "أسبوعي", sub_monthly: "شهري", sub_yearly: "سنوي", sub_count: "عدد الدورات", sub_total: "المبلغ الكلي", sub_per_cycle: "المبلغ لكل دورة", sub_start: "تاريخ البداية", sub_end: "تاريخ النهاية", sub_next: "الدفعة القادمة", sub_notes: "ملاحظات", sub_save: "حفظ", sub_confirm_pay: "تأكيد الدفع", sub_paid: "مدفوع", sub_edit: "تعديل", sub_delete: "حذف", sub_empty: "لا توجد اشتراكات نشطة.", sub_archive_empty: "لا توجد اشتراكات في المحفوظات.", sub_export_pdf: "تصدير PDF", sub_export_excel: "تصدير Excel", sub_cycles_paid: "دورات مدفوعة",
         nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
 pareto_title: "قاعدة 80/20 📌", pareto_cumulative: "التراكمي %", pareto_stuck_title: "📌 قاعدة 80/20: مشاريع شايلة وقتك", pareto_stuck_none: "مفيش مشاريع قديمة عالقة، تمام كده!",
-notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_important_title: "⭐ مهمة مهمة", notif_delegate_title: "👥 مهمة مفوّضة", notif_cancelled_title: "🚫 مهمة ملغية", notif_missed_important_title: "⭐ مهمة مهمة فائتة", notif_missed_delegate_title: "👥 مهمة مفوّضة فائتة", notif_missed_cancelled_title: "🚫 مهمة ملغية فائتة", nav_notifs: "الإشعارات", title_notifs: "مركز الإشعارات 🔔", notif_c_desc: "الإشعارات الفائتة والقادمة خلال 24 ساعة (قبل وبعد الآن).", notif_c_all: "الكل", notif_c_missed: "فائتة", notif_c_upcoming: "قادمة", notif_c_mark_all: "تحديد الكل كمقروء", notif_c_delete_all: "حذف الكل", notif_c_confirm_delete: "حذف كل الإشعارات المعروضة؟ (المهام نفسها لن تتأثر)", notif_c_empty: "لا توجد إشعارات فائتة أو قادمة خلال 24 ساعة 🎉", notif_c_mark_read: "تحديد كمقروء", notif_c_mark_unread: "تحديد كغير مقروء", notif_c_delete: "حذف الإشعار", notif_c_sub_due: "اشتراك", notif_c_today: "اليوم", notif_c_tomorrow: "غداً", notif_c_yesterday: "أمس", notif_c_pom_running: "جلسة التركيز شغالة", notif_c_pom_ends: "تنتهي الساعة", notif_c_pom_ended: "انتهت جلسة التركيز", notif_c_sub_body: "موعد الدفع", notif_c_in: "بعد", notif_c_ago: "منذ", notif_c_h: "س", notif_c_m: "د", wr_nav: "لوحة الكتابة", wr_title_h: "لوحة الكتابة ✍️", wr_desc: "اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز.", wr_new: "لوحة جديدة", wr_untitled: "لوحة بدون عنوان", wr_empty: "لا توجد لوحات بعد. اضغط «لوحة جديدة» وابدأ الكتابة.", wr_delete: "حذف اللوحة", wr_confirm_delete: "حذف هذه اللوحة نهائياً؟", wr_back: "رجوع (حفظ تلقائي)", wr_title_ph: "عنوان اللوحة...", wr_undo: "تراجع", wr_redo: "إعادة", wr_pen: "قلم", wr_eraser: "ممحاة (تمسح الخط كله)", wr_color: "لون القلم", wr_thin: "رفيع", wr_med: "وسط", wr_thick: "سميك", wr_mode_write: "الإصبع يكتب", wr_mode_scroll: "الإصبع يمرّر", wr_mode_hint: "بدّل بين الكتابة بالإصبع وتمرير الورقة بالإصبع (إصبعان يمرّران دائماً)", wr_down: "انزل للأسفل", wr_saving: "جارٍ الحفظ...", wr_saved: "تم الحفظ ✓", wr_unavailable: "تعذّر حفظ اللوحات على هذا المتصفح (التخزين المحلي غير متاح).", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
+notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_important_title: "⭐ مهمة مهمة", notif_delegate_title: "👥 مهمة مفوّضة", notif_cancelled_title: "🚫 مهمة ملغية", notif_missed_important_title: "⭐ مهمة مهمة فائتة", notif_missed_delegate_title: "👥 مهمة مفوّضة فائتة", notif_missed_cancelled_title: "🚫 مهمة ملغية فائتة", nav_notifs: "الإشعارات", title_notifs: "مركز الإشعارات 🔔", notif_c_desc: "الإشعارات الفائتة والقادمة خلال 24 ساعة (قبل وبعد الآن).", notif_c_all: "الكل", notif_c_missed: "فائتة", notif_c_upcoming: "قادمة", notif_c_mark_all: "تحديد الكل كمقروء", notif_c_delete_all: "حذف الكل", notif_c_confirm_delete: "حذف كل الإشعارات المعروضة؟ (المهام نفسها لن تتأثر)", notif_c_empty: "لا توجد إشعارات فائتة أو قادمة خلال 24 ساعة 🎉", notif_c_mark_read: "تحديد كمقروء", notif_c_mark_unread: "تحديد كغير مقروء", notif_c_delete: "حذف الإشعار", notif_c_sub_due: "اشتراك", notif_c_today: "اليوم", notif_c_tomorrow: "غداً", notif_c_yesterday: "أمس", notif_c_pom_running: "جلسة التركيز شغالة", notif_c_pom_ends: "تنتهي الساعة", notif_c_pom_ended: "انتهت جلسة التركيز", notif_c_sub_body: "موعد الدفع", notif_c_in: "بعد", notif_c_ago: "منذ", notif_c_h: "س", notif_c_m: "د", wr_text_tool: "كتابة نص بالكيبورد (اضغط على الورقة، واسحب المربع لنقله)", wr_mic: "إملاء صوتي (تحويل الكلام إلى نص)", wr_done: "تم", wr_text_ph: "اكتب هنا... (الروابط تصبح قابلة للضغط تلقائياً)", wr_dict_lang: "لغة الإملاء الصوتي", wr_link: "إضافة رابط", wr_link_title: "إضافة رابط", wr_link_text_ph: "نص الرابط (اختياري)", wr_link_add: "إضافة", wr_cancel: "إلغاء", wr_link_invalid: "اكتب رابطاً صحيحاً يبدأ بـ http أو https", wr_mic_unsupported: "الإملاء الصوتي غير مدعوم في هذا المتصفح (جرّب Chrome)", wr_mic_denied: "اسمح للمتصفح باستخدام الميكروفون لتفعيل الإملاء", wr_mic_network: "تعذّر الاتصال بخدمة التعرف على الكلام", wr_listening: "🎙️ جارٍ الاستماع...", wr_nav: "لوحة الكتابة", wr_title_h: "لوحة الكتابة ✍️", wr_desc: "اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز.", wr_new: "لوحة جديدة", wr_untitled: "لوحة بدون عنوان", wr_empty: "لا توجد لوحات بعد. اضغط «لوحة جديدة» وابدأ الكتابة.", wr_delete: "حذف اللوحة", wr_confirm_delete: "حذف هذه اللوحة نهائياً؟", wr_back: "رجوع (حفظ تلقائي)", wr_title_ph: "عنوان اللوحة...", wr_undo: "تراجع", wr_redo: "إعادة", wr_pen: "قلم", wr_eraser: "ممحاة (تمسح الخط كله)", wr_color: "لون القلم", wr_thin: "رفيع", wr_med: "وسط", wr_thick: "سميك", wr_mode_write: "الإصبع يكتب", wr_mode_scroll: "الإصبع يمرّر", wr_mode_hint: "بدّل بين الكتابة بالإصبع وتمرير الورقة بالإصبع (إصبعان يمرّران دائماً)", wr_down: "انزل للأسفل", wr_saving: "جارٍ الحفظ...", wr_saved: "تم الحفظ ✓", wr_unavailable: "تعذّر حفظ اللوحات على هذا المتصفح (التخزين المحلي غير متاح).", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
         nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة",
         q_time: "التوقيت", fs_label: "حجم الخط داخل التطبيق:", fs_small: "صغير", fs_medium: "متوسط (الافتراضي)", fs_large: "كبير", fs_xlarge: "كبير جداً", dict_ar: "عربي",
         ph_title: "العنوان...", ph_title_plain: "العنوان", ph_phone_opt: "رقم الهاتف (اختياري)...", ph_desc: "الوصف", ph_amount: "المبلغ", ph_category: "التصنيف", ph_email: "البريد الإلكتروني", ph_password: "كلمة المرور (6 حروف على الأقل)", ph_qd_title: "عنوان الفكرة (اختياري)...",
@@ -276,7 +276,7 @@ notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعا�
 cat_subscriptions: "📱 Subscriptions", nav_subs: "Subscriptions", title_subs: "Subscriptions 📱", sub_active: "Active", sub_archive: "Archive", sub_add: "Add subscription", sub_name: "Subscription name", sub_freq: "Frequency", sub_daily: "Daily", sub_weekly: "Weekly", sub_monthly: "Monthly", sub_yearly: "Yearly", sub_count: "Number of cycles", sub_total: "Total amount", sub_per_cycle: "Amount per cycle", sub_start: "Start date", sub_end: "End date", sub_next: "Next payment", sub_notes: "Notes", sub_save: "Save", sub_confirm_pay: "Confirm payment", sub_paid: "Paid", sub_edit: "Edit", sub_delete: "Delete", sub_empty: "No active subscriptions.", sub_archive_empty: "No archived subscriptions.", sub_export_pdf: "Export PDF", sub_export_excel: "Export Excel", sub_cycles_paid: "cycles paid",
         nav_updates: "Updates", title_updates: "App Update Log 🔄",
 pareto_title: "The 80/20 Rule 📌", pareto_cumulative: "Cumulative %", pareto_stuck_title: "📌 80/20: Projects eating your time", pareto_stuck_none: "No old stuck projects, nice!",
-notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_important_title: "⭐ Important task", notif_delegate_title: "👥 Delegated task", notif_cancelled_title: "🚫 Cancelled task", notif_missed_important_title: "⭐ Missed important task", notif_missed_delegate_title: "👥 Missed delegated task", notif_missed_cancelled_title: "🚫 Missed cancelled task", nav_notifs: "Notifications", title_notifs: "Notification Center 🔔", notif_c_desc: "Missed and upcoming alerts within 24 hours (before and after now).", notif_c_all: "All", notif_c_missed: "Missed", notif_c_upcoming: "Upcoming", notif_c_mark_all: "Mark all as read", notif_c_delete_all: "Delete all", notif_c_confirm_delete: "Delete all shown notifications? (the tasks themselves are not affected)", notif_c_empty: "No missed or upcoming notifications within 24 hours 🎉", notif_c_mark_read: "Mark as read", notif_c_mark_unread: "Mark as unread", notif_c_delete: "Delete notification", notif_c_sub_due: "Subscription", notif_c_today: "Today", notif_c_tomorrow: "Tomorrow", notif_c_yesterday: "Yesterday", notif_c_pom_running: "Focus session running", notif_c_pom_ends: "Ends at", notif_c_pom_ended: "Focus session finished", notif_c_sub_body: "Payment due", notif_c_in: "in", notif_c_ago: "ago", notif_c_h: "h", notif_c_m: "min", wr_nav: "Writing Board", wr_title_h: "Writing Board ✍️", wr_desc: "Write with a pen or your finger on an endless ruled sheet. Your sheets are saved on this device.", wr_new: "New sheet", wr_untitled: "Untitled sheet", wr_empty: "No sheets yet. Tap “New sheet” and start writing.", wr_delete: "Delete sheet", wr_confirm_delete: "Delete this sheet permanently?", wr_back: "Back (auto-saved)", wr_title_ph: "Sheet title...", wr_undo: "Undo", wr_redo: "Redo", wr_pen: "Pen", wr_eraser: "Eraser (removes the whole stroke)", wr_color: "Pen color", wr_thin: "Thin", wr_med: "Medium", wr_thick: "Thick", wr_mode_write: "Finger writes", wr_mode_scroll: "Finger scrolls", wr_mode_hint: "Switch between writing with one finger and scrolling with one finger (two fingers always scroll)", wr_down: "Scroll down", wr_saving: "Saving...", wr_saved: "Saved ✓", wr_unavailable: "Sheets can't be saved in this browser (local storage unavailable).", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
+notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_important_title: "⭐ Important task", notif_delegate_title: "👥 Delegated task", notif_cancelled_title: "🚫 Cancelled task", notif_missed_important_title: "⭐ Missed important task", notif_missed_delegate_title: "👥 Missed delegated task", notif_missed_cancelled_title: "🚫 Missed cancelled task", nav_notifs: "Notifications", title_notifs: "Notification Center 🔔", notif_c_desc: "Missed and upcoming alerts within 24 hours (before and after now).", notif_c_all: "All", notif_c_missed: "Missed", notif_c_upcoming: "Upcoming", notif_c_mark_all: "Mark all as read", notif_c_delete_all: "Delete all", notif_c_confirm_delete: "Delete all shown notifications? (the tasks themselves are not affected)", notif_c_empty: "No missed or upcoming notifications within 24 hours 🎉", notif_c_mark_read: "Mark as read", notif_c_mark_unread: "Mark as unread", notif_c_delete: "Delete notification", notif_c_sub_due: "Subscription", notif_c_today: "Today", notif_c_tomorrow: "Tomorrow", notif_c_yesterday: "Yesterday", notif_c_pom_running: "Focus session running", notif_c_pom_ends: "Ends at", notif_c_pom_ended: "Focus session finished", notif_c_sub_body: "Payment due", notif_c_in: "in", notif_c_ago: "ago", notif_c_h: "h", notif_c_m: "min", wr_text_tool: "Type text (tap the paper; drag a box to move it)", wr_mic: "Voice dictation (speech to text)", wr_done: "Done", wr_text_ph: "Type here... (links become clickable automatically)", wr_dict_lang: "Dictation language", wr_link: "Add link", wr_link_title: "Add link", wr_link_text_ph: "Link text (optional)", wr_link_add: "Add", wr_cancel: "Cancel", wr_link_invalid: "Enter a valid link starting with http or https", wr_mic_unsupported: "Voice dictation is not supported in this browser (try Chrome)", wr_mic_denied: "Allow microphone access to use dictation", wr_mic_network: "Couldn't reach the speech recognition service", wr_listening: "🎙️ Listening...", wr_nav: "Writing Board", wr_title_h: "Writing Board ✍️", wr_desc: "Write with a pen or your finger on an endless ruled sheet. Your sheets are saved on this device.", wr_new: "New sheet", wr_untitled: "Untitled sheet", wr_empty: "No sheets yet. Tap “New sheet” and start writing.", wr_delete: "Delete sheet", wr_confirm_delete: "Delete this sheet permanently?", wr_back: "Back (auto-saved)", wr_title_ph: "Sheet title...", wr_undo: "Undo", wr_redo: "Redo", wr_pen: "Pen", wr_eraser: "Eraser (removes the whole stroke)", wr_color: "Pen color", wr_thin: "Thin", wr_med: "Medium", wr_thick: "Thick", wr_mode_write: "Finger writes", wr_mode_scroll: "Finger scrolls", wr_mode_hint: "Switch between writing with one finger and scrolling with one finger (two fingers always scroll)", wr_down: "Scroll down", wr_saving: "Saving...", wr_saved: "Saved ✓", wr_unavailable: "Sheets can't be saved in this browser (local storage unavailable).", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
         nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add",
         q_time: "Time", fs_label: "In-app font size:", fs_small: "Small", fs_medium: "Medium (default)", fs_large: "Large", fs_xlarge: "Extra large", dict_ar: "Arabic",
         ph_title: "Title...", ph_title_plain: "Title", ph_phone_opt: "Phone (optional)...", ph_desc: "Description", ph_amount: "Amount", ph_category: "Category", ph_email: "Email", ph_password: "Password (at least 6 characters)", ph_qd_title: "Idea title (optional)...",
@@ -3259,7 +3259,7 @@ document.getElementById('saveQdToNotes').onclick = () => {
 };
 
 // ========================================
-// لوحة الكتابة (v42.1): ورقة مسطّرة بلا نهاية بالقلم أو الإصبع، محفوظة على الجهاز (IndexedDB)
+// لوحة الكتابة (v42.2): ورقة مسطّرة بلا نهاية بالقلم أو الإصبع + نص بالكيبورد + إملاء صوتي + روابط (IndexedDB)
 // ========================================
 const WR_LOGICAL_W = 600;      // عرض الورقة بوحدات منطقية ثابتة (عشان الخط يتطابق على كل الأجهزة)
 const WR_MAX_DISPLAY_W = 760;  // أقصى عرض للورقة (px) على الشاشات الكبيرة
@@ -3267,17 +3267,21 @@ const WR_LINE_GAP = 44;        // المسافة بين السطور
 const WR_TOP_MARGIN = 80;      // موضع أول سطر
 const WR_EXTRA = 1500;         // مساحة إضافية تحت آخر كتابة (الورقة بتكبر لوحدها)
 const WR_ERASER_R = 14;        // نصف قطر الممحاة
+const WR_TEXT_SIZES = [20, 26, 36]; // أحجام النص (صغير/وسط/كبير)
 const WR_DB_NAME = 'planner_writing';
+// روابط: [نص](https://...) أو رابط مباشر http(s):// أو www.
+const WR_LINK_RE = /\[([^\]\n]{1,200})\]\((https?:\/\/[^\s)]+)\)|((?:https?:\/\/|www\.)[^\s<>"'`]+)/gi;
 
 const wr = {
-    open: false, id: null, title: '', created: 0, persisted: false, strokes: [], undo: [], redo: [],
-    tool: 'pen', color: '#111827', size: 3, fingerWrites: true, penSeen: false,
-    cur: null, erasing: null, activeId: null, touches: new Map(), panning: false, lastC: 0, lastT: 0, vel: 0, momentum: 0,
+    open: false, id: null, title: '', created: 0, persisted: false, strokes: [], texts: [], undo: [], redo: [],
+    tool: 'pen', color: '#111827', size: 3, tsize: 26, fingerWrites: true, penSeen: false, dictLang: (currentLang === 'ar' ? 'ar-EG' : 'en-US'),
+    cur: null, erasing: null, tap: null, edit: null, dict: null, dlgOpen: false, textNodes: new Map(), hDirty: false,
+    activeId: null, touches: new Map(), panning: false, lastC: 0, lastT: 0, vel: 0, momentum: 0,
     scale: 1, offX: 0, cssW: 0, cssH: 0, dpr: 1, raf: 0, maxY: 0, eraserPos: null,
-    dirty: false, saveTimer: 0, bound: false, meta: [], metaLoaded: false, metaLoading: false
+    dirty: false, saveTimer: 0, flashTimer: 0, bound: false, meta: [], metaLoaded: false, metaLoading: false
 };
-try { const p = JSON.parse(localStorage.getItem('fp_wr_prefs') || 'null'); if (p) { if (p.color) wr.color = p.color; if (p.size) wr.size = p.size; if (p.tool) wr.tool = p.tool; if (typeof p.fingerWrites === 'boolean') wr.fingerWrites = p.fingerWrites; } } catch (e) {}
-function wrSavePrefs() { try { localStorage.setItem('fp_wr_prefs', JSON.stringify({ color: wr.color, size: wr.size, tool: wr.tool, fingerWrites: wr.fingerWrites })); } catch (e) {} }
+try { const p = JSON.parse(localStorage.getItem('fp_wr_prefs') || 'null'); if (p) { if (p.color) wr.color = p.color; if (p.size) wr.size = p.size; if (p.tool && p.tool !== 'text') wr.tool = p.tool; if (WR_TEXT_SIZES.includes(p.tsize)) wr.tsize = p.tsize; if (p.dictLang) wr.dictLang = p.dictLang; if (typeof p.fingerWrites === 'boolean') wr.fingerWrites = p.fingerWrites; } } catch (e) {}
+function wrSavePrefs() { try { localStorage.setItem('fp_wr_prefs', JSON.stringify({ color: wr.color, size: wr.size, tool: wr.tool, tsize: wr.tsize, dictLang: wr.dictLang, fingerWrites: wr.fingerWrites })); } catch (e) {} }
 
 // ---------- التخزين (IndexedDB) ----------
 let wrDbPromise = null;
@@ -3329,12 +3333,59 @@ function wrPath(s) {
     }
     s._p = p; return p;
 }
-function wrRecalcMaxY() { let m = 0; for (const s of wr.strokes) if (s.bb[3] > m) m = s.bb[3]; wr.maxY = m; }
+
+// ---------- النصوص والروابط ----------
+function wrSafeUrl(u) {
+    try { let x = String(u).trim(); if (/^www\./i.test(x)) x = 'https://' + x; const url = new URL(x); return (url.protocol === 'http:' || url.protocol === 'https:') ? url.href : null; } catch (e) { return null; }
+}
+function wrSegments(text) {
+    const out = []; let last = 0, m; WR_LINK_RE.lastIndex = 0;
+    while ((m = WR_LINK_RE.exec(text))) {
+        if (m.index > last) out.push({ s: text.slice(last, m.index) });
+        if (m[1]) out.push({ s: m[1], url: wrSafeUrl(m[2]) });
+        else {
+            let u = m[3], tail = ''; const tr = u.match(/[.,;:!?)\]،؛؟]+$/);
+            if (tr) { tail = tr[0]; u = u.slice(0, -tail.length); }
+            out.push({ s: u, url: wrSafeUrl(u) }); if (tail) out.push({ s: tail });
+        }
+        last = m.index + m[0].length;
+    }
+    if (last < text.length) out.push({ s: text.slice(last) });
+    return out;
+}
+const wrPlainText = t => wrSegments(t).map(g => g.s).join('');
+const wrIsRtl = t => /[\u0590-\u08FF]/.test((t.match(/[A-Za-z\u0590-\u08FF]/) || [''])[0]);
+const wrSnapTop = y => WR_TOP_MARGIN + Math.max(0, Math.floor((y - WR_TOP_MARGIN) / WR_LINE_GAP)) * WR_LINE_GAP + 6;
+function wrEstimateH(t) { let n = 0; String(t.text).split('\n').forEach(l => { n += Math.max(1, Math.ceil(l.length * t.s * 0.55 / t.w)); }); return n * WR_LINE_GAP; }
+function wrTextBox(t) { const h = t._h || wrEstimateH(t), x0 = t.x + (t._tx || 0), w = t._tw || t.w; return [x0, t.y, x0 + w, t.y + h]; }
+function wrTextAt(px, py) {
+    for (let i = wr.texts.length - 1; i >= 0; i--) { const b = wrTextBox(wr.texts[i]); if (px >= b[0] - 8 && px <= b[2] + 8 && py >= b[1] - 4 && py <= b[3] + 4) return wr.texts[i]; }
+    return null;
+}
+function wrFillText(el, it) {
+    el.textContent = '';
+    wrSegments(it.text).forEach(sg => {
+        if (sg.url) { const a = document.createElement('a'); a.className = 'wr-link'; a.href = sg.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = sg.s; el.appendChild(a); }
+        else el.appendChild(document.createTextNode(sg.s));
+    });
+}
+function wrLinkAt(cx, cy) {
+    const layer = document.getElementById('wrTextLayer'); if (!layer) return null;
+    for (const a of layer.querySelectorAll('a.wr-link')) { for (const r of a.getClientRects()) { if (cx >= r.left - 3 && cx <= r.right + 3 && cy >= r.top - 3 && cy <= r.bottom + 3) return a.href; } }
+    return null;
+}
+function wrOpenLink(href) { try { window.open(href, '_blank', 'noopener,noreferrer'); } catch (e) {} }
+function wrRecalcMaxY() {
+    let m = 0;
+    for (const s of wr.strokes) if (s.bb[3] > m) m = s.bb[3];
+    for (const t of wr.texts) { const b = t.y + (t._h || wrEstimateH(t)); if (b > m) m = b; }
+    wr.maxY = m;
+}
 
 // ---------- الرسم على الـ Canvas ----------
 function wrLayout() {
-    const sc = document.getElementById('wrScroll'), cv = document.getElementById('wrCanvas');
-    if (!sc || !cv || !wr.open) return;
+    const sc = document.getElementById('wrScroll'), cv = document.getElementById('wrCanvas'), stage = document.getElementById('wrStage');
+    if (!sc || !cv || !stage || !wr.open) return;
     const cssW = sc.clientWidth, cssH = sc.clientHeight;
     if (!cssW || !cssH) return;
     const oldScale = wr.scale, oldTop = sc.scrollTop;
@@ -3343,7 +3394,8 @@ function wrLayout() {
     wr.dpr = dpr; wr.cssW = cssW; wr.cssH = cssH; wr.scale = pageW / WR_LOGICAL_W; wr.offX = (cssW - pageW) / 2;
     const w = Math.round(cssW * dpr), h = Math.round(cssH * dpr);
     if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
-    cv.style.width = cssW + 'px'; cv.style.height = cssH + 'px';
+    cv.style.width = cssW + 'px'; cv.style.height = cssH + 'px'; stage.style.height = cssH + 'px';
+    wr.textNodes.forEach(el => { el._sig = ''; });
     wrUpdateSizer();
     if (oldScale && Math.abs(oldScale - wr.scale) > 1e-6) sc.scrollTop = (oldTop / oldScale) * wr.scale; // نفس الموضع المنطقي بعد تغيير الحجم/الاتجاه
     wrRender();
@@ -3356,6 +3408,35 @@ function wrUpdateSizer() {
 }
 function wrRequestRender() { if (!wr.raf) wr.raf = requestAnimationFrame(wrRender); }
 function wrDrawStroke(ctx, s) { ctx.strokeStyle = s.c; ctx.lineWidth = s.w; ctx.stroke(wrPath(s)); }
+function wrRenderTexts(top, y0, y1) {
+    const layer = document.getElementById('wrTextLayer'); if (!layer) return;
+    const seen = new Set(), sc = wr.scale;
+    for (const it of wr.texts) {
+        if (wr.edit && wr.edit.item === it) continue; // وقت التعديل بيظهر مربع الكتابة بدله
+        const h = it._h || wrEstimateH(it);
+        if (it.y + h < y0 - 60 || it.y > y1 + 60) continue;
+        let el = wr.textNodes.get(it.id);
+        if (!el) { el = document.createElement('div'); el.className = 'wr-text'; el.setAttribute('dir', 'auto'); layer.appendChild(el); wr.textNodes.set(it.id, el); el._txt = null; el._sig = ''; }
+        if (el._txt !== it.text) { wrFillText(el, it); el._txt = it.text; el._sig = ''; }
+        const sig = it.s + '|' + it.w + '|' + sc;
+        el.style.width = (it.w * sc) + 'px'; el.style.fontSize = (it.s * sc) + 'px'; el.style.lineHeight = (WR_LINE_GAP * sc) + 'px'; el.style.color = it.c;
+        el.style.transform = `translate(${wr.offX + it.x * sc}px, ${it.y * sc - top}px)`;
+        if (el._sig !== sig) { // قياس الحجم الفعلي مرة واحدة لما يتغير النص أو الحجم
+            el._sig = sig;
+            const hh = el.offsetHeight / sc; if (hh) it._h = hh;
+            try { const rg = document.createRange(); rg.selectNodeContents(el); const rr = rg.getBoundingClientRect(), er = el.getBoundingClientRect(); if (rr.width) { it._tx = (rr.left - er.left) / sc; it._tw = rr.width / sc; } } catch (e) {}
+            wr.hDirty = true;
+        }
+        seen.add(it.id);
+    }
+    wr.textNodes.forEach((el, id) => { if (!seen.has(id)) { el.remove(); wr.textNodes.delete(id); } });
+    if (wr.hDirty) { wr.hDirty = false; wrRecalcMaxY(); wrUpdateSizer(); }
+}
+function wrPlaceTa(top) {
+    const ed = wr.edit; if (!ed) return; const it = ed.item, ta = ed.ta, sc = wr.scale;
+    ta.style.width = (it.w * sc) + 'px'; ta.style.fontSize = (it.s * sc) + 'px'; ta.style.lineHeight = (WR_LINE_GAP * sc) + 'px'; ta.style.color = it.c;
+    ta.style.transform = `translate(${wr.offX + it.x * sc}px, ${it.y * sc - top}px)`;
+}
 function wrRender() {
     wr.raf = 0;
     const cv = document.getElementById('wrCanvas'), sc = document.getElementById('wrScroll');
@@ -3374,6 +3455,8 @@ function wrRender() {
     for (const st of wr.strokes) { const b = st.bb; if (b[3] < y0 || b[1] > y1) continue; wrDrawStroke(ctx, st); }
     if (wr.cur) { wr.cur._p = null; wrDrawStroke(ctx, wr.cur); }
     if (wr.tool === 'eraser' && wr.eraserPos) { ctx.strokeStyle = 'rgba(100,100,100,0.8)'; ctx.lineWidth = 1 / s; ctx.beginPath(); ctx.arc(wr.eraserPos[0], wr.eraserPos[1], WR_ERASER_R, 0, Math.PI * 2); ctx.stroke(); }
+    wrRenderTexts(top, y0, y1);
+    wrPlaceTa(top);
 }
 
 // ---------- المدخلات (قلم / إصبع / ماوس) ----------
@@ -3397,7 +3480,7 @@ function wrPanEndMomentum() {
     const step = () => { sc.scrollTop -= v; v *= 0.95; if (Math.abs(v) > 0.3) wr.momentum = requestAnimationFrame(step); else wr.momentum = 0; };
     wr.momentum = requestAnimationFrame(step);
 }
-function wrCancelStroke() { wr.cur = null; wr.erasing = null; wr.activeId = null; wrRequestRender(); }
+function wrCancelStroke() { wr.cur = null; wr.erasing = null; wr.tap = null; wr.activeId = null; wrRequestRender(); }
 function wrAddPoint(e) {
     const p = wrPoint(e);
     if (wr.erasing) { wrEraseTo(p); return; }
@@ -3415,6 +3498,7 @@ function wrDown(e) {
     try { cv.setPointerCapture(e.pointerId); } catch (err) {}
     e.preventDefault();
     wrStopMomentum();
+    if (wr.edit) wrCommitText(); // أي لمسة على الورقة بتنهي تعديل النص الحالي
     if (e.pointerType === 'touch') {
         wr.touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
         if (wr.touches.size >= 2) { if (wr.activeId !== null) wrCancelStroke(); wr.panning = true; wrPanReset(); return; } // إصبعين = تمرير دايماً
@@ -3424,7 +3508,8 @@ function wrDown(e) {
     wr.activeId = e.pointerId;
     const p = wrPoint(e);
     if (erasing) { wr.erasing = { removed: [], last: null }; wrEraseTo(p); }
-    else { wr.cur = { c: wr.color, w: wr.size, a: [Math.round(p[0] * 10), Math.round(p[1] * 10)], pr: [] }; if (e.pointerType === 'pen' && e.pressure > 0) { wr.cur.pr.push(e.pressure); wr.cur.w = Math.round(wr.size * (0.6 + 0.8 * e.pressure) * 10) / 10; } }
+    else if (wr.tool === 'text') { const it = wrTextAt(p[0], p[1]); wr.tap = { px: e.clientX, py: e.clientY, p, item: it, moved: false, ox: it ? it.x : 0, oy: it ? it.y : 0 }; }
+    else { wr.cur = { c: wr.color, w: wr.size, a: [Math.round(p[0] * 10), Math.round(p[1] * 10)], pr: [], t0: performance.now() }; if (e.pointerType === 'pen' && e.pressure > 0) { wr.cur.pr.push(e.pressure); wr.cur.w = Math.round(wr.size * (0.6 + 0.8 * e.pressure) * 10) / 10; } }
     wrRequestRender();
 }
 function wrMove(e) {
@@ -3438,6 +3523,12 @@ function wrMove(e) {
         return;
     }
     e.preventDefault();
+    if (wr.tap) { // أداة النص: لمسة = تعديل/إنشاء، سحب = نقل المربع
+        const t = wr.tap, dx = e.clientX - t.px, dy = e.clientY - t.py;
+        if (!t.moved && Math.hypot(dx, dy) > 8) t.moved = true;
+        if (t.moved && t.item) { t.item.x = Math.max(0, Math.min(WR_LOGICAL_W - 100, t.ox + dx / wr.scale)); t.item.y = Math.max(0, t.oy + dy / wr.scale); wrRequestRender(); }
+        return;
+    }
     const evs = (e.getCoalescedEvents && e.getCoalescedEvents().length) ? e.getCoalescedEvents() : [e];
     for (const ev of evs) wrAddPoint(ev);
     if (wr.erasing) wr.eraserPos = wrPoint(e);
@@ -3456,8 +3547,22 @@ function wrUp(e) {
     if (wr.erasing) {
         const er = wr.erasing; wr.erasing = null; wr.eraserPos = null;
         if (er.removed.length) { wr.undo.push({ t: 'erase', items: er.removed }); wr.redo = []; wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); }
+    } else if (wr.tap) {
+        const t = wr.tap; wr.tap = null;
+        if (e.type === 'pointercancel') { if (t.item) { t.item.x = t.ox; t.item.y = t.oy; } }
+        else if (!t.moved) {
+            const href = wrLinkAt(e.clientX, e.clientY);
+            if (href) wrOpenLink(href);
+            else if (t.item) wrStartTextEdit(t.item);
+            else wrStartTextEdit(null, { x: t.p[0], y: t.p[1] });
+        } else if (t.item) {
+            const ny = wrSnapTop(t.item.y + WR_LINE_GAP / 2 - 6), nx = Math.round(t.item.x);
+            t.item.x = nx; t.item.y = ny;
+            if (nx !== t.ox || ny !== t.oy) { wr.undo.push({ t: 'tmove', it: t.item, before: { x: t.ox, y: t.oy }, after: { x: nx, y: ny } }); wr.redo = []; wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); }
+        }
     } else if (wr.cur) {
         const c = wr.cur; wr.cur = null;
+        if (c.a.length <= 4 && performance.now() - c.t0 < 600) { const href = wrLinkAt(e.clientX, e.clientY); if (href) { wrOpenLink(href); wrRequestRender(); return; } } // لمسة سريعة على رابط = فتحه
         const s = wrStrokeBBox({ c: c.c, w: c.w, a: Int32Array.from(c.a) });
         wr.strokes.push(s); wr.undo.push({ t: 'add', s }); wr.redo = [];
         if (s.bb[3] > wr.maxY) { wr.maxY = s.bb[3]; wrUpdateSizer(); }
@@ -3465,20 +3570,25 @@ function wrUp(e) {
     }
     wrRequestRender();
 }
-// الممحاة: بتمسح الخط كله اللي بتلمسه
+// الممحاة: بتمسح الخط أو مربع النص اللي بتلمسه
 function wrSegDist2(px, py, ax, ay, bx, by) {
     const dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy;
     let t = l2 ? ((px - ax) * dx + (py - ay) * dy) / l2 : 0; t = Math.max(0, Math.min(1, t));
     const qx = ax + t * dx - px, qy = ay + t * dy - py; return qx * qx + qy * qy;
 }
 function wrEraseAt(px, py) {
+    const r = WR_ERASER_R;
     for (let i = wr.strokes.length - 1; i >= 0; i--) {
-        const s = wr.strokes[i], b = s.bb, r = WR_ERASER_R;
+        const s = wr.strokes[i], b = s.bb;
         if (px < b[0] - r || px > b[2] + r || py < b[1] - r || py > b[3] + r) continue;
         const lim = (r + s.w / 2) * (r + s.w / 2), a = s.a; let hit = false;
         if (a.length === 2) hit = wrSegDist2(px, py, a[0] / 10, a[1] / 10, a[0] / 10, a[1] / 10) <= lim;
         else for (let k = 0; k < a.length - 2; k += 2) { if (wrSegDist2(px, py, a[k] / 10, a[k + 1] / 10, a[k + 2] / 10, a[k + 3] / 10) <= lim) { hit = true; break; } }
-        if (hit) { wr.erasing.removed.push({ i, s }); wr.strokes.splice(i, 1); }
+        if (hit) { wr.erasing.removed.push({ k: 's', i, s }); wr.strokes.splice(i, 1); }
+    }
+    for (let i = wr.texts.length - 1; i >= 0; i--) {
+        const t = wr.texts[i], b = wrTextBox(t);
+        if (px >= b[0] - r && px <= b[2] + r && py >= b[1] - r && py <= b[3] + r) { wr.erasing.removed.push({ k: 't', i, it: t }); wr.texts.splice(i, 1); }
     }
 }
 function wrEraseTo(p) {
@@ -3490,17 +3600,139 @@ function wrEraseTo(p) {
 }
 
 // ---------- تراجع / إعادة ----------
+function wrApply(a, undoing) {
+    if (a.t === 'add') { if (undoing) { const i = wr.strokes.lastIndexOf(a.s); if (i >= 0) wr.strokes.splice(i, 1); } else wr.strokes.push(a.s); }
+    else if (a.t === 'erase') {
+        if (undoing) { for (let k = a.items.length - 1; k >= 0; k--) { const it = a.items[k]; if (it.k === 't') wr.texts.splice(Math.min(it.i, wr.texts.length), 0, it.it); else wr.strokes.splice(Math.min(it.i, wr.strokes.length), 0, it.s); } }
+        else a.items.forEach(it => { if (it.k === 't') { const i = wr.texts.indexOf(it.it); if (i >= 0) wr.texts.splice(i, 1); } else { const i = wr.strokes.indexOf(it.s); if (i >= 0) wr.strokes.splice(i, 1); } });
+    }
+    else if (a.t === 'tadd') { if (undoing) { const i = wr.texts.indexOf(a.it); if (i >= 0) wr.texts.splice(i, 1); } else wr.texts.push(a.it); }
+    else if (a.t === 'tdel') { if (undoing) wr.texts.splice(Math.min(a.i, wr.texts.length), 0, a.it); else { const i = wr.texts.indexOf(a.it); if (i >= 0) wr.texts.splice(i, 1); } }
+    else if (a.t === 'tedit') { const v = undoing ? a.before : a.after; a.it.text = v.text; a.it.c = v.c; a.it.s = v.s; a.it._h = 0; a.it._tw = 0; }
+    else if (a.t === 'tmove') { const v = undoing ? a.before : a.after; a.it.x = v.x; a.it.y = v.y; }
+}
 function wrUndoAction() {
+    if (wr.edit) wrCommitText();
     const a = wr.undo.pop(); if (!a) return;
-    if (a.t === 'add') { const i = wr.strokes.lastIndexOf(a.s); if (i >= 0) wr.strokes.splice(i, 1); }
-    else for (let k = a.items.length - 1; k >= 0; k--) wr.strokes.splice(Math.min(a.items[k].i, wr.strokes.length), 0, a.items[k].s);
-    wr.redo.push(a); wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); wrRequestRender();
+    wrApply(a, true); wr.redo.push(a); wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); wrRequestRender();
 }
 function wrRedoAction() {
+    if (wr.edit) wrCommitText();
     const a = wr.redo.pop(); if (!a) return;
-    if (a.t === 'add') wr.strokes.push(a.s);
-    else a.items.forEach(it => { const i = wr.strokes.indexOf(it.s); if (i >= 0) wr.strokes.splice(i, 1); });
-    wr.undo.push(a); wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); wrRequestRender();
+    wrApply(a, false); wr.undo.push(a); wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); wrRequestRender();
+}
+
+// ---------- تحرير النص (كيبورد) ----------
+function wrAutosizeTa() { const ta = wr.edit && wr.edit.ta; if (!ta) return; ta.style.height = 'auto'; ta.style.height = Math.max(ta.scrollHeight, WR_LINE_GAP * wr.scale) + 'px'; }
+function wrEnsureVisible() {
+    const ed = wr.edit, sc = document.getElementById('wrScroll'); if (!ed || !sc) return;
+    const top = ed.item.y * wr.scale - sc.scrollTop, bottom = top + ed.ta.offsetHeight;
+    if (bottom > wr.cssH - 20) sc.scrollTop += bottom - wr.cssH + 28; else if (top < 8) sc.scrollTop += top - 20;
+}
+function wrStartTextEdit(it, pos) {
+    wrCommitText();
+    const layer = document.getElementById('wrTextLayer'); if (!layer) return;
+    const isNew = !it;
+    if (isNew) { const x = Math.max(12, Math.min(pos.x, WR_LOGICAL_W - 312)); it = { id: wrNewId(), x: Math.round(x), y: wrSnapTop(pos.y - WR_LINE_GAP / 2), w: WR_LOGICAL_W - 12 - Math.round(x), text: '', c: wr.color, s: wr.tsize }; }
+    const ta = document.createElement('textarea');
+    ta.className = 'wr-textedit'; ta.setAttribute('dir', 'auto'); ta.rows = 1; ta.value = it.text; ta.placeholder = i18n[currentLang].wr_text_ph; ta.setAttribute('autocapitalize', 'sentences');
+    ta.addEventListener('input', () => { wrAutosizeTa(); wrEnsureVisible(); });
+    ta.addEventListener('blur', () => { if (!wr.dlgOpen) setTimeout(() => { if (wr.edit && wr.edit.ta === ta && !wr.dlgOpen && document.activeElement !== ta) wrCommitText(); }, 120); });
+    ta.addEventListener('keydown', ev => { if (ev.key === 'Escape') { ev.preventDefault(); ev.stopPropagation(); wrCommitText(); } else if (ev.key === 'Enter' && (ev.ctrlKey || ev.metaKey)) { ev.preventDefault(); wrCommitText(); } });
+    wr.edit = { item: it, isNew, ta, before: isNew ? null : { text: it.text, c: it.c, s: it.s } };
+    layer.appendChild(ta); wrPlaceTa(document.getElementById('wrScroll').scrollTop); wrAutosizeTa();
+    ta.focus({ preventScroll: true }); try { ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) {}
+    wrEnsureVisible(); wrSyncToolbar(); wrRequestRender();
+}
+function wrCommitText() {
+    const ed = wr.edit; if (!ed) return;
+    wr.edit = null; wrDictStop();
+    const text = ed.ta.value.replace(/\s+$/g, ''); ed.ta.remove();
+    const it = ed.item;
+    if (ed.isNew) { if (text.trim()) { it.text = text; wr.texts.push(it); wr.undo.push({ t: 'tadd', it }); wr.redo = []; wrChanged(); } }
+    else {
+        const idx = wr.texts.indexOf(it);
+        if (!text.trim()) { if (idx >= 0) { wr.texts.splice(idx, 1); wr.undo.push({ t: 'tdel', it, i: idx }); wr.redo = []; wrChanged(); } }
+        else if (text !== ed.before.text || it.c !== ed.before.c || it.s !== ed.before.s) { const after = { text, c: it.c, s: it.s }; it.text = text; wr.undo.push({ t: 'tedit', it, before: ed.before, after }); wr.redo = []; wrChanged(); }
+    }
+    it._h = 0; it._tw = 0; const n = wr.textNodes.get(it.id); if (n) { n._txt = null; n._sig = ''; }
+    wrRecalcMaxY(); wrUpdateSizer(); wrSyncToolbar(); wrRequestRender();
+}
+// مربع نص جديد في أول سطر فاضي تحت كل المحتوى (للإملاء الصوتي وإضافة الروابط)
+function wrStartEndItem() {
+    const y = wrSnapTop(Math.max(WR_TOP_MARGIN + WR_LINE_GAP, wr.maxY + 8) + WR_LINE_GAP / 2);
+    wrStartTextEdit(null, { x: 24, y: y + WR_LINE_GAP / 2 });
+    const sc = document.getElementById('wrScroll'); if (sc) sc.scrollTop = Math.max(0, y * wr.scale - wr.cssH * 0.3);
+}
+
+// ---------- الإملاء الصوتي ----------
+function wrFlash(msg) {
+    const el = document.getElementById('wrSaveState'); if (!el) return;
+    el.textContent = msg; el.className = 'wr-savestate'; clearTimeout(wr.flashTimer);
+    wr.flashTimer = setTimeout(() => { if (el.textContent === msg) wrSetSaveState(wr.dirty ? 'saving' : ''); }, 3200);
+}
+function wrDictStop() {
+    const d = wr.dict; if (!d) return;
+    d.active = false; wr.dict = null;
+    try { d.rec.onend = null; d.rec.onresult = null; d.rec.onerror = null; d.rec.stop(); } catch (e) {}
+    wrSyncToolbar(); wrSetSaveState(wr.dirty ? 'saving' : '');
+}
+function wrDictStart() {
+    const L = i18n[currentLang], SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { wrFlash(L.wr_mic_unsupported); return; }
+    if (!wr.edit) wrStartEndItem();
+    const ta = wr.edit && wr.edit.ta; if (!ta) return;
+    const d = { rec: new SR(), active: true, base: ta.value };
+    d.rec.lang = wr.dictLang; d.rec.continuous = true; d.rec.interimResults = true;
+    const join = (base, add) => add ? ((base && !/\s$/.test(base) ? base + ' ' : base) + add) : base;
+    d.rec.onresult = ev => {
+        let fin = '', interim = '';
+        for (let i = 0; i < ev.results.length; i++) { const r = ev.results[i]; if (r.isFinal) fin += r[0].transcript; else interim += r[0].transcript; }
+        const all = (!interim ? fin : (!fin ? interim : ((/\s$/.test(fin) || /^\s/.test(interim)) ? fin + interim : fin + ' ' + interim))).trim();
+        if (wr.edit && wr.edit.ta === ta) { ta.value = join(d.base, all); wrAutosizeTa(); wrEnsureVisible(); }
+    };
+    d.rec.onerror = ev => {
+        if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') { wrFlash(L.wr_mic_denied); wrDictStop(); }
+        else if (ev.error === 'network') { wrFlash(L.wr_mic_network); wrDictStop(); }
+    };
+    d.rec.onend = () => { // المتصفح بيوقف التسجيل بعد فترة صمت، فبنعيد تشغيله طول ما المستخدم ما أوقفش الإملاء
+        if (!d.active) return;
+        if (wr.edit && wr.edit.ta === ta) d.base = ta.value;
+        setTimeout(() => { if (d.active) { try { d.rec.start(); } catch (e) {} } }, 150);
+    };
+    wr.dict = d;
+    try { d.rec.start(); } catch (e) { console.warn('Dictation start failed:', e); wr.dict = null; return; }
+    wrSyncToolbar(); const el = document.getElementById('wrSaveState'); if (el) { el.textContent = L.wr_listening; el.className = 'wr-savestate'; }
+}
+function wrDictToggle() { if (wr.dict) wrDictStop(); else wrDictStart(); }
+
+// ---------- إضافة رابط ----------
+function wrLinkOpenDialog() {
+    if (!wr.edit) wrStartEndItem();
+    const ta = wr.edit && wr.edit.ta; if (!ta) return;
+    wr.linkSel = [ta.selectionStart || 0, ta.selectionEnd || 0];
+    wr.dlgOpen = true;
+    const g = id => document.getElementById(id);
+    g('wrLinkLabel').value = ta.value.slice(wr.linkSel[0], wr.linkSel[1]).trim(); g('wrLinkUrl').value = ''; g('wrLinkErr').textContent = '';
+    g('wrLinkDlg').style.display = 'flex'; setTimeout(() => g('wrLinkUrl').focus(), 30);
+}
+function wrLinkCloseDialog() {
+    wr.dlgOpen = false; document.getElementById('wrLinkDlg').style.display = 'none';
+    const ta = wr.edit && wr.edit.ta; if (ta) ta.focus({ preventScroll: true });
+}
+function wrLinkConfirm() {
+    const g = id => document.getElementById(id), L = i18n[currentLang];
+    const url = wrSafeUrl(g('wrLinkUrl').value);
+    if (!url) { g('wrLinkErr').textContent = L.wr_link_invalid; g('wrLinkUrl').focus(); return; }
+    const label = g('wrLinkLabel').value.trim().replace(/[\[\]\n]/g, ' ');
+    const ta = wr.edit && wr.edit.ta;
+    if (ta) {
+        const [a, b] = wr.linkSel || [ta.value.length, ta.value.length], ins = label ? `[${label}](${url})` : url;
+        ta.value = ta.value.slice(0, a) + ins + ta.value.slice(b);
+        const pos = a + ins.length; try { ta.setSelectionRange(pos, pos); } catch (e) {}
+        wrAutosizeTa();
+    }
+    wrLinkCloseDialog();
 }
 
 // ---------- الحفظ التلقائي ----------
@@ -3522,6 +3754,16 @@ function wrThumb() {
     for (let y = WR_TOP_MARGIN; y < H / k; y += WR_LINE_GAP) { x.moveTo(0, y); x.lineTo(WR_LOGICAL_W, y); }
     x.stroke(); x.lineCap = 'round'; x.lineJoin = 'round';
     for (const s of wr.strokes) { if (s.bb[1] > H / k) continue; x.strokeStyle = s.c; x.lineWidth = Math.max(s.w, 2.2); x.stroke(wrPath(s)); }
+    for (const t of wr.texts) { // رسم تقريبي للنص في الصورة المصغرة (تغليف بسيط للكلمات)
+        if (t.y > H / k) continue;
+        const rtl = wrIsRtl(t.text); x.font = `${t.s}px sans-serif`; x.fillStyle = t.c; x.direction = rtl ? 'rtl' : 'ltr'; x.textAlign = rtl ? 'right' : 'left';
+        const ax = rtl ? t.x + t.w : t.x; let ly = t.y;
+        wrPlainText(t.text).split('\n').forEach(par => {
+            let line = '';
+            par.split(' ').forEach(w => { const test = line ? line + ' ' + w : w; if (line && x.measureText(test).width > t.w) { x.fillText(line, ax, ly + 30); ly += WR_LINE_GAP; line = w; } else line = test; });
+            x.fillText(line, ax, ly + 30); ly += WR_LINE_GAP;
+        });
+    }
     try { return c.toDataURL('image/jpeg', 0.72); } catch (e) { return ''; }
 }
 async function wrFlush() {
@@ -3530,8 +3772,8 @@ async function wrFlush() {
     wr.dirty = false;
     const sc = document.getElementById('wrScroll'), now = Date.now();
     if (!wr.created) wr.created = now;
-    const meta = { id: wr.id, title: wr.title, created: wr.created, updated: now, thumb: wrThumb(), n: wr.strokes.length, sy: sc ? Math.round(sc.scrollTop / wr.scale) : 0 };
-    const data = { id: wr.id, strokes: wr.strokes.map(s => ({ c: s.c, w: s.w, a: s.a })) };
+    const meta = { id: wr.id, title: wr.title, created: wr.created, updated: now, thumb: wrThumb(), n: wr.strokes.length + wr.texts.length, sy: sc ? Math.round(sc.scrollTop / wr.scale) : 0 };
+    const data = { id: wr.id, strokes: wr.strokes.map(s => ({ c: s.c, w: s.w, a: s.a })), texts: wr.texts.map(t => ({ id: t.id, x: t.x, y: t.y, w: t.w, text: t.text, c: t.c, s: t.s })) };
     try {
         await wrPut(meta, data); wr.persisted = true;
         wr.meta = wr.meta.filter(m => m.id !== meta.id); wr.meta.unshift(meta);
@@ -3543,11 +3785,18 @@ async function wrFlush() {
 function wrNewId() { return 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
 async function wrOpenEditor(id) {
     const ed = document.getElementById('writingEditor'); if (!ed) return;
-    wr.id = id || wrNewId(); wr.title = ''; wr.created = 0; wr.persisted = false; wr.strokes = []; wr.undo = []; wr.redo = []; wr.cur = null; wr.erasing = null; wr.activeId = null; wr.touches.clear(); wr.panning = false; wr.maxY = 0; wr.dirty = false;
+    wrDictStop(); if (wr.edit) { wr.edit.ta.remove(); wr.edit = null; }
+    wr.textNodes.forEach(el => el.remove()); wr.textNodes.clear();
+    wr.id = id || wrNewId(); wr.title = ''; wr.created = 0; wr.persisted = false; wr.strokes = []; wr.texts = []; wr.undo = []; wr.redo = []; wr.cur = null; wr.erasing = null; wr.tap = null; wr.activeId = null; wr.touches.clear(); wr.panning = false; wr.maxY = 0; wr.dirty = false;
+    if (wr.tool === 'text') wr.tool = 'pen';
     let sy = 0;
     if (id) {
         const m = wr.meta.find(x => x.id === id); if (m) { wr.title = m.title || ''; wr.created = m.created || 0; sy = m.sy || 0; wr.persisted = true; }
-        try { const d = await wrGetData(id); if (d && Array.isArray(d.strokes)) wr.strokes = d.strokes.map(s => wrStrokeBBox({ c: s.c, w: s.w, a: s.a instanceof Int32Array ? s.a : Int32Array.from(s.a) })); } catch (e) { console.warn('Writing load failed:', e); }
+        try {
+            const d = await wrGetData(id);
+            if (d && Array.isArray(d.strokes)) wr.strokes = d.strokes.map(s => wrStrokeBBox({ c: s.c, w: s.w, a: s.a instanceof Int32Array ? s.a : Int32Array.from(s.a) }));
+            if (d && Array.isArray(d.texts)) wr.texts = d.texts.map(t => ({ id: t.id || wrNewId(), x: t.x, y: t.y, w: t.w, text: String(t.text || ''), c: t.c || '#111827', s: WR_TEXT_SIZES.includes(t.s) ? t.s : 26 }));
+        } catch (e) { console.warn('Writing load failed:', e); }
     }
     wrRecalcMaxY();
     document.getElementById('wrTitle').value = wr.title;
@@ -3559,20 +3808,26 @@ async function wrOpenEditor(id) {
 async function wrCloseEditor() {
     if (!wr.open) return;
     wrStopMomentum();
+    if (wr.dlgOpen) wrLinkCloseDialog();
+    if (wr.edit) wrCommitText();
     if (wr.cur || wr.erasing) wrCancelStroke();
     await wrFlush();
     wr.open = false; document.body.classList.remove('wr-open');
-    const ed = document.getElementById('writingEditor'); if (ed) ed.style.display = 'none';
+    wr.textNodes.forEach(el => el.remove()); wr.textNodes.clear();
+    const ed = document.getElementById('writingEditor'); if (ed) { ed.style.display = 'none'; ed.style.height = ''; ed.style.top = ''; }
     renderWritingList();
 }
 
 // ---------- الواجهة ----------
 function wrSyncToolbar() {
     const g = id => document.getElementById(id); if (!g('writingEditor')) return;
-    g('wrPen').classList.toggle('active', wr.tool === 'pen'); g('wrEraser').classList.toggle('active', wr.tool === 'eraser');
-    document.querySelectorAll('#writingEditor .wr-color').forEach(b => b.classList.toggle('active', b.getAttribute('data-color') === wr.color && wr.tool === 'pen'));
-    document.querySelectorAll('#writingEditor .wr-size').forEach(b => b.classList.toggle('active', parseFloat(b.getAttribute('data-size')) === wr.size));
+    const textMode = wr.tool === 'text' || !!wr.edit;
+    g('wrPen').classList.toggle('active', wr.tool === 'pen'); g('wrEraser').classList.toggle('active', wr.tool === 'eraser'); g('wrTextTool').classList.toggle('active', wr.tool === 'text');
+    document.querySelectorAll('#writingEditor .wr-color').forEach(b => b.classList.toggle('active', b.getAttribute('data-color') === wr.color && (wr.tool === 'pen' || textMode)));
+    document.querySelectorAll('#writingEditor .wr-size').forEach((b, i) => b.classList.toggle('active', textMode ? WR_TEXT_SIZES[i] === wr.tsize : parseFloat(b.getAttribute('data-size')) === wr.size));
     g('wrUndo').disabled = wr.undo.length === 0; g('wrRedo').disabled = wr.redo.length === 0;
+    g('wrMic').classList.toggle('listening', !!wr.dict); g('wrDone').style.display = wr.edit ? 'inline-flex' : 'none';
+    const sel = g('wrDictLang'); if (sel.value !== wr.dictLang) sel.value = wr.dictLang;
     const modeBtn = g('wrMode'), key = wr.fingerWrites ? 'wr_mode_write' : 'wr_mode_scroll', L = i18n[currentLang];
     modeBtn.querySelector('i').className = 'fa-solid ' + (wr.fingerWrites ? 'fa-pen-nib' : 'fa-hand');
     const lbl = modeBtn.querySelector('span'); lbl.setAttribute('data-i18n', key); lbl.textContent = L[key];
@@ -3600,9 +3855,16 @@ function renderWritingList() {
         </div>`;
     }).join('') + '</div>';
 }
+function wrFitViewport() { // لما الكيبورد يظهر على الجوال، نخلي المحرر بحجم المساحة المرئية بس
+    const ed = document.getElementById('writingEditor'), vv = window.visualViewport; if (!ed || !vv || !wr.open) return;
+    if (window.innerHeight - vv.height > 80) { ed.style.height = vv.height + 'px'; ed.style.top = vv.offsetTop + 'px'; ed.style.bottom = 'auto'; }
+    else { ed.style.height = ''; ed.style.top = ''; ed.style.bottom = ''; }
+    if (wr.edit) setTimeout(wrEnsureVisible, 60);
+}
 function wrInit() {
     if (wr.bound) return; const ed = document.getElementById('writingEditor'); if (!ed) return; wr.bound = true;
     const g = id => document.getElementById(id), cv = g('wrCanvas'), sc = g('wrScroll');
+    const keepFocus = el => el.addEventListener('pointerdown', e => { if (wr.edit) e.preventDefault(); }); // أزرار الأدوات ما تسحبش التركيز من مربع الكتابة
     g('wrNewBtn').addEventListener('click', () => wrOpenEditor(null));
     g('writingList').addEventListener('click', async e => {
         const card = e.target.closest('.wr-card'); if (!card) return; const id = card.getAttribute('data-id');
@@ -3616,13 +3878,20 @@ function wrInit() {
     g('writingList').addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('wr-card')) { e.preventDefault(); wrOpenEditor(e.target.getAttribute('data-id')); } });
     g('wrBack').addEventListener('click', wrCloseEditor);
     g('wrUndo').addEventListener('click', wrUndoAction); g('wrRedo').addEventListener('click', wrRedoAction);
-    g('wrPen').addEventListener('click', () => { wr.tool = 'pen'; wr.eraserPos = null; wrSavePrefs(); wrSyncToolbar(); wrRequestRender(); });
-    g('wrEraser').addEventListener('click', () => { wr.tool = 'eraser'; wrSavePrefs(); wrSyncToolbar(); });
-    ed.querySelectorAll('.wr-color').forEach(b => b.addEventListener('click', () => { wr.color = b.getAttribute('data-color'); wr.tool = 'pen'; wrSavePrefs(); wrSyncToolbar(); }));
-    ed.querySelectorAll('.wr-size').forEach(b => b.addEventListener('click', () => { wr.size = parseFloat(b.getAttribute('data-size')); wrSavePrefs(); wrSyncToolbar(); }));
+    g('wrPen').addEventListener('click', () => { wrCommitText(); wr.tool = 'pen'; wr.eraserPos = null; wrSavePrefs(); wrSyncToolbar(); wrRequestRender(); });
+    g('wrEraser').addEventListener('click', () => { wrCommitText(); wr.tool = 'eraser'; wrSavePrefs(); wrSyncToolbar(); });
+    g('wrTextTool').addEventListener('click', () => { wr.tool = 'text'; wr.eraserPos = null; wrSavePrefs(); wrSyncToolbar(); });
+    ed.querySelectorAll('.wr-color').forEach(b => { keepFocus(b); b.addEventListener('click', () => { wr.color = b.getAttribute('data-color'); if (wr.tool === 'eraser') wr.tool = 'pen'; if (wr.edit) { wr.edit.item.c = wr.color; wrPlaceTa(g('wrScroll').scrollTop); } wrSavePrefs(); wrSyncToolbar(); }); });
+    ed.querySelectorAll('.wr-size').forEach((b, i) => { keepFocus(b); b.addEventListener('click', () => { if (wr.tool === 'text' || wr.edit) { wr.tsize = WR_TEXT_SIZES[i]; if (wr.edit) { wr.edit.item.s = wr.tsize; wrPlaceTa(g('wrScroll').scrollTop); wrAutosizeTa(); } } else wr.size = parseFloat(b.getAttribute('data-size')); wrSavePrefs(); wrSyncToolbar(); }); });
     g('wrMode').addEventListener('click', () => { wr.fingerWrites = !wr.fingerWrites; wrSavePrefs(); wrSyncToolbar(); });
     g('wrDown').addEventListener('click', () => sc.scrollBy({ top: Math.round(sc.clientHeight * 0.8), behavior: 'smooth' }));
     g('wrTitle').addEventListener('input', e => { wr.title = e.target.value; wrChanged(); });
+    keepFocus(g('wrMic')); g('wrMic').addEventListener('click', wrDictToggle);
+    keepFocus(g('wrLink')); g('wrLink').addEventListener('click', wrLinkOpenDialog);
+    keepFocus(g('wrDone')); g('wrDone').addEventListener('click', wrCommitText);
+    g('wrDictLang').addEventListener('change', e => { wr.dictLang = e.target.value; wrSavePrefs(); if (wr.dict) { wrDictStop(); wrDictStart(); } });
+    g('wrLinkOk').addEventListener('click', wrLinkConfirm); g('wrLinkCancel').addEventListener('click', wrLinkCloseDialog);
+    g('wrLinkDlg').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); wrLinkConfirm(); } else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); wrLinkCloseDialog(); } });
     cv.addEventListener('pointerdown', wrDown); cv.addEventListener('pointermove', wrMove);
     cv.addEventListener('pointerup', wrUp); cv.addEventListener('pointercancel', wrUp);
     cv.addEventListener('pointerleave', () => { if (wr.eraserPos && wr.activeId === null) { wr.eraserPos = null; wrRequestRender(); } });
@@ -3630,15 +3899,16 @@ function wrInit() {
     sc.addEventListener('scroll', wrRequestRender, { passive: true });
     if (window.ResizeObserver) new ResizeObserver(() => { if (wr.open) wrLayout(); }).observe(sc);
     window.addEventListener('resize', () => { if (wr.open) wrLayout(); });
+    if (window.visualViewport) { window.visualViewport.addEventListener('resize', wrFitViewport); window.visualViewport.addEventListener('scroll', wrFitViewport); }
     document.addEventListener('keydown', e => {
         if (!wr.open) return;
-        const typing = e.target && e.target.id === 'wrTitle';
-        if (e.key === 'Escape') { e.preventDefault(); if (typing) e.target.blur(); else wrCloseEditor(); return; }
+        const tag = e.target && e.target.tagName, typing = tag === 'TEXTAREA' || tag === 'INPUT';
+        if (e.key === 'Escape') { if (wr.dlgOpen) return; e.preventDefault(); if (typing) { if (wr.edit) wrCommitText(); else e.target.blur(); } else wrCloseEditor(); return; }
         if (typing) return;
         if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'z') { e.preventDefault(); wrUndoAction(); }
         else if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 'y' || (e.shiftKey && e.key.toLowerCase() === 'z'))) { e.preventDefault(); wrRedoAction(); }
     });
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && wr.open) wrFlush(); });
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && wr.open) { wrDictStop(); wrFlush(); } });
     window.addEventListener('pagehide', () => { if (wr.open) wrFlush(); });
 }
 document.addEventListener('DOMContentLoaded', wrInit);

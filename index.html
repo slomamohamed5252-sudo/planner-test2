@@ -46,7 +46,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=42.1">
+    <link rel="stylesheet" href="style.css?v=42.2">
 </head>
 <body>
 
@@ -801,6 +801,7 @@
     <div class="wr-toolbar">
         <button type="button" class="wr-btn active" id="wrPen" data-i18n-title="wr_pen" title="قلم"><i class="fa-solid fa-pen"></i></button>
         <button type="button" class="wr-btn" id="wrEraser" data-i18n-title="wr_eraser" title="ممحاة"><i class="fa-solid fa-eraser"></i></button>
+        <button type="button" class="wr-btn" id="wrTextTool" data-i18n-title="wr_text_tool" title="كتابة نص بالكيبورد"><i class="fa-solid fa-font"></i></button>
         <span class="wr-sep"></span>
         <button type="button" class="wr-color active" data-color="#111827" style="background:#111827;" data-i18n-title="wr_color" title="لون القلم"></button>
         <button type="button" class="wr-color" data-color="#2563eb" style="background:#2563eb;" data-i18n-title="wr_color" title="لون القلم"></button>
@@ -813,12 +814,29 @@
         <button type="button" class="wr-btn wr-size active" data-size="3" data-i18n-title="wr_med" title="وسط"><span class="wr-dot" style="width:8px;height:8px;"></span></button>
         <button type="button" class="wr-btn wr-size" data-size="6" data-i18n-title="wr_thick" title="سميك"><span class="wr-dot" style="width:13px;height:13px;"></span></button>
         <span class="wr-sep"></span>
+        <button type="button" class="wr-btn" id="wrMic" data-i18n-title="wr_mic" title="إملاء صوتي"><i class="fa-solid fa-microphone"></i></button>
+        <select id="wrDictLang" class="wr-select" data-i18n-title="wr_dict_lang" title="لغة الإملاء الصوتي"><option value="ar-EG" data-i18n="dict_ar">عربي</option><option value="en-US">English</option></select>
+        <button type="button" class="wr-btn" id="wrLink" data-i18n-title="wr_link" title="إضافة رابط"><i class="fa-solid fa-link"></i></button>
+        <button type="button" class="wr-btn wr-done" id="wrDone" style="display:none;" data-i18n-title="wr_done" title="تم"><i class="fa-solid fa-check"></i> <span data-i18n="wr_done">تم</span></button>
+        <span class="wr-sep"></span>
         <button type="button" class="wr-btn wr-mode" id="wrMode" data-i18n-title="wr_mode_hint" title="بدّل بين الكتابة بالإصبع وتمرير الورقة بالإصبع"><i class="fa-solid fa-pen-nib"></i> <span data-i18n="wr_mode_write">الإصبع يكتب</span></button>
         <button type="button" class="wr-btn" id="wrDown" data-i18n-title="wr_down" title="انزل للأسفل"><i class="fa-solid fa-arrow-down"></i></button>
     </div>
-    <div class="wr-scroll" id="wrScroll"><canvas id="wrCanvas" class="wr-canvas"></canvas><div class="wr-sizer" id="wrSizer"></div></div>
+    <div class="wr-scroll" id="wrScroll"><div class="wr-stage" id="wrStage"><canvas id="wrCanvas" class="wr-canvas"></canvas><div class="wr-textlayer" id="wrTextLayer"></div></div><div class="wr-sizer" id="wrSizer"></div></div>
+    <div id="wrLinkDlg" class="wr-dlg" style="display:none;" role="dialog" aria-modal="true">
+        <div class="wr-dlg-box">
+            <h3 data-i18n="wr_link_title">إضافة رابط</h3>
+            <input type="text" id="wrLinkLabel" data-i18n-ph="wr_link_text_ph" placeholder="نص الرابط (اختياري)" autocomplete="off">
+            <input type="url" id="wrLinkUrl" dir="ltr" inputmode="url" placeholder="https://example.com" autocomplete="off" autocapitalize="off" spellcheck="false">
+            <div id="wrLinkErr" class="wr-dlg-err"></div>
+            <div class="wr-dlg-actions">
+                <button type="button" class="btn btn-secondary" id="wrLinkCancel" data-i18n="wr_cancel">إلغاء</button>
+                <button type="button" class="btn btn-primary" id="wrLinkOk" data-i18n="wr_link_add">إضافة</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<script src="script.js?v=42.1"></script>
+<script src="script.js?v=42.2"></script>
 </body>
 </html>
