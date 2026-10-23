@@ -231,7 +231,7 @@ const i18n = {
 cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", title_subs: "الاشتراكات 📱", sub_active: "نشطة", sub_archive: "المحفوظات", sub_add: "إضافة اشتراك", sub_name: "اسم الاشتراك", sub_freq: "الدورية", sub_daily: "يومي", sub_weekly: "أسبوعي", sub_monthly: "شهري", sub_yearly: "سنوي", sub_count: "عدد الدورات", sub_total: "المبلغ الكلي", sub_per_cycle: "المبلغ لكل دورة", sub_start: "تاريخ البداية", sub_end: "تاريخ النهاية", sub_next: "الدفعة القادمة", sub_notes: "ملاحظات", sub_save: "حفظ", sub_confirm_pay: "تأكيد الدفع", sub_paid: "مدفوع", sub_edit: "تعديل", sub_delete: "حذف", sub_empty: "لا توجد اشتراكات نشطة.", sub_archive_empty: "لا توجد اشتراكات في المحفوظات.", sub_export_pdf: "تصدير PDF", sub_export_excel: "تصدير Excel", sub_cycles_paid: "دورات مدفوعة",
         nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
 pareto_title: "قاعدة 80/20 📌", pareto_cumulative: "التراكمي %", pareto_stuck_title: "📌 قاعدة 80/20: مشاريع شايلة وقتك", pareto_stuck_none: "مفيش مشاريع قديمة عالقة، تمام كده!",
-notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_important_title: "⭐ مهمة مهمة", notif_delegate_title: "👥 مهمة مفوّضة", notif_cancelled_title: "🚫 مهمة ملغية", notif_missed_important_title: "⭐ مهمة مهمة فائتة", notif_missed_delegate_title: "👥 مهمة مفوّضة فائتة", notif_missed_cancelled_title: "🚫 مهمة ملغية فائتة", nav_notifs: "الإشعارات", title_notifs: "مركز الإشعارات 🔔", notif_c_desc: "الإشعارات الفائتة والقادمة خلال 24 ساعة (قبل وبعد الآن).", notif_c_all: "الكل", notif_c_missed: "فائتة", notif_c_upcoming: "قادمة", notif_c_mark_all: "تحديد الكل كمقروء", notif_c_delete_all: "حذف الكل", notif_c_confirm_delete: "حذف كل الإشعارات المعروضة؟ (المهام نفسها لن تتأثر)", notif_c_empty: "لا توجد إشعارات فائتة أو قادمة خلال 24 ساعة 🎉", notif_c_mark_read: "تحديد كمقروء", notif_c_mark_unread: "تحديد كغير مقروء", notif_c_delete: "حذف الإشعار", notif_c_sub_due: "اشتراك", notif_c_today: "اليوم", notif_c_tomorrow: "غداً", notif_c_yesterday: "أمس", notif_c_pom_running: "جلسة التركيز شغالة", notif_c_pom_ends: "تنتهي الساعة", notif_c_pom_ended: "انتهت جلسة التركيز", notif_c_sub_body: "موعد الدفع", notif_c_in: "بعد", notif_c_ago: "منذ", notif_c_h: "س", notif_c_m: "د", wr_text_tool: "كتابة نص بالكيبورد (اضغط على الورقة، واسحب المربع لنقله)", wr_mic: "إملاء صوتي (تحويل الكلام إلى نص)", wr_done: "تم", wr_text_ph: "اكتب هنا... (الروابط تصبح قابلة للضغط تلقائياً)", wr_dict_lang: "لغة الإملاء الصوتي", wr_link: "إضافة رابط", wr_link_title: "إضافة رابط", wr_link_text_ph: "نص الرابط (اختياري)", wr_link_add: "إضافة", wr_cancel: "إلغاء", wr_link_invalid: "اكتب رابطاً صحيحاً يبدأ بـ http أو https", wr_mic_unsupported: "الإملاء الصوتي غير مدعوم في هذا المتصفح (جرّب Chrome)", wr_mic_denied: "اسمح للمتصفح باستخدام الميكروفون لتفعيل الإملاء", wr_mic_network: "تعذّر الاتصال بخدمة التعرف على الكلام", wr_listening: "🎙️ جارٍ الاستماع...", wr_nav: "لوحة الكتابة", wr_title_h: "لوحة الكتابة ✍️", wr_desc: "اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز.", wr_new: "لوحة جديدة", wr_untitled: "لوحة بدون عنوان", wr_empty: "لا توجد لوحات بعد. اضغط «لوحة جديدة» وابدأ الكتابة.", wr_delete: "حذف اللوحة", wr_confirm_delete: "حذف هذه اللوحة نهائياً؟", wr_back: "رجوع (حفظ تلقائي)", wr_title_ph: "عنوان اللوحة...", wr_undo: "تراجع", wr_redo: "إعادة", wr_pen: "قلم", wr_eraser: "ممحاة (تمسح الخط كله)", wr_color: "لون القلم", wr_thin: "رفيع", wr_med: "وسط", wr_thick: "سميك", wr_mode_write: "الإصبع يكتب", wr_mode_scroll: "الإصبع يمرّر", wr_mode_hint: "بدّل بين الكتابة بالإصبع وتمرير الورقة بالإصبع (إصبعان يمرّران دائماً)", wr_down: "انزل للأسفل", wr_saving: "جارٍ الحفظ...", wr_saved: "تم الحفظ ✓", wr_unavailable: "تعذّر حفظ اللوحات على هذا المتصفح (التخزين المحلي غير متاح).", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
+notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_important_title: "⭐ مهمة مهمة", notif_delegate_title: "👥 مهمة مفوّضة", notif_cancelled_title: "🚫 مهمة ملغية", notif_missed_important_title: "⭐ مهمة مهمة فائتة", notif_missed_delegate_title: "👥 مهمة مفوّضة فائتة", notif_missed_cancelled_title: "🚫 مهمة ملغية فائتة", nav_notifs: "الإشعارات", title_notifs: "مركز الإشعارات 🔔", notif_c_desc: "الإشعارات الفائتة والقادمة خلال 24 ساعة (قبل وبعد الآن).", notif_c_all: "الكل", notif_c_missed: "فائتة", notif_c_upcoming: "قادمة", notif_c_mark_all: "تحديد الكل كمقروء", notif_c_delete_all: "حذف الكل", notif_c_confirm_delete: "حذف كل الإشعارات المعروضة؟ (المهام نفسها لن تتأثر)", notif_c_empty: "لا توجد إشعارات فائتة أو قادمة خلال 24 ساعة 🎉", notif_c_mark_read: "تحديد كمقروء", notif_c_mark_unread: "تحديد كغير مقروء", notif_c_delete: "حذف الإشعار", notif_c_sub_due: "اشتراك", notif_c_today: "اليوم", notif_c_tomorrow: "غداً", notif_c_yesterday: "أمس", notif_c_pom_running: "جلسة التركيز شغالة", notif_c_pom_ends: "تنتهي الساعة", notif_c_pom_ended: "انتهت جلسة التركيز", notif_c_sub_body: "موعد الدفع", notif_c_in: "بعد", notif_c_ago: "منذ", notif_c_h: "س", notif_c_m: "د", wr_text_tool: "كتابة نص بالكيبورد (اضغط على الورقة، واسحب المربع لنقله)", wr_mic: "إملاء صوتي (تحويل الكلام إلى نص)", wr_done: "تم", wr_text_ph: "اكتب هنا... (الروابط تصبح قابلة للضغط تلقائياً)", wr_dict_lang: "لغة الإملاء الصوتي", wr_link: "إضافة رابط", wr_link_title: "إضافة رابط", wr_link_text_ph: "نص الرابط (اختياري)", wr_link_add: "إضافة", wr_cancel: "إلغاء", wr_link_invalid: "اكتب رابطاً صحيحاً يبدأ بـ http أو https", wr_mic_unsupported: "الإملاء الصوتي غير مدعوم في هذا المتصفح (جرّب Chrome)", wr_mic_denied: "اسمح للمتصفح باستخدام الميكروفون لتفعيل الإملاء", wr_mic_network: "تعذّر الاتصال بخدمة التعرف على الكلام", wr_listening: "🎙️ جارٍ الاستماع...", wr_hl: "قلم مظلّل (هايلايت)", wr_shape: "أشكال (اسحب لرسم الشكل)", wr_shape_line: "خط مستقيم", wr_shape_arrow: "سهم", wr_shape_rect: "مستطيل", wr_shape_ellipse: "دائرة / بيضاوي", wr_select: "تحديد وتحريك (ارسم دائرة حول ما تريد، أو المس عنصراً)", wr_del_sel: "حذف المحدد", wr_zoom_in: "تكبير", wr_zoom_out: "تصغير", wr_zoom_reset: "الحجم الأصلي 100%", wr_export: "تصدير PDF (بالنص والروابط)", wr_exporting: "جارٍ تجهيز PDF...", wr_exported: "تم تصدير PDF ✓", wr_export_failed: "تعذّر تصدير PDF", wr_export_limit: "أول 60 صفحة فقط", wr_search_ph: "ابحث في عناوين اللوحات ونصوصها...", wr_no_results: "لا توجد لوحات مطابقة للبحث.", wr_sync_login: "☁️ سجّل الدخول لمزامنة لوحاتك", wr_sync_ok: "☁️ متزامنة مع حسابك", wr_sync_ing: "☁️ جارٍ المزامنة...", wr_sync_err: "⚠️ تعذّرت المزامنة", wr_sync_err_hint: "تأكد من الاتصال بالإنترنت ومن أن قواعد Firestore تسمح بالمسارين users/{uid}/writingBoards و users/{uid}/writingParts", wr_updated_remote: "تم تحديث اللوحة من جهاز آخر", wr_logout_unsynced: "{n} لوحات لم تتزامن بعد وستُفقد عند تسجيل الخروج. هل تريد المتابعة؟", wr_nav: "لوحة الكتابة", wr_title_h: "لوحة الكتابة ✍️", wr_desc: "اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز وتتزامن مع حسابك عند تسجيل الدخول.", wr_new: "لوحة جديدة", wr_untitled: "لوحة بدون عنوان", wr_empty: "لا توجد لوحات بعد. اضغط «لوحة جديدة» وابدأ الكتابة.", wr_delete: "حذف اللوحة", wr_confirm_delete: "حذف هذه اللوحة نهائياً؟", wr_back: "رجوع (حفظ تلقائي)", wr_title_ph: "عنوان اللوحة...", wr_undo: "تراجع", wr_redo: "إعادة", wr_pen: "قلم", wr_eraser: "ممحاة (تمسح الخط كله)", wr_color: "لون القلم", wr_thin: "رفيع", wr_med: "وسط", wr_thick: "سميك", wr_mode_write: "الإصبع يكتب", wr_mode_scroll: "الإصبع يمرّر", wr_mode_hint: "بدّل بين الكتابة بالإصبع وتمرير الورقة بالإصبع (إصبعان يمرّران دائماً)", wr_down: "انزل للأسفل", wr_saving: "جارٍ الحفظ...", wr_saved: "تم الحفظ ✓", wr_unavailable: "تعذّر حفظ اللوحات على هذا المتصفح (التخزين المحلي غير متاح).", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
         nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة",
         q_time: "التوقيت", fs_label: "حجم الخط داخل التطبيق:", fs_small: "صغير", fs_medium: "متوسط (الافتراضي)", fs_large: "كبير", fs_xlarge: "كبير جداً", dict_ar: "عربي",
         ph_title: "العنوان...", ph_title_plain: "العنوان", ph_phone_opt: "رقم الهاتف (اختياري)...", ph_desc: "الوصف", ph_amount: "المبلغ", ph_category: "التصنيف", ph_email: "البريد الإلكتروني", ph_password: "كلمة المرور (6 حروف على الأقل)", ph_qd_title: "عنوان الفكرة (اختياري)...",
@@ -276,7 +276,7 @@ notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعا�
 cat_subscriptions: "📱 Subscriptions", nav_subs: "Subscriptions", title_subs: "Subscriptions 📱", sub_active: "Active", sub_archive: "Archive", sub_add: "Add subscription", sub_name: "Subscription name", sub_freq: "Frequency", sub_daily: "Daily", sub_weekly: "Weekly", sub_monthly: "Monthly", sub_yearly: "Yearly", sub_count: "Number of cycles", sub_total: "Total amount", sub_per_cycle: "Amount per cycle", sub_start: "Start date", sub_end: "End date", sub_next: "Next payment", sub_notes: "Notes", sub_save: "Save", sub_confirm_pay: "Confirm payment", sub_paid: "Paid", sub_edit: "Edit", sub_delete: "Delete", sub_empty: "No active subscriptions.", sub_archive_empty: "No archived subscriptions.", sub_export_pdf: "Export PDF", sub_export_excel: "Export Excel", sub_cycles_paid: "cycles paid",
         nav_updates: "Updates", title_updates: "App Update Log 🔄",
 pareto_title: "The 80/20 Rule 📌", pareto_cumulative: "Cumulative %", pareto_stuck_title: "📌 80/20: Projects eating your time", pareto_stuck_none: "No old stuck projects, nice!",
-notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_important_title: "⭐ Important task", notif_delegate_title: "👥 Delegated task", notif_cancelled_title: "🚫 Cancelled task", notif_missed_important_title: "⭐ Missed important task", notif_missed_delegate_title: "👥 Missed delegated task", notif_missed_cancelled_title: "🚫 Missed cancelled task", nav_notifs: "Notifications", title_notifs: "Notification Center 🔔", notif_c_desc: "Missed and upcoming alerts within 24 hours (before and after now).", notif_c_all: "All", notif_c_missed: "Missed", notif_c_upcoming: "Upcoming", notif_c_mark_all: "Mark all as read", notif_c_delete_all: "Delete all", notif_c_confirm_delete: "Delete all shown notifications? (the tasks themselves are not affected)", notif_c_empty: "No missed or upcoming notifications within 24 hours 🎉", notif_c_mark_read: "Mark as read", notif_c_mark_unread: "Mark as unread", notif_c_delete: "Delete notification", notif_c_sub_due: "Subscription", notif_c_today: "Today", notif_c_tomorrow: "Tomorrow", notif_c_yesterday: "Yesterday", notif_c_pom_running: "Focus session running", notif_c_pom_ends: "Ends at", notif_c_pom_ended: "Focus session finished", notif_c_sub_body: "Payment due", notif_c_in: "in", notif_c_ago: "ago", notif_c_h: "h", notif_c_m: "min", wr_text_tool: "Type text (tap the paper; drag a box to move it)", wr_mic: "Voice dictation (speech to text)", wr_done: "Done", wr_text_ph: "Type here... (links become clickable automatically)", wr_dict_lang: "Dictation language", wr_link: "Add link", wr_link_title: "Add link", wr_link_text_ph: "Link text (optional)", wr_link_add: "Add", wr_cancel: "Cancel", wr_link_invalid: "Enter a valid link starting with http or https", wr_mic_unsupported: "Voice dictation is not supported in this browser (try Chrome)", wr_mic_denied: "Allow microphone access to use dictation", wr_mic_network: "Couldn't reach the speech recognition service", wr_listening: "🎙️ Listening...", wr_nav: "Writing Board", wr_title_h: "Writing Board ✍️", wr_desc: "Write with a pen or your finger on an endless ruled sheet. Your sheets are saved on this device.", wr_new: "New sheet", wr_untitled: "Untitled sheet", wr_empty: "No sheets yet. Tap “New sheet” and start writing.", wr_delete: "Delete sheet", wr_confirm_delete: "Delete this sheet permanently?", wr_back: "Back (auto-saved)", wr_title_ph: "Sheet title...", wr_undo: "Undo", wr_redo: "Redo", wr_pen: "Pen", wr_eraser: "Eraser (removes the whole stroke)", wr_color: "Pen color", wr_thin: "Thin", wr_med: "Medium", wr_thick: "Thick", wr_mode_write: "Finger writes", wr_mode_scroll: "Finger scrolls", wr_mode_hint: "Switch between writing with one finger and scrolling with one finger (two fingers always scroll)", wr_down: "Scroll down", wr_saving: "Saving...", wr_saved: "Saved ✓", wr_unavailable: "Sheets can't be saved in this browser (local storage unavailable).", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
+notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_important_title: "⭐ Important task", notif_delegate_title: "👥 Delegated task", notif_cancelled_title: "🚫 Cancelled task", notif_missed_important_title: "⭐ Missed important task", notif_missed_delegate_title: "👥 Missed delegated task", notif_missed_cancelled_title: "🚫 Missed cancelled task", nav_notifs: "Notifications", title_notifs: "Notification Center 🔔", notif_c_desc: "Missed and upcoming alerts within 24 hours (before and after now).", notif_c_all: "All", notif_c_missed: "Missed", notif_c_upcoming: "Upcoming", notif_c_mark_all: "Mark all as read", notif_c_delete_all: "Delete all", notif_c_confirm_delete: "Delete all shown notifications? (the tasks themselves are not affected)", notif_c_empty: "No missed or upcoming notifications within 24 hours 🎉", notif_c_mark_read: "Mark as read", notif_c_mark_unread: "Mark as unread", notif_c_delete: "Delete notification", notif_c_sub_due: "Subscription", notif_c_today: "Today", notif_c_tomorrow: "Tomorrow", notif_c_yesterday: "Yesterday", notif_c_pom_running: "Focus session running", notif_c_pom_ends: "Ends at", notif_c_pom_ended: "Focus session finished", notif_c_sub_body: "Payment due", notif_c_in: "in", notif_c_ago: "ago", notif_c_h: "h", notif_c_m: "min", wr_text_tool: "Type text (tap the paper; drag a box to move it)", wr_mic: "Voice dictation (speech to text)", wr_done: "Done", wr_text_ph: "Type here... (links become clickable automatically)", wr_dict_lang: "Dictation language", wr_link: "Add link", wr_link_title: "Add link", wr_link_text_ph: "Link text (optional)", wr_link_add: "Add", wr_cancel: "Cancel", wr_link_invalid: "Enter a valid link starting with http or https", wr_mic_unsupported: "Voice dictation is not supported in this browser (try Chrome)", wr_mic_denied: "Allow microphone access to use dictation", wr_mic_network: "Couldn't reach the speech recognition service", wr_listening: "🎙️ Listening...", wr_hl: "Highlighter", wr_shape: "Shapes (drag to draw)", wr_shape_line: "Straight line", wr_shape_arrow: "Arrow", wr_shape_rect: "Rectangle", wr_shape_ellipse: "Circle / ellipse", wr_select: "Select & move (draw a loop around items, or tap one)", wr_del_sel: "Delete selected", wr_zoom_in: "Zoom in", wr_zoom_out: "Zoom out", wr_zoom_reset: "Reset to 100%", wr_export: "Export PDF (keeps text & links)", wr_exporting: "Preparing PDF...", wr_exported: "PDF exported ✓", wr_export_failed: "PDF export failed", wr_export_limit: "first 60 pages only", wr_search_ph: "Search sheet titles and text...", wr_no_results: "No sheets match your search.", wr_sync_login: "☁️ Log in to sync your sheets", wr_sync_ok: "☁️ Synced with your account", wr_sync_ing: "☁️ Syncing...", wr_sync_err: "⚠️ Sync failed", wr_sync_err_hint: "Check your connection and that your Firestore rules allow users/{uid}/writingBoards and users/{uid}/writingParts", wr_updated_remote: "Sheet updated from another device", wr_logout_unsynced: "{n} sheets are not synced yet and will be lost on logout. Continue?", wr_nav: "Writing Board", wr_title_h: "Writing Board ✍️", wr_desc: "Write with a pen or your finger on an endless ruled sheet. Your sheets are saved on this device and sync with your account when you log in.", wr_new: "New sheet", wr_untitled: "Untitled sheet", wr_empty: "No sheets yet. Tap “New sheet” and start writing.", wr_delete: "Delete sheet", wr_confirm_delete: "Delete this sheet permanently?", wr_back: "Back (auto-saved)", wr_title_ph: "Sheet title...", wr_undo: "Undo", wr_redo: "Redo", wr_pen: "Pen", wr_eraser: "Eraser (removes the whole stroke)", wr_color: "Pen color", wr_thin: "Thin", wr_med: "Medium", wr_thick: "Thick", wr_mode_write: "Finger writes", wr_mode_scroll: "Finger scrolls", wr_mode_hint: "Switch between writing with one finger and scrolling with one finger (two fingers always scroll)", wr_down: "Scroll down", wr_saving: "Saving...", wr_saved: "Saved ✓", wr_unavailable: "Sheets can't be saved in this browser (local storage unavailable).", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
         nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add",
         q_time: "Time", fs_label: "In-app font size:", fs_small: "Small", fs_medium: "Medium (default)", fs_large: "Large", fs_xlarge: "Extra large", dict_ar: "Arabic",
         ph_title: "Title...", ph_title_plain: "Title", ph_phone_opt: "Phone (optional)...", ph_desc: "Description", ph_amount: "Amount", ph_category: "Category", ph_email: "Email", ph_password: "Password (at least 6 characters)", ph_qd_title: "Idea title (optional)...",
@@ -528,6 +528,7 @@ function loadFromCloud() {
     });
 
     cloudUnsubscribe = [unsubMain, unsubMonthly];
+    try { if (typeof wrCloudStart === 'function') cloudUnsubscribe.push(wrCloudStart()); } catch(e) { console.warn('Writing sync start failed:', e); } // مزامنة لوحات الكتابة
 }
 
 // ----------------------------------------
@@ -589,10 +590,12 @@ window.resetPassword = async () => {
 window.logoutCloud = async () => { 
     if(confirm(currentLang === 'ar' ? 'هل تريد تسجيل الخروج؟ سيتم تفريغ البيانات المحلية والتأكد من مزامنتها سحابياً.' : 'Logout and wipe local data?')) {
         try {
+            if (typeof wrBeforeLogout === 'function') { const okW = await wrBeforeLogout(); if (!okW) return; } // نتأكد إن لوحات الكتابة اتزامنت قبل المسح
             saveAll();
             if (cloudUnsubscribe.length) { cloudUnsubscribe.forEach(u => u()); cloudUnsubscribe = []; }
             await auth.signOut();
             localStorage.clear(); 
+            try { if (typeof wrWipeLocal === 'function') await wrWipeLocal(); } catch(e) {}
             location.reload(); 
         } catch(e) {
             console.error("Logout error:", e);
@@ -3259,29 +3262,31 @@ document.getElementById('saveQdToNotes').onclick = () => {
 };
 
 // ========================================
-// لوحة الكتابة (v42.2): ورقة مسطّرة بلا نهاية بالقلم أو الإصبع + نص بالكيبورد + إملاء صوتي + روابط (IndexedDB)
+// لوحة الكتابة (v42.3): ورقة مسطّرة بلا نهاية + نص + إملاء + روابط + زوم + أدوات قلم + بحث + مزامنة سحابية + تصدير PDF
 // ========================================
 const WR_LOGICAL_W = 600;      // عرض الورقة بوحدات منطقية ثابتة (عشان الخط يتطابق على كل الأجهزة)
-const WR_MAX_DISPLAY_W = 760;  // أقصى عرض للورقة (px) على الشاشات الكبيرة
+const WR_MAX_DISPLAY_W = 760;  // أقصى عرض للورقة (px) عند الزوم 100%
 const WR_LINE_GAP = 44;        // المسافة بين السطور
 const WR_TOP_MARGIN = 80;      // موضع أول سطر
 const WR_EXTRA = 1500;         // مساحة إضافية تحت آخر كتابة (الورقة بتكبر لوحدها)
 const WR_ERASER_R = 14;        // نصف قطر الممحاة
 const WR_TEXT_SIZES = [20, 26, 36]; // أحجام النص (صغير/وسط/كبير)
+const WR_ZOOM_MIN = 0.4, WR_ZOOM_MAX = 3;
 const WR_DB_NAME = 'planner_writing';
 // روابط: [نص](https://...) أو رابط مباشر http(s):// أو www.
 const WR_LINK_RE = /\[([^\]\n]{1,200})\]\((https?:\/\/[^\s)]+)\)|((?:https?:\/\/|www\.)[^\s<>"'`]+)/gi;
 
 const wr = {
     open: false, id: null, title: '', created: 0, persisted: false, strokes: [], texts: [], undo: [], redo: [],
-    tool: 'pen', color: '#111827', size: 3, tsize: 26, fingerWrites: true, penSeen: false, dictLang: (currentLang === 'ar' ? 'ar-EG' : 'en-US'),
-    cur: null, erasing: null, tap: null, edit: null, dict: null, dlgOpen: false, textNodes: new Map(), hDirty: false,
-    activeId: null, touches: new Map(), panning: false, lastC: 0, lastT: 0, vel: 0, momentum: 0,
+    tool: 'pen', shape: 'line', color: '#111827', size: 3, tsize: 26, fingerWrites: true, penSeen: false, dictLang: (currentLang === 'ar' ? 'ar-EG' : 'en-US'),
+    zoom: 1, base: 1, cur: null, erasing: null, tap: null, edit: null, dict: null, dlgOpen: false, textNodes: new Map(), hDirty: false,
+    sel: null, selDrag: null, lasso: null,
+    activeId: null, touches: new Map(), panning: false, lastCX: 0, lastCY: 0, lastDist: 0, lastT: 0, vel: 0, momentum: 0,
     scale: 1, offX: 0, cssW: 0, cssH: 0, dpr: 1, raf: 0, maxY: 0, eraserPos: null,
-    dirty: false, saveTimer: 0, flashTimer: 0, bound: false, meta: [], metaLoaded: false, metaLoading: false
+    dirty: false, saveTimer: 0, flashTimer: 0, bound: false, meta: [], metaLoaded: false, metaLoading: false, query: '', sync: 'off', exporting: false
 };
-try { const p = JSON.parse(localStorage.getItem('fp_wr_prefs') || 'null'); if (p) { if (p.color) wr.color = p.color; if (p.size) wr.size = p.size; if (p.tool && p.tool !== 'text') wr.tool = p.tool; if (WR_TEXT_SIZES.includes(p.tsize)) wr.tsize = p.tsize; if (p.dictLang) wr.dictLang = p.dictLang; if (typeof p.fingerWrites === 'boolean') wr.fingerWrites = p.fingerWrites; } } catch (e) {}
-function wrSavePrefs() { try { localStorage.setItem('fp_wr_prefs', JSON.stringify({ color: wr.color, size: wr.size, tool: wr.tool, tsize: wr.tsize, dictLang: wr.dictLang, fingerWrites: wr.fingerWrites })); } catch (e) {} }
+try { const p = JSON.parse(localStorage.getItem('fp_wr_prefs') || 'null'); if (p) { if (p.color) wr.color = p.color; if (p.size) wr.size = p.size; if (['pen', 'highlighter', 'shape', 'eraser'].includes(p.tool)) wr.tool = p.tool; if (['line', 'arrow', 'rect', 'ellipse'].includes(p.shape)) wr.shape = p.shape; if (WR_TEXT_SIZES.includes(p.tsize)) wr.tsize = p.tsize; if (p.dictLang) wr.dictLang = p.dictLang; if (typeof p.fingerWrites === 'boolean') wr.fingerWrites = p.fingerWrites; if (p.zoom >= WR_ZOOM_MIN && p.zoom <= WR_ZOOM_MAX) wr.zoom = p.zoom; } } catch (e) {}
+function wrSavePrefs() { try { localStorage.setItem('fp_wr_prefs', JSON.stringify({ color: wr.color, size: wr.size, tool: wr.tool, shape: wr.shape, tsize: wr.tsize, dictLang: wr.dictLang, fingerWrites: wr.fingerWrites, zoom: Math.round(wr.zoom * 100) / 100 })); } catch (e) {} }
 
 // ---------- التخزين (IndexedDB) ----------
 let wrDbPromise = null;
@@ -3303,7 +3308,13 @@ function wrOpenDb() {
 }
 const wrReq = r => new Promise((res, rej) => { r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
 async function wrGetAllMeta() { const db = await wrOpenDb(); if (!db) return Object.values(wrMemory.meta); return wrReq(db.transaction('meta').objectStore('meta').getAll()); }
+async function wrGetMetaOne(id) { const db = await wrOpenDb(); if (!db) return wrMemory.meta[id] || null; return wrReq(db.transaction('meta').objectStore('meta').get(id)); }
 async function wrGetData(id) { const db = await wrOpenDb(); if (!db) return wrMemory.data[id] || null; return wrReq(db.transaction('data').objectStore('data').get(id)); }
+async function wrPutMeta(meta) {
+    const db = await wrOpenDb();
+    if (!db) { wrMemory.meta[meta.id] = meta; return; }
+    await new Promise((res, rej) => { const tx = db.transaction('meta', 'readwrite'); tx.objectStore('meta').put(meta); tx.oncomplete = res; tx.onerror = () => rej(tx.error); tx.onabort = () => rej(tx.error); });
+}
 async function wrPut(meta, data) {
     const db = await wrOpenDb();
     if (!db) { wrMemory.meta[meta.id] = meta; wrMemory.data[meta.id] = data; return; }
@@ -3314,8 +3325,14 @@ async function wrRemove(id) {
     if (!db) { delete wrMemory.meta[id]; delete wrMemory.data[id]; return; }
     await new Promise((res, rej) => { const tx = db.transaction(['meta', 'data'], 'readwrite'); tx.objectStore('meta').delete(id); tx.objectStore('data').delete(id); tx.oncomplete = res; tx.onerror = () => rej(tx.error); tx.onabort = () => rej(tx.error); });
 }
+async function wrWipeLocal() { // بيتنادى عند تسجيل الخروج الآمن (نفس سلوك باقي بيانات التطبيق)
+    try { const db = await wrOpenDb(); if (db) db.close(); } catch (e) {}
+    wrDbPromise = null; wr.meta = []; wr.metaLoaded = false;
+    await new Promise(res => { try { const r = indexedDB.deleteDatabase(WR_DB_NAME); r.onsuccess = r.onerror = r.onblocked = () => res(); } catch (e) { res(); } });
+}
 
 // ---------- الخطوط (Strokes) ----------
+// stroke: { c: اللون, w: السماكة, a: Int32Array [x*10,y*10,...], k: 1 لو خط مضلّع (أشكال), h: 1 لو قلم مظلّل }
 function wrStrokeBBox(s) {
     const a = s.a; let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
     for (let i = 0; i < a.length; i += 2) { const x = a[i] / 10, y = a[i + 1] / 10; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
@@ -3326,12 +3343,29 @@ function wrPath(s) {
     const a = s.a, n = a.length / 2, p = new Path2D();
     p.moveTo(a[0] / 10, a[1] / 10);
     if (n === 1) p.lineTo(a[0] / 10 + 0.01, a[1] / 10);
-    else if (n === 2) p.lineTo(a[2] / 10, a[3] / 10);
+    else if (n === 2 || s.k) { for (let i = 1; i < n; i++) p.lineTo(a[2 * i] / 10, a[2 * i + 1] / 10); }
     else {
         for (let i = 1; i < n - 1; i++) { const x = a[2 * i] / 10, y = a[2 * i + 1] / 10, nx = a[2 * i + 2] / 10, ny = a[2 * i + 3] / 10; p.quadraticCurveTo(x, y, (x + nx) / 2, (y + ny) / 2); }
         p.lineTo(a[2 * (n - 1)] / 10, a[2 * (n - 1) + 1] / 10);
     }
     s._p = p; return p;
+}
+const wrHlWidth = size => size <= 1.6 ? 10 : size <= 3 ? 16 : 26; // سماكة القلم المظلّل
+function wrMakeStroke(o) { const s = { c: o.c, w: o.w, a: o.a instanceof Int32Array ? o.a : Int32Array.from(o.a) }; if (o.k) s.k = 1; if (o.h) s.h = 1; return wrStrokeBBox(s); }
+// نقاط الأشكال (خط مستقيم / سهم / مستطيل / بيضاوي)
+function wrShapePoints(type, x0, y0, x1, y1) {
+    const R = v => Math.round(v * 10); let pts = [];
+    if (type === 'line' || type === 'arrow') {
+        let dx = x1 - x0, dy = y1 - y0; const ang = Math.atan2(dy, dx), deg = ang * 180 / Math.PI;
+        if (Math.abs(deg) < 4 || Math.abs(deg) > 176) y1 = y0; else if (Math.abs(Math.abs(deg) - 90) < 4) x1 = x0; // التصاق بالأفقي والرأسي
+        pts = [x0, y0, x1, y1];
+        if (type === 'arrow') {
+            dx = x1 - x0; dy = y1 - y0; const a = Math.atan2(dy, dx), L = Math.min(26, Math.max(10, Math.hypot(dx, dy) * 0.25)), sp = 0.45;
+            pts = [x0, y0, x1, y1, x1 - L * Math.cos(a - sp), y1 - L * Math.sin(a - sp), x1, y1, x1 - L * Math.cos(a + sp), y1 - L * Math.sin(a + sp)];
+        }
+    } else if (type === 'rect') { pts = [x0, y0, x1, y0, x1, y1, x0, y1, x0, y0]; }
+    else { const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, rx = Math.abs(x1 - x0) / 2, ry = Math.abs(y1 - y0) / 2; for (let i = 0; i <= 64; i++) { const t = i / 64 * Math.PI * 2; pts.push(cx + rx * Math.cos(t), cy + ry * Math.sin(t)); } }
+    return pts.map(R);
 }
 
 // ---------- النصوص والروابط ----------
@@ -3382,7 +3416,44 @@ function wrRecalcMaxY() {
     wr.maxY = m;
 }
 
-// ---------- الرسم على الـ Canvas ----------
+// ---------- البحث: تطبيع النص وفهرسته ----------
+function wrNorm(s) { return String(s || '').toLowerCase().replace(/[\u064B-\u0652\u0640]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه'); }
+function wrIndexText(texts) { // نص الفهرس بدون تشكيل (عشان مواضع المطابقة تفضل متطابقة)، وبنضيف عناوين الروابط المخفية ورا نص الرابط
+    return texts.map(t => { const hidden = []; String(t.text).replace(/\[[^\]\n]{1,200}\]\((https?:\/\/[^\s)]+)\)/g, (m, u) => { hidden.push(u); return m; }); return (wrPlainText(t.text) + (hidden.length ? ' ' + hidden.join(' ') : '')).replace(/[\u064B-\u0652\u0640]/g, ''); }).join('\n').slice(0, 12000);
+}
+
+// ---------- ترميز الخطوط للسحابة (فروق + varint + base64) ----------
+function wrEncodeInts(a) {
+    const out = []; let px = 0, py = 0;
+    for (let i = 0; i < a.length; i++) {
+        const v = a[i], d = (i % 2 === 0) ? v - px : v - py; if (i % 2 === 0) px = v; else py = v;
+        let z = ((d << 1) ^ (d >> 31)) >>> 0;
+        while (z > 127) { out.push((z & 127) | 128); z >>>= 7; }
+        out.push(z);
+    }
+    let bin = ''; for (let i = 0; i < out.length; i += 0x6000) bin += String.fromCharCode.apply(null, out.slice(i, i + 0x6000));
+    return btoa(bin);
+}
+function wrDecodeInts(b64) {
+    const bin = atob(b64), vals = []; let i = 0, px = 0, py = 0, idx = 0;
+    while (i < bin.length) {
+        let z = 0, shift = 0, b;
+        do { b = bin.charCodeAt(i++); z |= (b & 127) << shift; shift += 7; } while (b & 128 && i < bin.length);
+        z >>>= 0; const d = (z >>> 1) ^ -(z & 1);
+        if (idx % 2 === 0) { px += d; vals.push(px); } else { py += d; vals.push(py); }
+        idx++;
+    }
+    return Int32Array.from(vals);
+}
+function wrHash(str) { let h = 5381; for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0; return h >>> 0; }
+
+// ---------- الرسم على الـ Canvas والزوم ----------
+function wrClampOff() {
+    const pw = WR_LOGICAL_W * wr.scale;
+    if (!isFinite(wr.offX)) wr.offX = (wr.cssW - pw) / 2;
+    wr.offX = pw <= wr.cssW ? (wr.cssW - pw) / 2 : Math.min(0, Math.max(wr.cssW - pw, wr.offX));
+}
+function wrSyncZoomLabel() { const b = document.getElementById('wrZoomReset'); if (b) b.textContent = Math.round(wr.zoom * 100) + '%'; }
 function wrLayout() {
     const sc = document.getElementById('wrScroll'), cv = document.getElementById('wrCanvas'), stage = document.getElementById('wrStage');
     if (!sc || !cv || !stage || !wr.open) return;
@@ -3390,15 +3461,14 @@ function wrLayout() {
     if (!cssW || !cssH) return;
     const oldScale = wr.scale, oldTop = sc.scrollTop;
     const dpr = Math.min(window.devicePixelRatio || 1, 3);
-    const pageW = Math.min(cssW, WR_MAX_DISPLAY_W);
-    wr.dpr = dpr; wr.cssW = cssW; wr.cssH = cssH; wr.scale = pageW / WR_LOGICAL_W; wr.offX = (cssW - pageW) / 2;
+    wr.dpr = dpr; wr.cssW = cssW; wr.cssH = cssH; wr.base = Math.min(cssW, WR_MAX_DISPLAY_W) / WR_LOGICAL_W; wr.scale = wr.base * wr.zoom;
     const w = Math.round(cssW * dpr), h = Math.round(cssH * dpr);
     if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; }
     cv.style.width = cssW + 'px'; cv.style.height = cssH + 'px'; stage.style.height = cssH + 'px';
     wr.textNodes.forEach(el => { el._sig = ''; });
-    wrUpdateSizer();
+    wrClampOff(); wrUpdateSizer();
     if (oldScale && Math.abs(oldScale - wr.scale) > 1e-6) sc.scrollTop = (oldTop / oldScale) * wr.scale; // نفس الموضع المنطقي بعد تغيير الحجم/الاتجاه
-    wrRender();
+    wrSyncZoomLabel(); wrRender();
 }
 function wrUpdateSizer() {
     const sz = document.getElementById('wrSizer'); if (!sz) return;
@@ -3406,21 +3476,35 @@ function wrUpdateSizer() {
     sz.style.height = Math.round(Math.max(units * wr.scale, wr.cssH + 300)) + 'px';
     sz.style.marginTop = (-wr.cssH) + 'px';
 }
+// زوم حوالين نقطة (fx, fy بالـ px داخل الشاشة) مع الحفاظ على نفس النقطة تحت الإصبع
+function wrSetScale(z, fx, fy) {
+    const sc = document.getElementById('wrScroll'); if (!sc || !wr.open) return;
+    z = Math.max(WR_ZOOM_MIN, Math.min(WR_ZOOM_MAX, z)); if (Math.abs(z - wr.zoom) < 1e-4) return;
+    const lx = (fx - wr.offX) / wr.scale, ly = (fy + sc.scrollTop) / wr.scale;
+    wr.zoom = z; wr.scale = wr.base * z; wr.offX = fx - lx * wr.scale; wrClampOff();
+    wr.textNodes.forEach(el => { el._sig = ''; });
+    wrUpdateSizer(); sc.scrollTop = ly * wr.scale - fy;
+    wrSyncZoomLabel(); wrSavePrefs(); wrRequestRender();
+}
+function wrZoomBy(f) { wrSetScale(wr.zoom * f, wr.cssW / 2, wr.cssH / 2); }
 function wrRequestRender() { if (!wr.raf) wr.raf = requestAnimationFrame(wrRender); }
-function wrDrawStroke(ctx, s) { ctx.strokeStyle = s.c; ctx.lineWidth = s.w; ctx.stroke(wrPath(s)); }
+function wrDrawStroke(ctx, s) {
+    ctx.strokeStyle = s.c; ctx.lineWidth = s.w;
+    if (s.h) { ctx.globalAlpha = 0.35; ctx.stroke(wrPath(s)); ctx.globalAlpha = 1; } else ctx.stroke(wrPath(s));
+}
 function wrRenderTexts(top, y0, y1) {
     const layer = document.getElementById('wrTextLayer'); if (!layer) return;
-    const seen = new Set(), sc = wr.scale;
+    const seen = new Set(), sc = wr.scale, sel = wr.sel;
     for (const it of wr.texts) {
         if (wr.edit && wr.edit.item === it) continue; // وقت التعديل بيظهر مربع الكتابة بدله
-        const h = it._h || wrEstimateH(it);
-        if (it.y + h < y0 - 60 || it.y > y1 + 60) continue;
+        const mv = sel && sel.tset.has(it), ox = mv ? sel.dx : 0, oy = mv ? sel.dy : 0, h = it._h || wrEstimateH(it);
+        if (it.y + oy + h < y0 - 60 || it.y + oy > y1 + 60) continue;
         let el = wr.textNodes.get(it.id);
         if (!el) { el = document.createElement('div'); el.className = 'wr-text'; el.setAttribute('dir', 'auto'); layer.appendChild(el); wr.textNodes.set(it.id, el); el._txt = null; el._sig = ''; }
         if (el._txt !== it.text) { wrFillText(el, it); el._txt = it.text; el._sig = ''; }
         const sig = it.s + '|' + it.w + '|' + sc;
         el.style.width = (it.w * sc) + 'px'; el.style.fontSize = (it.s * sc) + 'px'; el.style.lineHeight = (WR_LINE_GAP * sc) + 'px'; el.style.color = it.c;
-        el.style.transform = `translate(${wr.offX + it.x * sc}px, ${it.y * sc - top}px)`;
+        el.style.transform = `translate(${wr.offX + (it.x + ox) * sc}px, ${(it.y + oy) * sc - top}px)`;
         if (el._sig !== sig) { // قياس الحجم الفعلي مرة واحدة لما يتغير النص أو الحجم
             el._sig = sig;
             const hh = el.offsetHeight / sc; if (hh) it._h = hh;
@@ -3441,7 +3525,7 @@ function wrRender() {
     wr.raf = 0;
     const cv = document.getElementById('wrCanvas'), sc = document.getElementById('wrScroll');
     if (!cv || !sc || !wr.open || !wr.cssW) return;
-    const ctx = cv.getContext('2d'), d = wr.dpr, s = wr.scale, top = sc.scrollTop;
+    const ctx = cv.getContext('2d'), d = wr.dpr, s = wr.scale, top = sc.scrollTop, sel = wr.sel;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.fillStyle = '#d1d5db'; ctx.fillRect(0, 0, cv.width, cv.height);
     ctx.setTransform(d, 0, 0, d, 0, 0);
@@ -3452,11 +3536,94 @@ function wrRender() {
     for (let y = WR_TOP_MARGIN + Math.max(0, Math.floor((y0 - WR_TOP_MARGIN) / WR_LINE_GAP)) * WR_LINE_GAP; y <= y1; y += WR_LINE_GAP) { ctx.moveTo(0, y); ctx.lineTo(WR_LOGICAL_W, y); }
     ctx.stroke();
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    for (const st of wr.strokes) { const b = st.bb; if (b[3] < y0 || b[1] > y1) continue; wrDrawStroke(ctx, st); }
-    if (wr.cur) { wr.cur._p = null; wrDrawStroke(ctx, wr.cur); }
+    for (const st of wr.strokes) {
+        const b = st.bb, mv = sel && sel.sset.has(st), oy = mv ? sel.dy : 0;
+        if (b[3] + oy < y0 || b[1] + oy > y1) continue;
+        if (mv && (sel.dx || sel.dy)) { ctx.save(); ctx.translate(sel.dx, sel.dy); wrDrawStroke(ctx, st); ctx.restore(); } else wrDrawStroke(ctx, st);
+    }
+    if (wr.cur && wr.cur.a.length >= 2) { wr.cur._p = null; wrDrawStroke(ctx, wr.cur); }
     if (wr.tool === 'eraser' && wr.eraserPos) { ctx.strokeStyle = 'rgba(100,100,100,0.8)'; ctx.lineWidth = 1 / s; ctx.beginPath(); ctx.arc(wr.eraserPos[0], wr.eraserPos[1], WR_ERASER_R, 0, Math.PI * 2); ctx.stroke(); }
+    if (sel) { // مربع التحديد
+        const b = wrSelBox();
+        if (b) { ctx.save(); ctx.translate(sel.dx, sel.dy); ctx.fillStyle = 'rgba(37,99,235,0.07)'; ctx.fillRect(b[0] - 4, b[1] - 4, b[2] - b[0] + 8, b[3] - b[1] + 8); ctx.setLineDash([6 / s, 4 / s]); ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5 / s; ctx.strokeRect(b[0] - 4, b[1] - 4, b[2] - b[0] + 8, b[3] - b[1] + 8); ctx.restore(); }
+    }
+    if (wr.lasso && wr.lasso.length > 1) { ctx.save(); ctx.setLineDash([5 / s, 4 / s]); ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5 / s; ctx.beginPath(); ctx.moveTo(wr.lasso[0][0], wr.lasso[0][1]); for (let i = 1; i < wr.lasso.length; i++) ctx.lineTo(wr.lasso[i][0], wr.lasso[i][1]); ctx.closePath(); ctx.fillStyle = 'rgba(37,99,235,0.06)'; ctx.fill(); ctx.stroke(); ctx.restore(); }
     wrRenderTexts(top, y0, y1);
     wrPlaceTa(top);
+}
+
+// ---------- التحديد ونقل العناصر ----------
+function wrSelBox() {
+    const s = wr.sel; if (!s) return null; let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    s.strokes.forEach(st => { const b = st.bb; if (b[0] < x0) x0 = b[0]; if (b[1] < y0) y0 = b[1]; if (b[2] > x1) x1 = b[2]; if (b[3] > y1) y1 = b[3]; });
+    s.texts.forEach(t => { const b = wrTextBox(t); if (b[0] < x0) x0 = b[0]; if (b[1] < y0) y0 = b[1]; if (b[2] > x1) x1 = b[2]; if (b[3] > y1) y1 = b[3]; });
+    return isFinite(x0) ? [x0, y0, x1, y1] : null;
+}
+function wrMakeSel(strokes, texts) {
+    wr.sel = (strokes.length || texts.length) ? { strokes, texts, sset: new Set(strokes), tset: new Set(texts), dx: 0, dy: 0 } : null;
+    wrSyncToolbar(); wrRequestRender();
+}
+function wrClearSel() { if (wr.sel || wr.lasso || wr.selDrag) { wr.sel = null; wr.lasso = null; wr.selDrag = null; wrSyncToolbar(); wrRequestRender(); } }
+function wrPointInPoly(x, y, poly) { let inside = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const xi = poly[i][0], yi = poly[i][1], xj = poly[j][0], yj = poly[j][1]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) inside = !inside; } return inside; }
+function wrSegDist2(px, py, ax, ay, bx, by) {
+    const dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy;
+    let t = l2 ? ((px - ax) * dx + (py - ay) * dy) / l2 : 0; t = Math.max(0, Math.min(1, t));
+    const qx = ax + t * dx - px, qy = ay + t * dy - py; return qx * qx + qy * qy;
+}
+function wrStrokeHit(s, px, py, r) {
+    const b = s.bb; if (px < b[0] - r || px > b[2] + r || py < b[1] - r || py > b[3] + r) return false;
+    const lim = (r + s.w / 2) * (r + s.w / 2), a = s.a;
+    if (a.length === 2) return wrSegDist2(px, py, a[0] / 10, a[1] / 10, a[0] / 10, a[1] / 10) <= lim;
+    for (let k = 0; k < a.length - 2; k += 2) if (wrSegDist2(px, py, a[k] / 10, a[k + 1] / 10, a[k + 2] / 10, a[k + 3] / 10) <= lim) return true;
+    return false;
+}
+function wrSelectPoly(poly) {
+    const ss = [], tt = [];
+    wr.strokes.forEach(s => { const a = s.a, n = a.length / 2, step = Math.max(1, Math.floor(n / 12)); let tot = 0, ins = 0; for (let i = 0; i < n; i += step) { tot++; if (wrPointInPoly(a[2 * i] / 10, a[2 * i + 1] / 10, poly)) ins++; } if (tot && ins / tot >= 0.5) ss.push(s); });
+    wr.texts.forEach(t => { const b = wrTextBox(t); if (wrPointInPoly((b[0] + b[2]) / 2, (b[1] + b[3]) / 2, poly)) tt.push(t); });
+    wrMakeSel(ss, tt);
+}
+function wrSelectTap(p) {
+    const t = wrTextAt(p[0], p[1]); if (t) { wrMakeSel([], [t]); return; }
+    for (let i = wr.strokes.length - 1; i >= 0; i--) if (wrStrokeHit(wr.strokes[i], p[0], p[1], 12)) { wrMakeSel([wr.strokes[i]], []); return; }
+    wrMakeSel([], []);
+}
+function wrSelectDown(p) {
+    const box = wrSelBox();
+    if (wr.sel && box && p[0] >= box[0] - 8 && p[0] <= box[2] + 8 && p[1] >= box[1] - 8 && p[1] <= box[3] + 8) { wr.selDrag = { sx: p[0], sy: p[1], moved: false }; return; }
+    wr.sel = null; wr.lasso = [p]; wrSyncToolbar();
+}
+function wrSelectMove(p) {
+    if (wr.selDrag) {
+        const d = wr.selDrag, box = wrSelBox(); let dx = p[0] - d.sx, dy = p[1] - d.sy;
+        dx = Math.max(-box[0], Math.min(WR_LOGICAL_W - box[2], dx)); dy = Math.max(-box[1], dy);
+        wr.sel.dx = dx; wr.sel.dy = dy; if (Math.hypot(dx, dy) > 1) d.moved = true;
+    } else if (wr.lasso) { const l = wr.lasso[wr.lasso.length - 1]; if (Math.hypot(p[0] - l[0], p[1] - l[1]) > 3) wr.lasso.push(p); }
+    wrRequestRender();
+}
+function wrApplySelMove(strokes, texts, dx, dy) {
+    const ddx = Math.round(dx * 10), ddy = Math.round(dy * 10);
+    strokes.forEach(s => { const a = s.a, b = new Int32Array(a.length); for (let i = 0; i < a.length; i++) b[i] = a[i] + (i % 2 ? ddy : ddx); s.a = b; s._p = null; wrStrokeBBox(s); });
+    texts.forEach(t => { t.x += dx; t.y += dy; });
+}
+function wrSelectUp() {
+    if (wr.selDrag) {
+        const d = wr.selDrag, sel = wr.sel; wr.selDrag = null;
+        if (sel && d.moved && (Math.abs(sel.dx) + Math.abs(sel.dy) > 0.5)) {
+            wrApplySelMove(sel.strokes, sel.texts, sel.dx, sel.dy);
+            wr.undo.push({ t: 'smove', strokes: sel.strokes, texts: sel.texts, dx: sel.dx, dy: sel.dy }); wr.redo = [];
+            sel.dx = 0; sel.dy = 0; wrRecalcMaxY(); wrUpdateSizer(); wrChanged();
+        } else if (sel) { sel.dx = 0; sel.dy = 0; }
+    } else if (wr.lasso) { const poly = wr.lasso; wr.lasso = null; if (poly.length < 4) wrSelectTap(poly[0]); else wrSelectPoly(poly); }
+    wrRequestRender();
+}
+function wrDeleteSel() {
+    const sel = wr.sel; if (!sel) return; const items = [];
+    sel.strokes.map(s => wr.strokes.indexOf(s)).filter(i => i >= 0).sort((a, b) => b - a).forEach(i => { items.push({ k: 's', i, s: wr.strokes[i] }); wr.strokes.splice(i, 1); });
+    sel.texts.map(t => wr.texts.indexOf(t)).filter(i => i >= 0).sort((a, b) => b - a).forEach(i => { items.push({ k: 't', i, it: wr.texts[i] }); wr.texts.splice(i, 1); });
+    wr.sel = null;
+    if (items.length) { wr.undo.push({ t: 'erase', items }); wr.redo = []; wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); }
+    wrSyncToolbar(); wrRequestRender();
 }
 
 // ---------- المدخلات (قلم / إصبع / ماوس) ----------
@@ -3465,22 +3632,32 @@ function wrPoint(e) {
     const x = (e.clientX - r.left - wr.offX) / wr.scale, y = (e.clientY - r.top + sc.scrollTop) / wr.scale;
     return [Math.max(0, Math.min(WR_LOGICAL_W, x)), Math.max(0, y)];
 }
-function wrCentroidY() { let s = 0; wr.touches.forEach(t => { s += t.y; }); return wr.touches.size ? s / wr.touches.size : 0; }
+function wrTouchStats() {
+    const cv = document.getElementById('wrCanvas'), r = cv.getBoundingClientRect(), pts = [...wr.touches.values()]; if (!pts.length) return null;
+    let sx = 0, sy = 0; pts.forEach(p => { sx += p.x; sy += p.y; });
+    const dist = pts.length >= 2 ? Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) : 0;
+    return { cx: sx / pts.length - r.left, cy: sy / pts.length - r.top, dist, n: pts.length };
+}
 function wrStopMomentum() { if (wr.momentum) { cancelAnimationFrame(wr.momentum); wr.momentum = 0; } }
-function wrPanReset() { wr.lastC = wrCentroidY(); wr.lastT = performance.now(); }
-function wrPanMove() {
-    const sc = document.getElementById('wrScroll'), c = wrCentroidY(), t = performance.now(), dy = c - wr.lastC;
-    sc.scrollTop -= dy;
-    wr.vel = 0.6 * (dy / Math.max(1, t - wr.lastT)) + 0.4 * wr.vel;
-    wr.lastC = c; wr.lastT = t;
+function wrPanReset() { const st = wrTouchStats(); if (!st) return; wr.lastCX = st.cx; wr.lastCY = st.cy; wr.lastDist = st.dist; wr.lastT = performance.now(); }
+function wrPanMove() { // تمرير بإصبع أو إصبعين + قرص (Pinch) للزوم
+    const sc = document.getElementById('wrScroll'), st = wrTouchStats(); if (!st) return;
+    const t = performance.now(); let factor = 1;
+    if (st.n >= 2 && wr.lastDist > 0 && st.dist > 0) factor = st.dist / wr.lastDist;
+    const lx = (wr.lastCX - wr.offX) / wr.scale, ly = (wr.lastCY + sc.scrollTop) / wr.scale;
+    const z = Math.max(WR_ZOOM_MIN, Math.min(WR_ZOOM_MAX, wr.zoom * factor));
+    if (Math.abs(z - wr.zoom) > 1e-6) { wr.zoom = z; wr.scale = wr.base * z; wr.textNodes.forEach(el => { el._sig = ''; }); wrSyncZoomLabel(); }
+    wr.offX = st.cx - lx * wr.scale; wrClampOff(); wrUpdateSizer(); sc.scrollTop = ly * wr.scale - st.cy;
+    const dy = st.cy - wr.lastCY; wr.vel = 0.6 * (dy / Math.max(1, t - wr.lastT)) + 0.4 * wr.vel;
+    wr.lastCX = st.cx; wr.lastCY = st.cy; wr.lastDist = st.dist; wr.lastT = t; wrRequestRender();
 }
 function wrPanEndMomentum() {
-    const sc = document.getElementById('wrScroll'); let v = wr.vel * 16; wr.vel = 0;
+    const sc = document.getElementById('wrScroll'); let v = wr.vel * 16; wr.vel = 0; wrSavePrefs();
     if (Math.abs(v) < 1) return;
     const step = () => { sc.scrollTop -= v; v *= 0.95; if (Math.abs(v) > 0.3) wr.momentum = requestAnimationFrame(step); else wr.momentum = 0; };
     wr.momentum = requestAnimationFrame(step);
 }
-function wrCancelStroke() { wr.cur = null; wr.erasing = null; wr.tap = null; wr.activeId = null; wrRequestRender(); }
+function wrCancelStroke() { wr.cur = null; wr.erasing = null; wr.tap = null; wr.selDrag = null; wr.lasso = null; wr.activeId = null; wrRequestRender(); }
 function wrAddPoint(e) {
     const p = wrPoint(e);
     if (wr.erasing) { wrEraseTo(p); return; }
@@ -3488,7 +3665,7 @@ function wrAddPoint(e) {
     const x = Math.round(p[0] * 10), y = Math.round(p[1] * 10), n = c.a.length;
     if (n >= 2 && Math.abs(c.a[n - 2] - x) + Math.abs(c.a[n - 1] - y) < 6) return; // نتجاهل النقاط القريبة جداً
     c.a.push(x, y);
-    if (e.pointerType === 'pen' && e.pressure > 0 && c.pr.length < 6) { c.pr.push(e.pressure); const avg = c.pr.reduce((s, v) => s + v, 0) / c.pr.length; c.w = Math.round(wr.size * (0.6 + 0.8 * avg) * 10) / 10; }
+    if (!c.h && e.pointerType === 'pen' && e.pressure > 0 && c.pr.length < 6) { c.pr.push(e.pressure); const avg = c.pr.reduce((s, v) => s + v, 0) / c.pr.length; c.w = Math.round(wr.size * (0.6 + 0.8 * avg) * 10) / 10; }
 }
 function wrDown(e) {
     if (!wr.open) return;
@@ -3501,7 +3678,7 @@ function wrDown(e) {
     if (wr.edit) wrCommitText(); // أي لمسة على الورقة بتنهي تعديل النص الحالي
     if (e.pointerType === 'touch') {
         wr.touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
-        if (wr.touches.size >= 2) { if (wr.activeId !== null) wrCancelStroke(); wr.panning = true; wrPanReset(); return; } // إصبعين = تمرير دايماً
+        if (wr.touches.size >= 2) { if (wr.activeId !== null) wrCancelStroke(); wr.panning = true; wrPanReset(); return; } // إصبعين = تمرير وقرص للزوم دايماً
         if (!wr.fingerWrites || wr.penSeen) { wr.panning = true; wrPanReset(); return; }   // الإصبع بيمرّر لو في قلم أو وضع التمرير
     }
     const erasing = wr.tool === 'eraser' || e.button === 5 || (e.buttons & 32);
@@ -3509,7 +3686,13 @@ function wrDown(e) {
     const p = wrPoint(e);
     if (erasing) { wr.erasing = { removed: [], last: null }; wrEraseTo(p); }
     else if (wr.tool === 'text') { const it = wrTextAt(p[0], p[1]); wr.tap = { px: e.clientX, py: e.clientY, p, item: it, moved: false, ox: it ? it.x : 0, oy: it ? it.y : 0 }; }
-    else { wr.cur = { c: wr.color, w: wr.size, a: [Math.round(p[0] * 10), Math.round(p[1] * 10)], pr: [], t0: performance.now() }; if (e.pointerType === 'pen' && e.pressure > 0) { wr.cur.pr.push(e.pressure); wr.cur.w = Math.round(wr.size * (0.6 + 0.8 * e.pressure) * 10) / 10; } }
+    else if (wr.tool === 'select') wrSelectDown(p);
+    else if (wr.tool === 'shape') wr.cur = { c: wr.color, w: wr.size, a: [], k: 1, sh: { type: wr.shape, x: p[0], y: p[1] } };
+    else {
+        const hl = wr.tool === 'highlighter';
+        wr.cur = { c: wr.color, w: hl ? wrHlWidth(wr.size) : wr.size, h: hl ? 1 : 0, a: [Math.round(p[0] * 10), Math.round(p[1] * 10)], pr: [], t0: performance.now() };
+        if (!hl && e.pointerType === 'pen' && e.pressure > 0) { wr.cur.pr.push(e.pressure); wr.cur.w = Math.round(wr.size * (0.6 + 0.8 * e.pressure) * 10) / 10; }
+    }
     wrRequestRender();
 }
 function wrMove(e) {
@@ -3529,6 +3712,8 @@ function wrMove(e) {
         if (t.moved && t.item) { t.item.x = Math.max(0, Math.min(WR_LOGICAL_W - 100, t.ox + dx / wr.scale)); t.item.y = Math.max(0, t.oy + dy / wr.scale); wrRequestRender(); }
         return;
     }
+    if (wr.selDrag || wr.lasso) { wrSelectMove(wrPoint(e)); return; }
+    if (wr.cur && wr.cur.sh) { const p = wrPoint(e), s = wr.cur.sh; wr.cur.a = wrShapePoints(s.type, s.x, s.y, p[0], p[1]); wrRequestRender(); return; }
     const evs = (e.getCoalescedEvents && e.getCoalescedEvents().length) ? e.getCoalescedEvents() : [e];
     for (const ev of evs) wrAddPoint(ev);
     if (wr.erasing) wr.eraserPos = wrPoint(e);
@@ -3560,10 +3745,22 @@ function wrUp(e) {
             t.item.x = nx; t.item.y = ny;
             if (nx !== t.ox || ny !== t.oy) { wr.undo.push({ t: 'tmove', it: t.item, before: { x: t.ox, y: t.oy }, after: { x: nx, y: ny } }); wr.redo = []; wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); }
         }
+    } else if (wr.selDrag || wr.lasso) { wrSelectUp(); }
+    else if (wr.cur && wr.cur.sh) {
+        const c = wr.cur; wr.cur = null;
+        if (e.type !== 'pointercancel' && c.a.length >= 4) {
+            let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity; for (let i = 0; i < c.a.length; i += 2) { x0 = Math.min(x0, c.a[i]); x1 = Math.max(x1, c.a[i]); y0 = Math.min(y0, c.a[i + 1]); y1 = Math.max(y1, c.a[i + 1]); }
+            if (Math.hypot(x1 - x0, y1 - y0) / 10 > 6) {
+                const s = wrMakeStroke({ c: c.c, w: c.w, a: c.a, k: 1 });
+                wr.strokes.push(s); wr.undo.push({ t: 'add', s }); wr.redo = [];
+                if (s.bb[3] > wr.maxY) { wr.maxY = s.bb[3]; wrUpdateSizer(); }
+                wrChanged();
+            }
+        }
     } else if (wr.cur) {
         const c = wr.cur; wr.cur = null;
         if (c.a.length <= 4 && performance.now() - c.t0 < 600) { const href = wrLinkAt(e.clientX, e.clientY); if (href) { wrOpenLink(href); wrRequestRender(); return; } } // لمسة سريعة على رابط = فتحه
-        const s = wrStrokeBBox({ c: c.c, w: c.w, a: Int32Array.from(c.a) });
+        const s = wrMakeStroke({ c: c.c, w: c.w, a: c.a, h: c.h });
         wr.strokes.push(s); wr.undo.push({ t: 'add', s }); wr.redo = [];
         if (s.bb[3] > wr.maxY) { wr.maxY = s.bb[3]; wrUpdateSizer(); }
         wrChanged();
@@ -3571,21 +3768,9 @@ function wrUp(e) {
     wrRequestRender();
 }
 // الممحاة: بتمسح الخط أو مربع النص اللي بتلمسه
-function wrSegDist2(px, py, ax, ay, bx, by) {
-    const dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy;
-    let t = l2 ? ((px - ax) * dx + (py - ay) * dy) / l2 : 0; t = Math.max(0, Math.min(1, t));
-    const qx = ax + t * dx - px, qy = ay + t * dy - py; return qx * qx + qy * qy;
-}
 function wrEraseAt(px, py) {
     const r = WR_ERASER_R;
-    for (let i = wr.strokes.length - 1; i >= 0; i--) {
-        const s = wr.strokes[i], b = s.bb;
-        if (px < b[0] - r || px > b[2] + r || py < b[1] - r || py > b[3] + r) continue;
-        const lim = (r + s.w / 2) * (r + s.w / 2), a = s.a; let hit = false;
-        if (a.length === 2) hit = wrSegDist2(px, py, a[0] / 10, a[1] / 10, a[0] / 10, a[1] / 10) <= lim;
-        else for (let k = 0; k < a.length - 2; k += 2) { if (wrSegDist2(px, py, a[k] / 10, a[k + 1] / 10, a[k + 2] / 10, a[k + 3] / 10) <= lim) { hit = true; break; } }
-        if (hit) { wr.erasing.removed.push({ k: 's', i, s }); wr.strokes.splice(i, 1); }
-    }
+    for (let i = wr.strokes.length - 1; i >= 0; i--) { if (wrStrokeHit(wr.strokes[i], px, py, r)) { wr.erasing.removed.push({ k: 's', i, s: wr.strokes[i] }); wr.strokes.splice(i, 1); } }
     for (let i = wr.texts.length - 1; i >= 0; i--) {
         const t = wr.texts[i], b = wrTextBox(t);
         if (px >= b[0] - r && px <= b[2] + r && py >= b[1] - r && py <= b[3] + r) { wr.erasing.removed.push({ k: 't', i, it: t }); wr.texts.splice(i, 1); }
@@ -3610,14 +3795,15 @@ function wrApply(a, undoing) {
     else if (a.t === 'tdel') { if (undoing) wr.texts.splice(Math.min(a.i, wr.texts.length), 0, a.it); else { const i = wr.texts.indexOf(a.it); if (i >= 0) wr.texts.splice(i, 1); } }
     else if (a.t === 'tedit') { const v = undoing ? a.before : a.after; a.it.text = v.text; a.it.c = v.c; a.it.s = v.s; a.it._h = 0; a.it._tw = 0; }
     else if (a.t === 'tmove') { const v = undoing ? a.before : a.after; a.it.x = v.x; a.it.y = v.y; }
+    else if (a.t === 'smove') { const k = undoing ? -1 : 1; wrApplySelMove(a.strokes, a.texts, a.dx * k, a.dy * k); }
 }
 function wrUndoAction() {
-    if (wr.edit) wrCommitText();
+    if (wr.edit) wrCommitText(); wrClearSel();
     const a = wr.undo.pop(); if (!a) return;
     wrApply(a, true); wr.redo.push(a); wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); wrRequestRender();
 }
 function wrRedoAction() {
-    if (wr.edit) wrCommitText();
+    if (wr.edit) wrCommitText(); wrClearSel();
     const a = wr.redo.pop(); if (!a) return;
     wrApply(a, false); wr.undo.push(a); wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); wrRequestRender();
 }
@@ -3753,7 +3939,7 @@ function wrThumb() {
     x.strokeStyle = '#d5e3f3'; x.lineWidth = 1 / k; x.beginPath();
     for (let y = WR_TOP_MARGIN; y < H / k; y += WR_LINE_GAP) { x.moveTo(0, y); x.lineTo(WR_LOGICAL_W, y); }
     x.stroke(); x.lineCap = 'round'; x.lineJoin = 'round';
-    for (const s of wr.strokes) { if (s.bb[1] > H / k) continue; x.strokeStyle = s.c; x.lineWidth = Math.max(s.w, 2.2); x.stroke(wrPath(s)); }
+    for (const s of wr.strokes) { if (s.bb[1] > H / k) continue; x.strokeStyle = s.c; x.lineWidth = Math.max(s.w, 2.2); x.globalAlpha = s.h ? 0.35 : 1; x.stroke(wrPath(s)); x.globalAlpha = 1; }
     for (const t of wr.texts) { // رسم تقريبي للنص في الصورة المصغرة (تغليف بسيط للكلمات)
         if (t.y > H / k) continue;
         const rtl = wrIsRtl(t.text); x.font = `${t.s}px sans-serif`; x.fillStyle = t.c; x.direction = rtl ? 'rtl' : 'ltr'; x.textAlign = rtl ? 'right' : 'left';
@@ -3766,37 +3952,40 @@ function wrThumb() {
     }
     try { return c.toDataURL('image/jpeg', 0.72); } catch (e) { return ''; }
 }
+const wrStrokeData = s => { const o = { c: s.c, w: s.w, a: s.a }; if (s.k) o.k = 1; if (s.h) o.h = 1; return o; };
+const wrTextData = t => ({ id: t.id, x: t.x, y: t.y, w: t.w, text: t.text, c: t.c, s: t.s });
 async function wrFlush() {
     clearTimeout(wr.saveTimer);
     if (!wr.dirty || !wr.id) return;
     wr.dirty = false;
-    const sc = document.getElementById('wrScroll'), now = Date.now();
+    const sc = document.getElementById('wrScroll'), now = Date.now(), prev = wr.meta.find(m => m.id === wr.id) || {};
     if (!wr.created) wr.created = now;
-    const meta = { id: wr.id, title: wr.title, created: wr.created, updated: now, thumb: wrThumb(), n: wr.strokes.length + wr.texts.length, sy: sc ? Math.round(sc.scrollTop / wr.scale) : 0 };
-    const data = { id: wr.id, strokes: wr.strokes.map(s => ({ c: s.c, w: s.w, a: s.a })), texts: wr.texts.map(t => ({ id: t.id, x: t.x, y: t.y, w: t.w, text: t.text, c: t.c, s: t.s })) };
+    const meta = Object.assign({}, prev, { id: wr.id, title: wr.title, created: wr.created, updated: now, thumb: wrThumb(), q: wrIndexText(wr.texts), n: wr.strokes.length + wr.texts.length, sy: sc ? Math.round(sc.scrollTop / wr.scale) : 0 });
+    const data = { id: wr.id, strokes: wr.strokes.map(wrStrokeData), texts: wr.texts.map(wrTextData) };
     try {
         await wrPut(meta, data); wr.persisted = true;
         wr.meta = wr.meta.filter(m => m.id !== meta.id); wr.meta.unshift(meta);
         wrSetSaveState(wrStorageOk ? 'saved' : 'error');
+        if (typeof wrCloudQueue === 'function') wrCloudQueue(meta.id);
     } catch (e) { console.warn('Writing save failed:', e); wr.dirty = true; wrSetSaveState('error'); }
 }
 
 // ---------- فتح / إغلاق المحرر ----------
 function wrNewId() { return 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function wrLoadIntoMemory(d) {
+    wr.strokes = (d && Array.isArray(d.strokes)) ? d.strokes.map(s => wrMakeStroke(s)) : [];
+    wr.texts = (d && Array.isArray(d.texts)) ? d.texts.map(t => ({ id: t.id || wrNewId(), x: t.x, y: t.y, w: t.w, text: String(t.text || ''), c: t.c || '#111827', s: WR_TEXT_SIZES.includes(t.s) ? t.s : 26 })) : [];
+}
 async function wrOpenEditor(id) {
     const ed = document.getElementById('writingEditor'); if (!ed) return;
     wrDictStop(); if (wr.edit) { wr.edit.ta.remove(); wr.edit = null; }
     wr.textNodes.forEach(el => el.remove()); wr.textNodes.clear();
-    wr.id = id || wrNewId(); wr.title = ''; wr.created = 0; wr.persisted = false; wr.strokes = []; wr.texts = []; wr.undo = []; wr.redo = []; wr.cur = null; wr.erasing = null; wr.tap = null; wr.activeId = null; wr.touches.clear(); wr.panning = false; wr.maxY = 0; wr.dirty = false;
-    if (wr.tool === 'text') wr.tool = 'pen';
+    wr.id = id || wrNewId(); wr.title = ''; wr.created = 0; wr.persisted = false; wr.strokes = []; wr.texts = []; wr.undo = []; wr.redo = []; wr.cur = null; wr.erasing = null; wr.tap = null; wr.sel = null; wr.lasso = null; wr.selDrag = null; wr.activeId = null; wr.touches.clear(); wr.panning = false; wr.maxY = 0; wr.dirty = false; wr.offX = NaN;
+    if (wr.tool === 'text' || wr.tool === 'select') wr.tool = 'pen';
     let sy = 0;
     if (id) {
         const m = wr.meta.find(x => x.id === id); if (m) { wr.title = m.title || ''; wr.created = m.created || 0; sy = m.sy || 0; wr.persisted = true; }
-        try {
-            const d = await wrGetData(id);
-            if (d && Array.isArray(d.strokes)) wr.strokes = d.strokes.map(s => wrStrokeBBox({ c: s.c, w: s.w, a: s.a instanceof Int32Array ? s.a : Int32Array.from(s.a) }));
-            if (d && Array.isArray(d.texts)) wr.texts = d.texts.map(t => ({ id: t.id || wrNewId(), x: t.x, y: t.y, w: t.w, text: String(t.text || ''), c: t.c || '#111827', s: WR_TEXT_SIZES.includes(t.s) ? t.s : 26 }));
-        } catch (e) { console.warn('Writing load failed:', e); }
+        try { wrLoadIntoMemory(await wrGetData(id)); } catch (e) { console.warn('Writing load failed:', e); }
     }
     wrRecalcMaxY();
     document.getElementById('wrTitle').value = wr.title;
@@ -3811,46 +4000,82 @@ async function wrCloseEditor() {
     if (wr.dlgOpen) wrLinkCloseDialog();
     if (wr.edit) wrCommitText();
     if (wr.cur || wr.erasing) wrCancelStroke();
+    wrClearSel();
+    const id = wr.id;
     await wrFlush();
     wr.open = false; document.body.classList.remove('wr-open');
     wr.textNodes.forEach(el => el.remove()); wr.textNodes.clear();
     const ed = document.getElementById('writingEditor'); if (ed) { ed.style.display = 'none'; ed.style.height = ''; ed.style.top = ''; }
+    if (id && typeof wrCloudPush === 'function' && wrCloud.on) wrCloudPush(id); // نبعت آخر تعديل فوراً عند الإغلاق
     renderWritingList();
 }
 
 // ---------- الواجهة ----------
 function wrSyncToolbar() {
     const g = id => document.getElementById(id); if (!g('writingEditor')) return;
-    const textMode = wr.tool === 'text' || !!wr.edit;
-    g('wrPen').classList.toggle('active', wr.tool === 'pen'); g('wrEraser').classList.toggle('active', wr.tool === 'eraser'); g('wrTextTool').classList.toggle('active', wr.tool === 'text');
-    document.querySelectorAll('#writingEditor .wr-color').forEach(b => b.classList.toggle('active', b.getAttribute('data-color') === wr.color && (wr.tool === 'pen' || textMode)));
+    const textMode = wr.tool === 'text' || !!wr.edit, t = wr.tool;
+    ['Pen:pen', 'Hl:highlighter', 'Shape:shape', 'Select:select', 'Eraser:eraser', 'TextTool:text'].forEach(p => { const [n, tool] = p.split(':'); const b = g('wr' + n); if (b) b.classList.toggle('active', t === tool); });
+    document.querySelectorAll('#writingEditor .wr-color').forEach(b => b.classList.toggle('active', b.getAttribute('data-color') === wr.color && (t === 'pen' || t === 'highlighter' || t === 'shape' || textMode)));
     document.querySelectorAll('#writingEditor .wr-size').forEach((b, i) => b.classList.toggle('active', textMode ? WR_TEXT_SIZES[i] === wr.tsize : parseFloat(b.getAttribute('data-size')) === wr.size));
     g('wrUndo').disabled = wr.undo.length === 0; g('wrRedo').disabled = wr.redo.length === 0;
     g('wrMic').classList.toggle('listening', !!wr.dict); g('wrDone').style.display = wr.edit ? 'inline-flex' : 'none';
+    g('wrDelSel').style.display = wr.sel ? 'inline-flex' : 'none';
     const sel = g('wrDictLang'); if (sel.value !== wr.dictLang) sel.value = wr.dictLang;
+    const ss = g('wrShapeSel'); if (ss.value !== wr.shape) ss.value = wr.shape;
     const modeBtn = g('wrMode'), key = wr.fingerWrites ? 'wr_mode_write' : 'wr_mode_scroll', L = i18n[currentLang];
     modeBtn.querySelector('i').className = 'fa-solid ' + (wr.fingerWrites ? 'fa-pen-nib' : 'fa-hand');
     const lbl = modeBtn.querySelector('span'); lbl.setAttribute('data-i18n', key); lbl.textContent = L[key];
     modeBtn.classList.toggle('active', !wr.fingerWrites);
+    wrSyncZoomLabel();
 }
 function wrFmtDate(ms) { return new Date(ms).toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }); }
+let wrReindexed = false;
+async function wrReindexMissing() { // فهرسة نصوص اللوحات القديمة (اللي اتحفظت قبل ميزة البحث) مرة واحدة
+    if (wrReindexed) return; wrReindexed = true; let changed = false;
+    for (const m of wr.meta) {
+        if (m.q !== undefined) continue;
+        try { const d = await wrGetData(m.id); m.q = wrIndexText((d && d.texts) || []); await wrPutMeta(m); changed = true; } catch (e) { m.q = ''; }
+    }
+    if (changed) renderWritingList();
+}
 async function wrLoadMeta() {
     if (wr.metaLoading) return; wr.metaLoading = true;
     try { wr.meta = (await wrGetAllMeta()).sort((a, b) => b.updated - a.updated); } catch (e) { console.warn('Writing list failed:', e); wr.meta = []; }
-    wr.metaLoaded = true; wr.metaLoading = false;
+    wr.metaLoaded = true; wr.metaLoading = false; wrReindexMissing();
+}
+function wrSnippet(m, toks) {
+    const q = m.q || ''; if (!q || !toks.length) return '';
+    const nq = wrNorm(q), tok = toks[0], i = nq.indexOf(tok); if (i < 0) return '';
+    const s = Math.max(0, i - 28), e = Math.min(q.length, i + tok.length + 56);
+    return (s > 0 ? '…' : '') + escapeHtml(q.slice(s, i).replace(/\s+/g, ' ')) + '<mark>' + escapeHtml(q.slice(i, i + tok.length)) + '</mark>' + escapeHtml(q.slice(i + tok.length, e).replace(/\s+/g, ' ')) + (e < q.length ? '…' : '');
+}
+function wrRenderSyncChip() {
+    const el = document.getElementById('wrSyncState'); if (!el) return; const L = i18n[currentLang];
+    if (typeof useCloud === 'undefined' || !useCloud) { el.style.display = 'none'; return; }
+    el.style.display = ''; el.className = 'wr-sync';
+    if (!currentUser) { el.textContent = L.wr_sync_login; el.classList.add('off'); el.title = ''; el.onclick = () => document.getElementById('authModal').classList.add('show'); return; }
+    el.onclick = null; const st = wr.sync;
+    el.textContent = st === 'syncing' ? L.wr_sync_ing : st === 'error' ? L.wr_sync_err : L.wr_sync_ok;
+    el.classList.add(st === 'error' ? 'err' : st === 'syncing' ? 'ing' : 'ok');
+    el.title = st === 'error' ? L.wr_sync_err_hint : '';
 }
 function renderWritingList() {
     const box = document.getElementById('writingList'), view = document.getElementById('writingView');
     if (!box || !view || !view.classList.contains('active')) return;
+    wrRenderSyncChip();
     if (!wr.metaLoaded) { wrLoadMeta().then(renderWritingList); return; }
     const L = i18n[currentLang];
     const warn = wrStorageOk ? '' : `<div class="notif-empty" style="margin-bottom:12px; color:var(--danger);">${escapeHtml(L.wr_unavailable)}</div>`;
+    const toks = wrNorm(wr.query).trim().split(/\s+/).filter(Boolean);
+    const shown = toks.length ? wr.meta.filter(m => { const hay = wrNorm(m.title) + '\n' + wrNorm(m.q || ''); return toks.every(t => hay.includes(t)); }) : wr.meta;
     if (wr.meta.length === 0) { box.innerHTML = warn + `<div class="notif-empty">${escapeHtml(L.wr_empty)}</div>`; return; }
-    box.innerHTML = warn + '<div class="wr-grid">' + wr.meta.map(m => {
+    if (shown.length === 0) { box.innerHTML = warn + `<div class="notif-empty">${escapeHtml(L.wr_no_results)}</div>`; return; }
+    box.innerHTML = warn + '<div class="wr-grid">' + shown.map(m => {
         const thumb = (m.thumb && String(m.thumb).startsWith('data:image/')) ? `<img src="${m.thumb}" alt="">` : '';
+        const snip = toks.length ? wrSnippet(m, toks) : '';
         return `<div class="wr-card" data-id="${escapeHtml(m.id)}" tabindex="0" role="button">
             <div class="wr-thumb">${thumb}</div>
-            <div class="wr-card-body"><div class="wr-card-title">${escapeHtml(m.title || L.wr_untitled)}</div><div class="wr-card-date">${escapeHtml(wrFmtDate(m.updated))}</div></div>
+            <div class="wr-card-body"><div class="wr-card-title">${escapeHtml(m.title || L.wr_untitled)}</div>${snip ? `<div class="wr-snippet">${snip}</div>` : ''}<div class="wr-card-date">${escapeHtml(wrFmtDate(m.updated))}</div></div>
             <button type="button" class="icon-btn wr-del" data-act="del" title="${escapeHtml(L.wr_delete)}" aria-label="${escapeHtml(L.wr_delete)}"><i class="fa-solid fa-trash"></i></button>
         </div>`;
     }).join('') + '</div>';
@@ -3861,30 +4086,338 @@ function wrFitViewport() { // لما الكيبورد يظهر على الجوا
     else { ed.style.height = ''; ed.style.top = ''; ed.style.bottom = ''; }
     if (wr.edit) setTimeout(wrEnsureVisible, 60);
 }
+
+// ========================================
+// المزامنة السحابية (Firestore): users/{uid}/writingBoards (بيانات اللوحة) + writingParts (الخطوط على أجزاء)
+// ========================================
+const wrCloud = { on: false, remote: new Map(), timers: new Map(), busy: new Set(), first: false };
+const WR_PART_MAX = 400000; // أقصى حجم لجزء واحد (حرف) عشان نفضل تحت حد مستند Firestore
+function wrCol(name) { return db.collection('users').doc(currentUser.uid).collection(name); }
+function wrSetSync(st) { wr.sync = st; wrRenderSyncChip(); }
+function wrTombLoad() { try { return JSON.parse(localStorage.getItem('fp_wr_tomb') || '[]'); } catch (e) { return []; } }
+function wrTombSave(a) { try { localStorage.setItem('fp_wr_tomb', JSON.stringify(a)); } catch (e) {} }
+function wrSerializeSheet(strokes, texts) {
+    const parts = []; let cur = [], len = 2;
+    strokes.forEach(s => {
+        const str = `${s.c}|${s.w}|${(s.k ? 1 : 0) | (s.h ? 2 : 0)}|${wrEncodeInts(s.a)}`;
+        if (len + str.length > WR_PART_MAX && cur.length) { parts.push(JSON.stringify(cur)); cur = []; len = 2; }
+        cur.push(str); len += str.length + 3;
+    });
+    if (cur.length || !parts.length) parts.push(JSON.stringify(cur));
+    return { parts, tex: JSON.stringify(texts.map(wrTextData)) };
+}
+function wrParseSheet(partStrs, texStr) {
+    const strokes = [];
+    partStrs.forEach(ps => JSON.parse(ps).forEach(str => { const f = str.split('|'); const fl = parseInt(f[2]) || 0; strokes.push({ c: f[0], w: parseFloat(f[1]), a: wrDecodeInts(f[3] || ''), k: fl & 1 ? 1 : 0, h: fl & 2 ? 1 : 0 }); }));
+    let texts = []; try { texts = JSON.parse(texStr || '[]'); } catch (e) {}
+    return { strokes, texts };
+}
+// رفع لوحة (بنرفع الأجزاء اللي اتغيرت بس)
+async function wrCloudPush(id) {
+    if (!wrCloud.on || !currentUser) return;
+    if (wrCloud.busy.has(id)) { wrCloudQueue(id); return; }
+    wrCloud.busy.add(id); clearTimeout(wrCloud.timers.get(id)); wrCloud.timers.delete(id);
+    try {
+        wrSetSync('syncing');
+        const m = await wrGetMetaOne(id), d = await wrGetData(id); if (!m || !d) return;
+        const strokes = (d.strokes || []).map(s => ({ c: s.c, w: s.w, a: s.a instanceof Int32Array ? s.a : Int32Array.from(s.a), k: s.k, h: s.h }));
+        const ser = wrSerializeSheet(strokes, d.texts || []);
+        const hs = ser.parts.map(wrHash), th = wrHash(ser.tex), known = !!(m.cloudAt && m.ch);
+        const batch = db.batch(), parts = wrCol('writingParts');
+        ser.parts.forEach((p, i) => { if (!(known && m.ch[i] === hs[i])) batch.set(parts.doc(id + '_' + i), { sid: id, i, v: p }); });
+        if (!(known && m.th === th)) batch.set(parts.doc(id + '_t'), { sid: id, i: -1, v: ser.tex });
+        for (let i = ser.parts.length; i < (m.cloudParts || 0); i++) batch.delete(parts.doc(id + '_' + i));
+        batch.set(wrCol('writingBoards').doc(id), { id, title: m.title || '', created: m.created || m.updated, updated: m.updated, n: m.n || 0, parts: ser.parts.length, q: m.q || '', thumb: m.thumb || '', ver: 1 });
+        await batch.commit();
+        const m2 = (await wrGetMetaOne(id)) || m; m2.cloudAt = m.updated; m2.ch = hs; m2.th = th; m2.cloudParts = ser.parts.length;
+        await wrPutMeta(m2); const i = wr.meta.findIndex(x => x.id === id); if (i >= 0) wr.meta[i] = m2;
+        wrCloud.remote.set(id, { id, updated: m.updated, parts: ser.parts.length });
+        wrSetSync('ok');
+    } catch (e) { console.error('Writing cloud push failed:', e); wrSetSync('error'); }
+    finally { wrCloud.busy.delete(id); }
+}
+function wrCloudQueue(id) {
+    if (!wrCloud.on) return;
+    clearTimeout(wrCloud.timers.get(id)); wrCloud.timers.set(id, setTimeout(() => wrCloudPush(id), 5000)); wrSetSync('syncing');
+}
+async function wrCloudDeleteRemote(id, nParts) {
+    const batch = db.batch(), parts = wrCol('writingParts');
+    for (let i = 0; i < Math.max(nParts || 0, 1); i++) batch.delete(parts.doc(id + '_' + i));
+    batch.delete(parts.doc(id + '_t')); batch.delete(wrCol('writingBoards').doc(id));
+    await batch.commit();
+}
+// تنزيل لوحة من السحابة (لو أحدث من النسخة المحلية)
+async function wrCloudPull(rm) {
+    const id = rm.id; if (!id || wrTombLoad().includes(id)) return;
+    const local = await wrGetMetaOne(id);
+    if (local && (local.updated || 0) >= (rm.updated || 0)) { if (local && !local.cloudAt) { local.cloudAt = local.updated; await wrPutMeta(local); } return; }
+    if (wr.open && wr.id === id && wr.dirty) return; // عندك تعديلات لسه ما اتحفظتش: بنفضّل النسخة المحلية
+    const parts = wrCol('writingParts'), reads = [];
+    for (let i = 0; i < (rm.parts || 0); i++) reads.push(parts.doc(id + '_' + i).get());
+    reads.push(parts.doc(id + '_t').get());
+    const snaps = await Promise.all(reads), texSnap = snaps.pop();
+    if (snaps.some(s => !s.exists)) return; // الأجزاء لسه بتتكتب: هنكمل لما اللوحة تتحدث
+    const sheet = wrParseSheet(snaps.map(s => s.data().v), texSnap.exists ? texSnap.data().v : '[]');
+    const meta = { id, title: rm.title || '', created: rm.created || rm.updated, updated: rm.updated, thumb: rm.thumb || '', q: rm.q || '', n: rm.n || 0, sy: local ? local.sy || 0 : 0, cloudAt: rm.updated, cloudParts: rm.parts || 0 };
+    await wrPut(meta, { id, strokes: sheet.strokes.map(wrStrokeData), texts: sheet.texts });
+    wr.meta = wr.meta.filter(m => m.id !== id); wr.meta.push(meta); wr.meta.sort((a, b) => b.updated - a.updated);
+    if (wr.open && wr.id === id) { // اللوحة مفتوحة وجه لها تحديث من جهاز تاني
+        wrLoadIntoMemory({ strokes: sheet.strokes.map(wrStrokeData), texts: sheet.texts }); wr.undo = []; wr.redo = []; wr.sel = null;
+        wr.textNodes.forEach(el => el.remove()); wr.textNodes.clear(); wrRecalcMaxY(); wrUpdateSizer(); wrSyncToolbar(); wrRequestRender(); wrFlash(i18n[currentLang].wr_updated_remote);
+    }
+    renderWritingList();
+}
+async function wrLocalDelete(id) {
+    if (wr.open && wr.id === id) { wr.dirty = false; clearTimeout(wr.saveTimer); wr.id = null; await wrCloseEditor(); }
+    await wrRemove(id); wr.meta = wr.meta.filter(m => m.id !== id); renderWritingList();
+}
+async function wrCloudReconcile() {
+    const tomb = wrTombLoad();
+    for (const id of tomb) { if (wrCloud.remote.has(id)) { try { await wrCloudDeleteRemote(id, wrCloud.remote.get(id).parts); } catch (e) {} } }
+    wrTombSave([]);
+    for (const m of await wrGetAllMeta()) {
+        const r = wrCloud.remote.get(m.id);
+        if (!r) { if (m.cloudAt) await wrLocalDelete(m.id); else await wrCloudPush(m.id); } // اتحذفت من جهاز تاني / لوحة جديدة محلياً
+        else if ((m.updated || 0) > (r.updated || 0)) await wrCloudPush(m.id);
+    }
+}
+function wrCloudStart() {
+    wrCloud.on = true; wrCloud.first = false; wrCloud.remote.clear(); wrSetSync('syncing');
+    let chain = Promise.resolve();
+    const unsub = wrCol('writingBoards').onSnapshot({ includeMetadataChanges: true }, snap => {
+        const changes = snap.docChanges().filter(c => !c.doc.metadata.hasPendingWrites), fromServer = !snap.metadata.fromCache;
+        chain = chain.then(async () => {
+            try {
+                for (const ch of changes) {
+                    const id = ch.doc.id, data = ch.doc.data();
+                    if (ch.type === 'removed') { wrCloud.remote.delete(id); const m = await wrGetMetaOne(id); if (m) await wrLocalDelete(id); }
+                    else { wrCloud.remote.set(id, data); await wrCloudPull(data); }
+                }
+                if (fromServer && !wrCloud.first) { wrCloud.first = true; await wrCloudReconcile(); }
+                if (!wrCloud.busy.size && !wrCloud.timers.size) wrSetSync('ok');
+            } catch (e) { console.error('Writing sync error:', e); wrSetSync('error'); }
+        });
+    }, e => { console.error('Writing sync listen error:', e); wrSetSync('error'); });
+    return () => { try { unsub(); } catch (e) {} wrCloud.on = false; wrCloud.timers.forEach(t => clearTimeout(t)); wrCloud.timers.clear(); wr.sync = 'off'; wrRenderSyncChip(); };
+}
+// قبل تسجيل الخروج: نتأكد إن كل اللوحات اتزامنت (لأن الخروج الآمن بيمسح بيانات الجهاز)
+async function wrBeforeLogout() {
+    if (!wrCloud.on) return true;
+    try {
+        if (wr.open) await wrCloseEditor();
+        for (const m of await wrGetAllMeta()) if ((m.cloudAt || 0) < m.updated) await Promise.race([wrCloudPush(m.id), new Promise(r => setTimeout(r, 8000))]);
+        const left = (await wrGetAllMeta()).filter(m => (m.cloudAt || 0) < m.updated).length;
+        if (left) return confirm(i18n[currentLang].wr_logout_unsynced.replace('{n}', left));
+    } catch (e) { console.warn(e); }
+    return true;
+}
+
+// ========================================
+// تصدير PDF: صفحات A4 (صورة الورقة بجودة عالية) + طبقة نص غير مرئية قابلة للبحث والنسخ + روابط قابلة للضغط
+// ========================================
+const WR_PDF_W = 595.28, WR_PDF_H = 841.89, WR_PG0 = 882, WR_PGN = 836; // حدود الصفحات عند السطور المسطّرة عشان ما يتقطعش نص
+function wrPageOf(y) { return y < WR_PG0 ? 0 : 1 + Math.floor((y - WR_PG0) / WR_PGN); }
+function wrPageStart(k) { return k === 0 ? 0 : WR_PG0 + WR_PGN * (k - 1); }
+function wrPageEnd(k) { return WR_PG0 + WR_PGN * k; }
+// بنبني نسخة مخفية من النصوص عشان نقيس مواقع كل سطر والروابط بدقة (نفس لف الكلام والاتجاه RTL)
+function wrExportMeasure() {
+    const bodyFont = getComputedStyle(document.body).fontFamily;
+    const root = document.createElement('div'); root.style.cssText = 'position:fixed;left:-20000px;top:0;width:600px;visibility:hidden;pointer-events:none;';
+    document.body.appendChild(root);
+    const lines = [], base = {};
+    try {
+        [...new Set(wr.texts.map(t => t.s))].forEach(s => {
+            const pr = document.createElement('div'); pr.style.cssText = `position:absolute;left:0;top:0;width:600px;font-family:${bodyFont};font-size:${s}px;line-height:${WR_LINE_GAP}px;white-space:pre-wrap;`;
+            pr.innerHTML = '<span style="display:inline-block;width:0;height:0;"></span>x'; root.appendChild(pr);
+            base[s] = pr.firstChild.getBoundingClientRect().bottom - pr.getBoundingClientRect().top;
+        });
+        const rr = root.getBoundingClientRect();
+        wr.texts.forEach(it => {
+            const el = document.createElement('div');
+            el.style.cssText = `position:absolute;left:${it.x}px;top:${it.y}px;width:${it.w}px;font-family:${bodyFont};font-size:${it.s}px;line-height:${WR_LINE_GAP}px;white-space:pre-wrap;overflow-wrap:anywhere;text-align:start;`;
+            el.setAttribute('dir', 'auto'); wrFillText(el, it); root.appendChild(el);
+            const er = el.getBoundingClientRect(), dir = getComputedStyle(el).direction, byLine = new Map(), walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+            let node;
+            while ((node = walker.nextNode())) {
+                const pa = node.parentNode, link = (pa.classList && pa.classList.contains('wr-link')) ? pa.href : null, txt = node.nodeValue;
+                for (let i = 0; i < txt.length; i++) {
+                    const rg = document.createRange(); rg.setStart(node, i); rg.setEnd(node, i + 1);
+                    const rects = rg.getClientRects(); if (!rects.length) continue; const r = rects[0];
+                    if (txt[i] === '\n' || (r.width === 0 && r.height === 0)) continue;
+                    const li = Math.max(0, Math.floor(((r.top + r.bottom) / 2 - er.top) / WR_LINE_GAP));
+                    let L = byLine.get(li); if (!L) { L = { chars: [] }; byLine.set(li, L); }
+                    L.chars.push({ ch: txt[i], link, left: r.left - rr.left, right: r.right - rr.left });
+                }
+            }
+            byLine.forEach((L, li) => {
+                let text = L.chars.map(c => c.ch).join(''); const trimmed = text.replace(/\s+$/, ''); if (!trimmed.trim()) return;
+                const chars = L.chars.slice(0, trimmed.length), links = []; let cur = null;
+                chars.forEach(c => { if (c.link) { if (cur && cur.url === c.link) { cur.left = Math.min(cur.left, c.left); cur.right = Math.max(cur.right, c.right); } else { cur = { url: c.link, left: c.left, right: c.right }; links.push(cur); } } else cur = null; });
+                // نص الطبقة غير المرئية بالترتيب البصري (زي ما برامج الـ PDF بتخزنه) عشان البحث والنسخ يطلعوا صح للعربي
+                const vis = chars.map((c, i) => ({ ch: c.ch, left: Math.round(c.left * 10) / 10, i })).sort((a, b) => (a.left - b.left) || (dir === 'rtl' ? b.i - a.i : a.i - b.i)).map(c => c.ch).join('');
+                lines.push({ text: trimmed, vtext: vis, dir, s: it.s, color: it.c, top: it.y + li * WR_LINE_GAP, base: base[it.s], left: Math.min(...chars.map(c => c.left)), right: Math.max(...chars.map(c => c.right)), links });
+            });
+        });
+    } finally { root.remove(); }
+    return { lines, bodyFont };
+}
+function wrExportPageCanvas(k, f, mx, ppp, lines, bodyFont) {
+    const cv = document.createElement('canvas'); cv.width = Math.round(WR_PDF_W * ppp); cv.height = Math.round(WR_PDF_H * ppp);
+    const ctx = cv.getContext('2d'); ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, cv.width, cv.height);
+    const ys = wrPageStart(k), ye = wrPageEnd(k), sc = f * ppp;
+    ctx.setTransform(sc, 0, 0, sc, mx * ppp, -ys * sc);
+    ctx.save(); ctx.beginPath(); ctx.rect(0, ys, WR_LOGICAL_W, ye - ys); ctx.clip();
+    ctx.strokeStyle = '#c7d9ee'; ctx.lineWidth = 1 / f; ctx.beginPath();
+    for (let y = WR_TOP_MARGIN + Math.max(0, Math.ceil((ys - WR_TOP_MARGIN) / WR_LINE_GAP)) * WR_LINE_GAP; y < ye; y += WR_LINE_GAP) { ctx.moveTo(0, y); ctx.lineTo(WR_LOGICAL_W, y); }
+    ctx.stroke(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    wr.strokes.forEach(s => { if (s.bb[3] >= ys && s.bb[1] <= ye) wrDrawStroke(ctx, s); });
+    ctx.restore();
+    lines.forEach(ln => {
+        if (wrPageOf(ln.top + 22) !== k) return;
+        const x = ln.dir === 'rtl' ? ln.right : ln.left, y = ln.top + ln.base;
+        ctx.font = `${ln.s}px ${bodyFont}`; ctx.direction = ln.dir; ctx.textAlign = ln.dir === 'rtl' ? 'right' : 'left'; ctx.textBaseline = 'alphabetic';
+        ctx.save(); ctx.beginPath(); ctx.rect(0, ln.top - 6, WR_LOGICAL_W, WR_LINE_GAP + 12); // نص عادي: بنستثني أماكن الروابط ونرسمها زرقاء
+        ln.links.forEach(lk => ctx.rect(lk.left - 1, ln.top - 6, lk.right - lk.left + 2, WR_LINE_GAP + 12)); ctx.clip('evenodd');
+        ctx.fillStyle = ln.color; ctx.fillText(ln.text, x, y); ctx.restore();
+        ln.links.forEach(lk => {
+            ctx.save(); ctx.beginPath(); ctx.rect(lk.left - 1, ln.top - 6, lk.right - lk.left + 2, WR_LINE_GAP + 12); ctx.clip();
+            ctx.fillStyle = '#1d4ed8'; ctx.fillText(ln.text, x, y); ctx.restore();
+            ctx.strokeStyle = '#1d4ed8'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(lk.left, y + 3); ctx.lineTo(lk.right, y + 3); ctx.stroke();
+        });
+    });
+    return cv;
+}
+// كاتب PDF بسيط (بدون مكتبات): صورة JPEG لكل صفحة + نص غير مرئي (ToUnicode) + روابط URI
+function wrPdfBuild(pages, title) {
+    const enc = new TextEncoder(), chunks = [], offs = []; let len = 0;
+    const put = d => { const b = typeof d === 'string' ? enc.encode(d) : d; chunks.push(b); len += b.length; };
+    const num = n => (Math.round(n * 100) / 100).toString();
+    const pdfStr = s => '(' + String(s).replace(/[\\()]/g, m => '\\' + m) + ')';
+    const hex16 = s => { let h = ''; for (let i = 0; i < s.length; i++) h += s.charCodeAt(i).toString(16).padStart(4, '0'); return h; };
+    const cmap = new Map(); let nextCode = 1;
+    const codeOf = ch => { let c = cmap.get(ch); if (!c) { c = nextCode++; if (c > 65534) c = 65534; cmap.set(ch, c); } return c; };
+    const bodies = []; // [id, Uint8Array|string]
+    const objs = new Map(); let nextId = 8;
+    const pageIds = [];
+    pages.forEach(pg => {
+        const pid = nextId++, cid = nextId++, iid = nextId++, aids = pg.annots.map(() => nextId++);
+        pageIds.push(pid);
+        let content = `q ${num(WR_PDF_W)} 0 0 ${num(WR_PDF_H)} 0 0 cm /Im0 Do Q\n`;
+        pg.text.forEach(t => { const codes = Array.from(t.str).map(codeOf); content += `BT /F1 ${num(t.fs)} Tf 3 Tr ${num(t.tz)} Tz 1 0 0 1 ${num(t.x)} ${num(t.y)} Tm <${codes.map(c => c.toString(16).padStart(4, '0')).join('')}> Tj ET\n`; });
+        objs.set(pid, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${num(WR_PDF_W)} ${num(WR_PDF_H)}] /Resources << /XObject << /Im0 ${iid} 0 R >> /Font << /F1 3 0 R >> >> /Contents ${cid} 0 R${aids.length ? ' /Annots [' + aids.map(a => a + ' 0 R').join(' ') + ']' : ''} >>`);
+        objs.set(cid, { dict: '', data: enc.encode(content) });
+        objs.set(iid, { dict: `/Type /XObject /Subtype /Image /Width ${pg.w} /Height ${pg.h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode`, data: pg.jpeg });
+        pg.annots.forEach((a, i) => objs.set(aids[i], `<< /Type /Annot /Subtype /Link /Rect [${a.rect.map(num).join(' ')}] /Border [0 0 0] /A << /S /URI /URI ${pdfStr(a.url)} >> >>`));
+    });
+    // ToUnicode
+    const entries = [...cmap.entries()]; let cm = '/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n';
+    for (let i = 0; i < entries.length; i += 100) { const part = entries.slice(i, i + 100); cm += part.length + ' beginbfchar\n' + part.map(([ch, c]) => `<${c.toString(16).padStart(4, '0')}> <${hex16(ch)}>`).join('\n') + '\nendbfchar\n'; }
+    cm += 'endcmap\nCMapName currentdict /CMap defineresource pop\nend\nend\n';
+    const d = new Date(), p2 = n => String(n).padStart(2, '0'), date = `D:${d.getFullYear()}${p2(d.getMonth() + 1)}${p2(d.getDate())}${p2(d.getHours())}${p2(d.getMinutes())}${p2(d.getSeconds())}`;
+    objs.set(1, '<< /Type /Catalog /Pages 2 0 R >>');
+    objs.set(2, `<< /Type /Pages /Kids [${pageIds.map(i => i + ' 0 R').join(' ')}] /Count ${pageIds.length} >>`);
+    objs.set(3, '<< /Type /Font /Subtype /Type0 /BaseFont /PlannerText /Encoding /Identity-H /DescendantFonts [4 0 R] /ToUnicode 6 0 R >>');
+    objs.set(4, '<< /Type /Font /Subtype /CIDFontType2 /BaseFont /PlannerText /CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >> /FontDescriptor 5 0 R /DW 500 /CIDToGIDMap /Identity >>');
+    objs.set(5, '<< /Type /FontDescriptor /FontName /PlannerText /Flags 4 /FontBBox [0 -200 1000 800] /ItalicAngle 0 /Ascent 800 /Descent -200 /CapHeight 700 /StemV 80 >>');
+    objs.set(6, { dict: '', data: enc.encode(cm) });
+    objs.set(7, `<< /Title <FEFF${hex16(title || 'Planner')}> /Creator (Planner Pro) /Producer (Planner Pro) /CreationDate (${date}) >>`);
+    put('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n'.replace(/[\u0080-\u00ff]/g, c => c)); // سطر ثنائي
+    const total = nextId - 1;
+    for (let id = 1; id <= total; id++) {
+        const o = objs.get(id); if (o === undefined) continue; offs[id] = len;
+        if (typeof o === 'string') put(`${id} 0 obj\n${o}\nendobj\n`);
+        else { put(`${id} 0 obj\n<< ${o.dict} /Length ${o.data.length} >>\nstream\n`); put(o.data); put('\nendstream\nendobj\n'); }
+    }
+    const xref = len; let x = `xref\n0 ${total + 1}\n0000000000 65535 f \n`;
+    for (let id = 1; id <= total; id++) x += String(offs[id] || 0).padStart(10, '0') + ' 00000 n \n';
+    put(x + `trailer\n<< /Size ${total + 1} /Root 1 0 R /Info 7 0 R >>\nstartxref\n${xref}\n%%EOF\n`);
+    return new Blob(chunks, { type: 'application/pdf' });
+}
+async function wrExportPdf(opts) {
+    opts = opts || {};
+    if (!wr.open || wr.exporting) return;
+    const L = i18n[currentLang];
+    wr.exporting = true; if (wr.edit) wrCommitText(); wrClearSel();
+    const btn = document.getElementById('wrExport'); if (btn) btn.disabled = true;
+    try {
+        wrFlash(L.wr_exporting);
+        try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch (e) {}
+        await new Promise(r => setTimeout(r, 30));
+        const { lines, bodyFont } = wrExportMeasure();
+        const contentBottom = Math.max(wr.maxY, 1);
+        let nPages = Math.min(60, wrPageOf(Math.max(0, contentBottom - 1)) + 1);
+        const f = WR_PDF_H / WR_PG0, mx = (WR_PDF_W - WR_LOGICAL_W * f) / 2, ppp = 2.4, pages = [];
+        for (let k = 0; k < nPages; k++) {
+            wrFlash(L.wr_exporting + ' ' + (k + 1) + '/' + nPages);
+            await new Promise(r => setTimeout(r, 0));
+            const cv = wrExportPageCanvas(k, f, mx, ppp, lines, bodyFont), ys = wrPageStart(k);
+            const b64 = cv.toDataURL('image/jpeg', 0.9).split(',')[1], bin = atob(b64), jpeg = new Uint8Array(bin.length);
+            for (let i = 0; i < bin.length; i++) jpeg[i] = bin.charCodeAt(i);
+            const text = [], annots = [];
+            lines.forEach(ln => {
+                if (wrPageOf(ln.top + 22) !== k) return;
+                const fs = ln.s * f, n = Array.from(ln.vtext).length, x = mx + ln.left * f, y = WR_PDF_H - (ln.top + ln.base - ys) * f, wPt = (ln.right - ln.left) * f;
+                text.push({ str: ln.vtext, fs, x, y, tz: Math.max(10, Math.min(400, wPt / (n * 0.5 * fs) * 100)) });
+                ln.links.forEach(lk => annots.push({ url: lk.url, rect: [mx + lk.left * f, WR_PDF_H - (ln.top + 36 - ys) * f, mx + lk.right * f, WR_PDF_H - (ln.top + 6 - ys) * f] }));
+            });
+            pages.push({ jpeg, w: cv.width, h: cv.height, text, annots });
+        }
+        const blob = wrPdfBuild(pages, wr.title);
+        if (opts.returnBlob) return blob;
+        const safe = (wr.title || L.wr_untitled).replace(/[\\/:*?"<>|\n\r]+/g, ' ').trim().slice(0, 60) || 'sheet', d = new Date();
+        const name = `${safe}-${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}.pdf`;
+        const url = URL.createObjectURL(blob), a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 60000);
+        wrFlash(L.wr_exported + (wrPageOf(Math.max(0, contentBottom - 1)) + 1 > 60 ? ' (' + L.wr_export_limit + ')' : ''));
+    } catch (e) { console.error('PDF export failed:', e); wrFlash(i18n[currentLang].wr_export_failed); }
+    finally { wr.exporting = false; if (btn) btn.disabled = false; }
+}
+
+// ---------- ربط الأحداث ----------
+function wrSetTool(tool) {
+    wrCommitText(); if (tool !== 'select') wrClearSel();
+    wr.tool = tool; wr.eraserPos = null; wrSavePrefs(); wrSyncToolbar(); wrRequestRender();
+}
 function wrInit() {
     if (wr.bound) return; const ed = document.getElementById('writingEditor'); if (!ed) return; wr.bound = true;
     const g = id => document.getElementById(id), cv = g('wrCanvas'), sc = g('wrScroll');
     const keepFocus = el => el.addEventListener('pointerdown', e => { if (wr.edit) e.preventDefault(); }); // أزرار الأدوات ما تسحبش التركيز من مربع الكتابة
     g('wrNewBtn').addEventListener('click', () => wrOpenEditor(null));
+    let searchTimer = 0;
+    g('wrSearch').addEventListener('input', e => { clearTimeout(searchTimer); searchTimer = setTimeout(() => { wr.query = e.target.value; renderWritingList(); }, 120); });
     g('writingList').addEventListener('click', async e => {
         const card = e.target.closest('.wr-card'); if (!card) return; const id = card.getAttribute('data-id');
         if (e.target.closest('[data-act="del"]')) {
             if (!confirm(i18n[currentLang].wr_confirm_delete)) return;
+            const m = wr.meta.find(x => x.id === id);
             try { await wrRemove(id); } catch (err) { console.warn(err); }
-            wr.meta = wr.meta.filter(m => m.id !== id); renderWritingList(); return;
+            wr.meta = wr.meta.filter(x => x.id !== id); renderWritingList();
+            if (m && m.cloudAt && typeof useCloud !== 'undefined' && useCloud) { // نحذفها من السحابة كمان (ولو مفيش اتصال بنكمل الحذف بعدين)
+                wrTombSave([...new Set([...wrTombLoad(), id])]);
+                if (wrCloud.on && currentUser) { wrCloud.remote.delete(id); wrCloudDeleteRemote(id, m.cloudParts || 1).then(() => wrTombSave(wrTombLoad().filter(x => x !== id))).catch(e2 => console.warn('Cloud delete pending:', e2)); }
+            }
+            return;
         }
         wrOpenEditor(id);
     });
     g('writingList').addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('wr-card')) { e.preventDefault(); wrOpenEditor(e.target.getAttribute('data-id')); } });
     g('wrBack').addEventListener('click', wrCloseEditor);
     g('wrUndo').addEventListener('click', wrUndoAction); g('wrRedo').addEventListener('click', wrRedoAction);
-    g('wrPen').addEventListener('click', () => { wrCommitText(); wr.tool = 'pen'; wr.eraserPos = null; wrSavePrefs(); wrSyncToolbar(); wrRequestRender(); });
-    g('wrEraser').addEventListener('click', () => { wrCommitText(); wr.tool = 'eraser'; wrSavePrefs(); wrSyncToolbar(); });
-    g('wrTextTool').addEventListener('click', () => { wr.tool = 'text'; wr.eraserPos = null; wrSavePrefs(); wrSyncToolbar(); });
-    ed.querySelectorAll('.wr-color').forEach(b => { keepFocus(b); b.addEventListener('click', () => { wr.color = b.getAttribute('data-color'); if (wr.tool === 'eraser') wr.tool = 'pen'; if (wr.edit) { wr.edit.item.c = wr.color; wrPlaceTa(g('wrScroll').scrollTop); } wrSavePrefs(); wrSyncToolbar(); }); });
+    g('wrPen').addEventListener('click', () => wrSetTool('pen'));
+    g('wrHl').addEventListener('click', () => wrSetTool('highlighter'));
+    g('wrShape').addEventListener('click', () => wrSetTool('shape'));
+    g('wrShapeSel').addEventListener('change', e => { wr.shape = e.target.value; wrSetTool('shape'); });
+    g('wrSelect').addEventListener('click', () => wrSetTool('select'));
+    g('wrEraser').addEventListener('click', () => wrSetTool('eraser'));
+    g('wrTextTool').addEventListener('click', () => { wr.tool = 'text'; wrClearSel(); wr.eraserPos = null; wrSyncToolbar(); });
+    g('wrDelSel').addEventListener('click', wrDeleteSel);
+    ed.querySelectorAll('.wr-color').forEach(b => { keepFocus(b); b.addEventListener('click', () => { wr.color = b.getAttribute('data-color'); if (wr.tool === 'eraser' || wr.tool === 'select') wrSetTool('pen'); if (wr.edit) { wr.edit.item.c = wr.color; wrPlaceTa(g('wrScroll').scrollTop); } wrSavePrefs(); wrSyncToolbar(); }); });
     ed.querySelectorAll('.wr-size').forEach((b, i) => { keepFocus(b); b.addEventListener('click', () => { if (wr.tool === 'text' || wr.edit) { wr.tsize = WR_TEXT_SIZES[i]; if (wr.edit) { wr.edit.item.s = wr.tsize; wrPlaceTa(g('wrScroll').scrollTop); wrAutosizeTa(); } } else wr.size = parseFloat(b.getAttribute('data-size')); wrSavePrefs(); wrSyncToolbar(); }); });
     g('wrMode').addEventListener('click', () => { wr.fingerWrites = !wr.fingerWrites; wrSavePrefs(); wrSyncToolbar(); });
     g('wrDown').addEventListener('click', () => sc.scrollBy({ top: Math.round(sc.clientHeight * 0.8), behavior: 'smooth' }));
+    g('wrZoomIn').addEventListener('click', () => wrZoomBy(1.25)); g('wrZoomOut').addEventListener('click', () => wrZoomBy(1 / 1.25));
+    g('wrZoomReset').addEventListener('click', () => wrSetScale(1, wr.cssW / 2, wr.cssH / 2));
+    g('wrExport').addEventListener('click', () => wrExportPdf());
     g('wrTitle').addEventListener('input', e => { wr.title = e.target.value; wrChanged(); });
     keepFocus(g('wrMic')); g('wrMic').addEventListener('click', wrDictToggle);
     keepFocus(g('wrLink')); g('wrLink').addEventListener('click', wrLinkOpenDialog);
@@ -3897,16 +4430,25 @@ function wrInit() {
     cv.addEventListener('pointerleave', () => { if (wr.eraserPos && wr.activeId === null) { wr.eraserPos = null; wrRequestRender(); } });
     cv.addEventListener('contextmenu', e => e.preventDefault());
     sc.addEventListener('scroll', wrRequestRender, { passive: true });
+    sc.addEventListener('wheel', e => { // Ctrl + عجلة الماوس (أو قرص التراك باد) = زوم، وتمرير أفقي لما الورقة تكبر
+        if (!wr.open) return;
+        if (e.ctrlKey) { e.preventDefault(); const r = cv.getBoundingClientRect(); wrSetScale(wr.zoom * Math.exp(-e.deltaY * 0.0025), e.clientX - r.left, e.clientY - r.top); }
+        else if (e.deltaX && WR_LOGICAL_W * wr.scale > wr.cssW + 1) { wr.offX -= e.deltaX; wrClampOff(); wrRequestRender(); }
+    }, { passive: false });
     if (window.ResizeObserver) new ResizeObserver(() => { if (wr.open) wrLayout(); }).observe(sc);
     window.addEventListener('resize', () => { if (wr.open) wrLayout(); });
     if (window.visualViewport) { window.visualViewport.addEventListener('resize', wrFitViewport); window.visualViewport.addEventListener('scroll', wrFitViewport); }
     document.addEventListener('keydown', e => {
         if (!wr.open) return;
         const tag = e.target && e.target.tagName, typing = tag === 'TEXTAREA' || tag === 'INPUT';
-        if (e.key === 'Escape') { if (wr.dlgOpen) return; e.preventDefault(); if (typing) { if (wr.edit) wrCommitText(); else e.target.blur(); } else wrCloseEditor(); return; }
+        if (e.key === 'Escape') { if (wr.dlgOpen) return; e.preventDefault(); if (typing) { if (wr.edit) wrCommitText(); else e.target.blur(); } else if (wr.sel) wrClearSel(); else wrCloseEditor(); return; }
         if (typing) return;
+        if ((e.key === 'Delete' || e.key === 'Backspace') && wr.sel) { e.preventDefault(); wrDeleteSel(); return; }
         if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'z') { e.preventDefault(); wrUndoAction(); }
         else if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 'y' || (e.shiftKey && e.key.toLowerCase() === 'z'))) { e.preventDefault(); wrRedoAction(); }
+        else if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '=')) { e.preventDefault(); wrZoomBy(1.25); }
+        else if ((e.ctrlKey || e.metaKey) && e.key === '-') { e.preventDefault(); wrZoomBy(1 / 1.25); }
+        else if ((e.ctrlKey || e.metaKey) && e.key === '0') { e.preventDefault(); wrSetScale(1, wr.cssW / 2, wr.cssH / 2); }
     });
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && wr.open) { wrDictStop(); wrFlush(); } });
     window.addEventListener('pagehide', () => { if (wr.open) wrFlush(); });

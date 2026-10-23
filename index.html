@@ -46,7 +46,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=42.2">
+    <link rel="stylesheet" href="style.css?v=42.3">
 </head>
 <body>
 
@@ -451,7 +451,8 @@
                     <h2 data-i18n="wr_title_h">لوحة الكتابة ✍️</h2>
                     <button type="button" class="btn btn-primary" id="wrNewBtn"><i class="fa-solid fa-plus"></i> <span data-i18n="wr_new">لوحة جديدة</span></button>
                 </div>
-                <p class="notif-desc" data-i18n="wr_desc">اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز.</p>
+                <p class="notif-desc" data-i18n="wr_desc">اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز وتتزامن مع حسابك عند تسجيل الدخول.</p>
+                <div class="wr-listbar"><input type="search" id="wrSearch" class="wr-search" data-i18n-ph="wr_search_ph" placeholder="ابحث في عناوين اللوحات ونصوصها..." autocomplete="off"><span id="wrSyncState" class="wr-sync" role="status" style="display:none;"></span></div>
                 <div id="writingList"></div>
             </div>
 
@@ -797,9 +798,15 @@
         <span id="wrSaveState" class="wr-savestate"></span>
         <button type="button" class="wr-btn" id="wrUndo" data-i18n-title="wr_undo" title="تراجع" disabled><i class="fa-solid fa-rotate-left"></i></button>
         <button type="button" class="wr-btn" id="wrRedo" data-i18n-title="wr_redo" title="إعادة" disabled><i class="fa-solid fa-rotate-right"></i></button>
+        <button type="button" class="wr-btn" id="wrExport" data-i18n-title="wr_export" title="تصدير PDF (بالنص والروابط)"><i class="fa-solid fa-file-pdf"></i></button>
     </div>
     <div class="wr-toolbar">
         <button type="button" class="wr-btn active" id="wrPen" data-i18n-title="wr_pen" title="قلم"><i class="fa-solid fa-pen"></i></button>
+        <button type="button" class="wr-btn" id="wrHl" data-i18n-title="wr_hl" title="قلم مظلّل"><i class="fa-solid fa-highlighter"></i></button>
+        <button type="button" class="wr-btn" id="wrShape" data-i18n-title="wr_shape" title="أشكال"><i class="fa-solid fa-shapes"></i></button>
+        <select id="wrShapeSel" class="wr-select" data-i18n-title="wr_shape" title="أشكال"><option value="line" data-i18n="wr_shape_line">خط مستقيم</option><option value="arrow" data-i18n="wr_shape_arrow">سهم</option><option value="rect" data-i18n="wr_shape_rect">مستطيل</option><option value="ellipse" data-i18n="wr_shape_ellipse">دائرة / بيضاوي</option></select>
+        <button type="button" class="wr-btn" id="wrSelect" data-i18n-title="wr_select" title="تحديد وتحريك"><i class="fa-solid fa-draw-polygon"></i></button>
+        <button type="button" class="wr-btn wr-danger" id="wrDelSel" style="display:none;" data-i18n-title="wr_del_sel" title="حذف المحدد"><i class="fa-solid fa-trash"></i></button>
         <button type="button" class="wr-btn" id="wrEraser" data-i18n-title="wr_eraser" title="ممحاة"><i class="fa-solid fa-eraser"></i></button>
         <button type="button" class="wr-btn" id="wrTextTool" data-i18n-title="wr_text_tool" title="كتابة نص بالكيبورد"><i class="fa-solid fa-font"></i></button>
         <span class="wr-sep"></span>
@@ -819,6 +826,10 @@
         <button type="button" class="wr-btn" id="wrLink" data-i18n-title="wr_link" title="إضافة رابط"><i class="fa-solid fa-link"></i></button>
         <button type="button" class="wr-btn wr-done" id="wrDone" style="display:none;" data-i18n-title="wr_done" title="تم"><i class="fa-solid fa-check"></i> <span data-i18n="wr_done">تم</span></button>
         <span class="wr-sep"></span>
+        <button type="button" class="wr-btn" id="wrZoomOut" data-i18n-title="wr_zoom_out" title="تصغير"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+        <button type="button" class="wr-btn wr-zoom" id="wrZoomReset" data-i18n-title="wr_zoom_reset" title="الحجم الأصلي 100%">100%</button>
+        <button type="button" class="wr-btn" id="wrZoomIn" data-i18n-title="wr_zoom_in" title="تكبير"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+        <span class="wr-sep"></span>
         <button type="button" class="wr-btn wr-mode" id="wrMode" data-i18n-title="wr_mode_hint" title="بدّل بين الكتابة بالإصبع وتمرير الورقة بالإصبع"><i class="fa-solid fa-pen-nib"></i> <span data-i18n="wr_mode_write">الإصبع يكتب</span></button>
         <button type="button" class="wr-btn" id="wrDown" data-i18n-title="wr_down" title="انزل للأسفل"><i class="fa-solid fa-arrow-down"></i></button>
     </div>
@@ -837,6 +848,6 @@
     </div>
 </div>
 
-<script src="script.js?v=42.2"></script>
+<script src="script.js?v=42.3"></script>
 </body>
 </html>
