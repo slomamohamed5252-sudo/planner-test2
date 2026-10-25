@@ -231,7 +231,7 @@ const i18n = {
 cat_subscriptions: "📱 اشتراكات", nav_subs: "الاشتراكات", title_subs: "الاشتراكات 📱", sub_active: "نشطة", sub_archive: "المحفوظات", sub_add: "إضافة اشتراك", sub_name: "اسم الاشتراك", sub_freq: "الدورية", sub_daily: "يومي", sub_weekly: "أسبوعي", sub_monthly: "شهري", sub_yearly: "سنوي", sub_count: "عدد الدورات", sub_total: "المبلغ الكلي", sub_per_cycle: "المبلغ لكل دورة", sub_start: "تاريخ البداية", sub_end: "تاريخ النهاية", sub_next: "الدفعة القادمة", sub_notes: "ملاحظات", sub_save: "حفظ", sub_confirm_pay: "تأكيد الدفع", sub_paid: "مدفوع", sub_edit: "تعديل", sub_delete: "حذف", sub_empty: "لا توجد اشتراكات نشطة.", sub_archive_empty: "لا توجد اشتراكات في المحفوظات.", sub_export_pdf: "تصدير PDF", sub_export_excel: "تصدير Excel", sub_cycles_paid: "دورات مدفوعة",
         nav_updates: "التحديثات", title_updates: "سجل تحديثات التطبيق 🔄",
 pareto_title: "قاعدة 80/20 📌", pareto_cumulative: "التراكمي %", pareto_stuck_title: "📌 قاعدة 80/20: مشاريع شايلة وقتك", pareto_stuck_none: "مفيش مشاريع قديمة عالقة، تمام كده!",
-notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_important_title: "⭐ مهمة مهمة", notif_delegate_title: "👥 مهمة مفوّضة", notif_cancelled_title: "🚫 مهمة ملغية", notif_missed_important_title: "⭐ مهمة مهمة فائتة", notif_missed_delegate_title: "👥 مهمة مفوّضة فائتة", notif_missed_cancelled_title: "🚫 مهمة ملغية فائتة", nav_notifs: "الإشعارات", title_notifs: "مركز الإشعارات 🔔", notif_c_desc: "الإشعارات الفائتة والقادمة خلال 24 ساعة (قبل وبعد الآن).", notif_c_all: "الكل", notif_c_missed: "فائتة", notif_c_upcoming: "قادمة", notif_c_mark_all: "تحديد الكل كمقروء", notif_c_delete_all: "حذف الكل", notif_c_confirm_delete: "حذف كل الإشعارات المعروضة؟ (المهام نفسها لن تتأثر)", notif_c_empty: "لا توجد إشعارات فائتة أو قادمة خلال 24 ساعة 🎉", notif_c_mark_read: "تحديد كمقروء", notif_c_mark_unread: "تحديد كغير مقروء", notif_c_delete: "حذف الإشعار", notif_c_sub_due: "اشتراك", notif_c_today: "اليوم", notif_c_tomorrow: "غداً", notif_c_yesterday: "أمس", notif_c_pom_running: "جلسة التركيز شغالة", notif_c_pom_ends: "تنتهي الساعة", notif_c_pom_ended: "انتهت جلسة التركيز", notif_c_sub_body: "موعد الدفع", notif_c_in: "بعد", notif_c_ago: "منذ", notif_c_h: "س", notif_c_m: "د", wr_text_tool: "كتابة نص بالكيبورد (اضغط على الورقة، واسحب المربع لنقله)", wr_mic: "إملاء صوتي (تحويل الكلام إلى نص)", wr_done: "تم", wr_text_ph: "اكتب هنا... (الروابط تصبح قابلة للضغط تلقائياً)", wr_dict_lang: "لغة الإملاء الصوتي", wr_link: "إضافة رابط", wr_link_title: "إضافة رابط", wr_link_text_ph: "نص الرابط (اختياري)", wr_link_add: "إضافة", wr_cancel: "إلغاء", wr_link_invalid: "اكتب رابطاً صحيحاً يبدأ بـ http أو https", wr_mic_unsupported: "الإملاء الصوتي غير مدعوم في هذا المتصفح (جرّب Chrome)", wr_mic_denied: "اسمح للمتصفح باستخدام الميكروفون لتفعيل الإملاء", wr_mic_network: "تعذّر الاتصال بخدمة التعرف على الكلام", wr_listening: "🎙️ جارٍ الاستماع...", wr_hl: "قلم مظلّل (هايلايت)", wr_shape: "أشكال (اسحب لرسم الشكل)", wr_shape_line: "خط مستقيم", wr_shape_arrow: "سهم", wr_shape_rect: "مستطيل", wr_shape_ellipse: "دائرة / بيضاوي", wr_select: "تحديد وتحريك (ارسم دائرة حول ما تريد، أو المس عنصراً)", wr_del_sel: "حذف المحدد", wr_zoom_in: "تكبير", wr_zoom_out: "تصغير", wr_zoom_reset: "الحجم الأصلي 100%", wr_export: "تصدير PDF (بالنص والروابط)", wr_exporting: "جارٍ تجهيز PDF...", wr_exported: "تم تصدير PDF ✓", wr_export_failed: "تعذّر تصدير PDF", wr_export_limit: "أول 60 صفحة فقط", wr_search_ph: "ابحث في عناوين اللوحات ونصوصها...", wr_no_results: "لا توجد لوحات مطابقة للبحث.", wr_sync_login: "☁️ سجّل الدخول لمزامنة لوحاتك", wr_sync_ok: "☁️ متزامنة مع حسابك", wr_sync_ing: "☁️ جارٍ المزامنة...", wr_sync_err: "⚠️ تعذّرت المزامنة", wr_sync_err_hint: "تأكد من الاتصال بالإنترنت ومن أن قواعد Firestore تسمح بالمسارين users/{uid}/writingBoards و users/{uid}/writingParts", wr_updated_remote: "تم تحديث اللوحة من جهاز آخر", wr_logout_unsynced: "{n} لوحات لم تتزامن بعد وستُفقد عند تسجيل الخروج. هل تريد المتابعة؟", wr_nav: "لوحة الكتابة", wr_title_h: "لوحة الكتابة ✍️", wr_desc: "اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز وتتزامن مع حسابك عند تسجيل الدخول.", wr_new: "لوحة جديدة", wr_untitled: "لوحة بدون عنوان", wr_empty: "لا توجد لوحات بعد. اضغط «لوحة جديدة» وابدأ الكتابة.", wr_delete: "حذف اللوحة", wr_confirm_delete: "حذف هذه اللوحة نهائياً؟", wr_back: "رجوع (حفظ تلقائي)", wr_title_ph: "عنوان اللوحة...", wr_undo: "تراجع", wr_redo: "إعادة", wr_pen: "قلم", wr_eraser: "ممحاة (تمسح الخط كله)", wr_color: "لون القلم", wr_thin: "رفيع", wr_med: "وسط", wr_thick: "سميك", wr_mode_write: "الإصبع يكتب", wr_mode_scroll: "الإصبع يمرّر", wr_mode_hint: "بدّل بين الكتابة بالإصبع وتمرير الورقة بالإصبع (إصبعان يمرّران دائماً)", wr_down: "انزل للأسفل", wr_saving: "جارٍ الحفظ...", wr_saved: "تم الحفظ ✓", wr_unavailable: "تعذّر حفظ اللوحات على هذا المتصفح (التخزين المحلي غير متاح).", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
+notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعارات شغالة ✅", notif_denied_msg: "تم رفض صلاحية الإشعارات من المتصفح", notif_urgent_title: "⏰ مهمة عاجلة", notif_sub_title: "📱 اشتراك مستحق الدفع", notif_habit_title: "✅ متتبع العادات", notif_habit_body: "لسه عندك عادات النهاردة متسجلتش", notif_pomodoro_title: "⏱️ خلصت الجلسة", notif_missed_urgent_title: "⏰ مهمة عاجلة فائتة", notif_missed_sub_title: "📱 اشتراك متأخر الدفع", notif_missed_summary_title: "🔔 تنبيهات فائتة", notif_important_title: "⭐ مهمة مهمة", notif_delegate_title: "👥 مهمة مفوّضة", notif_cancelled_title: "🚫 مهمة ملغية", notif_missed_important_title: "⭐ مهمة مهمة فائتة", notif_missed_delegate_title: "👥 مهمة مفوّضة فائتة", notif_missed_cancelled_title: "🚫 مهمة ملغية فائتة", nav_notifs: "الإشعارات", title_notifs: "مركز الإشعارات 🔔", notif_c_desc: "الإشعارات الفائتة والقادمة خلال 24 ساعة (قبل وبعد الآن).", notif_c_all: "الكل", notif_c_missed: "فائتة", notif_c_upcoming: "قادمة", notif_c_mark_all: "تحديد الكل كمقروء", notif_c_delete_all: "حذف الكل", notif_c_confirm_delete: "حذف كل الإشعارات المعروضة؟ (المهام نفسها لن تتأثر)", notif_c_empty: "لا توجد إشعارات فائتة أو قادمة خلال 24 ساعة 🎉", notif_c_mark_read: "تحديد كمقروء", notif_c_mark_unread: "تحديد كغير مقروء", notif_c_delete: "حذف الإشعار", notif_c_sub_due: "اشتراك", notif_c_today: "اليوم", notif_c_tomorrow: "غداً", notif_c_yesterday: "أمس", notif_c_pom_running: "جلسة التركيز شغالة", notif_c_pom_ends: "تنتهي الساعة", notif_c_pom_ended: "انتهت جلسة التركيز", notif_c_sub_body: "موعد الدفع", notif_c_in: "بعد", notif_c_ago: "منذ", notif_c_h: "س", notif_c_m: "د", wr_text_tool: "كتابة نص بالكيبورد (اضغط على الورقة، واسحب المربع لنقله)", wr_mic: "إملاء صوتي (تحويل الكلام إلى نص)", wr_done: "تم", wr_text_ph: "اكتب هنا... (الروابط تصبح قابلة للضغط تلقائياً)", wr_dict_lang: "لغة الإملاء الصوتي", wr_link: "إضافة رابط", wr_link_title: "إضافة رابط", wr_link_text_ph: "نص الرابط (اختياري)", wr_link_add: "إضافة", wr_cancel: "إلغاء", wr_link_invalid: "اكتب رابطاً صحيحاً يبدأ بـ http أو https", wr_mic_unsupported: "الإملاء الصوتي غير مدعوم في هذا المتصفح (جرّب Chrome)", wr_mic_denied: "اسمح للمتصفح باستخدام الميكروفون لتفعيل الإملاء", wr_mic_network: "تعذّر الاتصال بخدمة التعرف على الكلام", wr_listening: "🎙️ جارٍ الاستماع...", wr_hl: "قلم مظلّل (هايلايت)", wr_shape: "أشكال (اسحب لرسم الشكل)", wr_shape_line: "خط مستقيم", wr_shape_arrow: "سهم", wr_shape_rect: "مستطيل", wr_shape_ellipse: "دائرة / بيضاوي", wr_select: "التحديد بالرسم: ارسم حلقة حول ما تريد تحديده بقلمك أو إصبعك. تُحدَّد الخطوط التي نصفها أو أكثر داخل الحلقة. التحريك: اسحب من داخل الإطار المنقّط. وبه 4 مقابض في الزوايا، اسحب أحدها لتكبير ما حددته أو تصغيره بنسبة واحدة.", wr_del_sel: "حذف المحدد", wr_zoom_in: "تكبير", wr_zoom_out: "تصغير", wr_zoom_reset: "الحجم الأصلي 100%", wr_export: "تصدير PDF (بالنص والروابط)", wr_exporting: "جارٍ تجهيز PDF...", wr_exported: "تم تصدير PDF ✓", wr_export_failed: "تعذّر تصدير PDF", wr_export_limit: "أول 60 صفحة فقط", wr_search_ph: "ابحث في عناوين اللوحات ونصوصها...", wr_no_results: "لا توجد لوحات مطابقة للبحث.", wr_sync_login: "☁️ سجّل الدخول لمزامنة لوحاتك", wr_sync_ok: "☁️ متزامنة مع حسابك", wr_sync_ing: "☁️ جارٍ المزامنة...", wr_sync_err: "⚠️ تعذّرت المزامنة", wr_sync_err_hint: "تأكد من الاتصال بالإنترنت ومن أن قواعد Firestore تسمح بالمسارين users/{uid}/writingBoards و users/{uid}/writingParts", wr_updated_remote: "تم تحديث اللوحة من جهاز آخر", wr_logout_unsynced: "{n} لوحات لم تتزامن بعد وستُفقد عند تسجيل الخروج. هل تريد المتابعة؟", wr_ts_down: "تصغير حجم الخط", wr_ts_up: "تكبير حجم الخط", wr_ts_label: "حجم الخط الحالي (يطبَّق قبل الكتابة وأثناءها وعلى النص المحدد)", wr_hint_select: "التحديد بالرسم: ارسم حلقة حول ما تريد تحديده بقلمك أو إصبعك. تُحدَّد الخطوط التي نصفها أو أكثر داخل الحلقة.\nالتحريك: اسحب من داخل الإطار المنقّط. وبه 4 مقابض في الزوايا، اسحب أحدها لتكبير ما حددته أو تصغيره بنسبة واحدة.", wr_quota: "المساحة المستخدمة للوحات في السحابة: {used} (≈ {pct}% من 1 جيجا المجانية)", wr_nav: "لوحة الكتابة", wr_title_h: "لوحة الكتابة ✍️", wr_desc: "اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز وتتزامن مع حسابك عند تسجيل الدخول.", wr_new: "لوحة جديدة", wr_untitled: "لوحة بدون عنوان", wr_empty: "لا توجد لوحات بعد. اضغط «لوحة جديدة» وابدأ الكتابة.", wr_delete: "حذف اللوحة", wr_confirm_delete: "حذف هذه اللوحة نهائياً؟", wr_back: "رجوع (حفظ تلقائي)", wr_title_ph: "عنوان اللوحة...", wr_undo: "تراجع", wr_redo: "إعادة", wr_pen: "قلم", wr_eraser: "ممحاة (تمسح الخط كله)", wr_color: "لون القلم", wr_thin: "رفيع", wr_med: "وسط", wr_thick: "سميك", wr_mode_write: "الإصبع يكتب", wr_mode_scroll: "الإصبع يمرّر", wr_mode_hint: "بدّل بين الكتابة بالإصبع وتمرير الورقة بالإصبع (إصبعان يمرّران دائماً)", wr_down: "انزل للأسفل", wr_saving: "جارٍ الحفظ...", wr_saved: "تم الحفظ ✓", wr_unavailable: "تعذّر حفظ اللوحات على هذا المتصفح (التخزين المحلي غير متاح).", notif_test_btn: "إرسال إشعار تجريبي", notif_test_title: "🔔 إشعار تجريبي", notif_test_body: "لو شايف الرسالة دي، الإشعارات شغالة على جهازك.",
         nav_health: "الوزن والسعرات", title_health: "الوزن والسعرات ⚖️", w_title: "متابعة الوزن", w_kg: "الوزن (كجم)", w_add: "إضافة وزن", w_goal_title: "🎯 الهدف", w_target: "الوزن المستهدف (كجم)", w_target_date: "تاريخ الوصول للهدف", w_save_goal: "حفظ الهدف", c_title: "🔥 السعرات الحرارية", c_goal: "الهدف اليومي (سعر)", c_desc: "اسم الوجبة / التمرين", c_cal: "السعرات", c_in: "تناولت", c_out: "حرقت", c_add: "إضافة",
         q_time: "التوقيت", fs_label: "حجم الخط داخل التطبيق:", fs_small: "صغير", fs_medium: "متوسط (الافتراضي)", fs_large: "كبير", fs_xlarge: "كبير جداً", dict_ar: "عربي",
         ph_title: "العنوان...", ph_title_plain: "العنوان", ph_phone_opt: "رقم الهاتف (اختياري)...", ph_desc: "الوصف", ph_amount: "المبلغ", ph_category: "التصنيف", ph_email: "البريد الإلكتروني", ph_password: "كلمة المرور (6 حروف على الأقل)", ph_qd_title: "عنوان الفكرة (اختياري)...",
@@ -276,7 +276,7 @@ notif_enable: "تفعيل الإشعارات", notif_enabled_msg: "الإشعا�
 cat_subscriptions: "📱 Subscriptions", nav_subs: "Subscriptions", title_subs: "Subscriptions 📱", sub_active: "Active", sub_archive: "Archive", sub_add: "Add subscription", sub_name: "Subscription name", sub_freq: "Frequency", sub_daily: "Daily", sub_weekly: "Weekly", sub_monthly: "Monthly", sub_yearly: "Yearly", sub_count: "Number of cycles", sub_total: "Total amount", sub_per_cycle: "Amount per cycle", sub_start: "Start date", sub_end: "End date", sub_next: "Next payment", sub_notes: "Notes", sub_save: "Save", sub_confirm_pay: "Confirm payment", sub_paid: "Paid", sub_edit: "Edit", sub_delete: "Delete", sub_empty: "No active subscriptions.", sub_archive_empty: "No archived subscriptions.", sub_export_pdf: "Export PDF", sub_export_excel: "Export Excel", sub_cycles_paid: "cycles paid",
         nav_updates: "Updates", title_updates: "App Update Log 🔄",
 pareto_title: "The 80/20 Rule 📌", pareto_cumulative: "Cumulative %", pareto_stuck_title: "📌 80/20: Projects eating your time", pareto_stuck_none: "No old stuck projects, nice!",
-notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_important_title: "⭐ Important task", notif_delegate_title: "👥 Delegated task", notif_cancelled_title: "🚫 Cancelled task", notif_missed_important_title: "⭐ Missed important task", notif_missed_delegate_title: "👥 Missed delegated task", notif_missed_cancelled_title: "🚫 Missed cancelled task", nav_notifs: "Notifications", title_notifs: "Notification Center 🔔", notif_c_desc: "Missed and upcoming alerts within 24 hours (before and after now).", notif_c_all: "All", notif_c_missed: "Missed", notif_c_upcoming: "Upcoming", notif_c_mark_all: "Mark all as read", notif_c_delete_all: "Delete all", notif_c_confirm_delete: "Delete all shown notifications? (the tasks themselves are not affected)", notif_c_empty: "No missed or upcoming notifications within 24 hours 🎉", notif_c_mark_read: "Mark as read", notif_c_mark_unread: "Mark as unread", notif_c_delete: "Delete notification", notif_c_sub_due: "Subscription", notif_c_today: "Today", notif_c_tomorrow: "Tomorrow", notif_c_yesterday: "Yesterday", notif_c_pom_running: "Focus session running", notif_c_pom_ends: "Ends at", notif_c_pom_ended: "Focus session finished", notif_c_sub_body: "Payment due", notif_c_in: "in", notif_c_ago: "ago", notif_c_h: "h", notif_c_m: "min", wr_text_tool: "Type text (tap the paper; drag a box to move it)", wr_mic: "Voice dictation (speech to text)", wr_done: "Done", wr_text_ph: "Type here... (links become clickable automatically)", wr_dict_lang: "Dictation language", wr_link: "Add link", wr_link_title: "Add link", wr_link_text_ph: "Link text (optional)", wr_link_add: "Add", wr_cancel: "Cancel", wr_link_invalid: "Enter a valid link starting with http or https", wr_mic_unsupported: "Voice dictation is not supported in this browser (try Chrome)", wr_mic_denied: "Allow microphone access to use dictation", wr_mic_network: "Couldn't reach the speech recognition service", wr_listening: "🎙️ Listening...", wr_hl: "Highlighter", wr_shape: "Shapes (drag to draw)", wr_shape_line: "Straight line", wr_shape_arrow: "Arrow", wr_shape_rect: "Rectangle", wr_shape_ellipse: "Circle / ellipse", wr_select: "Select & move (draw a loop around items, or tap one)", wr_del_sel: "Delete selected", wr_zoom_in: "Zoom in", wr_zoom_out: "Zoom out", wr_zoom_reset: "Reset to 100%", wr_export: "Export PDF (keeps text & links)", wr_exporting: "Preparing PDF...", wr_exported: "PDF exported ✓", wr_export_failed: "PDF export failed", wr_export_limit: "first 60 pages only", wr_search_ph: "Search sheet titles and text...", wr_no_results: "No sheets match your search.", wr_sync_login: "☁️ Log in to sync your sheets", wr_sync_ok: "☁️ Synced with your account", wr_sync_ing: "☁️ Syncing...", wr_sync_err: "⚠️ Sync failed", wr_sync_err_hint: "Check your connection and that your Firestore rules allow users/{uid}/writingBoards and users/{uid}/writingParts", wr_updated_remote: "Sheet updated from another device", wr_logout_unsynced: "{n} sheets are not synced yet and will be lost on logout. Continue?", wr_nav: "Writing Board", wr_title_h: "Writing Board ✍️", wr_desc: "Write with a pen or your finger on an endless ruled sheet. Your sheets are saved on this device and sync with your account when you log in.", wr_new: "New sheet", wr_untitled: "Untitled sheet", wr_empty: "No sheets yet. Tap “New sheet” and start writing.", wr_delete: "Delete sheet", wr_confirm_delete: "Delete this sheet permanently?", wr_back: "Back (auto-saved)", wr_title_ph: "Sheet title...", wr_undo: "Undo", wr_redo: "Redo", wr_pen: "Pen", wr_eraser: "Eraser (removes the whole stroke)", wr_color: "Pen color", wr_thin: "Thin", wr_med: "Medium", wr_thick: "Thick", wr_mode_write: "Finger writes", wr_mode_scroll: "Finger scrolls", wr_mode_hint: "Switch between writing with one finger and scrolling with one finger (two fingers always scroll)", wr_down: "Scroll down", wr_saving: "Saving...", wr_saved: "Saved ✓", wr_unavailable: "Sheets can't be saved in this browser (local storage unavailable).", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
+notif_enable: "Enable notifications", notif_enabled_msg: "Notifications are on ✅", notif_denied_msg: "Notification permission was denied", notif_urgent_title: "⏰ Urgent task", notif_sub_title: "📱 Subscription payment due", notif_habit_title: "✅ Habit tracker", notif_habit_body: "You still have unchecked habits today", notif_pomodoro_title: "⏱️ Session finished", notif_missed_urgent_title: "⏰ Missed urgent task", notif_missed_sub_title: "📱 Overdue subscription payment", notif_missed_summary_title: "🔔 Missed alerts", notif_important_title: "⭐ Important task", notif_delegate_title: "👥 Delegated task", notif_cancelled_title: "🚫 Cancelled task", notif_missed_important_title: "⭐ Missed important task", notif_missed_delegate_title: "👥 Missed delegated task", notif_missed_cancelled_title: "🚫 Missed cancelled task", nav_notifs: "Notifications", title_notifs: "Notification Center 🔔", notif_c_desc: "Missed and upcoming alerts within 24 hours (before and after now).", notif_c_all: "All", notif_c_missed: "Missed", notif_c_upcoming: "Upcoming", notif_c_mark_all: "Mark all as read", notif_c_delete_all: "Delete all", notif_c_confirm_delete: "Delete all shown notifications? (the tasks themselves are not affected)", notif_c_empty: "No missed or upcoming notifications within 24 hours 🎉", notif_c_mark_read: "Mark as read", notif_c_mark_unread: "Mark as unread", notif_c_delete: "Delete notification", notif_c_sub_due: "Subscription", notif_c_today: "Today", notif_c_tomorrow: "Tomorrow", notif_c_yesterday: "Yesterday", notif_c_pom_running: "Focus session running", notif_c_pom_ends: "Ends at", notif_c_pom_ended: "Focus session finished", notif_c_sub_body: "Payment due", notif_c_in: "in", notif_c_ago: "ago", notif_c_h: "h", notif_c_m: "min", wr_text_tool: "Type text (tap the paper; drag a box to move it)", wr_mic: "Voice dictation (speech to text)", wr_done: "Done", wr_text_ph: "Type here... (links become clickable automatically)", wr_dict_lang: "Dictation language", wr_link: "Add link", wr_link_title: "Add link", wr_link_text_ph: "Link text (optional)", wr_link_add: "Add", wr_cancel: "Cancel", wr_link_invalid: "Enter a valid link starting with http or https", wr_mic_unsupported: "Voice dictation is not supported in this browser (try Chrome)", wr_mic_denied: "Allow microphone access to use dictation", wr_mic_network: "Couldn't reach the speech recognition service", wr_listening: "🎙️ Listening...", wr_hl: "Highlighter", wr_shape: "Shapes (drag to draw)", wr_shape_line: "Straight line", wr_shape_arrow: "Arrow", wr_shape_rect: "Rectangle", wr_shape_ellipse: "Circle / ellipse", wr_select: "Select by drawing: draw a loop around what you want with your pen or finger. Strokes that are half or more inside the loop get selected. Move: drag from inside the dotted frame. The 4 corner handles scale everything you selected up or down proportionally.", wr_del_sel: "Delete selected", wr_zoom_in: "Zoom in", wr_zoom_out: "Zoom out", wr_zoom_reset: "Reset to 100%", wr_export: "Export PDF (keeps text & links)", wr_exporting: "Preparing PDF...", wr_exported: "PDF exported ✓", wr_export_failed: "PDF export failed", wr_export_limit: "first 60 pages only", wr_search_ph: "Search sheet titles and text...", wr_no_results: "No sheets match your search.", wr_sync_login: "☁️ Log in to sync your sheets", wr_sync_ok: "☁️ Synced with your account", wr_sync_ing: "☁️ Syncing...", wr_sync_err: "⚠️ Sync failed", wr_sync_err_hint: "Check your connection and that your Firestore rules allow users/{uid}/writingBoards and users/{uid}/writingParts", wr_updated_remote: "Sheet updated from another device", wr_logout_unsynced: "{n} sheets are not synced yet and will be lost on logout. Continue?", wr_ts_down: "Smaller text", wr_ts_up: "Larger text", wr_ts_label: "Current text size (applies before typing, while typing, and to selected text)", wr_hint_select: "Select by drawing: draw a loop around what you want with your pen or finger. Strokes that are half or more inside the loop get selected.\nMove: drag from inside the dotted frame. The 4 corner handles scale everything you selected up or down proportionally.", wr_quota: "Cloud space used by sheets: {used} (≈ {pct}% of the free 1 GB)", wr_nav: "Writing Board", wr_title_h: "Writing Board ✍️", wr_desc: "Write with a pen or your finger on an endless ruled sheet. Your sheets are saved on this device and sync with your account when you log in.", wr_new: "New sheet", wr_untitled: "Untitled sheet", wr_empty: "No sheets yet. Tap “New sheet” and start writing.", wr_delete: "Delete sheet", wr_confirm_delete: "Delete this sheet permanently?", wr_back: "Back (auto-saved)", wr_title_ph: "Sheet title...", wr_undo: "Undo", wr_redo: "Redo", wr_pen: "Pen", wr_eraser: "Eraser (removes the whole stroke)", wr_color: "Pen color", wr_thin: "Thin", wr_med: "Medium", wr_thick: "Thick", wr_mode_write: "Finger writes", wr_mode_scroll: "Finger scrolls", wr_mode_hint: "Switch between writing with one finger and scrolling with one finger (two fingers always scroll)", wr_down: "Scroll down", wr_saving: "Saving...", wr_saved: "Saved ✓", wr_unavailable: "Sheets can't be saved in this browser (local storage unavailable).", notif_test_btn: "Send test notification", notif_test_title: "🔔 Test notification", notif_test_body: "If you can see this, notifications work on your device.",
         nav_health: "Weight & Calories", title_health: "Weight & Calories ⚖️", w_title: "Weight Tracker", w_kg: "Weight (kg)", w_add: "Add weight", w_goal_title: "🎯 Goal", w_target: "Target weight (kg)", w_target_date: "Goal date", w_save_goal: "Save goal", c_title: "🔥 Calories", c_goal: "Daily goal (kcal)", c_desc: "Meal / workout name", c_cal: "Calories", c_in: "Ate", c_out: "Burned", c_add: "Add",
         q_time: "Time", fs_label: "In-app font size:", fs_small: "Small", fs_medium: "Medium (default)", fs_large: "Large", fs_xlarge: "Extra large", dict_ar: "Arabic",
         ph_title: "Title...", ph_title_plain: "Title", ph_phone_opt: "Phone (optional)...", ph_desc: "Description", ph_amount: "Amount", ph_category: "Category", ph_email: "Email", ph_password: "Password (at least 6 characters)", ph_qd_title: "Idea title (optional)...",
@@ -3272,6 +3272,9 @@ const WR_EXTRA = 1500;         // مساحة إضافية تحت آخر كتاب
 const WR_ERASER_R = 14;        // نصف قطر الممحاة
 const WR_TEXT_SIZES = [20, 26, 36]; // أحجام النص (صغير/وسط/كبير)
 const WR_ZOOM_MIN = 0.4, WR_ZOOM_MAX = 3;
+const WR_TEXT_MIN = 8, WR_TEXT_MAX = 200;   // أصغر وأكبر حجم للنص (بتتحكم فيه الأزرار أو مقابض التحديد)
+const wrLH = s => Math.max(WR_LINE_GAP, Math.round(s * 1.25)); // ارتفاع سطر النص: 44 للأحجام العادية وبيكبر مع الخط الكبير
+const wrClampTs = v => Math.max(WR_TEXT_MIN, Math.min(WR_TEXT_MAX, Math.round(v * 10) / 10));
 const WR_DB_NAME = 'planner_writing';
 // روابط: [نص](https://...) أو رابط مباشر http(s):// أو www.
 const WR_LINK_RE = /\[([^\]\n]{1,200})\]\((https?:\/\/[^\s)]+)\)|((?:https?:\/\/|www\.)[^\s<>"'`]+)/gi;
@@ -3280,12 +3283,12 @@ const wr = {
     open: false, id: null, title: '', created: 0, persisted: false, strokes: [], texts: [], undo: [], redo: [],
     tool: 'pen', shape: 'line', color: '#111827', size: 3, tsize: 26, fingerWrites: true, penSeen: false, dictLang: (currentLang === 'ar' ? 'ar-EG' : 'en-US'),
     zoom: 1, base: 1, cur: null, erasing: null, tap: null, edit: null, dict: null, dlgOpen: false, textNodes: new Map(), hDirty: false,
-    sel: null, selDrag: null, lasso: null,
+    sel: null, selDrag: null, selScale: null, lasso: null,
     activeId: null, touches: new Map(), panning: false, lastCX: 0, lastCY: 0, lastDist: 0, lastT: 0, vel: 0, momentum: 0,
     scale: 1, offX: 0, cssW: 0, cssH: 0, dpr: 1, raf: 0, maxY: 0, eraserPos: null,
     dirty: false, saveTimer: 0, flashTimer: 0, bound: false, meta: [], metaLoaded: false, metaLoading: false, query: '', sync: 'off', exporting: false
 };
-try { const p = JSON.parse(localStorage.getItem('fp_wr_prefs') || 'null'); if (p) { if (p.color) wr.color = p.color; if (p.size) wr.size = p.size; if (['pen', 'highlighter', 'shape', 'eraser'].includes(p.tool)) wr.tool = p.tool; if (['line', 'arrow', 'rect', 'ellipse'].includes(p.shape)) wr.shape = p.shape; if (WR_TEXT_SIZES.includes(p.tsize)) wr.tsize = p.tsize; if (p.dictLang) wr.dictLang = p.dictLang; if (typeof p.fingerWrites === 'boolean') wr.fingerWrites = p.fingerWrites; if (p.zoom >= WR_ZOOM_MIN && p.zoom <= WR_ZOOM_MAX) wr.zoom = p.zoom; } } catch (e) {}
+try { const p = JSON.parse(localStorage.getItem('fp_wr_prefs') || 'null'); if (p) { if (p.color) wr.color = p.color; if (p.size) wr.size = p.size; if (['pen', 'highlighter', 'shape', 'eraser'].includes(p.tool)) wr.tool = p.tool; if (['line', 'arrow', 'rect', 'ellipse'].includes(p.shape)) wr.shape = p.shape; if (p.tsize >= WR_TEXT_MIN && p.tsize <= WR_TEXT_MAX) wr.tsize = p.tsize; if (p.dictLang) wr.dictLang = p.dictLang; if (typeof p.fingerWrites === 'boolean') wr.fingerWrites = p.fingerWrites; if (p.zoom >= WR_ZOOM_MIN && p.zoom <= WR_ZOOM_MAX) wr.zoom = p.zoom; } } catch (e) {}
 function wrSavePrefs() { try { localStorage.setItem('fp_wr_prefs', JSON.stringify({ color: wr.color, size: wr.size, tool: wr.tool, shape: wr.shape, tsize: wr.tsize, dictLang: wr.dictLang, fingerWrites: wr.fingerWrites, zoom: Math.round(wr.zoom * 100) / 100 })); } catch (e) {} }
 
 // ---------- التخزين (IndexedDB) ----------
@@ -3351,7 +3354,26 @@ function wrPath(s) {
     s._p = p; return p;
 }
 const wrHlWidth = size => size <= 1.6 ? 10 : size <= 3 ? 16 : 26; // سماكة القلم المظلّل
-function wrMakeStroke(o) { const s = { c: o.c, w: o.w, a: o.a instanceof Int32Array ? o.a : Int32Array.from(o.a) }; if (o.k) s.k = 1; if (o.h) s.h = 1; return wrStrokeBBox(s); }
+// تبسيط الخط الحر (Ramer–Douglas–Peucker): بيشيل النقط الزيادة من غير ما الشكل يتغير ويصغّر حجم البيانات كتير
+function wrSimplify(a, eps) {
+    const n = a.length / 2; if (n <= 2) return a;
+    const keep = new Uint8Array(n); keep[0] = keep[n - 1] = 1; const stack = [[0, n - 1]], e2 = eps * eps;
+    while (stack.length) {
+        const [s, e] = stack.pop(); let maxD = 0, idx = -1;
+        const ax = a[2 * s], ay = a[2 * s + 1], bx = a[2 * e], by = a[2 * e + 1];
+        for (let i = s + 1; i < e; i++) { const d = wrSegDist2(a[2 * i], a[2 * i + 1], ax, ay, bx, by); if (d > maxD) { maxD = d; idx = i; } }
+        if (maxD > e2 && idx > 0) { keep[idx] = 1; stack.push([s, idx], [idx, e]); }
+    }
+    const out = []; for (let i = 0; i < n; i++) if (keep[i]) out.push(a[2 * i], a[2 * i + 1]);
+    return Int32Array.from(out);
+}
+function wrMakeStroke(o) {
+    let a = o.a instanceof Int32Array ? o.a : Int32Array.from(o.a);
+    const s = { c: o.c, w: o.w, a }; if (o.k) s.k = 1; if (o.h) s.h = 1;
+    if (!o.k && !o.sm && a.length > 8) s.a = wrSimplify(a, 3); // الخطوط القديمة بتتبسّط مرة واحدة وتتحفظ مصغّرة
+    if (!o.k) s.sm = 1;
+    return wrStrokeBBox(s);
+}
 // نقاط الأشكال (خط مستقيم / سهم / مستطيل / بيضاوي)
 function wrShapePoints(type, x0, y0, x1, y1) {
     const R = v => Math.round(v * 10); let pts = [];
@@ -3390,7 +3412,7 @@ function wrSegments(text) {
 const wrPlainText = t => wrSegments(t).map(g => g.s).join('');
 const wrIsRtl = t => /[\u0590-\u08FF]/.test((t.match(/[A-Za-z\u0590-\u08FF]/) || [''])[0]);
 const wrSnapTop = y => WR_TOP_MARGIN + Math.max(0, Math.floor((y - WR_TOP_MARGIN) / WR_LINE_GAP)) * WR_LINE_GAP + 6;
-function wrEstimateH(t) { let n = 0; String(t.text).split('\n').forEach(l => { n += Math.max(1, Math.ceil(l.length * t.s * 0.55 / t.w)); }); return n * WR_LINE_GAP; }
+function wrEstimateH(t) { let n = 0; String(t.text).split('\n').forEach(l => { n += Math.max(1, Math.ceil(l.length * t.s * 0.55 / t.w)); }); return n * wrLH(t.s); }
 function wrTextBox(t) { const h = t._h || wrEstimateH(t), x0 = t.x + (t._tx || 0), w = t._tw || t.w; return [x0, t.y, x0 + w, t.y + h]; }
 function wrTextAt(px, py) {
     for (let i = wr.texts.length - 1; i >= 0; i--) { const b = wrTextBox(wr.texts[i]); if (px >= b[0] - 8 && px <= b[2] + 8 && py >= b[1] - 4 && py <= b[3] + 4) return wr.texts[i]; }
@@ -3497,19 +3519,21 @@ function wrRenderTexts(top, y0, y1) {
     const seen = new Set(), sc = wr.scale, sel = wr.sel;
     for (const it of wr.texts) {
         if (wr.edit && wr.edit.item === it) continue; // وقت التعديل بيظهر مربع الكتابة بدله
-        const mv = sel && sel.tset.has(it), ox = mv ? sel.dx : 0, oy = mv ? sel.dy : 0, h = it._h || wrEstimateH(it);
-        if (it.y + oy + h < y0 - 60 || it.y + oy > y1 + 60) continue;
+        const mv = sel && sel.tset.has(it), kk = (mv && sel.k) ? sel.k : 1, gx = mv ? (kk !== 1 ? sel.ax + (it.x - sel.ax) * kk : it.x) + sel.dx : it.x, gy = mv ? (kk !== 1 ? sel.ay + (it.y - sel.ay) * kk : it.y) + sel.dy : it.y, gw = it.w * kk, gs = it.s * kk, h = (it._h || wrEstimateH(it)) * kk;
+        if (gy + h < y0 - 60 || gy > y1 + 60) continue;
         let el = wr.textNodes.get(it.id);
         if (!el) { el = document.createElement('div'); el.className = 'wr-text'; el.setAttribute('dir', 'auto'); layer.appendChild(el); wr.textNodes.set(it.id, el); el._txt = null; el._sig = ''; }
         if (el._txt !== it.text) { wrFillText(el, it); el._txt = it.text; el._sig = ''; }
-        const sig = it.s + '|' + it.w + '|' + sc;
-        el.style.width = (it.w * sc) + 'px'; el.style.fontSize = (it.s * sc) + 'px'; el.style.lineHeight = (WR_LINE_GAP * sc) + 'px'; el.style.color = it.c;
-        el.style.transform = `translate(${wr.offX + (it.x + ox) * sc}px, ${(it.y + oy) * sc - top}px)`;
+        const sig = gs + '|' + gw + '|' + sc;
+        el.style.width = (gw * sc) + 'px'; el.style.fontSize = (gs * sc) + 'px'; el.style.lineHeight = (wrLH(gs) * sc) + 'px'; el.style.color = it.c;
+        el.style.transform = `translate(${wr.offX + gx * sc}px, ${gy * sc - top}px)`;
         if (el._sig !== sig) { // قياس الحجم الفعلي مرة واحدة لما يتغير النص أو الحجم
             el._sig = sig;
-            const hh = el.offsetHeight / sc; if (hh) it._h = hh;
-            try { const rg = document.createRange(); rg.selectNodeContents(el); const rr = rg.getBoundingClientRect(), er = el.getBoundingClientRect(); if (rr.width) { it._tx = (rr.left - er.left) / sc; it._tw = rr.width / sc; } } catch (e) {}
-            wr.hDirty = true;
+            if (kk === 1) {
+                const hh = el.offsetHeight / sc; if (hh) it._h = hh;
+                try { const rg = document.createRange(); rg.selectNodeContents(el); const rr = rg.getBoundingClientRect(), er = el.getBoundingClientRect(); if (rr.width) { it._tx = (rr.left - er.left) / sc; it._tw = rr.width / sc; } } catch (e) {}
+                wr.hDirty = true;
+            }
         }
         seen.add(it.id);
     }
@@ -3518,7 +3542,7 @@ function wrRenderTexts(top, y0, y1) {
 }
 function wrPlaceTa(top) {
     const ed = wr.edit; if (!ed) return; const it = ed.item, ta = ed.ta, sc = wr.scale;
-    ta.style.width = (it.w * sc) + 'px'; ta.style.fontSize = (it.s * sc) + 'px'; ta.style.lineHeight = (WR_LINE_GAP * sc) + 'px'; ta.style.color = it.c;
+    ta.style.width = (it.w * sc) + 'px'; ta.style.fontSize = (it.s * sc) + 'px'; ta.style.lineHeight = (wrLH(it.s) * sc) + 'px'; ta.style.color = it.c;
     ta.style.transform = `translate(${wr.offX + it.x * sc}px, ${it.y * sc - top}px)`;
 }
 function wrRender() {
@@ -3537,15 +3561,23 @@ function wrRender() {
     ctx.stroke();
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     for (const st of wr.strokes) {
-        const b = st.bb, mv = sel && sel.sset.has(st), oy = mv ? sel.dy : 0;
-        if (b[3] + oy < y0 || b[1] + oy > y1) continue;
-        if (mv && (sel.dx || sel.dy)) { ctx.save(); ctx.translate(sel.dx, sel.dy); wrDrawStroke(ctx, st); ctx.restore(); } else wrDrawStroke(ctx, st);
+        const b = st.bb, mv = sel && sel.sset.has(st), oy = mv ? sel.dy : 0, scaling = mv && sel.k !== 1;
+        if (!scaling && (b[3] + oy < y0 || b[1] + oy > y1)) continue;
+        if (mv && (sel.dx || sel.dy || scaling)) { ctx.save(); ctx.translate(sel.dx, sel.dy); if (scaling) { ctx.translate(sel.ax, sel.ay); ctx.scale(sel.k, sel.k); ctx.translate(-sel.ax, -sel.ay); } wrDrawStroke(ctx, st); ctx.restore(); } else wrDrawStroke(ctx, st);
     }
     if (wr.cur && wr.cur.a.length >= 2) { wr.cur._p = null; wrDrawStroke(ctx, wr.cur); }
     if (wr.tool === 'eraser' && wr.eraserPos) { ctx.strokeStyle = 'rgba(100,100,100,0.8)'; ctx.lineWidth = 1 / s; ctx.beginPath(); ctx.arc(wr.eraserPos[0], wr.eraserPos[1], WR_ERASER_R, 0, Math.PI * 2); ctx.stroke(); }
     if (sel) { // مربع التحديد
         const b = wrSelBox();
-        if (b) { ctx.save(); ctx.translate(sel.dx, sel.dy); ctx.fillStyle = 'rgba(37,99,235,0.07)'; ctx.fillRect(b[0] - 4, b[1] - 4, b[2] - b[0] + 8, b[3] - b[1] + 8); ctx.setLineDash([6 / s, 4 / s]); ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5 / s; ctx.strokeRect(b[0] - 4, b[1] - 4, b[2] - b[0] + 8, b[3] - b[1] + 8); ctx.restore(); }
+        if (b) {
+            const k = sel.k || 1, X = v => k !== 1 ? sel.ax + (v - sel.ax) * k : v, Y = v => k !== 1 ? sel.ay + (v - sel.ay) * k : v;
+            const bx0 = X(b[0]) + sel.dx - 4, by0 = Y(b[1]) + sel.dy - 4, bx1 = X(b[2]) + sel.dx + 4, by1 = Y(b[3]) + sel.dy + 4;
+            ctx.save(); ctx.fillStyle = 'rgba(37,99,235,0.07)'; ctx.fillRect(bx0, by0, bx1 - bx0, by1 - by0);
+            ctx.setLineDash([6 / s, 4 / s]); ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5 / s; ctx.strokeRect(bx0, by0, bx1 - bx0, by1 - by0); ctx.setLineDash([]);
+            const hs = 10 / s; ctx.fillStyle = '#ffffff'; ctx.lineWidth = 2 / s; // مقابض الأركان الأربعة
+            [[bx0, by0], [bx1, by0], [bx1, by1], [bx0, by1]].forEach(c => { ctx.beginPath(); ctx.rect(c[0] - hs / 2, c[1] - hs / 2, hs, hs); ctx.fill(); ctx.stroke(); });
+            ctx.restore();
+        }
     }
     if (wr.lasso && wr.lasso.length > 1) { ctx.save(); ctx.setLineDash([5 / s, 4 / s]); ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5 / s; ctx.beginPath(); ctx.moveTo(wr.lasso[0][0], wr.lasso[0][1]); for (let i = 1; i < wr.lasso.length; i++) ctx.lineTo(wr.lasso[i][0], wr.lasso[i][1]); ctx.closePath(); ctx.fillStyle = 'rgba(37,99,235,0.06)'; ctx.fill(); ctx.stroke(); ctx.restore(); }
     wrRenderTexts(top, y0, y1);
@@ -3560,10 +3592,10 @@ function wrSelBox() {
     return isFinite(x0) ? [x0, y0, x1, y1] : null;
 }
 function wrMakeSel(strokes, texts) {
-    wr.sel = (strokes.length || texts.length) ? { strokes, texts, sset: new Set(strokes), tset: new Set(texts), dx: 0, dy: 0 } : null;
+    wr.sel = (strokes.length || texts.length) ? { strokes, texts, sset: new Set(strokes), tset: new Set(texts), dx: 0, dy: 0, k: 1, ax: 0, ay: 0 } : null;
     wrSyncToolbar(); wrRequestRender();
 }
-function wrClearSel() { if (wr.sel || wr.lasso || wr.selDrag) { wr.sel = null; wr.lasso = null; wr.selDrag = null; wrSyncToolbar(); wrRequestRender(); } }
+function wrClearSel() { if (wr.sel || wr.lasso || wr.selDrag || wr.selScale) { wr.sel = null; wr.lasso = null; wr.selDrag = null; wr.selScale = null; wrSyncToolbar(); wrRequestRender(); } }
 function wrPointInPoly(x, y, poly) { let inside = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const xi = poly[i][0], yi = poly[i][1], xj = poly[j][0], yj = poly[j][1]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) inside = !inside; } return inside; }
 function wrSegDist2(px, py, ax, ay, bx, by) {
     const dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy;
@@ -3588,13 +3620,43 @@ function wrSelectTap(p) {
     for (let i = wr.strokes.length - 1; i >= 0; i--) if (wrStrokeHit(wr.strokes[i], p[0], p[1], 12)) { wrMakeSel([wr.strokes[i]], []); return; }
     wrMakeSel([], []);
 }
+const WR_HANDLE_PX = 22; // نصف قطر منطقة لمس المقبض (px)
+function wrSelHandles() { // أركان الإطار المنقّط (إحداثيات منطقية)
+    const b = wrSelBox(); if (!b) return null; const p = 4;
+    return [[b[0] - p, b[1] - p], [b[2] + p, b[1] - p], [b[2] + p, b[3] + p], [b[0] - p, b[3] + p]];
+}
+function wrHandleAt(pt) {
+    const hs = wrSelHandles(); if (!hs) return -1; const r = WR_HANDLE_PX / wr.scale;
+    for (let i = 0; i < 4; i++) if (Math.hypot(pt[0] - hs[i][0], pt[1] - hs[i][1]) <= r) return i;
+    return -1;
+}
+// حدود نسبة التكبير/التصغير عشان الخطوط ما تخرجش برا الورقة والنص يفضل بين 8 و200
+function wrScaleLimits(sel, ax, ay) {
+    let kmin = 0.1, kmax = 12; const hs = wrSelHandles();
+    sel.texts.forEach(t => { kmin = Math.max(kmin, WR_TEXT_MIN / t.s); kmax = Math.min(kmax, WR_TEXT_MAX / t.s); });
+    sel.strokes.forEach(s => { kmax = Math.min(kmax, 80 / Math.max(s.w, 0.1)); });
+    hs.forEach(h => { const dx = h[0] - ax, dy = h[1] - ay; if (dx > 0) kmax = Math.min(kmax, (WR_LOGICAL_W - ax) / dx); else if (dx < 0) kmax = Math.min(kmax, ax / -dx); if (dy < 0) kmax = Math.min(kmax, ay / -dy); });
+    return [Math.min(kmin, kmax), Math.max(Math.min(kmax, 12), 1)];
+}
 function wrSelectDown(p) {
     const box = wrSelBox();
+    if (wr.sel) {
+        const hi = wrHandleAt(p);
+        if (hi >= 0) { // مقبض ركن: تكبير/تصغير بنسبة واحدة حوالين الركن المقابل
+            const hs = wrSelHandles(), opp = hs[(hi + 2) % 4], h = hs[hi], lim = wrScaleLimits(wr.sel, opp[0], opp[1]);
+            wr.selScale = { hi, ax: opp[0], ay: opp[1], hx: h[0], hy: h[1], kmin: lim[0], kmax: lim[1] };
+            wr.sel.ax = opp[0]; wr.sel.ay = opp[1]; wr.sel.k = 1; return;
+        }
+    }
     if (wr.sel && box && p[0] >= box[0] - 8 && p[0] <= box[2] + 8 && p[1] >= box[1] - 8 && p[1] <= box[3] + 8) { wr.selDrag = { sx: p[0], sy: p[1], moved: false }; return; }
     wr.sel = null; wr.lasso = [p]; wrSyncToolbar();
 }
 function wrSelectMove(p) {
-    if (wr.selDrag) {
+    if (wr.selScale) {
+        const d = wr.selScale, vx = d.hx - d.ax, vy = d.hy - d.ay, len2 = vx * vx + vy * vy;
+        let k = len2 ? ((p[0] - d.ax) * vx + (p[1] - d.ay) * vy) / len2 : 1; // إسقاط على قطر الإطار = تكبير متناسق
+        wr.sel.k = Math.max(d.kmin, Math.min(d.kmax, k));
+    } else if (wr.selDrag) {
         const d = wr.selDrag, box = wrSelBox(); let dx = p[0] - d.sx, dy = p[1] - d.sy;
         dx = Math.max(-box[0], Math.min(WR_LOGICAL_W - box[2], dx)); dy = Math.max(-box[1], dy);
         wr.sel.dx = dx; wr.sel.dy = dy; if (Math.hypot(dx, dy) > 1) d.moved = true;
@@ -3606,8 +3668,34 @@ function wrApplySelMove(strokes, texts, dx, dy) {
     strokes.forEach(s => { const a = s.a, b = new Int32Array(a.length); for (let i = 0; i < a.length; i++) b[i] = a[i] + (i % 2 ? ddy : ddx); s.a = b; s._p = null; wrStrokeBBox(s); });
     texts.forEach(t => { t.x += dx; t.y += dy; });
 }
+// تطبيق تغيير مجمّع (تكبير/تصغير/حجم نص) كعملية واحدة قابلة للتراجع
+function wrApplySnap(items, undoing) {
+    items.forEach(o => {
+        const v = undoing ? o.b : o.a;
+        if (o.k === 's') { o.s.a = v.a; o.s.w = v.w; o.s._p = null; wrStrokeBBox(o.s); }
+        else { o.it.x = v.x; o.it.y = v.y; o.it.w = v.w; o.it.s = v.s; o.it._h = 0; o.it._tw = 0; o.it._tx = 0; }
+    });
+}
+function wrScaleSelection(sel, ax, ay, k) {
+    const items = [];
+    sel.strokes.forEach(s => {
+        const a = new Int32Array(s.a.length);
+        for (let i = 0; i < a.length; i += 2) { a[i] = Math.round((ax + (s.a[i] / 10 - ax) * k) * 10); a[i + 1] = Math.round((ay + (s.a[i + 1] / 10 - ay) * k) * 10); }
+        items.push({ k: 's', s, b: { a: s.a, w: s.w }, a: { a, w: Math.max(0.5, Math.round(s.w * k * 10) / 10) } });
+    });
+    sel.texts.forEach(t => { // عرض المربع بيتكبّر بنفس النسبة، بس ما يعديش حافة الورقة (إلا لو النص نفسه محتاج)
+        const nx = Math.round((ax + (t.x - ax) * k) * 10) / 10, ny = Math.round((ay + (t.y - ay) * k) * 10) / 10, tw = t._tw || t.w;
+        const nw = Math.round(Math.min(t.w * k, Math.max(tw * k + 10, WR_LOGICAL_W - 4 - nx)) * 10) / 10;
+        items.push({ k: 't', it: t, b: { x: t.x, y: t.y, w: t.w, s: t.s }, a: { x: nx, y: ny, w: nw, s: wrClampTs(t.s * k) } });
+    });
+    wrApplySnap(items, false); wr.undo.push({ t: 'snap', items }); wr.redo = [];
+}
 function wrSelectUp() {
-    if (wr.selDrag) {
+    if (wr.selScale) {
+        const sel = wr.sel; wr.selScale = null;
+        if (sel && Math.abs(sel.k - 1) > 0.004) { wrScaleSelection(sel, sel.ax, sel.ay, sel.k); sel.k = 1; wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); }
+        else if (sel) sel.k = 1;
+    } else if (wr.selDrag) {
         const d = wr.selDrag, sel = wr.sel; wr.selDrag = null;
         if (sel && d.moved && (Math.abs(sel.dx) + Math.abs(sel.dy) > 0.5)) {
             wrApplySelMove(sel.strokes, sel.texts, sel.dx, sel.dy);
@@ -3657,7 +3745,7 @@ function wrPanEndMomentum() {
     const step = () => { sc.scrollTop -= v; v *= 0.95; if (Math.abs(v) > 0.3) wr.momentum = requestAnimationFrame(step); else wr.momentum = 0; };
     wr.momentum = requestAnimationFrame(step);
 }
-function wrCancelStroke() { wr.cur = null; wr.erasing = null; wr.tap = null; wr.selDrag = null; wr.lasso = null; wr.activeId = null; wrRequestRender(); }
+function wrCancelStroke() { wr.cur = null; wr.erasing = null; wr.tap = null; wr.selDrag = null; wr.selScale = null; wr.lasso = null; wr.activeId = null; wrRequestRender(); }
 function wrAddPoint(e) {
     const p = wrPoint(e);
     if (wr.erasing) { wrEraseTo(p); return; }
@@ -3675,6 +3763,7 @@ function wrDown(e) {
     try { cv.setPointerCapture(e.pointerId); } catch (err) {}
     e.preventDefault();
     wrStopMomentum();
+    const hintEl = document.getElementById('wrHint'); if (hintEl) hintEl.classList.remove('show'); // التلميح بيختفي أول ما تبدأ تشتغل
     if (wr.edit) wrCommitText(); // أي لمسة على الورقة بتنهي تعديل النص الحالي
     if (e.pointerType === 'touch') {
         wr.touches.set(e.pointerId, { x: e.clientX, y: e.clientY });
@@ -3712,7 +3801,7 @@ function wrMove(e) {
         if (t.moved && t.item) { t.item.x = Math.max(0, Math.min(WR_LOGICAL_W - 100, t.ox + dx / wr.scale)); t.item.y = Math.max(0, t.oy + dy / wr.scale); wrRequestRender(); }
         return;
     }
-    if (wr.selDrag || wr.lasso) { wrSelectMove(wrPoint(e)); return; }
+    if (wr.selDrag || wr.lasso || wr.selScale) { wrSelectMove(wrPoint(e)); return; }
     if (wr.cur && wr.cur.sh) { const p = wrPoint(e), s = wr.cur.sh; wr.cur.a = wrShapePoints(s.type, s.x, s.y, p[0], p[1]); wrRequestRender(); return; }
     const evs = (e.getCoalescedEvents && e.getCoalescedEvents().length) ? e.getCoalescedEvents() : [e];
     for (const ev of evs) wrAddPoint(ev);
@@ -3745,7 +3834,7 @@ function wrUp(e) {
             t.item.x = nx; t.item.y = ny;
             if (nx !== t.ox || ny !== t.oy) { wr.undo.push({ t: 'tmove', it: t.item, before: { x: t.ox, y: t.oy }, after: { x: nx, y: ny } }); wr.redo = []; wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); }
         }
-    } else if (wr.selDrag || wr.lasso) { wrSelectUp(); }
+    } else if (wr.selDrag || wr.lasso || wr.selScale) { wrSelectUp(); }
     else if (wr.cur && wr.cur.sh) {
         const c = wr.cur; wr.cur = null;
         if (e.type !== 'pointercancel' && c.a.length >= 4) {
@@ -3795,6 +3884,7 @@ function wrApply(a, undoing) {
     else if (a.t === 'tdel') { if (undoing) wr.texts.splice(Math.min(a.i, wr.texts.length), 0, a.it); else { const i = wr.texts.indexOf(a.it); if (i >= 0) wr.texts.splice(i, 1); } }
     else if (a.t === 'tedit') { const v = undoing ? a.before : a.after; a.it.text = v.text; a.it.c = v.c; a.it.s = v.s; a.it._h = 0; a.it._tw = 0; }
     else if (a.t === 'tmove') { const v = undoing ? a.before : a.after; a.it.x = v.x; a.it.y = v.y; }
+    else if (a.t === 'snap') wrApplySnap(a.items, undoing);
     else if (a.t === 'smove') { const k = undoing ? -1 : 1; wrApplySelMove(a.strokes, a.texts, a.dx * k, a.dy * k); }
 }
 function wrUndoAction() {
@@ -3809,7 +3899,7 @@ function wrRedoAction() {
 }
 
 // ---------- تحرير النص (كيبورد) ----------
-function wrAutosizeTa() { const ta = wr.edit && wr.edit.ta; if (!ta) return; ta.style.height = 'auto'; ta.style.height = Math.max(ta.scrollHeight, WR_LINE_GAP * wr.scale) + 'px'; }
+function wrAutosizeTa() { const ta = wr.edit && wr.edit.ta; if (!ta) return; ta.style.height = 'auto'; ta.style.height = Math.max(ta.scrollHeight, wrLH(wr.edit.item.s) * wr.scale) + 'px'; }
 function wrEnsureVisible() {
     const ed = wr.edit, sc = document.getElementById('wrScroll'); if (!ed || !sc) return;
     const top = ed.item.y * wr.scale - sc.scrollTop, bottom = top + ed.ta.offsetHeight;
@@ -3933,26 +4023,27 @@ function wrChanged() {
     wr.dirty = true; wrSetSaveState('saving'); wrSyncToolbar();
     clearTimeout(wr.saveTimer); wr.saveTimer = setTimeout(wrFlush, 1200);
 }
-function wrThumb() {
+function wrThumb(strokes, texts) {
+    strokes = strokes || wr.strokes; texts = texts || wr.texts;
     const W = 240, H = 320, k = W / WR_LOGICAL_W, c = document.createElement('canvas'); c.width = W; c.height = H;
     const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, W, H); x.setTransform(k, 0, 0, k, 0, 0);
     x.strokeStyle = '#d5e3f3'; x.lineWidth = 1 / k; x.beginPath();
     for (let y = WR_TOP_MARGIN; y < H / k; y += WR_LINE_GAP) { x.moveTo(0, y); x.lineTo(WR_LOGICAL_W, y); }
     x.stroke(); x.lineCap = 'round'; x.lineJoin = 'round';
-    for (const s of wr.strokes) { if (s.bb[1] > H / k) continue; x.strokeStyle = s.c; x.lineWidth = Math.max(s.w, 2.2); x.globalAlpha = s.h ? 0.35 : 1; x.stroke(wrPath(s)); x.globalAlpha = 1; }
-    for (const t of wr.texts) { // رسم تقريبي للنص في الصورة المصغرة (تغليف بسيط للكلمات)
+    for (const s of strokes) { if (s.bb[1] > H / k) continue; x.strokeStyle = s.c; x.lineWidth = Math.max(s.w, 2.2); x.globalAlpha = s.h ? 0.35 : 1; x.stroke(wrPath(s)); x.globalAlpha = 1; }
+    for (const t of texts) { // رسم تقريبي للنص في الصورة المصغرة (تغليف بسيط للكلمات)
         if (t.y > H / k) continue;
         const rtl = wrIsRtl(t.text); x.font = `${t.s}px sans-serif`; x.fillStyle = t.c; x.direction = rtl ? 'rtl' : 'ltr'; x.textAlign = rtl ? 'right' : 'left';
-        const ax = rtl ? t.x + t.w : t.x; let ly = t.y;
+        const ax = rtl ? t.x + t.w : t.x, lh = wrLH(t.s); let ly = t.y;
         wrPlainText(t.text).split('\n').forEach(par => {
             let line = '';
-            par.split(' ').forEach(w => { const test = line ? line + ' ' + w : w; if (line && x.measureText(test).width > t.w) { x.fillText(line, ax, ly + 30); ly += WR_LINE_GAP; line = w; } else line = test; });
-            x.fillText(line, ax, ly + 30); ly += WR_LINE_GAP;
+            par.split(' ').forEach(w => { const test = line ? line + ' ' + w : w; if (line && x.measureText(test).width > t.w) { x.fillText(line, ax, ly + lh * 0.7); ly += lh; line = w; } else line = test; });
+            x.fillText(line, ax, ly + lh * 0.7); ly += lh;
         });
     }
     try { return c.toDataURL('image/jpeg', 0.72); } catch (e) { return ''; }
 }
-const wrStrokeData = s => { const o = { c: s.c, w: s.w, a: s.a }; if (s.k) o.k = 1; if (s.h) o.h = 1; return o; };
+const wrStrokeData = s => { const o = { c: s.c, w: s.w, a: s.a }; if (s.k) o.k = 1; if (s.h) o.h = 1; if (s.sm) o.sm = 1; return o; };
 const wrTextData = t => ({ id: t.id, x: t.x, y: t.y, w: t.w, text: t.text, c: t.c, s: t.s });
 async function wrFlush() {
     clearTimeout(wr.saveTimer);
@@ -3974,7 +4065,7 @@ async function wrFlush() {
 function wrNewId() { return 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
 function wrLoadIntoMemory(d) {
     wr.strokes = (d && Array.isArray(d.strokes)) ? d.strokes.map(s => wrMakeStroke(s)) : [];
-    wr.texts = (d && Array.isArray(d.texts)) ? d.texts.map(t => ({ id: t.id || wrNewId(), x: t.x, y: t.y, w: t.w, text: String(t.text || ''), c: t.c || '#111827', s: WR_TEXT_SIZES.includes(t.s) ? t.s : 26 })) : [];
+    wr.texts = (d && Array.isArray(d.texts)) ? d.texts.map(t => ({ id: t.id || wrNewId(), x: t.x, y: t.y, w: t.w, text: String(t.text || ''), c: t.c || '#111827', s: (t.s >= WR_TEXT_MIN && t.s <= WR_TEXT_MAX) ? t.s : 26 })) : [];
 }
 async function wrOpenEditor(id) {
     const ed = document.getElementById('writingEditor'); if (!ed) return;
@@ -4020,6 +4111,10 @@ function wrSyncToolbar() {
     g('wrUndo').disabled = wr.undo.length === 0; g('wrRedo').disabled = wr.redo.length === 0;
     g('wrMic').classList.toggle('listening', !!wr.dict); g('wrDone').style.display = wr.edit ? 'inline-flex' : 'none';
     g('wrDelSel').style.display = wr.sel ? 'inline-flex' : 'none';
+    const tsb = g('wrTextSizeBox'), selT = wr.sel ? wr.sel.texts : [];
+    tsb.style.display = (textMode || selT.length) ? 'inline-flex' : 'none';
+    const tsv = wr.edit ? wr.edit.item.s : (selT.length ? (selT.every(x => x.s === selT[0].s) ? selT[0].s : null) : wr.tsize);
+    g('wrTsVal').textContent = tsv === null ? '–' : Math.round(tsv);
     const sel = g('wrDictLang'); if (sel.value !== wr.dictLang) sel.value = wr.dictLang;
     const ss = g('wrShapeSel'); if (ss.value !== wr.shape) ss.value = wr.shape;
     const modeBtn = g('wrMode'), key = wr.fingerWrites ? 'wr_mode_write' : 'wr_mode_scroll', L = i18n[currentLang];
@@ -4058,6 +4153,15 @@ function wrRenderSyncChip() {
     el.textContent = st === 'syncing' ? L.wr_sync_ing : st === 'error' ? L.wr_sync_err : L.wr_sync_ok;
     el.classList.add(st === 'error' ? 'err' : st === 'syncing' ? 'ing' : 'ok');
     el.title = st === 'error' ? L.wr_sync_err_hint : '';
+    wrRenderQuota();
+}
+function wrFmtBytes(b) { return b < 1024 * 1024 ? Math.max(1, Math.round(b / 1024)) + ' KB' : (b / 1048576).toFixed(b < 1e7 ? 2 : 1) + ' MB'; }
+function wrRenderQuota() {
+    const q = document.getElementById('wrQuota'); if (!q) return; const L = i18n[currentLang];
+    if (typeof useCloud === 'undefined' || !useCloud || !currentUser) { q.style.display = 'none'; return; }
+    const used = wr.meta.reduce((a, m) => a + (m.cloudAt ? (m.sz || 0) : 0), 0), quota = 1073741824;
+    q.style.display = used ? '' : 'none'; q.textContent = L.wr_quota.replace('{used}', wrFmtBytes(used)).replace('{pct}', (used / quota * 100).toFixed(used / quota < 0.01 ? 2 : 1));
+    q.classList.toggle('warn', used > quota * 0.7);
 }
 function renderWritingList() {
     const box = document.getElementById('writingList'), view = document.getElementById('writingView');
@@ -4096,20 +4200,34 @@ function wrCol(name) { return db.collection('users').doc(currentUser.uid).collec
 function wrSetSync(st) { wr.sync = st; wrRenderSyncChip(); }
 function wrTombLoad() { try { return JSON.parse(localStorage.getItem('fp_wr_tomb') || '[]'); } catch (e) { return []; } }
 function wrTombSave(a) { try { localStorage.setItem('fp_wr_tomb', JSON.stringify(a)); } catch (e) {} }
-function wrSerializeSheet(strokes, texts) {
-    const parts = []; let cur = [], len = 2;
+// ضغط أجزاء اللوحة قبل الرفع (gzip) لتقليل استهلاك مساحة Firestore المجانية
+function wrU8ToB64(u8) { let s = ''; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s); }
+function wrB64ToU8(b64) { const bin = atob(b64), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; }
+async function wrGzip(str) {
+    if (typeof CompressionStream === 'undefined') return null;
+    try { const cs = new CompressionStream('gzip'), w = cs.writable.getWriter(); w.write(new TextEncoder().encode(str)); w.close(); return new Uint8Array(await new Response(cs.readable).arrayBuffer()); } catch (e) { return null; }
+}
+async function wrGunzip(u8) { const ds = new DecompressionStream('gzip'), w = ds.writable.getWriter(); w.write(u8); w.close(); return new TextDecoder().decode(await new Response(ds.readable).arrayBuffer()); }
+async function wrPack(str) { const z = await wrGzip(str); return (z && z.length * 1.34 < str.length) ? { v: wrU8ToB64(z), z: 1 } : { v: str, z: 0 }; }
+async function wrUnpack(d) { if (!d) return ''; return d.z ? wrGunzip(wrB64ToU8(d.v)) : d.v; }
+async function wrSerializeSheet(strokes, texts) {
+    const raw = []; let cur = [], len = 2;
     strokes.forEach(s => {
-        const str = `${s.c}|${s.w}|${(s.k ? 1 : 0) | (s.h ? 2 : 0)}|${wrEncodeInts(s.a)}`;
-        if (len + str.length > WR_PART_MAX && cur.length) { parts.push(JSON.stringify(cur)); cur = []; len = 2; }
+        const str = `${s.c}|${s.w}|${(s.k ? 1 : 0) | (s.h ? 2 : 0) | (s.sm ? 4 : 0)}|${wrEncodeInts(s.a)}`;
+        if (len + str.length > WR_PART_MAX && cur.length) { raw.push(JSON.stringify(cur)); cur = []; len = 2; }
         cur.push(str); len += str.length + 3;
     });
-    if (cur.length || !parts.length) parts.push(JSON.stringify(cur));
-    return { parts, tex: JSON.stringify(texts.map(wrTextData)) };
+    if (cur.length || !raw.length) raw.push(JSON.stringify(cur));
+    const parts = []; for (const r of raw) parts.push(await wrPack(r));
+    return { parts, tex: await wrPack(JSON.stringify(texts.map(wrTextData))) };
 }
-function wrParseSheet(partStrs, texStr) {
+async function wrParseSheet(partDocs, texDoc) {
     const strokes = [];
-    partStrs.forEach(ps => JSON.parse(ps).forEach(str => { const f = str.split('|'); const fl = parseInt(f[2]) || 0; strokes.push({ c: f[0], w: parseFloat(f[1]), a: wrDecodeInts(f[3] || ''), k: fl & 1 ? 1 : 0, h: fl & 2 ? 1 : 0 }); }));
-    let texts = []; try { texts = JSON.parse(texStr || '[]'); } catch (e) {}
+    for (const pd of partDocs) {
+        const js = await wrUnpack(pd);
+        JSON.parse(js).forEach(str => { const f = str.split('|'), fl = parseInt(f[2]) || 0; strokes.push({ c: f[0], w: parseFloat(f[1]), a: wrDecodeInts(f[3] || ''), k: fl & 1 ? 1 : 0, h: fl & 2 ? 1 : 0, sm: fl & 4 ? 1 : 0 }); });
+    }
+    let texts = []; try { texts = JSON.parse((await wrUnpack(texDoc)) || '[]'); } catch (e) {}
     return { strokes, texts };
 }
 // رفع لوحة (بنرفع الأجزاء اللي اتغيرت بس)
@@ -4120,25 +4238,27 @@ async function wrCloudPush(id) {
     try {
         wrSetSync('syncing');
         const m = await wrGetMetaOne(id), d = await wrGetData(id); if (!m || !d) return;
-        const strokes = (d.strokes || []).map(s => ({ c: s.c, w: s.w, a: s.a instanceof Int32Array ? s.a : Int32Array.from(s.a), k: s.k, h: s.h }));
-        const ser = wrSerializeSheet(strokes, d.texts || []);
-        const hs = ser.parts.map(wrHash), th = wrHash(ser.tex), known = !!(m.cloudAt && m.ch);
+        const strokes = (d.strokes || []).map(s => ({ c: s.c, w: s.w, a: s.a instanceof Int32Array ? s.a : Int32Array.from(s.a), k: s.k, h: s.h, sm: s.sm }));
+        const ser = await wrSerializeSheet(strokes, d.texts || []);
+        const hs = ser.parts.map(p => wrHash(p.v)), th = wrHash(ser.tex.v), known = !!(m.cloudAt && m.ch);
+        const sz = ser.parts.reduce((a, p) => a + p.v.length, 0) + ser.tex.v.length;
         const batch = db.batch(), parts = wrCol('writingParts');
-        ser.parts.forEach((p, i) => { if (!(known && m.ch[i] === hs[i])) batch.set(parts.doc(id + '_' + i), { sid: id, i, v: p }); });
-        if (!(known && m.th === th)) batch.set(parts.doc(id + '_t'), { sid: id, i: -1, v: ser.tex });
+        ser.parts.forEach((p, i) => { if (!(known && m.ch[i] === hs[i])) batch.set(parts.doc(id + '_' + i), { sid: id, i, v: p.v, z: p.z }); });
+        if (!(known && m.th === th)) batch.set(parts.doc(id + '_t'), { sid: id, i: -1, v: ser.tex.v, z: ser.tex.z });
         for (let i = ser.parts.length; i < (m.cloudParts || 0); i++) batch.delete(parts.doc(id + '_' + i));
-        batch.set(wrCol('writingBoards').doc(id), { id, title: m.title || '', created: m.created || m.updated, updated: m.updated, n: m.n || 0, parts: ser.parts.length, q: m.q || '', thumb: m.thumb || '', ver: 1 });
+        // الصورة المصغرة ما بتترفعش للسحابة (كل جهاز بيولّدها محلياً) عشان نوفر مساحة
+        batch.set(wrCol('writingBoards').doc(id), { id, title: m.title || '', created: m.created || m.updated, updated: m.updated, n: m.n || 0, parts: ser.parts.length, q: (m.q || '').slice(0, 8000), sz, ver: 2 });
         await batch.commit();
-        const m2 = (await wrGetMetaOne(id)) || m; m2.cloudAt = m.updated; m2.ch = hs; m2.th = th; m2.cloudParts = ser.parts.length;
+        const m2 = (await wrGetMetaOne(id)) || m; m2.cloudAt = m.updated; m2.ch = hs; m2.th = th; m2.cloudParts = ser.parts.length; m2.sz = sz;
         await wrPutMeta(m2); const i = wr.meta.findIndex(x => x.id === id); if (i >= 0) wr.meta[i] = m2;
-        wrCloud.remote.set(id, { id, updated: m.updated, parts: ser.parts.length });
-        wrSetSync('ok');
+        wrCloud.remote.set(id, { id, updated: m.updated, parts: ser.parts.length, sz });
+        wrSetSync('ok'); wrRenderSyncChip();
     } catch (e) { console.error('Writing cloud push failed:', e); wrSetSync('error'); }
     finally { wrCloud.busy.delete(id); }
 }
 function wrCloudQueue(id) {
     if (!wrCloud.on) return;
-    clearTimeout(wrCloud.timers.get(id)); wrCloud.timers.set(id, setTimeout(() => wrCloudPush(id), 5000)); wrSetSync('syncing');
+    clearTimeout(wrCloud.timers.get(id)); wrCloud.timers.set(id, setTimeout(() => wrCloudPush(id), 10000)); wrSetSync('syncing');
 }
 async function wrCloudDeleteRemote(id, nParts) {
     const batch = db.batch(), parts = wrCol('writingParts');
@@ -4157,8 +4277,9 @@ async function wrCloudPull(rm) {
     reads.push(parts.doc(id + '_t').get());
     const snaps = await Promise.all(reads), texSnap = snaps.pop();
     if (snaps.some(s => !s.exists)) return; // الأجزاء لسه بتتكتب: هنكمل لما اللوحة تتحدث
-    const sheet = wrParseSheet(snaps.map(s => s.data().v), texSnap.exists ? texSnap.data().v : '[]');
-    const meta = { id, title: rm.title || '', created: rm.created || rm.updated, updated: rm.updated, thumb: rm.thumb || '', q: rm.q || '', n: rm.n || 0, sy: local ? local.sy || 0 : 0, cloudAt: rm.updated, cloudParts: rm.parts || 0 };
+    const sheet = await wrParseSheet(snaps.map(s => s.data()), texSnap.exists ? texSnap.data() : null);
+    let thumb = rm.thumb || ''; if (!thumb) { try { thumb = wrThumb(sheet.strokes.map(s => wrMakeStroke(s)), sheet.texts); } catch (e) {} } // الصورة المصغرة بتتولّد محلياً
+    const meta = { id, title: rm.title || '', created: rm.created || rm.updated, updated: rm.updated, thumb, q: rm.q || '', n: rm.n || 0, sz: rm.sz || 0, sy: local ? local.sy || 0 : 0, cloudAt: rm.updated, cloudParts: rm.parts || 0 };
     await wrPut(meta, { id, strokes: sheet.strokes.map(wrStrokeData), texts: sheet.texts });
     wr.meta = wr.meta.filter(m => m.id !== id); wr.meta.push(meta); wr.meta.sort((a, b) => b.updated - a.updated);
     if (wr.open && wr.id === id) { // اللوحة مفتوحة وجه لها تحديث من جهاز تاني
@@ -4227,14 +4348,14 @@ function wrExportMeasure() {
     const lines = [], base = {};
     try {
         [...new Set(wr.texts.map(t => t.s))].forEach(s => {
-            const pr = document.createElement('div'); pr.style.cssText = `position:absolute;left:0;top:0;width:600px;font-family:${bodyFont};font-size:${s}px;line-height:${WR_LINE_GAP}px;white-space:pre-wrap;`;
+            const pr = document.createElement('div'); pr.style.cssText = `position:absolute;left:0;top:0;width:600px;font-family:${bodyFont};font-size:${s}px;line-height:${wrLH(s)}px;white-space:pre-wrap;`;
             pr.innerHTML = '<span style="display:inline-block;width:0;height:0;"></span>x'; root.appendChild(pr);
             base[s] = pr.firstChild.getBoundingClientRect().bottom - pr.getBoundingClientRect().top;
         });
         const rr = root.getBoundingClientRect();
         wr.texts.forEach(it => {
             const el = document.createElement('div');
-            el.style.cssText = `position:absolute;left:${it.x}px;top:${it.y}px;width:${it.w}px;font-family:${bodyFont};font-size:${it.s}px;line-height:${WR_LINE_GAP}px;white-space:pre-wrap;overflow-wrap:anywhere;text-align:start;`;
+            el.style.cssText = `position:absolute;left:${it.x}px;top:${it.y}px;width:${it.w}px;font-family:${bodyFont};font-size:${it.s}px;line-height:${wrLH(it.s)}px;white-space:pre-wrap;overflow-wrap:anywhere;text-align:start;`;
             el.setAttribute('dir', 'auto'); wrFillText(el, it); root.appendChild(el);
             const er = el.getBoundingClientRect(), dir = getComputedStyle(el).direction, byLine = new Map(), walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
             let node;
@@ -4244,7 +4365,7 @@ function wrExportMeasure() {
                     const rg = document.createRange(); rg.setStart(node, i); rg.setEnd(node, i + 1);
                     const rects = rg.getClientRects(); if (!rects.length) continue; const r = rects[0];
                     if (txt[i] === '\n' || (r.width === 0 && r.height === 0)) continue;
-                    const li = Math.max(0, Math.floor(((r.top + r.bottom) / 2 - er.top) / WR_LINE_GAP));
+                    const li = Math.max(0, Math.floor(((r.top + r.bottom) / 2 - er.top) / wrLH(it.s)));
                     let L = byLine.get(li); if (!L) { L = { chars: [] }; byLine.set(li, L); }
                     L.chars.push({ ch: txt[i], link, left: r.left - rr.left, right: r.right - rr.left });
                 }
@@ -4255,7 +4376,7 @@ function wrExportMeasure() {
                 chars.forEach(c => { if (c.link) { if (cur && cur.url === c.link) { cur.left = Math.min(cur.left, c.left); cur.right = Math.max(cur.right, c.right); } else { cur = { url: c.link, left: c.left, right: c.right }; links.push(cur); } } else cur = null; });
                 // نص الطبقة غير المرئية بالترتيب البصري (زي ما برامج الـ PDF بتخزنه) عشان البحث والنسخ يطلعوا صح للعربي
                 const vis = chars.map((c, i) => ({ ch: c.ch, left: Math.round(c.left * 10) / 10, i })).sort((a, b) => (a.left - b.left) || (dir === 'rtl' ? b.i - a.i : a.i - b.i)).map(c => c.ch).join('');
-                lines.push({ text: trimmed, vtext: vis, dir, s: it.s, color: it.c, top: it.y + li * WR_LINE_GAP, base: base[it.s], left: Math.min(...chars.map(c => c.left)), right: Math.max(...chars.map(c => c.right)), links });
+                lines.push({ text: trimmed, vtext: vis, dir, s: it.s, lh: wrLH(it.s), color: it.c, top: it.y + li * wrLH(it.s), base: base[it.s], left: Math.min(...chars.map(c => c.left)), right: Math.max(...chars.map(c => c.right)), links });
             });
         });
     } finally { root.remove(); }
@@ -4273,14 +4394,14 @@ function wrExportPageCanvas(k, f, mx, ppp, lines, bodyFont) {
     wr.strokes.forEach(s => { if (s.bb[3] >= ys && s.bb[1] <= ye) wrDrawStroke(ctx, s); });
     ctx.restore();
     lines.forEach(ln => {
-        if (wrPageOf(ln.top + 22) !== k) return;
+        if (wrPageOf(ln.top + ln.lh / 2) !== k) return;
         const x = ln.dir === 'rtl' ? ln.right : ln.left, y = ln.top + ln.base;
         ctx.font = `${ln.s}px ${bodyFont}`; ctx.direction = ln.dir; ctx.textAlign = ln.dir === 'rtl' ? 'right' : 'left'; ctx.textBaseline = 'alphabetic';
-        ctx.save(); ctx.beginPath(); ctx.rect(0, ln.top - 6, WR_LOGICAL_W, WR_LINE_GAP + 12); // نص عادي: بنستثني أماكن الروابط ونرسمها زرقاء
-        ln.links.forEach(lk => ctx.rect(lk.left - 1, ln.top - 6, lk.right - lk.left + 2, WR_LINE_GAP + 12)); ctx.clip('evenodd');
+        ctx.save(); ctx.beginPath(); ctx.rect(0, ln.top - 6, WR_LOGICAL_W, ln.lh + 12); // نص عادي: بنستثني أماكن الروابط ونرسمها زرقاء
+        ln.links.forEach(lk => ctx.rect(lk.left - 1, ln.top - 6, lk.right - lk.left + 2, ln.lh + 12)); ctx.clip('evenodd');
         ctx.fillStyle = ln.color; ctx.fillText(ln.text, x, y); ctx.restore();
         ln.links.forEach(lk => {
-            ctx.save(); ctx.beginPath(); ctx.rect(lk.left - 1, ln.top - 6, lk.right - lk.left + 2, WR_LINE_GAP + 12); ctx.clip();
+            ctx.save(); ctx.beginPath(); ctx.rect(lk.left - 1, ln.top - 6, lk.right - lk.left + 2, ln.lh + 12); ctx.clip();
             ctx.fillStyle = '#1d4ed8'; ctx.fillText(ln.text, x, y); ctx.restore();
             ctx.strokeStyle = '#1d4ed8'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(lk.left, y + 3); ctx.lineTo(lk.right, y + 3); ctx.stroke();
         });
@@ -4355,10 +4476,10 @@ async function wrExportPdf(opts) {
             for (let i = 0; i < bin.length; i++) jpeg[i] = bin.charCodeAt(i);
             const text = [], annots = [];
             lines.forEach(ln => {
-                if (wrPageOf(ln.top + 22) !== k) return;
+                if (wrPageOf(ln.top + ln.lh / 2) !== k) return;
                 const fs = ln.s * f, n = Array.from(ln.vtext).length, x = mx + ln.left * f, y = WR_PDF_H - (ln.top + ln.base - ys) * f, wPt = (ln.right - ln.left) * f;
                 text.push({ str: ln.vtext, fs, x, y, tz: Math.max(10, Math.min(400, wPt / (n * 0.5 * fs) * 100)) });
-                ln.links.forEach(lk => annots.push({ url: lk.url, rect: [mx + lk.left * f, WR_PDF_H - (ln.top + 36 - ys) * f, mx + lk.right * f, WR_PDF_H - (ln.top + 6 - ys) * f] }));
+                ln.links.forEach(lk => annots.push({ url: lk.url, rect: [mx + lk.left * f, WR_PDF_H - (ln.top + ln.base + 0.25 * ln.s - ys) * f, mx + lk.right * f, WR_PDF_H - (ln.top + ln.base - 0.95 * ln.s - ys) * f] }));
             });
             pages.push({ jpeg, w: cv.width, h: cv.height, text, annots });
         }
@@ -4374,9 +4495,26 @@ async function wrExportPdf(opts) {
 }
 
 // ---------- ربط الأحداث ----------
+function wrHint(msg, ms) {
+    const el = document.getElementById('wrHint'); if (!el) return;
+    el.textContent = msg; el.classList.add('show'); clearTimeout(wr.hintTimer); wr.hintTimer = setTimeout(() => el.classList.remove('show'), ms || 7000);
+}
 function wrSetTool(tool) {
     wrCommitText(); if (tool !== 'select') wrClearSel();
     wr.tool = tool; wr.eraserPos = null; wrSavePrefs(); wrSyncToolbar(); wrRequestRender();
+    if (tool === 'select') { const n = parseInt(localStorage.getItem('fp_wr_hint_sel') || '0'); if (n < 3) { try { localStorage.setItem('fp_wr_hint_sel', String(n + 1)); } catch (e) {} wrHint(i18n[currentLang].wr_hint_select, 10000); } }
+}
+// حجم الخط: قبل الكتابة (افتراضي)، أثناء الكتابة (المربع المفتوح)، أو للنص المحدد (زي برامج التصميم)
+function wrTextSizeStep(dir) {
+    const f = dir > 0 ? 1.1 : 1 / 1.1;
+    const next = v => { let n = wrClampTs(Math.round(v * f)); if (n === v) n = wrClampTs(v + (dir > 0 ? 1 : -1)); return n; };
+    if (wr.edit) { const it = wr.edit.item; it.s = next(it.s); wr.tsize = it.s; wrPlaceTa(document.getElementById('wrScroll').scrollTop); wrAutosizeTa(); wrEnsureVisible(); }
+    else if (wr.sel && wr.sel.texts.length) {
+        const items = wr.sel.texts.map(t => ({ k: 't', it: t, b: { x: t.x, y: t.y, w: t.w, s: t.s }, a: { x: t.x, y: t.y, w: t.w, s: next(t.s) } }));
+        if (items.some(o => o.a.s !== o.b.s)) { wrApplySnap(items, false); wr.undo.push({ t: 'snap', items }); wr.redo = []; wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); }
+        wr.tsize = items[0].a.s;
+    } else wr.tsize = next(wr.tsize);
+    wrSavePrefs(); wrSyncToolbar(); wrRequestRender();
 }
 function wrInit() {
     if (wr.bound) return; const ed = document.getElementById('writingEditor'); if (!ed) return; wr.bound = true;
@@ -4422,6 +4560,8 @@ function wrInit() {
     keepFocus(g('wrMic')); g('wrMic').addEventListener('click', wrDictToggle);
     keepFocus(g('wrLink')); g('wrLink').addEventListener('click', wrLinkOpenDialog);
     keepFocus(g('wrDone')); g('wrDone').addEventListener('click', wrCommitText);
+    keepFocus(g('wrTsDown')); g('wrTsDown').addEventListener('click', () => wrTextSizeStep(-1));
+    keepFocus(g('wrTsUp')); g('wrTsUp').addEventListener('click', () => wrTextSizeStep(1));
     g('wrDictLang').addEventListener('change', e => { wr.dictLang = e.target.value; wrSavePrefs(); if (wr.dict) { wrDictStop(); wrDictStart(); } });
     g('wrLinkOk').addEventListener('click', wrLinkConfirm); g('wrLinkCancel').addEventListener('click', wrLinkCloseDialog);
     g('wrLinkDlg').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); wrLinkConfirm(); } else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); wrLinkCloseDialog(); } });

@@ -466,3 +466,12 @@ html[dir="rtl"] .wr-back i { transform: scaleX(-1); }
     .wr-toolbar > * { flex: 0 0 auto; }
     .wr-sep { display: block; }
 }
+
+/* ===== v42.4: حجم النص، تلميح التحديد، عدّاد المساحة ===== */
+.wr-tsize { display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; }
+.wr-tsval { min-width: 34px; text-align: center; font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+.wr-aa { font-weight: 800; font-size: 1.05rem; line-height: 1; }
+.wr-hint { position: absolute; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 12px); width: min(92%, 520px); z-index: 6; padding: 10px 14px; border-radius: 12px; background: rgba(17, 24, 39, 0.94); color: #fff; font-size: 0.85rem; line-height: 1.6; white-space: pre-line; text-align: start; opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; }
+.wr-hint.show { opacity: 1; transform: translate(-50%, 0); }
+.wr-quota { font-size: 0.78rem; color: var(--text-muted); }
+.wr-quota.warn { color: var(--danger); font-weight: 700; }

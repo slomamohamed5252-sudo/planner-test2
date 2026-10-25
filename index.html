@@ -46,7 +46,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="style.css?v=42.3">
+    <link rel="stylesheet" href="style.css?v=42.4">
 </head>
 <body>
 
@@ -452,7 +452,7 @@
                     <button type="button" class="btn btn-primary" id="wrNewBtn"><i class="fa-solid fa-plus"></i> <span data-i18n="wr_new">لوحة جديدة</span></button>
                 </div>
                 <p class="notif-desc" data-i18n="wr_desc">اكتب بالقلم أو بإصبعك على ورقة مسطّرة بلا نهاية. تُحفظ لوحاتك على هذا الجهاز وتتزامن مع حسابك عند تسجيل الدخول.</p>
-                <div class="wr-listbar"><input type="search" id="wrSearch" class="wr-search" data-i18n-ph="wr_search_ph" placeholder="ابحث في عناوين اللوحات ونصوصها..." autocomplete="off"><span id="wrSyncState" class="wr-sync" role="status" style="display:none;"></span></div>
+                <div class="wr-listbar"><input type="search" id="wrSearch" class="wr-search" data-i18n-ph="wr_search_ph" placeholder="ابحث في عناوين اللوحات ونصوصها..." autocomplete="off"><span id="wrSyncState" class="wr-sync" role="status" style="display:none;"></span><span id="wrQuota" class="wr-quota" style="display:none;"></span></div>
                 <div id="writingList"></div>
             </div>
 
@@ -824,6 +824,7 @@
         <button type="button" class="wr-btn" id="wrMic" data-i18n-title="wr_mic" title="إملاء صوتي"><i class="fa-solid fa-microphone"></i></button>
         <select id="wrDictLang" class="wr-select" data-i18n-title="wr_dict_lang" title="لغة الإملاء الصوتي"><option value="ar-EG" data-i18n="dict_ar">عربي</option><option value="en-US">English</option></select>
         <button type="button" class="wr-btn" id="wrLink" data-i18n-title="wr_link" title="إضافة رابط"><i class="fa-solid fa-link"></i></button>
+        <span id="wrTextSizeBox" class="wr-tsize" style="display:none;"><button type="button" class="wr-btn" id="wrTsDown" data-i18n-title="wr_ts_down" title="تصغير حجم الخط"><span class="wr-aa">A</span><i class="fa-solid fa-minus"></i></button><span id="wrTsVal" class="wr-tsval" data-i18n-title="wr_ts_label" title="حجم الخط الحالي">26</span><button type="button" class="wr-btn" id="wrTsUp" data-i18n-title="wr_ts_up" title="تكبير حجم الخط"><span class="wr-aa">A</span><i class="fa-solid fa-plus"></i></button></span>
         <button type="button" class="wr-btn wr-done" id="wrDone" style="display:none;" data-i18n-title="wr_done" title="تم"><i class="fa-solid fa-check"></i> <span data-i18n="wr_done">تم</span></button>
         <span class="wr-sep"></span>
         <button type="button" class="wr-btn" id="wrZoomOut" data-i18n-title="wr_zoom_out" title="تصغير"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
@@ -834,6 +835,7 @@
         <button type="button" class="wr-btn" id="wrDown" data-i18n-title="wr_down" title="انزل للأسفل"><i class="fa-solid fa-arrow-down"></i></button>
     </div>
     <div class="wr-scroll" id="wrScroll"><div class="wr-stage" id="wrStage"><canvas id="wrCanvas" class="wr-canvas"></canvas><div class="wr-textlayer" id="wrTextLayer"></div></div><div class="wr-sizer" id="wrSizer"></div></div>
+    <div id="wrHint" class="wr-hint" role="status"></div>
     <div id="wrLinkDlg" class="wr-dlg" style="display:none;" role="dialog" aria-modal="true">
         <div class="wr-dlg-box">
             <h3 data-i18n="wr_link_title">إضافة رابط</h3>
@@ -848,6 +850,6 @@
     </div>
 </div>
 
-<script src="script.js?v=42.3"></script>
+<script src="script.js?v=42.4"></script>
 </body>
 </html>
