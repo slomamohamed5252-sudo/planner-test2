@@ -3283,7 +3283,7 @@ const wr = {
     open: false, id: null, title: '', created: 0, persisted: false, strokes: [], texts: [], undo: [], redo: [],
     tool: 'pen', shape: 'line', color: '#111827', size: 3, tsize: 26, fingerWrites: true, penSeen: false, dictLang: (currentLang === 'ar' ? 'ar-EG' : 'en-US'),
     zoom: 1, base: 1, cur: null, erasing: null, tap: null, edit: null, dict: null, dlgOpen: false, textNodes: new Map(), hDirty: false,
-    sel: null, selDrag: null, selScale: null, lasso: null,
+    sel: null, selDrag: null, selScale: null, lasso: null, tsOrig: null,
     activeId: null, touches: new Map(), panning: false, lastCX: 0, lastCY: 0, lastDist: 0, lastT: 0, vel: 0, momentum: 0,
     scale: 1, offX: 0, cssW: 0, cssH: 0, dpr: 1, raf: 0, maxY: 0, eraserPos: null,
     dirty: false, saveTimer: 0, flashTimer: 0, bound: false, meta: [], metaLoaded: false, metaLoading: false, query: '', sync: 'off', exporting: false
@@ -3913,7 +3913,7 @@ function wrStartTextEdit(it, pos) {
     const ta = document.createElement('textarea');
     ta.className = 'wr-textedit'; ta.setAttribute('dir', 'auto'); ta.rows = 1; ta.value = it.text; ta.placeholder = i18n[currentLang].wr_text_ph; ta.setAttribute('autocapitalize', 'sentences');
     ta.addEventListener('input', () => { wrAutosizeTa(); wrEnsureVisible(); });
-    ta.addEventListener('blur', () => { if (!wr.dlgOpen) setTimeout(() => { if (wr.edit && wr.edit.ta === ta && !wr.dlgOpen && document.activeElement !== ta) wrCommitText(); }, 120); });
+    ta.addEventListener('blur', () => { if (!wr.dlgOpen) setTimeout(() => { if (wr.edit && wr.edit.ta === ta && !wr.dlgOpen && document.activeElement !== ta && !(document.activeElement && document.activeElement.id === 'wrTsVal')) wrCommitText(); }, 120); });
     ta.addEventListener('keydown', ev => { if (ev.key === 'Escape') { ev.preventDefault(); ev.stopPropagation(); wrCommitText(); } else if (ev.key === 'Enter' && (ev.ctrlKey || ev.metaKey)) { ev.preventDefault(); wrCommitText(); } });
     wr.edit = { item: it, isNew, ta, before: isNew ? null : { text: it.text, c: it.c, s: it.s } };
     layer.appendChild(ta); wrPlaceTa(document.getElementById('wrScroll').scrollTop); wrAutosizeTa();
@@ -4113,8 +4113,8 @@ function wrSyncToolbar() {
     g('wrDelSel').style.display = wr.sel ? 'inline-flex' : 'none';
     const tsb = g('wrTextSizeBox'), selT = wr.sel ? wr.sel.texts : [];
     tsb.style.display = (textMode || selT.length) ? 'inline-flex' : 'none';
-    const tsv = wr.edit ? wr.edit.item.s : (selT.length ? (selT.every(x => x.s === selT[0].s) ? selT[0].s : null) : wr.tsize);
-    g('wrTsVal').textContent = tsv === null ? '–' : Math.round(tsv);
+    const tsv = wr.edit ? wr.edit.item.s : (selT.length ? (selT.every(x => x.s === selT[0].s) ? selT[0].s : null) : wr.tsize), tsi = g('wrTsVal');
+    if (document.activeElement !== tsi) tsi.value = tsv === null ? '' : Math.round(tsv);
     const sel = g('wrDictLang'); if (sel.value !== wr.dictLang) sel.value = wr.dictLang;
     const ss = g('wrShapeSel'); if (ss.value !== wr.shape) ss.value = wr.shape;
     const modeBtn = g('wrMode'), key = wr.fingerWrites ? 'wr_mode_write' : 'wr_mode_scroll', L = i18n[currentLang];
@@ -4505,6 +4505,22 @@ function wrSetTool(tool) {
     if (tool === 'select') { const n = parseInt(localStorage.getItem('fp_wr_hint_sel') || '0'); if (n < 3) { try { localStorage.setItem('fp_wr_hint_sel', String(n + 1)); } catch (e) {} wrHint(i18n[currentLang].wr_hint_select, 10000); } }
 }
 // حجم الخط: قبل الكتابة (افتراضي)، أثناء الكتابة (المربع المفتوح)، أو للنص المحدد (زي برامج التصميم)
+function wrTsLive(v) { // تطبيق مباشر أثناء كتابة الرقم (القيم من 8 لـ 200 بس)
+    if (wr.edit) { const it = wr.edit.item; it.s = v; wr.tsize = v; wrPlaceTa(document.getElementById('wrScroll').scrollTop); wrAutosizeTa(); wrEnsureVisible(); }
+    else if (wr.sel && wr.sel.texts.length) { wr.sel.texts.forEach(t => { t.s = v; t._h = 0; t._tw = 0; t._tx = 0; }); wr.tsize = v; }
+    else wr.tsize = v;
+    wrRequestRender();
+}
+function wrTsFinish(inp) { // عند Enter أو ترك الخانة: نثبّت القيمة (مع حدود 8–200) ونسجّل عملية تراجع واحدة للنص المحدد
+    let v = parseFloat(inp.value);
+    if (!isFinite(v)) { wr.tsOrig = null; wrSyncToolbar(); return; } // خانة فاضية: نرجع للقيمة الحالية
+    v = wrClampTs(Math.round(v)); wrTsLive(v); inp.value = v;
+    if (wr.tsOrig && wr.sel) {
+        const items = wr.tsOrig.map(o => ({ k: 't', it: o.it, b: o.b, a: { x: o.it.x, y: o.it.y, w: o.it.w, s: o.it.s } }));
+        if (items.some(o => o.a.s !== o.b.s)) { wr.undo.push({ t: 'snap', items }); wr.redo = []; wrRecalcMaxY(); wrUpdateSizer(); wrChanged(); }
+    }
+    wr.tsOrig = null; wrSavePrefs(); wrSyncToolbar(); wrRequestRender();
+}
 function wrTextSizeStep(dir) {
     const f = dir > 0 ? 1.1 : 1 / 1.1;
     const next = v => { let n = wrClampTs(Math.round(v * f)); if (n === v) n = wrClampTs(v + (dir > 0 ? 1 : -1)); return n; };
@@ -4560,6 +4576,12 @@ function wrInit() {
     keepFocus(g('wrMic')); g('wrMic').addEventListener('click', wrDictToggle);
     keepFocus(g('wrLink')); g('wrLink').addEventListener('click', wrLinkOpenDialog);
     keepFocus(g('wrDone')); g('wrDone').addEventListener('click', wrCommitText);
+    const tsi = g('wrTsVal');
+    tsi.addEventListener('focus', () => { wr.tsOrig = (wr.sel && wr.sel.texts.length && !wr.edit) ? wr.sel.texts.map(t => ({ it: t, b: { x: t.x, y: t.y, w: t.w, s: t.s } })) : null; tsi.select(); });
+    tsi.addEventListener('input', () => { const v = parseFloat(tsi.value); if (isFinite(v) && v >= WR_TEXT_MIN && v <= WR_TEXT_MAX) wrTsLive(Math.round(v)); });
+    tsi.addEventListener('change', () => wrTsFinish(tsi));
+    tsi.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); wrTsFinish(tsi); if (wr.edit) wr.edit.ta.focus({ preventScroll: true }); else tsi.blur(); } });
+    tsi.addEventListener('blur', () => { if (wr.tsOrig !== null || document.activeElement !== tsi) wrTsFinish(tsi); });
     keepFocus(g('wrTsDown')); g('wrTsDown').addEventListener('click', () => wrTextSizeStep(-1));
     keepFocus(g('wrTsUp')); g('wrTsUp').addEventListener('click', () => wrTextSizeStep(1));
     g('wrDictLang').addEventListener('change', e => { wr.dictLang = e.target.value; wrSavePrefs(); if (wr.dict) { wrDictStop(); wrDictStart(); } });
